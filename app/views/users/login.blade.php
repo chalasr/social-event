@@ -1,4 +1,4 @@
-@extends('layouts.unlogged')
+@extends('layouts.master')
 
 @section('content')
 <div class="well logform">

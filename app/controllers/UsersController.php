@@ -15,7 +15,7 @@ class UsersController extends BaseController
         if (Auth::check()) {
             return Redirect::to('/')->with('message', 'Vous ne pouvez pas vous inscrire en étant déjà connecté');
         }
-        $this->layout->content = View::make('users.inscription');
+        return View::make('users.inscription');
     }
 
     public function getCompleteRegistration()
@@ -69,7 +69,7 @@ class UsersController extends BaseController
         if (Auth::check()) {
             return Redirect::to('/')->with('message', 'Vous êtes déjà connecté');
         }
-        $this->layout->content = View::make('users.login');
+        return View::make('users.login');
     }
 
     public function postSignin()
@@ -92,6 +92,6 @@ class UsersController extends BaseController
     {
         Auth::logout();
 
-        return Redirect::to('users/login')->with('message', 'Vous êtes déconnecté !');
+        return Redirect::to('/')->with('message', 'Vous êtes déconnecté !');
     }
 }

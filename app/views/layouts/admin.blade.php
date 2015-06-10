@@ -13,19 +13,16 @@
 <header class="nav sub-menu menu">
     <nav class="container">
         <ul class="menulist list-unstyled">
-            <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('https://twitter.com/BrefRhoneAlpes') }}">Suivez nous sur Twitter</a></li>
+            <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#####') }}">Mon Profil</a></li>
+            
             @if(Auth::check())
-                <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#####') }}">Mon Profil</a></li>
-                @if(Auth::user()->role_id == 1)
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Mon dossier candidat</a></li>
-                @elseif(Auth::user()->role_id == 2)
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Afficher les dossiers candidats</a></li>
-                @elseif(Auth::user()->role_id == 3)
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/admin') }}">Afficher mon pannel admin</a></li>
+                @if(Auth::user()->role_id == 3)
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Gêrer les catégories</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Gêrer les dossiers candidat</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Gêrer les jurys</a></li>
                 @endif
-            @elseif(!Auth::check())
-                <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('/users/register') }}">S'inscrire</a></li>
             @endif
+
         </ul>
     </nav>
         @if(Auth::check())
