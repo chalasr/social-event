@@ -13,11 +13,10 @@
 <header class="nav sub-menu menu">
     <nav class="container">
         <ul class="menulist list-unstyled">
-            <li> <i class="iconup fa fa-cloud-upload"></i> <a href="{{ URL::to('upload') }}">Upload</a></li>
+            <li> <i class="iconup fa fa-user"></i> <a href="{{ URL::to('upload') }}">Profil</a></li>
             <li> <i class="iconup fa fa-folder-open"></i> <a href="{{ URL::to('myuploads') }}">Mes fichiers</a></li>
-            <li> <i class="iconup fa fa-cloud"></i> <a href="{{ URL::to('cloud') }}">Cloud</a></li>
             @if(Auth::check())
-                <?php if(Auth::user()->role_id == 2) echo '<li> <i class="iconup fa fa-cog"></i> <a href="'.URL::to('admin').'">Administration</a></li>'; ?>
+                <?php if(Auth::user()->role_id == 3) echo '<li> <i class="iconup fa fa-cog"></i> <a href="'.URL::to('admin').'">Administration</a></li>'; ?>
             @endif
         </ul>
     </nav>
@@ -37,7 +36,7 @@
     </div>
 
     <footer>
-        <p>My CloudWac with Laravel Framework &nbsp;{chalas_r}&copy; </p>
+        <p>Bref RH</p>
     </footer>
 
     {{ HTML::script('js/jquery.js') }}

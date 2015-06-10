@@ -8,12 +8,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
-	protected $fillable = array();
+	protected $fillable = array('username', 'email', 'password', 'role_id');
 
   public function categories()
   {
       return $this->belongsToMany('Category', 'users_categories');
   }
+
+	public function role()
+	{
+			return $this->hasOne('Role', 'role_id');
+	}
 
 	public static $rules = array(
         'username'=>'required|alpha|min:2',
