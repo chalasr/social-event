@@ -13,6 +13,7 @@
 <header class="nav sub-menu menu">
     <nav class="container">
         <ul class="menulist list-unstyled">
+          <li><i class="iconup fa fa-home"></i><a href="{{ URL::to('/') }}">Bref RH</a></li>
             @if(Auth::check())
                     <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#####') }}">Profil</a></li>
                 @if(Auth::user()->role_id == 1)

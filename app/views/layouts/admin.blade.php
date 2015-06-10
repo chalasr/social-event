@@ -15,9 +15,10 @@
         <ul class="menulist list-unstyled">
             @if(Auth::check())
                 @if(Auth::user()->role_id == 3)
+                    <li><i class="iconup fa fa-home"></i><a href="{{ URL::to('/') }}">Bref RH</a></li>
                     <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Categories</a></li>
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">CANDIDATS</a></li>
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">JURYS</a></li>
+                    <li><i class="iconup fa fa-folder"></i><a href="{{ URL::to('#') }}">CANDIDATS</a></li>
+                    <li><i class="iconup fa fa-user"></i><a href="{{ URL::to('#') }}">JURYS</a></li>
                 @endif
             @endif
 
