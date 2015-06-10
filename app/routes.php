@@ -17,6 +17,7 @@ Route::get('/', array('uses' => 'HomeController@showWelcome'));
 //Users views
 Route::controller('users', 'UsersController');
 Route::get('register', array('uses' => 'UsersController@getRegister', 'as' => 'register'));
+Route::get('register/complete', ['uses' => 'UsersController@getCompleteRegistration']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
 //Upload Views
 // Route::get('upload', array('uses' => 'UploadsController@index', 'as' => 'upload'));
