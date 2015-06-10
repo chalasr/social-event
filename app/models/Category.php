@@ -10,6 +10,8 @@ class Category extends Eloquent {
   }
 
 	public static $rules = array(
+		'name'=>'required',
+		'description'=>'required',
     );
 	/**
 	 * The database table used by the model.

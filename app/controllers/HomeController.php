@@ -17,7 +17,6 @@ class HomeController extends BaseController
 
     public function showWelcome()
     {
-        $categories = User::find(1)->categories;
-        return View::make('hello', compact('categories'));
+        return View::make('index');
     }
 }
