@@ -14,7 +14,7 @@
     <nav class="container">
         <ul class="menulist list-unstyled">
             @if(Auth::check())
-                <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#####') }}">Profil</a></li>
+                    <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#####') }}">Profil</a></li>
                 @if(Auth::user()->role_id == 1)
                     <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Finaliser mon inscription</a></li>
                 @elseif(Auth::user()->role_id == 2)

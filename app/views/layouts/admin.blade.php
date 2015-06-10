@@ -13,8 +13,6 @@
 <header class="nav sub-menu menu">
     <nav class="container">
         <ul class="menulist list-unstyled">
-            <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#####') }}">Mon Profil</a></li>
-
             @if(Auth::check())
                 @if(Auth::user()->role_id == 3)
                     <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Categories</a></li>
