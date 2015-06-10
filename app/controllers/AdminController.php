@@ -1,23 +1,107 @@
 <?php
 
-class HomeController extends BaseController
+class AdminController extends BaseController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Default Home Controller
-    |--------------------------------------------------------------------------
-    |
-    | You may wish to use controllers instead of, or in addition to, Closure
-    | based routes. That's great! Here is an example controller method to
-    | get you started. To route to this controller, just add the route:
-    |
-    |	Route::get('/', 'HomeController@showWelcome');
-    |
-    */
-
-    public function showWelcome()
-    {
-        $categories = User::find(1)->categories;
-        return View::make('hello', compact('categories'));
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index(){
+        $categories = Category::all();
+        return View::make('admin/category', compact('categories'));
     }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create(){
+         if(!Auth::check()) return Redirect::to('users/login')->with('error', 'Vous ne pouvez pas créer une catégorie sans être logger !');
+            Return View::make('admin/new');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(){
+        $validator = Validator::make(Input::all(), Category::$rules);   
+        if($validator->passes())
+        {
+            $add = new Category;
+            $add->name = Input::get('name');
+            $add->description = Input::get('description');
+            $add->save();
+            return Redirect::to('/admin/')->with('message', 'Votre catégorie est désormais en ligne !');
+        }
+        else
+        {
+            return Redirect::to('admin/new')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+        }
+    }
+    /**
+     * Display the specified re source.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id){
+        $category = Category::find($id);
+        return View::make('admin.edit', compact('category'));
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        $validator = Validator::make(Input::all(), Category::$rules);
+
+        // process the login
+        if ($validator->fails())
+        {
+            return Redirect::to('admin/' . $id . '/edit')
+                ->withErrors($validator);
+        } 
+        else 
+        {
+            // store
+            $category = Category::find($id);
+            $category->name       = Input::get('name');
+            $category->description      = Input::get('description');
+            $category->save();
+
+            // redirect
+            Session::flash('message', 'Modification effectué');
+            return Redirect::to('/admin/');
+        }
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    public function getDelete($id)
+    {
+        $category = Category::find($id);
+        Category::destroy($id);
+        return Redirect::to('/admin/')->with('message', 'La catégorie a bien été supprimé');
+    }
+
 }
