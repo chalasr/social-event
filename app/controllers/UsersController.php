@@ -78,7 +78,7 @@ class UsersController extends BaseController
             return Redirect::to('/')->with('message', 'Vous êtes connecté !');
         } else {
             return Redirect::to('users/register')
-            ->with('message', 'Votre username/password est incorrect !')
+            ->with('error', 'Votre username/password est incorrect !')
             ->withInput();
         }
     }

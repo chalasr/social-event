@@ -6,7 +6,6 @@
 <div class="well logform">
     {{ Form::open(array('url'=>'users/create', 'class'=>'form-signup')) }}
         <h2 class="form-signup-heading">Finaliser votre candidature</h2>
-
         <ul>
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
