@@ -2,7 +2,7 @@
 
 class Category extends Eloquent {
 
-	protected $fillable = array();
+	protected $fillable = array('name');
 
   public function users()
   {
