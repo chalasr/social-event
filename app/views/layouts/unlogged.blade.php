@@ -26,8 +26,6 @@ Bref RH</title>
         @yield('content')
     </div>
 
-    <footer>
-    </footer>
     {{ HTML::script('js/jquery.js') }}
     {{ HTML::script('js/script.js') }}
     {{ HTML::script('js/bootstrap.min.js') }}
