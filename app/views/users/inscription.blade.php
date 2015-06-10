@@ -15,8 +15,8 @@
         {{ Form::password('password', array('class'=>'input-block-level', 'placeholder'=>'Password')) }}
         {{ Form::password('password_confirmation', array('class'=>'input-block-level', 'placeholder'=>'Confirm Password')) }}
         {{ Form::text('email', null, array('class'=>'input-block-level', 'placeholder'=>'Email Address')) }}
-
         {{ Form::submit('Register', array('class'=>'btn btn-primary'))}}
-    {{ Form::close() }}
+        
+      {{ Form::close() }}
 </div>
 @stop
