@@ -3,7 +3,7 @@
 @section('content')
 <div class="well">
 	 @foreach($categories as $category)
-	{{ $category->name }}
+	{{ $category->name }} <br>
 	{{ $category->description }}
 	@endforeach
 </div>
