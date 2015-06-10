@@ -23,7 +23,7 @@ class UsersController extends BaseController
         if (!Auth::check()) {
             return Redirect::to('/')->with('message', 'Vous devez vous pré-inscrire et être connecté pour remplir ce formulaire');
         }
-        $this->layout->content = View::make('users.complete-inscription');
+         return View::make('users.complete-inscription');
     }
 
     public function postCreate()

@@ -1,11 +1,11 @@
-@extends('layouts.unlogged')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
 
-<div class="well logform" style='float:left;'>
+<div class="well logform">
     {{ Form::open(array('url'=>'users/create', 'class'=>'form-signup')) }}
-        <h2 class="form-signup-heading">Finaliser votre Inscription</h2>
+        <h2 class="form-signup-heading">Finaliser votre candidature</h2>
 
         <ul>
             @foreach($errors->all() as $error)
@@ -21,3 +21,5 @@
 
       {{ Form::close() }}
 </div>
+
+@stop
