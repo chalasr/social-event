@@ -13,6 +13,7 @@
 
 
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
+Route::get('/admin/category', array('uses' => 'AdminController@ShowCategory'));
 
 //Users views
 Route::controller('users', 'UsersController');

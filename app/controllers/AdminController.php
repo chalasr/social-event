@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends BaseController
+class AdminController extends BaseController
 {
     /*
     |--------------------------------------------------------------------------
@@ -15,9 +15,9 @@ class HomeController extends BaseController
     |
     */
 
-    public function showWelcome()
+    public function showCategory()
     {
-        $categories = User::find(1)->categories;
-        return View::make('hello', compact('categories'));
+        $categories = Category::all();
+        return View::make('admin/category', compact('categories'));
     }
 }
