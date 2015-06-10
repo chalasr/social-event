@@ -14,12 +14,12 @@
     <nav class="container">
         <ul class="menulist list-unstyled">
             <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#####') }}">Mon Profil</a></li>
-            
+
             @if(Auth::check())
                 @if(Auth::user()->role_id == 3)
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Gêrer les catégories</a></li>
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Gêrer les dossiers candidat</a></li>
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Gêrer les jurys</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Categories</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">CANDIDATS</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">JURYS</a></li>
                 @endif
             @endif
 
