@@ -11,9 +11,14 @@
 |
 */
 
+$id = '[0-9]+';
 
+Route::get('admin/delete/{id}', 'AdminController@getDelete')->where('id', $id);
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
-Route::get('/admin/category', array('uses' => 'AdminController@ShowCategory'));
+Route::resource('admin', 'AdminController');
+
+
+
 
 //Users views
 Route::controller('users', 'UsersController');
