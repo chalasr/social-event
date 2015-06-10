@@ -1,6 +1,5 @@
 /bootstrap/compiled.php
 /vendor
-/app/config/
 composer.phar
 composer.lock
 .env.*.php
@@ -8,3 +7,4 @@ composer.lock
 .DS_Store
 Thumbs.db
 /public/uploads/
+/app/config/database.php

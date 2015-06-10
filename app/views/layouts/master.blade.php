@@ -13,15 +13,14 @@
 <header class="nav sub-menu menu">
     <nav class="container">
         <ul class="menulist list-unstyled">
-            <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('https://twitter.com/BrefRhoneAlpes') }}">Suivez nous sur Twitter</a></li>
             @if(Auth::check())
-                <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#####') }}">Mon Profil</a></li>
+                <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#####') }}">Profil</a></li>
                 @if(Auth::user()->role_id == 1)
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Mon dossier candidat</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Finaliser mon inscription</a></li>
                 @elseif(Auth::user()->role_id == 2)
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Afficher les dossiers candidats</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Candidatures</a></li>
                 @elseif(Auth::user()->role_id == 3)
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/admin') }}">Afficher mon pannel admin</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/admin') }}">Administration</a></li>
                 @endif
             @elseif(!Auth::check())
                 <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('/users/register') }}">S'inscrire</a></li>
@@ -38,6 +37,8 @@
     <div id="content">
     @if(Session::has('message'))
         <p class="alert alert-success">{{ Session::get('message') }}</p>
+    @elseif(Session::has('error'))
+        <p class="alert alert-danger"> {{ Session::get('error') }}<p>
     @endif
 
         @yield('content')

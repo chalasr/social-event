@@ -21,6 +21,8 @@ Bref RH</title>
     <div id="content">
         @if(Session::has('message'))
             <p class="alert alert-success">{{ Session::get('message') }}</p>
+        @elseif(Session::has('error'))
+            <p class="alert alert-danger"> {{ Session::get('error') }}<p>
         @endif
 
         @yield('content')
