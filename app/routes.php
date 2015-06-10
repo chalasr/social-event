@@ -15,3 +15,23 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+//Users views
+Route::controller('users', 'UsersController');
+Route::get('register', array('uses' => 'UsersController@getRegister', 'as' => 'register'));
+Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
+//Upload Views
+// Route::get('upload', array('uses' => 'UploadsController@index', 'as' => 'upload'));
+// Route::post('upload', 'UploadsController@upload');
+// Route::get('myuploads', array('before' => 'auth', function()
+// {
+//     $userid = Auth::user()->id;
+//     $upload = Upload::where('user_id', '=', $userid)->orderBy('id', 'DESC')->paginate(5);
+//     return View::make('upload.myupload')->with('upload', $upload);
+// }));
+// Route::get('cloud', array('before' => 'auth', function()
+// {
+//     $userid = Auth::user()->id;
+//     $upload = Upload::where('status', '=', '1')->orderBy('id', 'DESC')->paginate(5);
+//     return View::make('upload.cloud')->with('upload', $upload);
+// }));
