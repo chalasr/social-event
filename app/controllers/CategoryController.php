@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends BaseController
+class CategoryController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -9,7 +9,7 @@ class AdminController extends BaseController
      */
     public function index(){
         $categories = Category::all();
-        return View::make('admin/category', compact('categories'));
+        return View::make('admin/category/category', compact('categories'));
     }
     /**
      * Show the form for creating a new resource.
@@ -18,7 +18,7 @@ class AdminController extends BaseController
      */
     public function create(){
          if(!Auth::check()) return Redirect::to('users/login')->with('error', 'Vous ne pouvez pas créer une catégorie sans être logger !');
-            Return View::make('admin/new');
+            Return View::make('admin/category/new');
     }
     /**
      * Store a newly created resource in storage.
@@ -33,11 +33,11 @@ class AdminController extends BaseController
             $add->name = Input::get('name');
             $add->description = Input::get('description');
             $add->save();
-            return Redirect::to('/admin/')->with('message', 'Votre catégorie est désormais en ligne !');
+            return Redirect::to('admin/category')->with('message', 'Votre catégorie est désormais en ligne !');
         }
         else
         {
-            return Redirect::to('admin/new')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('admin/category/new')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
     /**
@@ -55,7 +55,7 @@ class AdminController extends BaseController
      */
     public function edit($id){
         $category = Category::find($id);
-        return View::make('admin.edit', compact('category'));
+        return View::make('admin/category/edit', compact('category'));
     }
     /**
      * Update the specified resource in storage.
@@ -70,7 +70,7 @@ class AdminController extends BaseController
         // process the login
         if ($validator->fails())
         {
-            return Redirect::to('admin/' . $id . '/edit')
+            return Redirect::to('/admin/category/' . $id . '/edit')
                 ->withErrors($validator);
         } 
         else 
@@ -83,7 +83,7 @@ class AdminController extends BaseController
 
             // redirect
             Session::flash('message', 'Modification effectué');
-            return Redirect::to('/admin/');
+            return Redirect::to('/admin/category/');
         }
     }
     /**
@@ -101,7 +101,7 @@ class AdminController extends BaseController
     {
         $category = Category::find($id);
         Category::destroy($id);
-        return Redirect::to('/admin/')->with('message', 'La catégorie a bien été supprimé');
+        return Redirect::to('/admin/category/')->with('message', 'La catégorie a bien été supprimé');
     }
 
 }
