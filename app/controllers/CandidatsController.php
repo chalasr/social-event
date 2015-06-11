@@ -44,7 +44,7 @@ class CandidatsController extends BaseController
             $user->enterprise_id = $enterprise->id;
             $user->save();
         } else {
-            return Redirect::to('register/complete')->with('message', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('register/complete')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
 }

@@ -33,7 +33,7 @@ class UsersController extends BaseController
             }
 
         } else {
-            return Redirect::to('users/register')->with('message', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('users/register')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
 

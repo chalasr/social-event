@@ -29,15 +29,15 @@ class Enterprise extends Eloquent {
 	];
 
 	public static $rules = array(
-		'name' =>'required|alpha_num',
-		'juridical_status' => 'required|alpha_num',
+		'name' =>'required',
+		'juridical_status' => 'required',
 		'creation_date' => 'required',
-		'postal_address' => 'required|alpha_num',
+		'postal_address' => 'required',
 		'phone' => 'required|min:10',
 		'leaders_informations' => 'required',
 		'candidate_informations' => 'required',
 		'candidate_phone' => 'required|min:10',
-		'candidate_email' => 'required',
+		'candidate_email' => 'required|email',
   );
 	/**
 	 * The database table used by the model.
