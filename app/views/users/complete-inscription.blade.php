@@ -4,14 +4,13 @@
 <div class="container">
 
 <div class="well">
-    {{ Form::open(array('url'=>'users/complete-register', 'class'=>'form-signup')) }}
+    {{ Form::open(array('url'=>'complete-register', 'class'=>'form-signup')) }}
         <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Carte d'identité</span></h2>
         <ul>
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-        <br>
         <hr>
         <h4 class="text-center"><b>Entreprise concernée</b></h4>
         <hr>
@@ -56,31 +55,30 @@
           </div>
         </div>
         <div class="form-group">
-          {{Form::label('leader_informations', 'Nom, fonction, coordonnées et email du (de la) dirigeant(e) :', array('class' => 'control-label'))}}
-          {{Form::text('leader_informations', null, array('class'=>'input-block-level'))}}
+          {{Form::label('leaders_informations', 'Nom, fonction, coordonnées et email du (de la) dirigeant(e) :', array('class' => 'control-label'))}}
+          {{Form::text('leaders_informations', null, array('class'=>'input-block-level'))}}
         </div>
         <hr>
         <h4 class="text-center"><b>Personne en charge du dossier de candidature</b></h4>
         <hr>
         <div class="form-group">
-          {{Form::label('candidat_informations', 'Nom et fonction :', array('class' => 'control-label'))}}
-          {{Form::text('candidat_informations', null, array('class'=>'input-block-level'))}}
+          {{Form::label('candidate_informations', 'Nom et fonction :', array('class' => 'control-label'))}}
+          {{Form::text('candidate_informations', null, array('class'=>'input-block-level'))}}
         </div>
         <div class="flex">
           <div class="form-group">
-            {{Form::label('candidat_phone', 'Tèl :', array('class' => 'control-label'))}}
-            {{Form::text('candidat_phone', null, array('class'=>' form-control'))}}
+            {{Form::label('candidate_phone', 'Tèl :', array('class' => 'control-label'))}}
+            {{Form::text('candidate_phone', null, array('class'=>' form-control'))}}
           </div>
-          <div class=" right-label-flex form-group">
-            {{Form::label('telecopie', 'Télécopie :', array('class' => 'control-label'))}}
-            {{Form::text('telecopie', null, array('class'=>' form-control', 'placeholder' => 'Facultatif'))}}
+          <div class="right-label-flex form-group">
+            {{Form::label('candidate_email', 'Email :', array('class' => 'control-label'))}}
+            {{Form::text('candidate_email', null, array('class'=>' form-control'))}}
           </div>
         </div>
         <br>
         <div class="submitLarge">
-          {{Form::submit('Valider et passer à l\'étape suivante', array('class'=>'btn btn-primary btn-block btn-lg'))}}
+          {{ Form::submit('Enregistrer et passer à l\'étape suivante', array('class'=>'btn btn-primary btn-block btn-lg')) }}
           <br>
-          {{Form::submit('Sauvegarder et revenir plus tard', array('class'=>'btn btn-primary btn-block btn-lg'))}}
         </div>
 
       {{ Form::close() }}
