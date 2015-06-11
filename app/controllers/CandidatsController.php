@@ -62,8 +62,12 @@ class CandidatsController extends BaseController
             return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
         }
         $user = User::find(Auth::user()->id);
+        $userCategories = User::find(Auth::user()->id)->categories()->get();
         if($user->enterprise_id == 0){
-          return Redirect::to('/register/complete')->with('message', 'Vous devez avoir complété la première étape du formulaire pour accéder à celle ci');
+            return Redirect::to('/register/complete')->with('message', 'Vous devez avoir complété la première étape du formulaire pour accéder à celle ci');
+        }
+        if(count($userCategories) > 0){
+          return Redirect::to('/register/complete/step3');
         }
         $categories = Category::all();
 
@@ -72,10 +76,8 @@ class CandidatsController extends BaseController
 
     public function storeCompleteRegistrationStep2()
     {
-        // print_r(Input::all());die;
         $user = User::find(Auth::user()->id);
         $countCategories = count(Category::all());
-        // print_r($countCategories);die;
         if (!Auth::check()){
           return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
         }
