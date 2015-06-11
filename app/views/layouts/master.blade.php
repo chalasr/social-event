@@ -21,7 +21,7 @@
                 @elseif(Auth::user()->role_id == 2)
                     <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Candidatures</a></li>
                 @elseif(Auth::user()->role_id == 3)
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/admin') }}">Administration</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/admin/') }}">Administration</a></li>
                 @endif
             @elseif(!Auth::check())
                 <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('/users/register') }}">S'inscrire</a></li>

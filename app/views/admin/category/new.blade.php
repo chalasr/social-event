@@ -1,8 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
 @section('content')
 <div class="well logform">
-    {{ Form::open(array('action' => 'AdminController@store')) }}
+    {{ Form::open(array('action' => 'CategoryController@store')) }}
         <h2 class="form-signup-heading">Ajouter une catégorie</h2>
 
         <ul>
