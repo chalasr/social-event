@@ -16,8 +16,10 @@
           <li><i class="iconup fa fa-home"></i><a href="{{ URL::to('/') }}">Bref RH</a></li>
             @if(Auth::check())
                     <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#') }}">Profil</a></li>
-                @if(Auth::user()->role_id == 1)
+                @if(Auth::user()->role_id == 1 && Auth::user()->enterprise_id != 0)
                     <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Ma candidature</a></li>
+                @elseif(Auth::user()->role_id == 1 && Auth::user()->enterprise_id == 0)
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a></li>
                 @elseif(Auth::user()->role_id == 2)
                     <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Candidatures</a></li>
                 @elseif(Auth::user()->role_id == 3)
