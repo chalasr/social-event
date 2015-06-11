@@ -553,3 +553,24 @@ margin-top: 100px;
 .voir{
     margin-left: 30% !important;
 }
+
+.right-label-flex{
+    margin-left: 2%;
+}
+
+.flex{
+  display: flex;
+}
+
+.floatRight{
+  float:right;
+}
+
+.floatLeft{
+  float:left;
+}
+
+.submitLarge{
+  margin-left: 33%;
+  width: 30%;
+}

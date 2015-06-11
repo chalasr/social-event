@@ -20,6 +20,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return $this->hasOne('Role', 'role_id');
 	}
 
+	public function enterprise()
+	{
+			return $this->hasOne('Enterprise', 'enterprise_id');
+	}
+
 	public static $rules = array(
         'username'=>'required|alpha_num|min:2',
         'email'=>'required|email|unique:users',

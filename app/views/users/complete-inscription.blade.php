@@ -3,20 +3,85 @@
 @section('content')
 <div class="container">
 
-<div class="well logform">
-    {{ Form::open(array('url'=>'users/create', 'class'=>'form-signup')) }}
-        <h2 class="form-signup-heading">Finaliser votre candidature</h2>
+<div class="well">
+    {{ Form::open(array('url'=>'users/complete-register', 'class'=>'form-signup')) }}
+        <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Carte d'identité</span></h2>
         <ul>
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-
-        {{ Form::text('username', null, array('class'=>'input-block-level', 'placeholder'=>'Username')) }}
-        {{ Form::password('password', array('class'=>'input-block-level', 'placeholder'=>'Password')) }}
-        {{ Form::password('password_confirmation', array('class'=>'input-block-level', 'placeholder'=>'Confirm Password')) }}
-        {{ Form::text('email', null, array('class'=>'input-block-level', 'placeholder'=>'Email Address')) }}
-        {{ Form::submit('Register', array('class'=>'btn btn-primary'))}}
+        <br>
+        <hr>
+        <h4 class="text-center"><b>Entreprise concernée</b></h4>
+        <hr>
+        <div class="form-group">
+          {{Form::label('name', 'Nom de l\'entreprise :', array('class' => 'control-label'))}}
+          {{Form::text('name', null, array('class'=>'input-block-level'))}}
+        </div>
+        <div class="form-group">
+          {{Form::label('juridical_status', 'Forme juridique :', array('class' => 'control-label'))}}
+          {{Form::text('juridical_status', null, array('class'=>'input-block-level'))}}
+        </div>
+        <div class="form-group">
+          {{Form::label('creation_date', 'Date de création :', array('class' => 'control-label'))}}
+          {{Form::text('creation_date', null, array('class'=>'input-block-level'))}}
+        </div>
+        <div class="form-group">
+          {{Form::label('have-group', 'Votre entreprise appartient-elle à un groupe ?')}}
+          <div class="flex">
+            <div class="radio">
+              <label>{{Form::radio('have-group', 'oui', array('class'=>'input-block-level'))}}Oui</label>
+            </div>
+            <div class="right-label-flex radio">
+              <label>{{Form::radio('have-group', 'non', array('class'=>'input-block-level'))}}Non</label>
+            </div>
+          </div>
+        <div id="ifgroup" class="form-group">
+          {{Form::label('member_of_group', 'Si oui, lequel ?', array('class' => 'control-label'))}}
+          {{Form::text('member_of_group', null, array('class'=>'input-block-level'))}}
+        </div>
+        <div class="form-group">
+          {{Form::label('postal_address', 'Adresse postale complète :', array('class' => 'control-label'))}}
+          {{Form::text('postal_address', null, array('class'=>'input-block-level'))}}
+        </div>
+        <div class="flex">
+          <div class="form-group">
+            {{Form::label('phone', 'Tèl :', array('class' => 'control-label'))}}
+            {{Form::text('phone', null, array('class'=>' form-control'))}}
+          </div>
+          <div class=" right-label-flex form-group">
+            {{Form::label('telecopie', 'Télécopie :', array('class' => 'control-label'))}}
+            {{Form::text('telecopie', null, array('class'=>' form-control', 'placeholder' => 'Facultatif'))}}
+          </div>
+        </div>
+        <div class="form-group">
+          {{Form::label('leader_informations', 'Nom, fonction, coordonnées et email du (de la) dirigeant(e) :', array('class' => 'control-label'))}}
+          {{Form::text('leader_informations', null, array('class'=>'input-block-level'))}}
+        </div>
+        <hr>
+        <h4 class="text-center"><b>Personne en charge du dossier de candidature</b></h4>
+        <hr>
+        <div class="form-group">
+          {{Form::label('candidat_informations', 'Nom et fonction :', array('class' => 'control-label'))}}
+          {{Form::text('candidat_informations', null, array('class'=>'input-block-level'))}}
+        </div>
+        <div class="flex">
+          <div class="form-group">
+            {{Form::label('candidat_phone', 'Tèl :', array('class' => 'control-label'))}}
+            {{Form::text('candidat_phone', null, array('class'=>' form-control'))}}
+          </div>
+          <div class=" right-label-flex form-group">
+            {{Form::label('telecopie', 'Télécopie :', array('class' => 'control-label'))}}
+            {{Form::text('telecopie', null, array('class'=>' form-control', 'placeholder' => 'Facultatif'))}}
+          </div>
+        </div>
+        <br>
+        <div class="submitLarge">
+          {{Form::submit('Valider et passer à l\'étape suivante', array('class'=>'btn btn-primary btn-block btn-lg'))}}
+          <br>
+          {{Form::submit('Sauvegarder et revenir plus tard', array('class'=>'btn btn-primary btn-block btn-lg'))}}
+        </div>
 
       {{ Form::close() }}
 </div>
