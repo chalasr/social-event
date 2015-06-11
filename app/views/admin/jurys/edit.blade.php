@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="well logform">
-    {{ Form::open(array('route'=> ['admin..jury.update', $jury->id], 'method' => 'PATCH', 'class'=>'form-signup')) }}
+    {{ Form::open(array('route'=> ['admin..jurys.update', $jury->id], 'method' => 'PATCH', 'class'=>'form-signup')) }}
         <h2 class="form-signup-heading">Editer un compte jury</h2>
 
         <ul>
@@ -20,8 +20,8 @@
         {{ Form::password('password', array('class'=>'input-block-level', 'placeholder'=>'Mot de passe')) }}
         {{ Form::password('password_confirmation', array('class'=>'input-block-level', 'placeholder'=>'Confirmer mot de passe')) }}
         {{ Form::text('email', $jury->email, array('class'=>'input-block-level', 'placeholder'=>'Addresse mail')) }}
-        
-        {{ Form::submit('Appliquer', array('class'=>'btn btn-primary'))}}     
+
+        {{ Form::submit('Appliquer', array('class'=>'btn btn-primary'))}}
         {{ Form::close() }}
 @stop
 </div>

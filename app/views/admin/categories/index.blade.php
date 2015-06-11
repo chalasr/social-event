@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-	<a class="btn btn-default" href="{{ URL::to('admin/category/create') }}">Nouvelle catégorie</a>
+	<a class="btn btn-default" href="{{ URL::to('admin/categories/create') }}">Nouvelle catégorie</a>
 	<br><br>
 	<div class="well">
 		<table class="table">

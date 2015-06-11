@@ -1,6 +1,6 @@
 <?php
 
-class CategoryController extends BaseController
+class CategoriesController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -9,7 +9,7 @@ class CategoryController extends BaseController
      */
     public function index(){
         $categories = Category::all();
-        return View::make('admin/category/category', compact('categories'));
+        return View::make('admin/categories/index', compact('categories'));
     }
     /**
      * Show the form for creating a new resource.
@@ -18,7 +18,7 @@ class CategoryController extends BaseController
      */
     public function create(){
          if(!Auth::check()) return Redirect::to('users/login')->with('error', 'Vous ne pouvez pas créer une catégorie sans être logger !');
-            Return View::make('admin/category/new');
+            Return View::make('admin/categories/new');
     }
     /**
      * Store a newly created resource in storage.
@@ -26,7 +26,7 @@ class CategoryController extends BaseController
      * @return Response
      */
     public function store(){
-        $validator = Validator::make(Input::all(), Category::$rules);   
+        $validator = Validator::make(Input::all(), Category::$rules);
         if($validator->passes())
         {
             $add = new Category;
@@ -70,10 +70,10 @@ class CategoryController extends BaseController
         // process the login
         if ($validator->fails())
         {
-            return Redirect::to('/admin/category/' . $id . '/edit')
+            return Redirect::to('/admin/categories/' . $id . '/edit')
                 ->withErrors($validator);
-        } 
-        else 
+        }
+        else
         {
             // store
             $category = Category::find($id);
@@ -83,7 +83,7 @@ class CategoryController extends BaseController
 
             // redirect
             Session::flash('message', 'Modification effectué');
-            return Redirect::to('/admin/category/');
+            return Redirect::to('/admin/categories/');
         }
     }
     /**
@@ -101,7 +101,7 @@ class CategoryController extends BaseController
     {
         $category = Category::find($id);
         Category::destroy($id);
-        return Redirect::to('/admin/category/')->with('message', 'La catégorie a bien été supprimé');
+        return Redirect::to('/admin/categories/')->with('message', 'La catégorie a bien été supprimé');
     }
 
 }

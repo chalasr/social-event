@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-	<a class="btn btn-default" href="{{ URL::to('admin/jury/create') }}">Nouveau compte jury</a>
+	<a class="btn btn-default" href="{{ URL::to('admin/jurys/create') }}">Nouveau compte jury</a>
 	<br><br>
 	<div class="well">
 		<table class="table">
