@@ -13,10 +13,17 @@
 
 $id = '[0-9]+';
 
-Route::get('admin/delete/{id}', 'AdminController@getDelete')->where('id', $id);
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
-Route::resource('admin', 'AdminController');
+Route::get('/admin', array('uses' => 'CategoryController@index'));
+Route::group(array('prefix' => '/admin'), function(){
+	$id = '[0-9]+';
+	Route::resource('/category', 'CategoryController');
+	Route::resource('/jury', 'JuryController');
+	Route::get('/category/delete/{id}', 'CategoryController@getDelete')->where('id', $id);
+	Route::get('/jury/delete/{id}', 'JuryController@getDelete')->where('id', $id);
 
+	
+});
 
 
 
