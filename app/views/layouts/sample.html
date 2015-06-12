@@ -1,0 +1,70 @@
+<div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+        <div class="page-header-inner">
+            <div class="page-logo">
+                <a href="index.html">
+                <img src="../../assets/admin/layout/img/logo.png" alt="logo" class="logo-default">
+                </a>
+                <div class="menu-toggler sidebar-toggler hide"></div>
+            </div>
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    @if(Auth::check())
+                        <li class="dropdown dropdown-user">
+                            <a class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
+                                <span class="username username-hide-on-mobile"> Bienvenue {{ $pseudo = Auth::user()->username }}</span>
+                            </a>
+                        </li>
+                        <li class="dropdown dropdown-quick-sidebar-toggler">
+                            <?php $url = action('UsersController@getLogout');?>
+                            <a href="<?php echo $url; ?>" class="dropdown-toggle">
+                                <i class="icon-logout"></i>
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="page-container">
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- <header class="nav sub-menu menu">
+        <nav class="container">
+            <ul class="menulist list-unstyled">
+                @if(Auth::check())
+                    @if(Auth::user()->role_id == 3)
+                        <li><i class="iconup fa fa-home"></i><a href="{{ URL::to('/') }}">Bref RH</a></li>
+                        <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/admin/category/') }}">Categories</a></li>
+                        <li><i class="iconup fa fa-folder"></i><a href="{{ URL::to('#') }}">CANDIDATS</a></li>
+                        <li><i class="iconup fa fa-user"></i><a href="{{ URL::to('/admin/jury/') }}">JURYS</a></li>
+                    @endif
+                @endif
+            </ul>
+        </nav>
+            @if(Auth::check())
+                <?php $url = action('UsersController@getLogout'); ?>
+                <?php $pseudo = Auth::user()->username; ?>
+               <div><p class="login-bouton info-user"><span style="color: #FFF;">Bienvenue <?php echo $pseudo; ?></span><a class="btn btn-default btn-sm" href="<?php echo $url; ?>">Se déconnecter</a></p></div>
+            @endif
+    </header> -->
+
+    <div id="content">
+        @if(Session::has('message'))
+            <p class="alert alert-success">{{ Session::get('message') }}</p>
+        @endif
+            @yield('content')
+    </div>
+
+    <footer>
+        <p>Bref RH</p>
+    </footer>

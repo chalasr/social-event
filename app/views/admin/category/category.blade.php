@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-
 <div class="container">
-	<a class="btn btn-default" href="{{ URL::to('admin/category/create') }}">Nouvelle catégorie</a>
+	<h2>Categories</h2>
 	<br><br>
 	<div class="well">
 		<table class="table">
