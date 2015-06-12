@@ -24,7 +24,7 @@
         <div class="page-header-inner">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <a href="index.html">
+                <a href="{{ URL::to('/') }}">
                 <img src="../../assets/admin/layout/img/logo.png" alt="logo" class="logo-default">
                 </a>
                 <div class="menu-toggler sidebar-toggler hide">
@@ -121,6 +121,8 @@
                 <div class="portlet light top-content">
                     @if(Session::has('message'))
                         <p class="alert alert-success">{{ Session::get('message') }}</p>
+                    @elseif(Session::has('error'))
+                        <p class="alert alert-danger">{{ Session::get('error') }}</p>
                     @endif
                     @yield('content')
                 </div>
