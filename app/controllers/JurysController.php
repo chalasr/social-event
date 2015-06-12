@@ -8,8 +8,8 @@ class JurysController extends BaseController
      * @return Response
      */
     public function index(){
-        $juries = User::where('role_id', '=', "2")->get();
-        return View::make('admin/jurys/index', compact('juries'));
+        $jurys = User::where('role_id', '=', "2")->get();
+        return View::make('admin/jurys/index', compact('jurys'));
     }
     /**
      * Show the form for creating a new resource.

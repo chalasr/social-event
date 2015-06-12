@@ -14,7 +14,7 @@
 		      </tr>
 		   </thead>
 		   <tbody>
-		   @foreach($juries as $jury)
+		   @foreach($jurys as $jury)
 		      <tr>
 		         <td>{{ $jury->username }}</td>
 		         <td><a href="{{ URL::to('admin/jury/'.$jury->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;

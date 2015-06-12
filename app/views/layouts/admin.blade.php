@@ -100,11 +100,11 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="{{ URL::to('admin/juries/') }}">
+                        <a href="{{ URL::to('admin/jurys/') }}">
                         Gerer le jury</a>
                     </li>
                     <li>
-                        <a href="{{ URL::to('admin/juries/create') }}">
+                        <a href="{{ URL::to('admin/jurys/create') }}">
                         Ajouter un jury</a>
                     </li>
                 </ul>
