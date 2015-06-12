@@ -33,11 +33,11 @@ class CategoriesController extends BaseController
             $add->name = Input::get('name');
             $add->description = Input::get('description');
             $add->save();
-            return Redirect::to('admin/category')->with('message', 'Votre catégorie est désormais en ligne !');
+            return Redirect::to('admin/categories')->with('message', 'Votre catégorie est désormais en ligne !');
         }
         else
         {
-            return Redirect::to('admin/category/new')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('admin/categories/new')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
     /**
@@ -55,7 +55,7 @@ class CategoriesController extends BaseController
      */
     public function edit($id){
         $category = Category::find($id);
-        return View::make('admin/category/edit', compact('category'));
+        return View::make('admin/categories/edit', compact('category'));
     }
     /**
      * Update the specified resource in storage.

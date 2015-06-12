@@ -116,12 +116,12 @@
     </div>
     <div class="page-content-wrapper">
         <div class="page-content" style="min-height:1010px; margin-top:50px;">
-            @if(Session::has('message'))
-                    <p class="alert alert-success">{{ Session::get('message') }}</p>
-                @endif
             <div class="clearfix"></div>
             <div class="row">
                 <div class="portlet light top-content">
+                    @if(Session::has('message'))
+                        <p class="alert alert-success">{{ Session::get('message') }}</p>
+                    @endif
                     @yield('content')
                 </div>
             </div>

@@ -19,7 +19,7 @@
 		         <td>{{ $category->name }}</td>
 		         <td>{{ $category->description }}</td>
 		         <td><a href="{{ URL::to('admin/categories/'.$category->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;
-		         <a href="{{ URL::to('admin/categories/delete/'.$category->id) }}"><i class="fa fa-trash"></i></a></td>
+		         <a onclick="return confirm('Voulez vous vraiment supprimer cette catégorie ?')" href="{{ URL::to('admin/categories/delete/'.$category->id) }}"><i class="fa fa-trash"></i></a></td>
 			@endforeach
 		   </tbody>
 		</table>

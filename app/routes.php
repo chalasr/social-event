@@ -19,7 +19,7 @@ Route::group(array('prefix' => '/admin'), function(){
 	$id = '[0-9]+';
 	Route::resource('/categories', 'CategoriesController');
 	Route::resource('/jurys', 'JurysController');
-	Route::get('/category/delete/{id}', 'CategoriesController@getDelete')->where('id', $id);
+	Route::get('/categories/delete/{id}', 'CategoriesController@getDelete')->where('id', $id);
 	Route::get('/jurys/delete/{id}', 'JurysController@getDelete')->where('id', $id);
 });
 //Users views
