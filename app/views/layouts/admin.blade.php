@@ -25,7 +25,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="{{ URL::to('/') }}">
-                <img src="../../assets/admin/layout/img/logo.png" alt="logo" class="logo-default">
+                <img src="/assets/admin/layout/img/logo.png" alt="logo" class="logo-default">
                 </a>
                 <div class="menu-toggler sidebar-toggler hide">
                 </div>
@@ -163,15 +163,6 @@ jQuery(document).ready(function() {
    Metronic.init(); // init metronic core componets
    Layout.init(); // init layout
    QuickSidebar.init(); // init quick sidebar
-Demo.init(); // init demo features
-   Index.init();
-   Index.initDashboardDaterange();
-   Index.initJQVMAP(); // init index page's custom scripts
-   Index.initCalendar(); // init index page's custom scripts
-   Index.initCharts(); // init index page's custom scripts
-   Index.initChat();
-   Index.initMiniCharts();
-   Tasks.initDashboardWidget();
 });
 </script>
 

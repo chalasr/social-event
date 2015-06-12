@@ -10,9 +10,14 @@
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-
-        {{ Form::text('name', $category->name, array('class'=>'input-block-level', 'placeholder'=>'Titre')) }}
-        {{ Form::textarea('description',$category->description, array('class'=>'input-block-level', 'placeholder'=>'Description')) }}
+        <div class="form-group">
+            {{ Form::label('name', 'Titre', array('class' => 'label-control')) }}
+            {{ Form::text('name', $category->name, array('class'=>'form-control', 'placeholder'=>'Titre')) }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('name', 'Description', array('class' => 'label-control')) }}
+            {{ Form::textarea('description',$category->description, array('class'=>'form-control', 'placeholder'=>'Description')) }}
+        </div>
 
         {{ Form::submit('Enregistrer les modifications', array('class'=>'subedit btn btn-primary'))}}
     {{ Form::close() }}
