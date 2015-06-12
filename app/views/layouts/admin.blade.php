@@ -16,9 +16,9 @@
             @if(Auth::check())
                 @if(Auth::user()->role_id == 3)
                     <li><i class="iconup fa fa-home"></i><a href="{{ URL::to('/') }}">Bref RH</a></li>
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/admin/category/') }}">Categories</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/admin/categories/') }}">Categories</a></li>
                     <li><i class="iconup fa fa-folder"></i><a href="{{ URL::to('#') }}">CANDIDATS</a></li>
-                    <li><i class="iconup fa fa-user"></i><a href="{{ URL::to('/admin/jury/') }}">JURYS</a></li>
+                    <li><i class="iconup fa fa-user"></i><a href="{{ URL::to('/admin/jurys/') }}">JURYS</a></li>
                 @endif
             @endif
 

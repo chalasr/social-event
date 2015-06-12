@@ -29,7 +29,7 @@ class UsersController extends BaseController
             $user->save();
 
             if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password')))) {
-              return Redirect::to('/')->with('message', "Vous êtes désormais pré-inscris, afin de  terminer votre inscription, connectez vous grâce aux identifiants choisis lors de la première étape");
+              return Redirect::to('/register/complete')->with('message', "Vous êtes désormais pré-inscris, afin de  terminer votre inscription, connectez vous grâce aux identifiants choisis lors de la première étape");
             }
 
         } else {

@@ -33,10 +33,10 @@ class Enterprise extends Eloquent {
 		'juridical_status' => 'required',
 		'creation_date' => 'required',
 		'postal_address' => 'required',
-		'phone' => 'required|min:10',
+		'phone' => 'required|digits:10',
 		'leaders_informations' => 'required',
 		'candidate_informations' => 'required',
-		'candidate_phone' => 'required|min:10',
+		'candidate_phone' => 'required|digits:10',
 		'candidate_email' => 'required|email',
   );
 	/**

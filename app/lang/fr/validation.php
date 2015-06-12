@@ -133,6 +133,14 @@ return [
         "time" => "Heure",
         "available" => "Disponible",
         "size" => "Taille",
+        //Custom fields for complete registration
+        'juridical_status' => 'Status juridique',
+        'creation_date' => 'Date de creation',
+        'postal_address' => 'Adresse postale',
+        'candidate_phone' => 'Téléphone de la personne en charge de la candidature',
+        'candidate_email' => 'Adresse email de la personne en charge de la candidature',
+        'candidate_informations' => 'Nom et fonction de la personne en charge de la candidature',
+        'leaders_informations' => 'Informations concernant le dirigeant de votre entreprise',
     ],
 
 ];
