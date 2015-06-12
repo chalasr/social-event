@@ -10,7 +10,7 @@ class CategoriesController extends BaseController
     public function index()
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $categories = Category::all();
         return View::make('admin/categories/index', compact('categories'));
     }
@@ -22,7 +22,7 @@ class CategoriesController extends BaseController
     public function create()
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         return View::make('admin/categories/new');
     }
     /**
@@ -33,7 +33,7 @@ class CategoriesController extends BaseController
     public function store()
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $validator = Validator::make(Input::all(), Category::$rules);
         if($validator->passes())
         {
@@ -56,7 +56,7 @@ class CategoriesController extends BaseController
      */
     public function edit($id){
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $category = Category::find($id);
         return View::make('admin/categories/edit', compact('category'));
     }
@@ -69,7 +69,7 @@ class CategoriesController extends BaseController
     public function update($id)
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $validator = Validator::make(Input::all(), Category::$rules);
         if ($validator->fails())
         {

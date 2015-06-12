@@ -10,7 +10,7 @@ class JurysController extends BaseController
     public function index()
     {
       if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-      if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+      if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $jurys = User::where('role_id', '=', "2")->get();
         return View::make('admin/jurys/index', compact('jurys'));
     }
@@ -22,7 +22,7 @@ class JurysController extends BaseController
     public function create()
     {
          if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-         if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
             return View::make('admin/jurys/new');
     }
     /**
@@ -33,7 +33,7 @@ class JurysController extends BaseController
     public function store()
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
 
         $validator = Validator::make(Input::all(), Jury::$rules);
         if($validator->passes())
@@ -65,7 +65,7 @@ class JurysController extends BaseController
     public function edit($id)
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $jury = User::find($id);
         return View::make('admin/jurys/edit', compact('jury'));
     }
@@ -78,7 +78,7 @@ class JurysController extends BaseController
     public function update($id)
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $validator = Validator::make(Input::all(), Jury::$rules);
 
         if($validator->passes()){
@@ -108,7 +108,7 @@ class JurysController extends BaseController
     public function getDelete($id)
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(!Auth::user()->role_id != 3) return Redirect::to('users/login')->with('error', 'Vous devez être  administrateur pour accéder à cette partie du site');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être  administrateur pour accéder à cette partie du site');
         $jury = User::find($id);
         User::destroy($id);
         return Redirect::to('/admin/jurys/')->with('message', 'Catégorie supprimée avec succès');
