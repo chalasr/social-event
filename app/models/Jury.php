@@ -21,7 +21,6 @@ class Jury extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public static $rules = array(
-        'username'=>'required|alpha_num|min:2',
         'email'=>'required|email',
         'password'=>'alpha_num|between:2,12|confirmed',
         'password_confirmation'=>'alpha_num|between:2,12',

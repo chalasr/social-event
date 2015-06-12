@@ -30,7 +30,6 @@ class JurysController extends BaseController
         if($validator->passes())
         {
             $add = new User;
-            $add->username = Input::get('username');
             $add->email = Input::get('email');
             $add->password = Hash::make(Input::get('password'));
             $add->society = Input::get('society');
@@ -78,7 +77,6 @@ class JurysController extends BaseController
         {
             // store
             $jury = User::find($id);
-            $jury->username = Input::get('username');
             $jury->email = Input::get('email');
             if(!is_null($jury->password))
                 $jury->password = Hash::make(Input::get('password'));
