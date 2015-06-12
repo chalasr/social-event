@@ -129,7 +129,7 @@ h1, .bleu  {
 }
 
 
-.nav li:hover, .nav li:active, .active{
+./*nav li:hover, .nav li:active, .active{
     background-image: -moz-linear-gradient(top, #171717, #171717);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#171717), to(#171717));
     background-image: -webkit-linear-gradient(top, #171717, #171717);
@@ -138,22 +138,7 @@ h1, .bleu  {
     background-repeat: repeat-x;
     color:white;
     margin: 0;
-}
-
-.sub-menu{
-    background-color: #363636;
-    background-image: -moz-linear-gradient(top, #2f2f2f, #222222);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2f2f2f), to(#222222));
-    background-image: -webkit-linear-gradient(top, #2f2f2f, #222222);
-    background-image: -o-linear-gradient(top, #2f2f2f, #222222);
-    background-image: linear-gradient(to bottom, #2f2f2f, #222222);
-    background-repeat: repeat-x;
-    width:100%;
-    height:45px;
-    -webkit-border-radius: 6px 6px 0 0;
-    -moz-border-radius: 6px 6px 0 0;
-    border-radius: 6px 6px 0 0;
-}
+}*/
 
 .searchbar{
     margin-top: -20px;
