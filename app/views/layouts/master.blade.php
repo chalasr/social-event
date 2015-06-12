@@ -39,7 +39,7 @@
             @if(Auth::check())
                     <li><i class="iconup fa fa-user"></i> <a href="{{ URL::to('#') }}">Profil</a></li>
                 @if(Auth::user()->role_id == 1 && Auth::user()->enterprise_id != 0)
-                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('#') }}">Ma candidature</a></li>
+                    <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/register/complete') }}">Ma candidature</a></li>
                 @elseif(Auth::user()->role_id == 1 && Auth::user()->enterprise_id == 0)
                     <li><i class="iconup fa fa-cog"></i><a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a></li>
                 @elseif(Auth::user()->role_id == 2)

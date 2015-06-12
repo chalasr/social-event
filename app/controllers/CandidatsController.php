@@ -5,27 +5,91 @@ class CandidatsController extends BaseController
     public function getCompleteRegistration()
     {
         if (!Auth::check()) {
-            return Redirect::to('/')->with('message', 'Vous devez vous pré-inscrire et être connecté pour remplir ce formulaire');
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
         }
-         return View::make('users.complete-inscription');
-    }
-
-    public function postCompleteRegistration()
-    {
-        $validator = Validator::make(Input::all(), User::$rules);
-        if ($validator->passes()) {
-            $user = new User();
-            $user->username = Input::get('username');
-            $user->password = Hash::make(Input::get('password'));
-            $user->email = Input::get('email');
-            $user->save();
-
-            if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password')))) {
-              return Redirect::to('/')->with('message', "Vous êtes désormais pré-inscris, afin de compléter votre inscription, veuillez remplir le formulaire ci-dessous");
+        $user = User::findOrFail(Auth::user()->id);
+        if($user->enterprise_id == 0)
+            return View::make('enterprises.complete-inscription');
+        else{
+            $enterprise = Enterprise::find($user->enterprise_id);
+            if($enterprise->registration_state == 'step2'){
+                return Redirect::to('/register/complete/step2');
+            }elseif($enterprise->registration_state == 'step3'){
+              return Redirect::to('/register/complete/step3');
+            }elseif($enterprise->registration_state == 'step4'){
+              return Redirect::to('/register/complete/step4');
+            }elseif($enterprise->registration_state == 'step5'){
+              return Redirect::to('/register/complete/step5');
             }
-
-        } else {
-            return Redirect::to('users/register')->with('message', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
+
+    public function storeCompleteRegistration()
+    {
+        if (!Auth::check()){
+          return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+        $user = User::find(Auth::user()->id);
+        $validator = Validator::make(Input::all(), Enterprise::$rules);
+        if ($validator->passes()) {
+            $enterprise = new Enterprise();
+            $enterprise->name = Input::get('name');
+            $enterprise->juridical_status = Input::get('juridical_status');
+            $enterprise->creation_date = Input::get('creation_date');
+            if(Input::get('member_of_group') != null && Input::get('member_of_group') != '')
+              $enterprise->member_of_group = Input::get('member_of_group');
+            $enterprise->postal_address = Input::get('postal_address');
+            $enterprise->phone = Input::get('phone');
+            if(Input::get('telecopie') != null && Input::get('telecopie') != '')
+              $enterprise->telecopie = Input::get('telecopie');
+            $enterprise->leaders_informations = Input::get('leaders_informations');
+            $enterprise->candidate_informations = Input::get('candidate_informations');
+            $enterprise->candidate_phone = Input::get('candidate_phone');
+            $enterprise->candidate_email = Input::get('candidate_email');
+            $enterprise->registration_state = 'step2';
+            $enterprise->save();
+            $user->enterprise_id = $enterprise->id;
+            $user->save();
+            return Redirect::to('/register/complete/step2');
+        } else {
+            return Redirect::to('register/complete')->with('message', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+        }
+    }
+
+    public function getCompleteRegistrationStep2()
+    {
+        if (!Auth::check()) {
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+        $user = User::find(Auth::user()->id);
+        $userCategories = User::find(Auth::user()->id)->categories()->get();
+        if($user->enterprise_id == 0){
+            return Redirect::to('/register/complete')->with('message', 'Vous devez avoir complété la première étape du formulaire pour accéder à celle ci');
+        }
+        if(count($userCategories) > 0){
+          return Redirect::to('/register/complete/step3');
+        }
+        $categories = Category::all();
+
+        return View::make('enterprises.complete-inscription-step2', compact('categories'));
+    }
+
+    public function storeCompleteRegistrationStep2()
+    {
+        $user = User::find(Auth::user()->id);
+        $countCategories = count(Category::all());
+        if (!Auth::check()){
+          return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+        for ($i=1; $i <= $countCategories; $i++) {
+            $dbCategory = Category::find($i);
+            if(Input::has($dbCategory->id)){
+              $user->categories()->attach($dbCategory);
+            }
+        }
+
+        return Redirect::to('/register/complete/step3');
+
+    }
+
 }

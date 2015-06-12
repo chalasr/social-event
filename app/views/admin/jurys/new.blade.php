@@ -4,7 +4,7 @@
 <div class="container">
 
   <div class="well logform" style='float:left;'>
-    {{ Form::open(array('action' => 'JuryController@store', 'class'=>'form-signup')) }}
+    {{ Form::open(array('action' => 'JurysController@store', 'class'=>'form-signup')) }}
     <h2 class="form-signup-heading">Creation compte jury</h2>
 
     <ul>

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="well logform">
-    {{ Form::open(array('route'=> ['admin..category.update', $category->id], 'method' => 'PUT', 'class'=>'form-signup')) }}
+    {{ Form::open(array('route'=> ['admin..categories.update', $category->id], 'method' => 'PUT', 'class'=>'form-signup')) }}
         <h2 class="form-signup-heading">Editer une catégorie</h2>
 
         <ul>

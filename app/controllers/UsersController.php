@@ -7,7 +7,6 @@ class UsersController extends BaseController
     public function __construct()
     {
         $this->beforeFilter('csrf', array('on' => 'post'));
-        $this->beforeFilter('auth', array('only' => array('getDashboard')));
     }
 
     public function getRegister()
@@ -23,17 +22,17 @@ class UsersController extends BaseController
         $validator = Validator::make(Input::all(), User::$rules);
         if ($validator->passes()) {
             $user = new User();
-            $user->username = Input::get('username');
-            $user->password = Hash::make(Input::get('password'));
             $user->email = Input::get('email');
+            $user->password = Hash::make(Input::get('password'));
             $user->save();
 
-            if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password')))) {
-              return Redirect::to('/')->with('message', "Vous êtes désormais pré-inscris, afin de  terminer votre inscription, connectez vous grâce aux identifiants choisis lors de la première étape");
+            if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
+              return Redirect::to('/register/complete')->with('message', "Vous êtes désormais pré-inscris, afin de finaliser votre candidature, vous devez remplir le formulaire ci-dessous.
+              Si vous le souhaitez, vous pouvez revenir plus tard pour cette étape.");
             }
 
         } else {
-            return Redirect::to('users/register')->with('message', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('users/register')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
 
@@ -47,11 +46,11 @@ class UsersController extends BaseController
 
     public function postSignin()
     {
-        if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password')))) {
+        if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
             return Redirect::to('/')->with('message', 'Vous êtes connecté !');
         } else {
             return Redirect::to('users/register')
-            ->with('error', 'Votre username/password est incorrect !')
+            ->with('error', 'Votre email/password est incorrect !')
             ->withInput();
         }
     }

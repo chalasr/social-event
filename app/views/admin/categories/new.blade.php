@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="well logform">
-    {{ Form::open(array('action' => 'CategoryController@store')) }}
+    {{ Form::open(array('action' => 'CategoriesController@store')) }}
         <h2 class="form-signup-heading">Ajouter une catégorie</h2>
 
         <ul>

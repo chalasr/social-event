@@ -1,6 +1,6 @@
 <?php
 
-class JuryController extends BaseController
+class JurysController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -9,7 +9,7 @@ class JuryController extends BaseController
      */
     public function index(){
         $juries = User::where('role_id', '=', "2")->get();
-        return View::make('admin/jury/jury', compact('juries'));
+        return View::make('admin/jurys/index', compact('juries'));
     }
     /**
      * Show the form for creating a new resource.
@@ -18,7 +18,7 @@ class JuryController extends BaseController
      */
     public function create(){
          if(!Auth::check()) return Redirect::to('users/login')->with('error', 'Vous ne pouvez pas créer un compte jury sans être logger !');
-            Return View::make('admin/jury/new');
+            Return View::make('admin/jurys/new');
     }
     /**
      * Store a newly created resource in storage.
@@ -26,7 +26,7 @@ class JuryController extends BaseController
      * @return Response
      */
     public function store(){
-        $validator = Validator::make(Input::all(), Jury::$rules);   
+        $validator = Validator::make(Input::all(), Jury::$rules);
         if($validator->passes())
         {
             $add = new User;
@@ -40,19 +40,13 @@ class JuryController extends BaseController
             $add->city = Input::get('city');
             $add->role_id = 2;
             $add->save();
-            return Redirect::to('admin/jury')->with('message', 'La compte jury est désormais en ligne !');
+            return Redirect::to('admin/jurys')->with('message', 'La compte jury est désormais en ligne !');
         }
         else
         {
-            return Redirect::to('admin/jury/create')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('admin/jurys/create')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
-    /**
-     * Display the specified re source.
-     *
-     * @param  int  $id
-     * @return Response
-     */
 
     /**
      * Show the form for editing the specified resource.
@@ -62,7 +56,7 @@ class JuryController extends BaseController
      */
     public function edit($id){
         $jury = User::find($id);
-        return View::make('admin/jury/edit', compact('jury'));
+        return View::make('admin/jurys/edit', compact('jury'));
     }
     /**
      * Update the specified resource in storage.
@@ -77,10 +71,10 @@ class JuryController extends BaseController
         //process the login
         if ($validator->fails())
         {
-            return Redirect::to('/admin/jury/' . $id . '/edit')
+            return Redirect::to('/admin/jurys/' . $id . '/edit')
                 ->withErrors($validator);
-        } 
-        else 
+        }
+        else
         {
             // store
             $jury = User::find($id);
@@ -98,7 +92,7 @@ class JuryController extends BaseController
 
             // redirect
             Session::flash('message', 'Modification effectué');
-            return Redirect::to('/admin/jury/');
+            return Redirect::to('/admin/jurys/');
         }
     }
     /**
@@ -116,7 +110,7 @@ class JuryController extends BaseController
     {
         $jury = User::find($id);
         User::destroy($id);
-        return Redirect::to('/admin/jury/')->with('message', 'La catégorie a bien été supprimé');
+        return Redirect::to('/admin/jurys/')->with('message', 'La catégorie a bien été supprimé');
     }
 
 }

@@ -26,8 +26,9 @@
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ URL::asset('assets/admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css"/>
 </head>
+<<<<<<< HEAD
     <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
-        
+
         <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
         <!-- BEGIN HEADER INNER -->
         <div class="page-header-inner">
@@ -50,14 +51,14 @@
                         </a>
                     </li>
                     <li class="dropdown dropdown-quick-sidebar-toggler">
-                        <?php $url = action('UsersController@getLogout');?>                    
+                        <?php $url = action('UsersController@getLogout');?>
                         <a href="<?php echo $url; ?>" class="dropdown-toggle">
                             <i class="icon-logout"></i>
                         </a>
                     </li>
                 @elseif(!Auth::check())
                     <li class="dropdown dropdown-user">
-                                <?php $url = action('UsersController@getRegister');?>                    
+                                <?php $url = action('UsersController@getRegister');?>
                         <a href="<?php echo $url; ?>" class="dropdown-toggle">
                             <i>Se connecter</i>
                         </a>
@@ -145,7 +146,7 @@
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="../../assets/global/plugins/respond.min.js"></script>
-<script src="../../assets/global/plugins/excanvas.min.js"></script> 
+<script src="../../assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/global/plugins/jquery-migrate.min.js') }}" type="text/javascript"></script>
@@ -186,12 +187,12 @@
 <script src="{{ URL::asset('assets/admin/pages/scripts/tasks.js') }}" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
-jQuery(document).ready(function() {    
+jQuery(document).ready(function() {
    Metronic.init(); // init metronic core componets
    Layout.init(); // init layout
    QuickSidebar.init(); // init quick sidebar
 Demo.init(); // init demo features
-   Index.init();   
+   Index.init();
    Index.initDashboardDaterange();
    Index.initJQVMAP(); // init index page's custom scripts
    Index.initCalendar(); // init index page's custom scripts

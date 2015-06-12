@@ -14,23 +14,21 @@
 $id = '[0-9]+';
 
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
-Route::get('/admin', array('uses' => 'CategoryController@index'));
+Route::get('/admin', array('uses' => 'CategoriesController@index'));
 Route::group(array('prefix' => '/admin'), function(){
 	$id = '[0-9]+';
-	Route::resource('/category', 'CategoryController');
-	Route::resource('/jury', 'JuryController');
-	Route::get('/category/delete/{id}', 'CategoryController@getDelete')->where('id', $id);
-	Route::get('/jury/delete/{id}', 'JuryController@getDelete')->where('id', $id);
-
-	
+	Route::resource('/categories', 'CategoriesController');
+	Route::resource('/jurys', 'JurysController');
+	Route::get('/category/delete/{id}', 'CategoriesController@getDelete')->where('id', $id);
+	Route::get('/jurys/delete/{id}', 'JurysController@getDelete')->where('id', $id);
 });
-
-
-
 //Users views
 Route::controller('users', 'UsersController');
 Route::get('register', array('uses' => 'UsersController@getRegister', 'as' => 'register'));
 Route::get('register/complete', ['uses' => 'CandidatsController@getCompleteRegistration']);
+Route::get('register/complete/step2', ['uses' => 'CandidatsController@getCompleteRegistrationStep2']);
+Route::post('complete-register', ['uses' => 'CandidatsController@storeCompleteRegistration']);
+Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeCompleteRegistrationStep2']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
 //Upload Views
 // Route::get('upload', array('uses' => 'UploadsController@index', 'as' => 'upload'));
