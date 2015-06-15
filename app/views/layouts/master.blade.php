@@ -7,7 +7,7 @@
     <meta content="" name="author">
     <title>BrefRH</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {{ HTML::style('css/style.css') }}
+    <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -17,167 +17,172 @@
     <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
 </head>
-    <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
-        <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
-    <!-- BEGIN HEADER INNER -->
-            <div class="page-header-inner">
-                <!-- BEGIN LOGO -->
-                <div class="page-logo">
-                    <a href="index.html">
-                    <img src="../../assets/admin/layout/img/logo.png" alt="logo" class="logo-default">
-                    </a>
-                    <div class="menu-toggler sidebar-toggler hide">
-                    </div>
-                </div>
-                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+<body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
+    <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+        <div class="page-header-inner">
+            <div class="page-logo">
+                <a href="{{ URL::to('/') }}">
+                <img src="../../assets/admin/layout/img/logo.png" alt="logo" class="logo-default">
                 </a>
-                <div class="top-menu">
-                    <ul class="nav navbar-nav pull-right">
-                    @if(Auth::check())
-                        <li class="dropdown dropdown-user">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <span class="username username-hide-on-mobile"> Bienvenue {{ $pseudo = Auth::user()->username }}</span>
-                            </a>
-                        </li>
-                        <li class="dropdown dropdown-quick-sidebar-toggler">
-                            <?php $url = action('UsersController@getLogout');?>
-                            <a href="<?php echo $url; ?>" class="dropdown-toggle">
-                                <i class="icon-logout"></i>
-                            </a>
-                        </li>
-                    @elseif(!Auth::check())
-                        <li class="dropdown dropdown-user">
-                                    <?php $url = action('UsersController@getRegister');?>
-                            <a href="<?php echo $url; ?>" class="dropdown-toggle">
-                                <i>Se connecter</i>
-                            </a>
-                        </li>
-                    @endif
-                    </ul>
+                <div class="menu-toggler sidebar-toggler hide">
                 </div>
             </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="page-sidebar navbar-collapse">
-            <ul class="page-sidebar-menu page-sidebar-menu-light" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                <li class="sidebar-toggler-wrapper">
-                    <div class="sidebar-toggler">
-                    </div>
-                </li>
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+            </a>
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
                 @if(Auth::check())
-                    @if(Auth::user()->role_id == 1)    
-                        <li>
-                            <a href="javascript:;">
-                            <i class="icon-diamond"></i>   
-                            <span class="title">Ma candidature</span>
-                            <span class="arrow "></span>
-                            </a>
-                            <ul class="sub-menu">
-                                @if(Auth::user()->role_id == 1 && Auth::user()->enterprise_id != 0)
-                                <li>
-                                    <a href="{{ URL::to('/register/complete') }}">
-                                    Finaliser ma candidature</a>
-                                </li>
-                                 @elseif(Auth::user()->role_id == 1 && Auth::user()->enterprise_id == 0)
-                                <li>
-                                    <a href="{{ URL::to('/register/complete') }}">
-                                    Devenir candidat</a>
-                                </li>
-                                @endif
-                            </ul>
-                        </li>
-                    @elseif(Auth::user()->role_id == 2)
-                        <li>
-                            <a href="javascript:;">
-                            <i class="icon-diamond"></i>   
-                            <span class="title">Candidature</span>
-                            <span class="arrow "></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="{{ URL::to('#') }}">
-                                    Afficher les candidatures</a>
-                                </li>
-                            </ul>
-                        </li>
-                    @elseif(Auth::user()->role_id == 3)
-                        <li>
-                            <a href="javascript:;">
-                            <i class="icon-diamond"></i>   
-                            <span class="title">Administration</span>
-                            <span class="arrow "></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                    <a href="javascript:;">
-                    <i class="icon-diamond"></i>
-                    <span class="title">Catégories</span>
-                    <span class="arrow "></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{ URL::to('admin/categories/') }}">
-                            Gerer les catégories</a>
-                        </li>
-                        <li>
-                            <a href="{{ URL::to('admin/categories/create') }}">
-                            Ajouter une catégorie</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                    <i class="icon-diamond"></i>
-                    <span class="title">Jury</span>
-                    <span class="arrow "></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{ URL::to('admin/jurys/') }}">
-                            Gerer le jury</a>
-                        </li>
-                        <li>
-                            <a href="{{ URL::to('admin/jurys/create') }}">
-                            Ajouter un jury</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                    <i class="icon-diamond"></i>
-                    <span class="title">Candidats</span>
-                    <span class="arrow "></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="#">
-                            Gerer les dossiers candidat</a>
-                        </li>
-                    </ul>
-                </li>
-                            </ul>
-                        </li>
-                    @endif
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <span class="username username-hide-on-mobile"> Bienvenue {{ $pseudo = Auth::user()->username }}</span>
+                        </a>
+                    </li>
+                    <li class="dropdown dropdown-quick-sidebar-toggler">
+                        <?php $url = action('UsersController@getLogout');?>
+                        <a href="<?php echo $url; ?>" class="dropdown-toggle">
+                            <i class="icon-logout"></i>
+                        </a>
+                    </li>
+                @elseif(!Auth::check())
+                    <li class="dropdown dropdown-user">
+                        <?php $url = action('UsersController@getRegister');?>
+                        <a href="<?php echo $url; ?>" class="dropdown-toggle">
+                            <i>Inscription</i>
+                        </a>
+                    </li>
                 @endif
-            </ul>
+                </ul>
+            </div>
         </div>
-        <div class="page-content-wrapper">
-            <div class="page-content" style="min-height:1010px; margin-top:50px;">
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="portlet light top-content">
-                        @if(Session::has('message'))
-                            <p class="alert alert-success">{{ Session::get('message') }}</p>
-                        @endif
-                        @yield('content')
-                    </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="page-sidebar navbar-collapse">
+        <ul class="page-sidebar-menu page-sidebar-menu-light" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+            <li class="sidebar-toggler-wrapper">
+                <div class="sidebar-toggler">
+                </div>
+            </li>
+            @if(Auth::check())
+                @if(Auth::user()->role_id == 1)
+                    <li>
+                        <a href="javascript:;">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Ma candidature</span>
+                        <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if(Auth::user()->role_id == 1 && Auth::user()->enterprise_id != 0)
+                            <li>
+                                <a href="{{ URL::to('/register/complete/step2') }}">Reprendre ma candidature</a>
+                            </li>
+                             @elseif(Auth::user()->role_id == 1 && Auth::user()->enterprise_id == 0)
+                            <li>
+                                <a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a>
+                            </li>
+                            @endif
+                        </ul>
+                    </li>
+                @elseif(Auth::user()->role_id == 2)
+                    <li>
+                        <a href="javascript:;">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Candidature</span>
+                        <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ URL::to('#') }}">Afficher les candidatures</a>
+                            </li>
+                        </ul>
+                    </li>
+                @elseif(Auth::user()->role_id == 3)
+                    <li>
+                        <a href="javascript:;">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Administration</span>
+                        <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="javascript:;">
+                                <i class="icon-diamond"></i>
+                                <span class="title">Catégories</span>
+                                <span class="arrow "></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="{{ URL::to('admin/categories/') }}">Gerer les catégories</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ URL::to('admin/categories/create') }}">Ajouter une catégorie</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                <i class="icon-diamond"></i>
+                                <span class="title">Jury</span>
+                                <span class="arrow "></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="{{ URL::to('admin/jurys/') }}">Gerer le jury</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ URL::to('admin/jurys/create') }}">Ajouter un jury</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-diamond"></i>
+                                    <span class="title">Candidats</span>
+                                    <span class="arrow "></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="#">Gerer les dossiers candidats</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+            @elseif(!Auth::check())
+                    <li>
+                        <a href="{{URL::to('/register') }}">
+                        <i class="icon-diamond"></i>
+                        <span class="title">S'inscrire</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{URL::to('/register') }}">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Accés Candidat</span>
+                        </a>
+                    </li>
+            @endif
+        </ul>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="page-content" style="min-height:1010px; margin-top:50px;">
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="portlet light top-content">
+                    @if(Session::has('message'))
+                        <p class="alert alert-success">{{ Session::get('message') }}</p>
+                    @elseif(Session::has('error'))
+                        <p class="alert alert-danger">{{ Session::get('error') }}</p>
+                    @endif
+                    @yield('content')
                 </div>
             </div>
         </div>
+    </div>
     <footer>
         <p>Bref RH</p>
     </footer>
-    
+
     <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/jquery-migrate.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
@@ -196,15 +201,6 @@
        Metronic.init(); // init metronic core componets
        Layout.init(); // init layout
        QuickSidebar.init(); // init quick sidebar
-    Demo.init(); // init demo features
-       Index.init();
-       Index.initDashboardDaterange();
-       Index.initJQVMAP(); // init index page's custom scripts
-       Index.initCalendar(); // init index page's custom scripts
-       Index.initCharts(); // init index page's custom scripts
-       Index.initChat();
-       Index.initMiniCharts();
-       Tasks.initDashboardWidget();
     });
     </script>
 </body>

@@ -11,8 +11,14 @@
             @endforeach
         </ul>
 
-        {{ Form::text('name', null, array('class'=>'input-block-level', 'placeholder'=>'Titre')) }}
-        {{ Form::text('description', null, array('class'=>'input-block-level', 'placeholder'=>'Description')) }}
+        <div class="form-group">
+            {{ Form::label('name', 'Titre', array('class' => 'label-control')) }}
+            {{ Form::text('name', null, array('class'=>'form-control')) }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('name', 'Description', array('class' => 'label-control')) }}
+            {{ Form::textarea('description', null, array('class'=>'form-control')) }}
+        </div>
 
         {{ Form::submit('Ajouter', array('class'=>'btn btn-primary'))}}
     {{ Form::close() }}

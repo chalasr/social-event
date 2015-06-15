@@ -32,15 +32,15 @@ class UsersController extends BaseController
             }
 
         } else {
-            return Redirect::to('users/register')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('/register')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
 
     public function getLogin()
     {
-        if (Auth::check()) {
-            return Redirect::to('/')->with('message', 'Vous êtes déjà connecté');
-        }
+        // if (Auth::check()) {
+        //     return Redirect::to('/')->with('message', 'Vous êtes déjà connecté');
+        // }
         return View::make('users.login');
     }
 
@@ -49,7 +49,7 @@ class UsersController extends BaseController
         if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
             return Redirect::to('/')->with('message', 'Vous êtes connecté !');
         } else {
-            return Redirect::to('users/register')
+            return Redirect::to('/register')
             ->with('error', 'Votre email/password est incorrect !')
             ->withInput();
         }

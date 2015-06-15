@@ -84,7 +84,7 @@ h1, .bleu  {
 #url {
     padding-top: 10px;
 }
-
+/*
 .nav {
     list-style: none;
     -webkit-border-radius: 6px;
@@ -126,7 +126,7 @@ h1, .bleu  {
 .nav li a:hover{
     background-color: inherit;
     color:inherit;
-}
+}*/
 
 
 ./*nav li:hover, .nav li:active, .active{
@@ -267,10 +267,10 @@ width: 99%;
     margin-left: 45%;
 }
 
-body {
+/*body {
     font-weight: 100;
 	font-family: 'oswaldregular';
-}
+}*/
 
 ul{
     list-style-type: none !important;
@@ -561,4 +561,8 @@ margin-top: 100px;
 
 .top-content {
     margin-top: 30px;
+}
+
+.navbar-nav>li>a {
+  line-height: 18px !important;
 }

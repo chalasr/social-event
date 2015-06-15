@@ -7,7 +7,10 @@ class JurysController extends BaseController
      *
      * @return Response
      */
-    public function index(){
+    public function index()
+    {
+      if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+      if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $jurys = User::where('role_id', '=', "2")->get();
         return View::make('admin/jurys/index', compact('jurys'));
     }
@@ -16,16 +19,22 @@ class JurysController extends BaseController
      *
      * @return Response
      */
-    public function create(){
-         if(!Auth::check()) return Redirect::to('users/login')->with('error', 'Vous ne pouvez pas créer un compte jury sans être logger !');
-            Return View::make('admin/jurys/new');
+    public function create()
+    {
+         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+            return View::make('admin/jurys/new');
     }
     /**
      * Store a newly created resource in storage.
      *
      * @return Response
      */
-    public function store(){
+    public function store()
+    {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+
         $validator = Validator::make(Input::all(), Jury::$rules);
         if($validator->passes())
         {
@@ -39,7 +48,7 @@ class JurysController extends BaseController
             $add->city = Input::get('city');
             $add->role_id = 2;
             $add->save();
-            return Redirect::to('admin/jurys')->with('message', 'La compte jury est désormais en ligne !');
+            return Redirect::to('admin/jurys')->with('message', 'Le jury a été créé avec succès');
         }
         else
         {
@@ -53,7 +62,10 @@ class JurysController extends BaseController
      * @param  int  $id
      * @return Response
      */
-    public function edit($id){
+    public function edit($id)
+    {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $jury = User::find($id);
         return View::make('admin/jurys/edit', compact('jury'));
     }
@@ -65,17 +77,11 @@ class JurysController extends BaseController
      */
     public function update($id)
     {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $validator = Validator::make(Input::all(), Jury::$rules);
 
-        //process the login
-        if ($validator->fails())
-        {
-            return Redirect::to('/admin/jurys/' . $id . '/edit')
-                ->withErrors($validator);
-        }
-        else
-        {
-            // store
+        if($validator->passes()){
             $jury = User::find($id);
             $jury->email = Input::get('email');
             if(!is_null($jury->password))
@@ -87,28 +93,25 @@ class JurysController extends BaseController
             $jury->city = Input::get('city');
             $jury->role_id = 2;
             $jury->save();
-
-            // redirect
-            Session::flash('message', 'Modification effectué');
-            return Redirect::to('/admin/jurys/');
+        }else{
+            return Redirect::to('/admin/jurys/' . $id . '/edit')
+                ->withErrors($validator)->withInput();
+            return Redirect::to('/admin/jurys/')->with('message', 'Catégorie modifiée avec succès');
         }
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
+    /**
+     *  Delete specified resource
+     * @param  number $id The jury entity
+     * @return HTTP 301 The redirection to index
+     */
     public function getDelete($id)
     {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être  administrateur pour accéder à cette partie du site');
         $jury = User::find($id);
         User::destroy($id);
-        return Redirect::to('/admin/jurys/')->with('message', 'La catégorie a bien été supprimé');
+        return Redirect::to('/admin/jurys/')->with('message', 'Catégorie supprimée avec succès');
     }
 
 }
