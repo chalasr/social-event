@@ -64,7 +64,7 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $userCategories = User::find(Auth::user()->id)->categories()->get();
         if(count($user->enterprise) == 0){
-            return Redirect::to('/register/complete')->with('message', 'Vous devez avoir complété la première étape du formulaire pour accéder à celle ci');
+            return Redirect::to('/register/complete');
         }
         if(count($userCategories) > 0){
           return Redirect::to('/register/complete/step3');
@@ -87,7 +87,7 @@ class CandidatsController extends BaseController
               $user->categories()->attach($dbCategory);
             }
         }
-
+        $enterprise->registration_state = 'step2';
         return Redirect::to('/register/complete/step3');
 
     }
@@ -102,14 +102,12 @@ class CandidatsController extends BaseController
         $userCategories = User::find(Auth::user()->id)->categories()->get();
 
         if(count($user->enterprise) == 0){
-            return Redirect::to('/register/complete')->with('message', 'Vous devez avoir complété les deux premières étapes du formulaire pour accéder à celle ci');
+            return Redirect::to('/register/complete');
         }
         if(count($userCategories) == 0){
           return Redirect::to('/register/complete/step2');
         }
 
-
-        // print_r($enterprise);die;
         if(!empty(Input::get('project_arguments')))
             $enterprise->project_arguments = Input::get('project_arguments');
         if(!empty(Input::get('project_results')))
@@ -117,7 +115,7 @@ class CandidatsController extends BaseController
         if(!empty(Input::get('project_partners')))
             $enterprise->project_partners = Input::get('project_partners');
         if(!empty(Input::get('project_rewards')))
-            $enterprise->project_partners = Input::get('project_rewards');
+            $enterprise->project_rewards = Input::get('project_rewards');
 
         // activity_id
 

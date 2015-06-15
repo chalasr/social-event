@@ -2,11 +2,11 @@
 
 @section('content')
   <div class="container">
-    <div class="clearfix"></div>    
+    <div class="clearfix"></div>
     <div class="col-md-12">
       <div class="portlet box blue">
         <div class="portlet-title">
-          <h3>S'enregistrer</h3> 
+          <h3>S'enregistrer</h3>
         </div>
         <div class="portlet-body form">
             {{ Form::open(array('url'=>'users/create','class'=>'form-horizontal')) }}
@@ -42,7 +42,7 @@
                         Veuillez indiquer votre mot de passe </span>
                       </div>
                     </div>
-                                      <div class="form-group">
+                    <div class="form-group">
                       <label class="control-label col-md-3">Confirmation mot de passe <span class="required">
                       * </span>
                       </label>
