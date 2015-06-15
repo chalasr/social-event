@@ -3,7 +3,7 @@
 @section('content')
   <div class="container">
     <div class="clearfix"></div>    
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="portlet box blue">
         <div class="portlet-title">
           <h3>S'enregistrer</h3> 
@@ -72,9 +72,7 @@
         </div>
       </div>
     </div>
-    <div class="clearfix"></div>
-    <hr />
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="portlet box blue">
         <div class="portlet-title">
           <h3>Se connecter</h3>
@@ -82,7 +80,7 @@
         <div class="portlet-body form">
             {{ Form::open(array('url'=>'users/signin','class'=>'form-horizontal')) }}
             <div class="form-wizard">
-              <div class="form-body">
+              <div class="form-body" style="height:305px;">
                 <div class="tab-content">
                   <div class="tab-pane active">
                     <div class="form-group">
