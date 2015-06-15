@@ -140,21 +140,6 @@ h1, .bleu  {
     margin: 0;
 }*/
 
-.searchbar{
-    margin-top: -20px;
-    width:100%;
-    height:40px;
-    background-color: #cccccc;
-    -webkit-box-shadow: inset 0 -1px 0px rgba(0, 0, 0, 0.1),0 1px 0px rgba(255, 255, 255, 0.6);
-    -moz-box-shadow: inset 0 -1px 0px rgba(0, 0, 0, 0.1),0 1px 0px rgba(255, 255, 255, 0.6);
-    box-shadow: inset 0 -1px 0px rgba(0, 0, 0, 0.1),0 1px 0px rgba(255, 255, 255, 0.6);
-}
-
-.recherche{
-    margin-left: 50px;
-    float: left;
-}
-
 .genere {
     position:fixed;bottom:0;
     background #fff;

@@ -97,12 +97,37 @@ class CandidatsController extends BaseController
             return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
         }
 
-        return View::make('enterprises.complete-inscription-step4');
+        return View::make('enterprises.complete-inscription-step4', compact('files'));
     }
 
     public function storeCompleteRegistrationStep4()
     {
-        // UPLOAD
-    }
+        $files = Input::file('files');
+        $file_count = count($files);
+        $uploadcount = 0;
 
+        foreach($files as $file) 
+        {
+          $rules = array('file' => 'required');
+          $validator = Validator::make(array('file'=> $file), $rules);
+          if($validator->passes()){
+            $destinationPath = 'public/uploads/' . Auth::User()->email;
+            $filename = $file->getClientOriginalName();
+            $upload_success = $file->move($destinationPath, $filename);
+
+            $file = new Upload;
+            $file->name = $filename;
+            $file->path = $destinationPath;
+            $file->enterprise_id = Auth::User()->enterprise_id;
+            $file->save();
+            $uploadcount ++;
+          }
+        }
+        if($uploadcount == $file_count){
+          return Redirect::to('/register/complete/step4')->with('message', "Votre fichier à bien été ajouter");
+        } 
+        else {
+          return Redirect::to('/register/complete/step4')->withInput()->withErrors($validator);
+        }
+    }
 }
