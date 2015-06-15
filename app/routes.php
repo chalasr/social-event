@@ -34,8 +34,12 @@ Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeComp
 Route::get('register/complete/step3', ['uses' => 'CandidatsController@getCompleteRegistrationStep3']);
 Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeCompleteRegistrationStep3']);
 Route::get('register/complete/step4', ['uses' => 'CandidatsController@getCompleteRegistrationStep4']);
-// UPLOAD Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeCompleteRegistrationStep2']);
+Route::post('complete-register/step4', ['uses' => 'CandidatsController@storeCompleteRegistrationStep4']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
+
+
+
+
 //Upload Views
 // Route::get('upload', array('uses' => 'UploadsController@index', 'as' => 'upload'));
 // Route::post('upload', 'UploadsController@upload');
