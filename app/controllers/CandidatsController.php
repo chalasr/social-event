@@ -91,5 +91,18 @@ class CandidatsController extends BaseController
         return Redirect::to('/register/complete/step3');
 
     }
+    public function getCompleteRegistrationStep4()
+    {
+        if (!Auth::check()) {
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+
+        return View::make('enterprises.complete-inscription-step4');
+    }
+
+    public function storeCompleteRegistrationStep4()
+    {
+        // UPLOAD
+    }
 
 }
