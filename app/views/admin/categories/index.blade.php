@@ -1,29 +1,49 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-	<a class="btn btn-default" href="{{ URL::to('admin/categories/create') }}">Nouvelle catégorie</a>
-	<br><br>
-	<div class="well">
-		<table class="table">
-		   <thead>
-		      <tr>
-		         <th>Nom</th>
-		         <th>Description</th>
-		         <th>Actions</th>
-		      </tr>
-		   </thead>
-		   <tbody>
-		   @foreach($categories as $category)
-		      <tr>
-		         <td>{{ $category->name }}</td>
-		         <td>{{ $category->description }}</td>
-		         <td><a href="{{ URL::to('admin/categories/'.$category->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;
-		         <a onclick="return confirm('Voulez vous vraiment supprimer cette catégorie ?')" href="{{ URL::to('admin/categories/delete/'.$category->id) }}"><i class="fa fa-trash"></i></a></td>
-			@endforeach
-		   </tbody>
-		</table>
+	<div class="container">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					Toutes les catégories
+				</div>
+			</div>
+			<div class="portlet-body" style="display: block;">
+				<div class="table-responsive">
+					<table class="table">
+					<thead>
+					<tr>
+						<th>
+							Titre
+						</th>
+						<th>
+							Description
+						</th>
+						<th>
+							Actions
+						</th>
+					</tr>
+					</thead>
+					<tbody>
+					@foreach($categories as $category)
+						<tr>
+							<td>
+								{{ $category->name }}
+							</td>
+							<td>
+								{{ $category->description }}
+							</td>
+							<td>
+							<a href="{{ URL::to('admin/categories/'.$category->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;
+								<a onclick="return confirm('Voulez vous vraiment supprimer cette catégorie ?')" href="{{ URL::to('admin/categories/delete/'.$category->id) }}"><i class="fa fa-trash"></i></a>
+								</td>
+						</tr>
+					@endforeach
+					</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
 
 @stop

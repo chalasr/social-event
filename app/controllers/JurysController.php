@@ -91,10 +91,9 @@ class JurysController extends BaseController
             $jury->city = Input::get('city');
             $jury->role_id = 2;
             $jury->save();
+            return Redirect::to('/admin/jurys')->with('message', 'Le jury modifiée avec succès');
         }else{
-            return Redirect::to('/admin/jurys/' . $id . '/edit')
-                ->withErrors($validator)->withInput();
-            return Redirect::to('/admin/jurys/')->with('message', 'Catégorie modifiée avec succès');
+            return Redirect::to('/admin/jurys/' . $id . '/edit')->withErrors($validator)->withInput();
         }
     }
 

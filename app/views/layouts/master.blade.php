@@ -168,7 +168,7 @@
     <div class="page-content-wrapper">
         <div class="page-content" style="min-height:1010px; margin-top:50px;">
             <div class="clearfix"></div>
-            <h3 class="page-title"></h3>
+            <h3 class="page-title">-</h3>
             <div class="row">
                 <div class="portlet light top-content">
                     @if(Session::has('message'))
