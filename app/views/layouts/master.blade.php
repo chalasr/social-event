@@ -16,6 +16,7 @@
     <link href="{{ URL::asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
+     <link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
 </head>
 <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
     <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
@@ -167,6 +168,7 @@
     <div class="page-content-wrapper">
         <div class="page-content" style="min-height:1010px; margin-top:50px;">
             <div class="clearfix"></div>
+            <h3 class="page-title"></h3>
             <div class="row">
                 <div class="portlet light top-content">
                     @if(Session::has('message'))
