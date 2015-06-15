@@ -49,9 +49,7 @@ class JurysController extends BaseController
             $add->role_id = 2;
             $add->save();
             return Redirect::to('admin/jurys')->with('message', 'Le jury a été créé avec succès');
-        }
-        else
-        {
+        }else{
             return Redirect::to('admin/jurys/create')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }

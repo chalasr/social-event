@@ -91,6 +91,59 @@ class CandidatsController extends BaseController
         return Redirect::to('/register/complete/step3');
 
     }
+
+    public function getCompleteRegistrationStep3()
+    {
+        if (!Auth::check()) {
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+
+        $user = User::find(Auth::user()->id);
+        $userCategories = User::find(Auth::user()->id)->categories()->get();
+
+        if($user->enterprise_id == 0){
+            return Redirect::to('/register/complete')->with('message', 'Vous devez avoir complété la deuxième étape du formulaire pour accéder à celle ci');
+        }
+        if(count($userCategories) == 0){
+          return Redirect::to('/register/complete/step2');
+        }
+
+        $enterprise = $user->enterprise();
+
+        if(!empty(Input::get('project_arguments')))
+            $enterprise->project_arguments = Input::get('project_arguments');
+        if(!empty(Input::get('project_partners')))
+            $enterprise->project_partners = Input::get('project_partners');
+        if(!empty(Input::get('project_results')))
+            $enterprise->project_partners = Input::get('project_results');
+        if(!empty(Input::get('project_rewards')))
+            $enterprise->project_partners = Input::get('project_rewards');
+        if(!empty(Input::get('internal_collaborators')))
+            $enterprise->project_partners = Input::get('internal_collaborators');
+
+
+        // activity_id
+        // external_collaborators_type
+        // project_certificates
+
+        return View::make('enterprises.complete-inscription-step3');
+    }
+
+    /**
+     *  Registration step 3 (candidate arguments)
+     * @return redirect to next registration step
+     */
+    public function storeCompleteRegistrationStep3()
+    {
+        $user = User::find(Auth::user()->id);
+
+        return Redirect::to('/register/complete/step3');
+
+    }
+
+    /*
+      Upload
+     */
     public function getCompleteRegistrationStep4()
     {
         if (!Auth::check()) {
