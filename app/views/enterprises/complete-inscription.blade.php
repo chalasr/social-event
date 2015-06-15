@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
-
 <div class="well">
     {{ Form::open(array('url'=>'complete-register', 'class'=>'form-signup')) }}
         <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Carte d'identité</span></h2>
@@ -83,5 +81,4 @@
 
       {{ Form::close() }}
 </div>
-
 @stop
