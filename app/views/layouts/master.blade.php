@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
@@ -72,15 +73,9 @@
                         <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
-                            @if(Auth::user()->role_id == 1 && Auth::user()->enterprise_id != 0)
-                            <li>
-                                <a href="{{ URL::to('/register/complete/step2') }}">Reprendre ma candidature</a>
-                            </li>
-                             @elseif(Auth::user()->role_id == 1 && Auth::user()->enterprise_id == 0)
-                            <li>
-                                <a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a>
-                            </li>
-                            @endif
+                          <li>
+                              <a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a>
+                          </li>
                         </ul>
                     </li>
                 @elseif(Auth::user()->role_id == 2)
@@ -168,7 +163,7 @@
     <div class="page-content-wrapper">
         <div class="page-content" style="min-height:1010px; margin-top:50px;">
             <div class="clearfix"></div>
-            <h3 class="page-title">-</h3>
+            <h3 class="page-title"></h3>
             <div class="row">
                 <div class="portlet light top-content">
                     @if(Session::has('message'))

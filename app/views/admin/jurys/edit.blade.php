@@ -76,6 +76,19 @@
                           </div>
                         </div>
                         <div class="form-group">
+                          <label class="control-label col-md-3">Catégorie<span class="required">
+                          * </span>
+                          </label>
+                          <div class="col-md-4">
+                            <select class="form-control input-large" name="category">
+                              <option selected disabled>Veuillez selectionner</option>
+                              @foreach($categories as $category)
+                              <option value="{{ $category->id }}">{{ $category->name }}</option>
+                              @endforeach
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
                           <label class="control-label col-md-3">Mot de passe <span class="required">
                           * </span>
                           </label>

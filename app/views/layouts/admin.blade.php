@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
     <title>BrefRH</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {{ HTML::style('css/style.css') }}
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -120,7 +120,7 @@
     <div class="page-content-wrapper">
         <div class="page-content" style="min-height:1010px; margin-top:50px;">
             <div class="clearfix"></div>
-            <h3 class="page-title">-</h3>
+            <h3 class="page-title"></h3>
             <div class="row">
                 <div class="portlet light top-content">
                     @if(Session::has('message'))
