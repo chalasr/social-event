@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemoveEnterpriseIdFromSurveys extends Migration {
+class RemoveEnterpriseIdFromSurvey extends Migration {
 
 	/**
 	 * Run the migrations.

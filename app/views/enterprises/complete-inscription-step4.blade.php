@@ -5,7 +5,7 @@
 
   <div class="well">
       {{ Form::open(array('url'=>'complete-register/step4', 'enctype' => 'multipart/form-data','method' => 'post', 'files' => true, 'class'=>'form-signup')) }}
-          <h2 class="form-signup-heading">Ajout de fichier</h2>
+          <h2 class="form-signup-heading">Import de pièces à joindre à votre dossier</h2>
           <ul>
               @foreach($errors->all() as $error)
                   <li>{{ $error }}</li>
