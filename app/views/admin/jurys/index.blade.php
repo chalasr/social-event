@@ -27,6 +27,9 @@
 			        		Société
 			        	</th>
 			        	<th>
+			        		Catégorie
+			        	</th>
+			        	<th>
 			        		Téléphone
 			        	</th>
 			        	<th>
@@ -52,6 +55,13 @@
 							<td>
 								{{ $jury->society }}
 							</td>
+						@endforeach
+							<td>
+							@foreach ($jury->categories()->get() as $category)
+								{{ $category->name }}
+							@endforeach
+							</td>
+						@foreach($jurys as $jury)
 							<td>
 								{{ $jury->phone }}
 							</td>

@@ -36,7 +36,8 @@ Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeComp
 Route::get('register/complete/step4', ['uses' => 'CandidatsController@getCompleteRegistrationStep4']);
 Route::post('complete-register/step4', ['uses' => 'CandidatsController@storeCompleteRegistrationStep4']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
-Route::get('/test', 'PrintController@index');
+// Route::get('/admin/categories/', 'CategoriesController@getpdf');
+// Route::get('/test', 'PrintController@index');
 
 
 
