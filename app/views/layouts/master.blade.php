@@ -9,7 +9,7 @@
     <title>BrefRH</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all') }}" rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -24,7 +24,7 @@
         <div class="page-header-inner">
             <div class="page-logo">
                 <a href="{{ URL::to('/') }}">
-                <img src="../../assets/admin/layout/img/logo.png" alt="logo" class="logo-default">
+                <img src="{{ URL::asset('assets/admin/layout/img/logo.png') }}" alt="logo" class="logo-default">
                 </a>
                 <div class="menu-toggler sidebar-toggler hide">
                 </div>
@@ -36,7 +36,7 @@
                 @if(Auth::check())
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="username username-hide-on-mobile"> Bienvenue {{ $pseudo = Auth::user()->username }}</span>
+                            <span class="username username-hide-on-mobile"> {{ $pseudo = Auth::user()->email }} &nbsp;</span>
                         </a>
                     </li>
                     <li class="dropdown dropdown-quick-sidebar-toggler">
@@ -147,14 +147,10 @@
             @elseif(!Auth::check())
                     <li>
                         <a href="{{URL::to('/register') }}">
-                        <i class="icon-diamond"></i>
-                        <span class="title">S'inscrire</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{URL::to('/register') }}">
+                      <br>
                         <i class="icon-diamond"></i>
                         <span class="title">Accés Candidat</span>
+
                         </a>
                     </li>
             @endif
