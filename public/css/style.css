@@ -551,3 +551,7 @@ margin-top: 100px;
 .navbar-nav>li>a {
   line-height: 18px !important;
 }
+
+#auth_firstinput{
+  margin-top: 8%;
+}
