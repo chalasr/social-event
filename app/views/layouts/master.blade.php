@@ -72,15 +72,9 @@
                         <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
-                            @if(Auth::user()->role_id == 1 && Auth::user()->enterprise_id != 0)
-                            <li>
-                                <a href="{{ URL::to('/register/complete/step2') }}">Reprendre ma candidature</a>
-                            </li>
-                             @elseif(Auth::user()->role_id == 1 && Auth::user()->enterprise_id == 0)
-                            <li>
-                                <a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a>
-                            </li>
-                            @endif
+                          <li>
+                              <a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a>
+                          </li>
                         </ul>
                     </li>
                 @elseif(Auth::user()->role_id == 2)

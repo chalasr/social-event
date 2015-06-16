@@ -11,17 +11,30 @@ project_partners
 project_rewards
 */
 
-
 class Survey extends Eloquent {
 
 	protected $fillable = [
-		'project_arguments',
+		'enterprise_activity',
+		'project_origin',
+		'innovative_arguments',
+		'wanted_impact',
+		'product_informations',
 		'project_results',
 		'project_partners',
 		'project_rewards',
+		'created_at',
+		'updated_at',
+		'enterprise_id',
 	];
 
 	public static $rules = array(
+		'enterprise_activity' => 'required',
+		'project_origin' => 'required',
+		'innovative_arguments' => 'required',
+		'wanted_impact' => 'required',
+		'product_informations' => 'required',
+		'project_results' => 'required',
+		'project_rewards' => 'required',
   );
 	/**
 	 * The database table used by the model.

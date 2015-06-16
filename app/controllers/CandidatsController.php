@@ -52,7 +52,7 @@ class CandidatsController extends BaseController
             $user->save();
             return Redirect::to('/register/complete/step2');
         } else {
-            return Redirect::to('register/complete')->with('message', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('register/complete')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
 
@@ -87,7 +87,9 @@ class CandidatsController extends BaseController
               $user->categories()->attach($dbCategory);
             }
         }
-        $enterprise->registration_state = 'step2';
+        $enterprise = $user->enterprise()->first();
+        $enterprise->registration_state = 'step3';
+        $user->enterprise()->save($enterprise);
         return Redirect::to('/register/complete/step3');
 
     }
@@ -108,16 +110,7 @@ class CandidatsController extends BaseController
           return Redirect::to('/register/complete/step2');
         }
 
-        if(!empty(Input::get('project_arguments')))
-            $enterprise->project_arguments = Input::get('project_arguments');
-        if(!empty(Input::get('project_results')))
-            $enterprise->project_partners = Input::get('project_results');
-        if(!empty(Input::get('project_partners')))
-            $enterprise->project_partners = Input::get('project_partners');
-        if(!empty(Input::get('project_rewards')))
-            $enterprise->project_rewards = Input::get('project_rewards');
-
-        return View::make('enterprises.complete-inscription-step3',compact('user'));
+        return View::make('enterprises.complete-inscription-step3');
     }
 
     /**
@@ -127,48 +120,76 @@ class CandidatsController extends BaseController
     public function storeCompleteRegistrationStep3()
     {
         $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
 
-        return Redirect::to('/register/complete/step3');
+        $validator = Validator::make(Input::all(), Survey::$rules);
+        if ($validator->passes()) {
+            $survey = new Survey();
+            $survey->enterprise_activity = Input::get('enterprise_activity');
+            $survey->project_origin = Input::get('project_origin');
+            $survey->innovative_arguments = Input::get('innovative_arguments');
+            $survey->wanted_impact = Input::get('wanted_impact');
+            $survey->product_informations = Input::get('product_informations');
+            $survey->project_results = Input::get('project_results');
+            $survey->project_rewards = Input::get('project_rewards');
+            if(!empty(Input::get('project_partners')))
+              $survey->project_partners = Input::get('project_partners');
+            $survey->enterprise()->save($enterprise);
+            $survey->save();
+            $enterprise->registration_state = 'step4';
+            $user->enterprise()->save($enterprise);
+
+            return Redirect::to('/register/complete/step4');
+        } else {
+            return Redirect::to('register/complete/step3')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+        }
+    }
+    /**
+     *  Get registration step 4 template (Upload)
+     * @return redirect to next register step
+     */
+    public function getCompleteRegistrationStep4()
+    {
+        if (!Auth::check()) {
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+
+        return View::make('enterprises.complete-inscription-step4');
     }
 
-    public function getCompleteRegistrationStep4()
-      {
-          if (!Auth::check()) {
-              return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
-          }
+    /**
+     *  Handle Upload form
+     * @return redirect to next register step
+     */
+    public function storeCompleteRegistrationStep4()
+    {
+        $files = Input::file('files');
+        $file_count = count($files);
+        $uploadcount = 0;
 
-          return View::make('enterprises.complete-inscription-step4');
-      }
+        foreach($files as $file)
+        {
+          $rules = array('file' => 'required');
+          $validator = Validator::make(array('file'=> $file), $rules);
+          if($validator->passes()){
+            $destinationPath = 'public/uploads/' . Auth::User()->id;
+            $filename = $file->getClientOriginalName();
+            $upload_success = $file->move($destinationPath, $filename);
 
-      public function storeCompleteRegistrationStep4()
-      {
-          $files = Input::file('files');
-          $file_count = count($files);
-          $uploadcount = 0;
-
-          foreach($files as $file)
-          {
-            $rules = array('file' => 'required');
-            $validator = Validator::make(array('file'=> $file), $rules);
-            if($validator->passes()){
-              $destinationPath = 'public/uploads/' . Auth::User()->email;
-              $filename = $file->getClientOriginalName();
-              $upload_success = $file->move($destinationPath, $filename);
-
-              $file = new Upload;
-              $file->name = $filename;
-              $file->path = $destinationPath;
-              $file->enterprise_id = Auth::User()->enterprise_id;
-              $file->save();
-              $uploadcount ++;
-            }
+            $file = new Upload;
+            $file->name = $filename;
+            $file->path = $destinationPath;
+            $file->enterprise_id = Auth::User()->enterprise_id;
+            $file->save();
+            $uploadcount ++;
           }
-          if($uploadcount == $file_count){
-            return Redirect::to('/register/complete/step4')->with('message', "Vos fichiers ont bien été uploadé");
-          }
-          else {
-            return Redirect::to('/register/complete/step4')->withInput()->withErrors($validator);
-          }
-      }
+        }
+        if($uploadcount == $file_count){
+          return Redirect::to('/register/complete/step4')->with('message', "Vos fichiers ont bien été uploadé");
+        }
+        else {
+          return Redirect::to('/register/complete/step4')->withInput()->withErrors($validator);
+        }
+    }
 
 }
