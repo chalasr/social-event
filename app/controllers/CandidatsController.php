@@ -164,7 +164,7 @@ class CandidatsController extends BaseController
             }
           }
           if($uploadcount == $file_count){
-            return Redirect::to('/register/complete/step4')->with('message', "Votre fichier à bien été ajouter");
+            return Redirect::to('/register/complete/step4')->with('message', "Vos fichiers ont bien été uploadé");
           }
           else {
             return Redirect::to('/register/complete/step4')->withInput()->withErrors($validator);
