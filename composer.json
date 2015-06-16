@@ -7,7 +7,9 @@
 		"laravel/framework": "4.2.*",
 		"adamkearsley/convert-migrations": "dev-master",
 		"barryvdh/laravel-dompdf": "0.4.*",
-		"way/generators": "~2.0"
+		"way/generators": "~2.0",
+		"nitmedia/wkhtml2pdf": "dev-master",
+		"knplabs/knp-snappy": "^0.4.0"
 	},
 	"autoload": {
 		"classmap": [
