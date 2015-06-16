@@ -6,6 +6,7 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"adamkearsley/convert-migrations": "dev-master",
+		"barryvdh/laravel-dompdf": "0.4.*",
 		"way/generators": "~2.0"
 	},
 	"autoload": {
