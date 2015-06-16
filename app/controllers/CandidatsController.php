@@ -132,8 +132,8 @@ class CandidatsController extends BaseController
             $survey->product_informations = Input::get('product_informations');
             $survey->project_results = Input::get('project_results');
             $survey->project_rewards = Input::get('project_rewards');
-            if(!empty(Input::get('project_partners')))
-              $survey->project_partners = Input::get('project_partners');
+            // if(!empty(Input::get('project_partners')))
+            //   $survey->project_partners = Input::get('project_partners');
             $survey->enterprise()->save($enterprise);
             $survey->save();
             $enterprise->registration_state = 'step4';
