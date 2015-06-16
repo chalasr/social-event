@@ -1,4 +1,16 @@
 <?php
+/*
+
+enterprise_activity = Activité de l'entreprise
+project_origin = Origine du projet
+innovative_arguments = En quoi votre projet est-il innovant par rapport aux produits/services existants
+wanted_impact = National ou International
+product_informations = Prix du produit et Canaux de distribution
+project_results
+project_partners
+project_rewards
+*/
+
 
 class Enterprise extends Eloquent {
 
@@ -18,6 +30,14 @@ class Enterprise extends Eloquent {
 		'created_at',
 		'updated_at',
 		'registration_state',
+		'project_arguments',
+		'project_results',
+		'project_partners',
+		'project_rewards',
+		'activity_id',
+		'internal_collaborators',
+		'external_collaborators_type',
+		'project_certificates',
 	];
 
 	public static $rules = array(

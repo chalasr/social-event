@@ -29,6 +29,10 @@ Route::get('register/complete', ['uses' => 'CandidatsController@getCompleteRegis
 Route::post('complete-register', ['uses' => 'CandidatsController@storeCompleteRegistration']);
 Route::get('register/complete/step2', ['uses' => 'CandidatsController@getCompleteRegistrationStep2']);
 Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeCompleteRegistrationStep2']);
+Route::get('register/complete/step2', ['uses' => 'CandidatsController@getCompleteRegistrationStep2']);
+Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeCompleteRegistrationStep2']);
+Route::get('register/complete/step3', ['uses' => 'CandidatsController@getCompleteRegistrationStep3']);
+Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeCompleteRegistrationStep3']);
 Route::get('register/complete/step4', ['uses' => 'CandidatsController@getCompleteRegistrationStep4']);
 Route::post('complete-register/step4', ['uses' => 'CandidatsController@storeCompleteRegistrationStep4']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));

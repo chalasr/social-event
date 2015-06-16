@@ -22,7 +22,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function enterprise()
 	{
-			return $this->hasOne('Enterprise', 'enterprise_id');
+			return $this->hasOne('Enterprise');
 	}
 
 	public static $rules = array(
