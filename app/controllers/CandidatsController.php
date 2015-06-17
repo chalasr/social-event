@@ -73,7 +73,7 @@ class CandidatsController extends BaseController
             $user->enterprise()->save($enterprise);
             $user->enterprise_id = $enterprise->id;
             $user->save();
-            
+
             return Redirect::to('/register/complete/step2');
         } else {
 
@@ -165,8 +165,7 @@ class CandidatsController extends BaseController
             $survey->product_informations = Input::get('product_informations');
             $survey->project_results = Input::get('project_results');
             $survey->project_rewards = Input::get('project_rewards');
-            if(!empty(Input::get('project_partners')))
-              $survey->project_partners = Input::get('project_partners');
+            $survey->project_partners = Input::get('project_partners');
             $files = Input::file('files');
             if(count($files) >= 1){
               foreach($files as $file){
@@ -341,8 +340,8 @@ class CandidatsController extends BaseController
 
         $payment = Payment::get($payment_id, $this->_api_context);
 
-        // PaymentExecution object includes information necessary 
-        // to execute a PayPal account payment. 
+        // PaymentExecution object includes information necessary
+        // to execute a PayPal account payment.
         // The payer_id is added to the request query parameters
         // when the user is redirected from paypal back to your site
         $execution = new PaymentExecution();
