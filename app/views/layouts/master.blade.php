@@ -189,6 +189,7 @@
     <script src="{{ URL::asset('assets/global/scripts/metronic.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/script.js') }}" type="text/javascript"></script>
     <script>
     jQuery(document).ready(function() {
        Metronic.init(); // init metronic core componets

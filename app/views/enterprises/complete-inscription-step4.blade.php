@@ -80,12 +80,14 @@
               <label>{{Form::radio('have_internal_search', 'oui', array('class'=>'form-control'))}}Oui</label>
             </div>
             <div class="right-label-flex">
-              <label>{{Form::radio('have_internal_search', 'non', array('class'=>'form-control'))}}Non</label>
+              <label>{{Form::radio('have_internal_search', 'non', array('class'=>'form-control', 'checked' => 'true'))}}Non</label>
             </div>
           </div>
           <br>
-          {{Form::label('internal_collaborators', 'Lesquels ?')}}
-          {{ Form::text('internal_collaborators', null, array('class' => 'form-control'))}}
+          <div class="form-group" id="internal_collaborators_input">
+            {{Form::label('internal_collaborators', 'Lesquels ?')}}
+            {{ Form::text('internal_collaborators', null, array('class' => 'form-control'))}}
+          </div>
         </div>
         <div class="form-group">
           <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{Form::label('have_external_search', ' Avec l’aide de prestataires extérieurs ?')}}
@@ -98,8 +100,10 @@
             </div>
           </div>
           <br>
-          {{Form::label('external_collaborators_type', 'Lesquels ?')}}
-          {{ Form::text('external_collaborators_type', null, array('class' => 'form-control'))}}
+          <div class="form-group" id="external_collaborators_input">
+            {{Form::label('external_collaborators_type', 'Lesquels ?')}}
+            {{ Form::text('external_collaborators_type', null, array('class' => 'form-control', 'checked' => 'true'))}}
+          </div>
         </div>
         <br>
         <div class="form-group">
@@ -109,12 +113,14 @@
               <label>{{Form::radio('have_certificates', 'oui', array('class'=>'form-control'))}}Oui</label>
             </div>
             <div class="right-label-flex">
-              <label>{{Form::radio('have_certificates', 'non', array('class'=>'form-control'))}}Non</label>
+              <label>{{Form::radio('have_certificates', 'non', array('class'=>'form-control', 'checked' => 'true'))}}Non</label>
             </div>
           </div>
           <br>
-          {{Form::label('project_certificates', 'Précisez le nombre de brevets, marques ou dessins et modèles déposés et pour quel type de produits ou services :')}}
-          {{ Form::text('project_certificates', null, array('class' => 'form-control'))}}
+          <div class="form-group" id="have_certificates_input">
+            {{Form::label('project_certificates', 'Précisez le nombre de brevets, marques ou dessins et modèles déposés et pour quel type de produits ou services :')}}
+            {{ Form::text('project_certificates', null, array('class' => 'form-control'))}}
+          </div>
         </div>
       </div>
       <div class="submitLarge">
