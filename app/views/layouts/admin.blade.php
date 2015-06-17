@@ -41,7 +41,7 @@
                 @if(Auth::check())
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="username username-hide-on-mobile"> Bienvenue {{ $pseudo = Auth::user()->username }}</span>
+                            <span class="username username-hide-on-mobile"> {{ $pseudo = Auth::user()->email }} &nbsp;</span>
                         </a>
                     </li>
                     <li class="dropdown dropdown-quick-sidebar-toggler">

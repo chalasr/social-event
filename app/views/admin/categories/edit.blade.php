@@ -21,11 +21,10 @@
                       <div class="tab-pane active" id="tab1">
                         <h3 class="block"></h3>
                         <div class="form-group">
-                          <label class="control-label col-md-3">Titre <span class="required" aria-required="true">
-                          * </span>
+                          <label class="control-label col-md-3">Titre
                           </label>
                           <div class="col-md-4">
-                            {{ Form::text('name',$category->name, array('class'=>'form-control', 'id'=>'submit_form_password')) }}
+                            {{ Form::text('name',$category->name, array('class'=>'form-control')) }}
                           </div>
                         </div>
                         <div class="form-group">
@@ -33,7 +32,7 @@
                           * </span>
                           </label>
                           <div class="col-md-4">
-                            {{ Form::textarea('description',$category->description, array('class'=>'form-control', 'id'=>'submit_form_password')) }}
+                            {{ Form::textarea('description',$category->description, array('class'=>'form-control', )) }}
 
                           </div>
                         </div>
