@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="clearfix"></div>    
+    <div class="clearfix"></div>
     <div class="col-md-12">
         <div class="portlet box blue">
             <div class="portlet-title">
@@ -21,8 +21,6 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('name', null, array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez indiquer le titre de la catégorie </span>
                           </div>
                         </div>
                         <div class="form-group">
@@ -30,9 +28,7 @@
                           * </span>
                           </label>
                           <div class="col-md-4">
-                            {{ Form::text('description',null, array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez indiquer la description à la catégorie </span>
+                            {{ Form::textarea('description',null, array('class'=>'form-control')) }}
                           </div>
                         </div>
                       </div>
@@ -56,5 +52,4 @@
         </div>
       </div>
     </div>
-</div>
 @stop

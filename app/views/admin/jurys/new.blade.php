@@ -22,7 +22,7 @@
                           <div class="col-md-4">
                             {{ Form::text('lastname', null, array('class'=>'form-control')) }}
                             <span class="help-block">
-                            Veuillez indiquer le prénom </span>
+                            Veuillez indiquer le nom </span>
                           </div>
                         </div>
                         <div class="form-group">
@@ -128,5 +128,5 @@
             </div>
           </div>
       </div>
+    </div>
 @stop
-

@@ -110,7 +110,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="#">
+                        <a href="{{ URL::to('admin/candidates/')}}">
                         Gerer les dossiers candidat</a>
                     </li>
                 </ul>
