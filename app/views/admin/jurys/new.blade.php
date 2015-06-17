@@ -73,7 +73,7 @@
                           * </span>
                           </label>
                           <div class="col-md-4">
-                            <select class="form-control input-large" name="category">
+                            <select class="form-control input-large" name="category" required="true">
                               <option selected disabled>Veuillez selectionner</option>
                               @foreach($categories as $category)
                               <option value="{{ $category->id }}">{{ $category->name }}</option>
