@@ -122,8 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Barryvdh\DomPDF\ServiceProvider',
-		'Barryvdh\Snappy\ServiceProvider',
-	//	'Way\Generators\GeneratorsServiceProvider',
+		'Barryvdh\Snappy\ServiceProvider'
+		//	'Way\Generators\GeneratorsServiceProvider',
 	),
 
 	/*
@@ -191,7 +191,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'PDF'             => 'Barryvdh\Snappy\Facades\SnappyPdf',
-		'Image'           => 'Barryvdh\Snappy\Facades\SnappyImage'
+		'Image'           => 'Barryvdh\Snappy\Facades\SnappyImage',
 	),
 
 );

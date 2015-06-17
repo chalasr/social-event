@@ -13,6 +13,15 @@
 
 $id = '[0-9]+';
 
+Route::post('/payment', ['uses'=>'PaypalController@postPayment']);
+Route::get('paypal/payment',['uses'=>'PaypalController@getPayment']);
+// this is after make the payment, PayPal redirect back to your site
+Route::get('payment/status', array(
+    'as' => 'payment.status',
+    'uses' => 'PaypalController@getPaymentStatus',
+));
+
+
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
 Route::get('/admin', array('uses' => 'CategoriesController@index'));
 Route::group(array('prefix' => '/admin'), function(){
