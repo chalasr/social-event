@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-  <div class="portlet box blue">
+<div class="container">
+    <div class="portlet box blue">
     <div class="portlet-title">
       <div class="caption">
         {{ $candidate->email }}
@@ -103,4 +104,5 @@
     </div>
   </div>
   @endif
+</div>
 @stop
