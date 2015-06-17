@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+<style media="screen">
+  td{ width: 13%;}
+</style>
 <div class="container">
     <div class="portlet box blue">
     <div class="portlet-title">
