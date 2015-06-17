@@ -118,7 +118,7 @@ class PaypalController extends BaseController
 
     if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
         return Redirect::route('original.route')
-            ->with('error', 'Payment failed');
+            ->with('error', 'Le payement à été refusé.');
     }
 
     $payment = Payment::get($payment_id, $this->_api_context);
@@ -136,10 +136,10 @@ class PaypalController extends BaseController
     echo '<pre>';print_r($result);echo '</pre>';exit; // DEBUG RESULT, remove it later
 
     if ($result->getState() == 'approved') { // payment made
-        return Redirect::route('original.route')
-            ->with('success', 'Payment success');
+        return Redirect::route('/')
+            ->with('success', 'Le payement à été effectué.');
     }
-    return Redirect::route('original.route')
-        ->with('error', 'Payment failed');
+    return Redirect::route('/')
+        ->with('error', 'Le payement à été refusé.');
 }
 }
