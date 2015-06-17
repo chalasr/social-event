@@ -16,7 +16,7 @@
 						<p>
 							POUR TOUT RESEIGNEMENT CONCERNANT VOTRE DOSSIER OU VOTRE RÈGLEMENT, VEUILLEZ CONTACTER NOTRE PARTENAIRE, PLUS2SENS
 						</p>
-						<div class="well">
+						<div class="col-md-4 well">
 							<h4>PLUS2SENS</h4>
 							<address>
 								<strong>Adresse</strong><br>
@@ -32,8 +32,15 @@
 								<a href="mailto:carmela@plus2sens.com">
 								carmela@plus2sens.com </a>
 							</address>
-						</div>						
+						</div>
+							<div class="col-md-6">
+								<div class="text-center">
+								<img src="/assets/admin/pages/img/sens2pluslogo.png" style="width: 200px; height: 200px;">
+								</div>
+							</div>						
+					</div>
 						<div class="clearfix"></div>
+						<hr />
 						<h3>Votre dossier ne sera validé qu'à réception du règlement de votre participation.<br>
 							Les frais d'enregistrement s'élèvent à 100€ TTC par dossier de candidature.
 						</h3>
@@ -54,7 +61,7 @@
 					                	<div class="row">
 					                  		<div class="text-center">
 					               				<img src="/assets/admin/pages/img/paypalbutton.jpg">
-					                      		{{ Form::open(array('url'=>'paypal/payment')) }}
+					                      		{{ Form::open(array('url'=>'complete-register/step5')) }}
 												{{ Form::submit('Payer' ,array('class'=>'btn blue button-next')) }}
 												{{ Form::close() }}
 					                		</div>
@@ -85,8 +92,8 @@
 									<p>
 									Une facture acquittée vous sera envoyée.
 									</p>
-									{{ Form::open(array('url'=>'paypal/payment')) }}
-									{{ Form::submit('Payer',  array('class'=>'btn blue button-next')) }}
+									{{ Form::open(array('url'=>'complete-register/step5')) }}
+									{{ Form::submit('Accepter',  array('class'=>'btn blue button-next')) }}
 									{{ Form::close() }}
 								</div>
 							</div>
