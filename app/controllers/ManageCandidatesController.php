@@ -65,18 +65,15 @@ class ManageCandidatesController extends BaseController
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
-        $validator = Validator::make(Input::all(), User::$rules);
-
-        if($validator->passes()){
-            $candidat = User::find($id);
+        $candidat = User::find($id);
+        if(!is_null($candidat->email)){
             $candidat->email = Input::get('email');
-            if(!is_null($candidat->password)){
-                $candidat->password = Hash::make(Input::get('password'));
-            }
-            return Redirect::to('/admin/candidates')->with('message', 'Candidat modifié avec succès');
-        }else{
-            return Redirect::to('/admin/candidates/' . $id . '/edit')->withErrors($validator)->withInput();
         }
+        if(!is_null($candidat->password)){
+            $candidat->password = Hash::make(Input::get('password'));
+        }
+        $candidat->save();
+        return Redirect::to('/admin/candidates')->with('message', 'Candidat modifié avec succès');
     }
 
     /**

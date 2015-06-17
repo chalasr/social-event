@@ -89,6 +89,6 @@ class CategoriesController extends BaseController
     {
         $category = Category::find($id);
         Category::destroy($id);
-        return Redirect::to('/admin/categories/')->with('message', 'La catégorie a bien été supprimé');
+        return Redirect::to('/admin/categories/')->with('message', 'Catégorie supprimée avec succès');
     }
 }

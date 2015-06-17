@@ -26,13 +26,14 @@ Route::get('/admin', array('uses' => 'CategoriesController@index'));
 Route::group(array('prefix' => '/admin'), function(){
 	$id = '[0-9]+';
 	Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
-	Route::resource('/jurys', 'JurysController', ['except' => ['show']]);
-	Route::resource('/candidates', 'ManageCandidatesController', ['except' => ['create', 'store']]);
 	Route::get('/categories/delete/{id}', 'CategoriesController@getDelete')->where('id', $id);
+	Route::resource('/jurys', 'JurysController', ['except' => ['show']]);
+	Route::get('/jurys/delete/{id}', 'JurysController@getDelete')->where('id', $id);
+	Route::resource('/candidates', 'ManageCandidatesController', ['except' => ['create', 'store']]);
 	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
 	Route::get('/candidates/remove-participation/{id}/{categoryId}', 'ManageCandidatesController@removeCategoryFromCandidate')->where('id', $id)->where('categoryId', $id);
 	Route::get('/candidates/add-participation/{id}/{categoryId}', 'ManageCandidatesController@addCategoryToCandidate')->where('id', $id)->where('categoryId', $id);
-	Route::get('/jurys/delete/{id}', 'JurysController@getDelete')->where('id', $id);
+	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
 });
 
 //Candidates views

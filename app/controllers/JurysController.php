@@ -96,7 +96,7 @@ class JurysController extends BaseController
             $dbCategory = Category::find(Input::get('category'));
             $jury->role_id = 2;
             $jury->save();
-            if(count($jury->categories()->get()) <= 1){ 
+            if(count($jury->categories()->get()) <= 1){
                 if($jury->categories()->first()->id != Input::get('category')){
                     $jury->categories()->delete();
                     $jury->categories()->attach($dbCategory);
@@ -119,7 +119,7 @@ class JurysController extends BaseController
         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être  administrateur pour accéder à cette partie du site');
         $jury = User::find($id);
         User::destroy($id);
-        return Redirect::to('/admin/jurys/')->with('message', 'Catégorie supprimée avec succès');
+        return Redirect::to('/admin/jurys/')->with('message', 'Jury supprimé avec succès');
     }
 
 }
