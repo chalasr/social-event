@@ -30,7 +30,9 @@
         			@endforeach
         		   </tbody>
         		</table>
-            {{ Form::submit('Valider') }}
+            <div class="submitLarge">
+              {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
+            </div>
         	</div>
 
         {{ Form::close() }}
@@ -38,6 +40,3 @@
 </div>
 
 @stop
-
-
-

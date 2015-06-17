@@ -43,4 +43,10 @@ class Enterprise extends Eloquent {
 	 * @var array
 	 */
 	protected $hidden = array();
+
+	public function files()
+	{
+			return $this->hasMany('Upload');
+	}
+
 }

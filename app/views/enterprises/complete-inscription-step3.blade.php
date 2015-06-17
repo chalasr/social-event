@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    {{ Form::open(array('url'=>'complete-register/step3', 'class'=>'form-signup')) }}
+    {{ Form::open(array('url'=>'complete-register/step3', 'class'=>'form-signup','enctype' => 'multipart/form-data', 'files' => true)) }}
         <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Questionnaire</span></h2>
         <ul>
             @foreach($errors->all() as $error)
@@ -52,6 +52,10 @@
           <div class="form-group">
             {{Form::label('project_rewards', 'Votre entreprise a-t-elle été déjà récompensée pour cette innovation ou pour d’autres innovations ? Par quel organisme ?', array('class' => 'control-label'))}}
             {{Form::text('project_rewards', null, array('class'=>'form-control'))}}
+          </div>
+          <div class="form-group">
+            {{ Form::label('files[]', 'N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.')}}
+            {{ Form::file('files[]', array('multiple'=>true, 'class' => 'form-control')) }}
           </div>
           <br>
           <div class="submitLarge">
