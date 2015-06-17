@@ -23,8 +23,6 @@ class CreateSurveysTable extends Migration {
 			$table->text('project_results');
 			$table->text('project_partners');
 			$table->text('project_rewards');
-			$table->integer('enterprise_id')->unsigned();
-			$table->foreign('enterprise_id')->references('id')->on('enterprises');
 			$table->timestamps();
 		});
 	}
