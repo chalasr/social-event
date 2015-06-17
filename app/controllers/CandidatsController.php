@@ -220,9 +220,9 @@ class CandidatsController extends BaseController
 
         if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != '')
           $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
-        if(!empty(Input::get('internal_collaborators')))
+        if(Input::get('internal_collaborators') != null && Input::get('internal_collaborators' != ''))
           $enterprise->internal_collaborators = Input::get('internal_collaborators');
-        if(!empty(Input::get('project_certificates')))
+        if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != '')
           $enterprise->project_certificates = Input::get('project_certificates');
         $enterprise->registration_state = 'step5';
         $user->enterprise()->save($enterprise);
