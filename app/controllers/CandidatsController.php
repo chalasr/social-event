@@ -333,7 +333,7 @@ class CandidatsController extends BaseController
         // clear the session payment ID
         Session::forget('paypal_payment_id');
 
-        if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
+        if (Input::get('PayerID') == '' || Input::get('token') == '') {
             return Redirect::route('/register/complete/step5')
                 ->with('error', 'Le payement à été refusé.');
         }
