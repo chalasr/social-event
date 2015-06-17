@@ -43,10 +43,18 @@ class ManageCandidatesController extends BaseController
         $countUserCats = count($userCategories);
         $categories = Category::all();
         $countCats = count($categories);
-        $newCategories = [];
-        // print_r($categories);die;
+        foreach($userCategories as $userCat){
+            for ($i=0; $i < $countCats; $i++) {
+                if(isset($categories[$i])){
+                    if($userCat->id == $categories[$i]->id){
+                        unset($categories[$i]);
+                    }
+                }
+            }
+        }
         return View::make('admin/candidates/edit', compact('candidate', 'categories'));
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -57,7 +65,7 @@ class ManageCandidatesController extends BaseController
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
-        $validator = Validator::make(Input::all(), Jury::$rules);
+        $validator = Validator::make(Input::all(), User::$rules);
 
         if($validator->passes()){
             $candidat = User::find($id);
@@ -69,6 +77,42 @@ class ManageCandidatesController extends BaseController
         }else{
             return Redirect::to('/admin/candidates/' . $id . '/edit')->withErrors($validator)->withInput();
         }
+    }
+
+    /**
+     * Add a category to specified user.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function removeCategoryFromCandidate($id, $categoryId)
+    {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+
+        $candidate = User::find($id);
+        $category = Category::find($categoryId);
+        $candidate->categories()->detach($category);
+
+        return Redirect::to('/admin/candidates/'.$id.'/edit')->with('message', 'Candidature mise à jour avec succès');
+    }
+
+    /**
+     * Remove a category to specified user.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function addCategoryToCandidate($id, $categoryId)
+    {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+
+        $candidate = User::find($id);
+        $category = Category::find($categoryId);
+        $candidate->categories()->attach($category);
+
+        return Redirect::to('/admin/candidates/'.$id.'/edit')->with('message', 'Candidature mise à jour avec succès');
     }
 
     /**

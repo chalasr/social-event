@@ -23,6 +23,8 @@ Route::group(array('prefix' => '/admin'), function(){
 	Route::resource('/candidates', 'ManageCandidatesController', ['except' => ['create', 'store']]);
 	Route::get('/categories/delete/{id}', 'CategoriesController@getDelete')->where('id', $id);
 	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
+	Route::get('/candidates/remove-participation/{id}/{categoryId}', 'ManageCandidatesController@removeCategoryFromCandidate')->where('id', $id)->where('categoryId', $id);
+	Route::get('/candidates/add-participation/{id}/{categoryId}', 'ManageCandidatesController@addCategoryToCandidate')->where('id', $id)->where('categoryId', $id);
 	Route::get('/jurys/delete/{id}', 'JurysController@getDelete')->where('id', $id);
 });
 

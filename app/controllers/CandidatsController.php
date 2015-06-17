@@ -50,8 +50,10 @@ class CandidatsController extends BaseController
             $user->enterprise()->save($enterprise);
             $user->enterprise_id = $enterprise->id;
             $user->save();
+            
             return Redirect::to('/register/complete/step2');
         } else {
+
             return Redirect::to('register/complete')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
@@ -90,8 +92,8 @@ class CandidatsController extends BaseController
         $enterprise = $user->enterprise()->first();
         $enterprise->registration_state = 'step3';
         $user->enterprise()->save($enterprise);
-        return Redirect::to('/register/complete/step3');
 
+        return Redirect::to('/register/complete/step3');
     }
 
     public function getCompleteRegistrationStep3()
