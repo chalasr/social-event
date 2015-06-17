@@ -6,7 +6,7 @@
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					Tout les juris
+					Les jurys
 				</div>
 			</div>
 			<div class="portlet-body" style="display: block;">
@@ -55,13 +55,11 @@
 							<td>
 								{{ $jury->society }}
 							</td>
-						@endforeach
 							<td>
 							@foreach ($jury->categories()->get() as $category)
 								{{ $category->name }}
 							@endforeach
 							</td>
-						@foreach($jurys as $jury)
 							<td>
 								{{ $jury->phone }}
 							</td>
@@ -69,8 +67,8 @@
 								{{ $jury->city }}
 							</td>
 							<td>
-								<a href="{{ URL::to('admin/jurys/'.$jury->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;
-								<a href="{{ URL::to('admin/jurys/delete/'.$jury->id) }}"><i class="fa fa-trash"></i></a>
+								<a class="btn btn-info" href="{{ URL::to('admin/jurys/'.$jury->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;
+								<a class="btn btn-danger" href="{{ URL::to('admin/jurys/delete/'.$jury->id) }}"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 						@endforeach

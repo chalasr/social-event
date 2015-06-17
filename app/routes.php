@@ -15,14 +15,18 @@ $id = '[0-9]+';
 
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
 Route::get('/admin', array('uses' => 'CategoriesController@index'));
+
 Route::group(array('prefix' => '/admin'), function(){
 	$id = '[0-9]+';
-	Route::resource('/categories', 'CategoriesController');
-	Route::resource('/jurys', 'JurysController');
+	Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
+	Route::resource('/jurys', 'JurysController', ['except' => ['show']]);
+	Route::resource('/candidates', 'ManageCandidatesController', ['except' => ['create', 'store']]);
 	Route::get('/categories/delete/{id}', 'CategoriesController@getDelete')->where('id', $id);
+	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
 	Route::get('/jurys/delete/{id}', 'JurysController@getDelete')->where('id', $id);
 });
-//Users views
+
+//Candidates views
 Route::controller('users', 'UsersController');
 Route::get('register', array('uses' => 'UsersController@getRegister', 'as' => 'register'));
 Route::get('register/complete', ['uses' => 'CandidatsController@getCompleteRegistration']);
@@ -36,24 +40,3 @@ Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeComp
 Route::get('register/complete/step4', ['uses' => 'CandidatsController@getCompleteRegistrationStep4']);
 Route::post('complete-register/step4', ['uses' => 'CandidatsController@storeCompleteRegistrationStep4']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
-// Route::get('/admin/categories/', 'CategoriesController@getpdf');
-// Route::get('/test', 'PrintController@index');
-
-
-
-
-//Upload Views
-// Route::get('upload', array('uses' => 'UploadsController@index', 'as' => 'upload'));
-// Route::post('upload', 'UploadsController@upload');
-// Route::get('myuploads', array('before' => 'auth', function()
-// {
-//     $userid = Auth::user()->id;
-//     $upload = Upload::where('user_id', '=', $userid)->orderBy('id', 'DESC')->paginate(5);
-//     return View::make('upload.myupload')->with('upload', $upload);
-// }));
-// Route::get('cloud', array('before' => 'auth', function()
-// {
-//     $userid = Auth::user()->id;
-//     $upload = Upload::where('status', '=', '1')->orderBy('id', 'DESC')->paginate(5);
-//     return View::make('upload.cloud')->with('upload', $upload);
-// }));

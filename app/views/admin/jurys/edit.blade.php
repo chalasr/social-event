@@ -6,7 +6,7 @@
         <div class="col-md-12">
           <div class="portlet box blue" id="form_wizard_1">
             <div class="portlet-title">
-              <h3>Création compte jury</h3>
+              <h3>Modifier le jury</h3>
             </div>
             <div class="portlet-body form">
                 {{ Form::open(array('route'=> ['admin..jurys.update', $jury->id], 'method' => 'PATCH', 'class'=>'form-horizontal')) }}
@@ -21,8 +21,6 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('lastname', $jury->lastname, array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez indiquer le prénom </span>
                           </div>
                         </div>
                         <div class="form-group">
@@ -31,8 +29,7 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('firstname',$jury->firstname, array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez indiquer le prénom </span>
+
                           </div>
                         </div>
                         <div class="form-group">
@@ -41,8 +38,7 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('email',$jury->email, array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez indiquer une adresse mail </span>
+
                           </div>
                         </div>
                         <div class="form-group">
@@ -51,8 +47,7 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('society',$jury->society, array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez indiquer une société </span>
+
                           </div>
                         </div>
                         <div class="form-group">
@@ -61,8 +56,7 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('phone',$jury->phone, array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez indiquer un numéro de téléphone </span>
+
                           </div>
                         </div>
                         <div class="form-group">
@@ -71,8 +65,7 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('city',$jury->city, array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez indiquer une adresse mail </span>
+
                           </div>
                         </div>
                         <div class="form-group">
@@ -94,18 +87,15 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::password('password', array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez indiquer un mot de passe </span>
+
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="control-label col-md-3">Mot de passe <span class="required">
+                          <label class="control-label col-md-3">Confirmation Mot de passe <span class="required">
                           * </span>
                           </label>
                           <div class="col-md-4">
                             {{ Form::password('password_confirmation', array('class'=>'form-control')) }}
-                            <span class="help-block">
-                            Veuillez confirmer le mot de passe </span>
                           </div>
                         </div>
                       </div>
@@ -122,5 +112,6 @@
               {{ Form::close() }}
             </div>
           </div>
+        </div>
     </div>
 @stop
