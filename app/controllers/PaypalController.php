@@ -32,30 +32,18 @@ class PaypalController extends BaseController
         $payer->setPaymentMethod('paypal');
 
         $item_1 = new Item();
-        $item_1->setName('Item 1') // item name
-            ->setCurrency('USD')
-            ->setQuantity(2)
-            ->setPrice('15'); // unit price
-
-        $item_2 = new Item();
-        $item_2->setName('Item 2')
-            ->setCurrency('USD')
-            ->setQuantity(4)
-            ->setPrice('7');
-
-        $item_3 = new Item();
-        $item_3->setName('Item 3')
-            ->setCurrency('USD')
-            ->setQuantity(1)
-            ->setPrice('20');
+        $item_1->setName('Ticket de participation Bref Rhônes-Alpes') // item name
+            ->setCurrency('EUR')
+            ->setQuantity(100)
+            ->setPrice('1'); // unit price
 
         // add item to list
         $item_list = new ItemList();
-        $item_list->setItems(array($item_1, $item_2, $item_3));
+        $item_list->setItems(array($item_1));
 
         $amount = new Amount();
-        $amount->setCurrency('USD')
-            ->setTotal(78);
+        $amount->setCurrency('EUR')
+            ->setTotal(100);
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -99,7 +87,7 @@ class PaypalController extends BaseController
             return Redirect::away($redirect_url);
         }
 
-        return Redirect::route('original.route')
+        return Redirect::route('/')
             ->with('error', 'Unknown error occurred');
     }
 
