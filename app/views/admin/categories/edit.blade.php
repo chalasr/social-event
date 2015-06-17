@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container">
+      <ul>
+          @foreach($errors->all() as $error)
+              <li>{{ $error }}</li>
+          @endforeach
+      </ul>
     <div class="clearfix"></div>
         <div class="col-md-12">
           <div class="portlet box blue" id="form_wizard_1">
