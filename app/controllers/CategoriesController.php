@@ -91,9 +91,4 @@ class CategoriesController extends BaseController
         Category::destroy($id);
         return Redirect::to('/admin/categories/')->with('message', 'La catégorie a bien été supprimé');
     }
-
-    public function getpdf()
-    {
-        return PDF::loadFile('http://localhost:8000/admin/categories/pdfcategories.blade.php')->stream('categorieslist.pdf');
-    }
 }

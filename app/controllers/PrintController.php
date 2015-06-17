@@ -3,9 +3,8 @@
 
 class PrintController extends BaseController 
 {
-    public function getpdf()
+    public function index()
     {
-    	$path = Request::getRequestUri();
-    	return PDF::loadFile('http://localhost:8000'. $path)->stream('category.pdf');
+    	return PDF::loadFile('http://bref.dev5.sutunam.com')->stream('category.pdf');
     }
 }
