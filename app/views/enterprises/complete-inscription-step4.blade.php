@@ -2,20 +2,125 @@
 
 @section('content')
 <div class="container">
-
-  <div class="well">
-      {{ Form::open(array('url'=>'complete-register/step4', 'enctype' => 'multipart/form-data','method' => 'post', 'files' => true, 'class'=>'form-signup')) }}
-          <h2 class="form-signup-heading">Import de pièces à joindre à votre dossier</h2>
+    {{ Form::open(array('url'=>'complete-register/step4','method' => 'post', 'class'=>'form-signup')) }}
+      <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Votre entreprise en quelques chiffres</span></h2>
+      <div class="well">
           <ul>
               @foreach($errors->all() as $error)
                   <li>{{ $error }}</li>
               @endforeach
           </ul>
-            {{ Form::file('files[]', array('multiple'=>true)) }}
-
-            {{ Form::submit('Valider l\'ajout') }}
-        {{ Form::close() }}
-  </div>
+          <table class="table">
+             <thead>
+                <tr>
+                   <th>Année</th>
+                   <th>CA</th>
+                   <th>Résultat net</th>
+                   <th>Effectif</th>
+                </tr>
+             </thead>
+             <tbody>
+                <tr>
+                   <td>2013</td>
+                   <td>{{ Form::text('ca_2013', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('net_2013', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_2013', null, array('class' => 'form-control'))}}</td>
+                </tr>
+                <tr>
+                   <td>2014</td>
+                   <td>{{ Form::text('ca_2014', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('net_2014', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_2014', null, array('class' => 'form-control'))}}</td>
+                </tr>
+                <tr>
+                   <td>2015 (prévision)</td>
+                   <td>{{ Form::text('ca_2015', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('net_2015', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_2015', null, array('class' => 'form-control'))}}</td>
+                </tr>
+             </tbody>
+          </table>
+      </div>
+      <hr>
+      <div class="well">
+          <table class="table">
+             <thead>
+                <tr>
+                   <th>Année</th>
+                   <th>Montant R&D (en % du C.A.)</th>
+                   <th>Moyens humains</th>
+                </tr>
+             </thead>
+             <tbody>
+                <tr>
+                   <td>2013</td>
+                   <td>{{ Form::text('rd_2013', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_rd_2013', null, array('class' => 'form-control'))}}</td>
+                </tr>
+                <tr>
+                   <td>2014</td>
+                   <td>{{ Form::text('rd_2014', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_rd_2014', null, array('class' => 'form-control'))}}</td>
+                </tr>
+                <tr>
+                   <td>2015 (prévision)</td>
+                   <td>{{ Form::text('rd_2015', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_rd_2015', null, array('class' => 'form-control'))}}</td>
+                </tr>
+             </tbody>
+          </table>
+      </div>
+      <hr>
+      <div class="well">
+        <h4><b>Votre recherche est-elle réalisée  :</b></h4>
+        <div class="form-group">
+          <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{Form::label('have_internal_search', ' En interne ?')}}
+          <div class="flex">
+            <div>
+              <label>{{Form::radio('have_internal_search', 'oui', array('class'=>'form-control'))}}Oui</label>
+            </div>
+            <div class="right-label-flex">
+              <label>{{Form::radio('have_internal_search', 'non', array('class'=>'form-control'))}}Non</label>
+            </div>
+          </div>
+          <br>
+          {{Form::label('internal_collaborators', 'Lesquels ?')}}
+          {{ Form::text('internal_collaborators', null, array('class' => 'form-control'))}}
+        </div>
+        <div class="form-group">
+          <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{Form::label('have_external_search', ' Avec l’aide de prestataires extérieurs ?')}}
+          <div class="flex">
+            <div>
+              <label>{{Form::radio('have_external_search', 'oui', array('class'=>'form-control'))}}Oui</label>
+            </div>
+            <div class="right-label-flex">
+              <label>{{Form::radio('have_external_search', 'non', array('class'=>'form-control'))}}Non</label>
+            </div>
+          </div>
+          <br>
+          {{Form::label('external_collaborators_type', 'Lesquels ?')}}
+          {{ Form::text('external_collaborators_type', null, array('class' => 'form-control'))}}
+        </div>
+        <br>
+        <div class="form-group">
+          <h4><b>Déposez-vous des brevets, marques, dessins ou modèles ?</b></h4>
+          <div class="flex">
+            <div>
+              <label>{{Form::radio('have_certificates', 'oui', array('class'=>'form-control'))}}Oui</label>
+            </div>
+            <div class="right-label-flex">
+              <label>{{Form::radio('have_certificates', 'non', array('class'=>'form-control'))}}Non</label>
+            </div>
+          </div>
+          <br>
+          {{Form::label('project_certificates', 'Précisez le nombre de brevets, marques ou dessins et modèles déposés et pour quel type de produits ou services :')}}
+          {{ Form::text('project_certificates', null, array('class' => 'form-control'))}}
+        </div>
+      </div>
+      <div class="submitLarge">
+      {{ Form::submit('Finaliser l\'inscripion', ['class' => 'btn btn-primary btn-block']) }}
+      </div>
+      {{ Form::close() }}
 </div>
 
 @stop

@@ -164,6 +164,9 @@ return [
         'effectif_2015' => 'Effectif en 2015',
         'rd_2015'  => 'Budget R&D en 2013',
         'effectif_rd_2015' => 'Effectif R&D en 2015',
+        'internal_collaborators' => 'Collaborateurs internes',
+        'external_collaborators_type' => 'Collaborateurs externes',
+        'project_certificates' => 'Brevet et autre marque déposées',
     ],
 
 ];

@@ -17,7 +17,8 @@ class CreateFilesTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->string('path');
-			$table->integer('enterprise_id');
+			$table->unsignedInteger('enterprise_id')->nullable();
+			$table->foreign('enterprise_id')->references('id')->on('enterprises')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}
