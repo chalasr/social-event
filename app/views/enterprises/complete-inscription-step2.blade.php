@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
 
+          <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Participation</span></h2>
   <div class="well">
       {{ Form::open(array('url'=>'complete-register/step2', 'class'=>'form-signup')) }}
-          <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Participation</span></h2>
           <ul>
               @foreach($errors->all() as $error)
                   <li>{{ $error }}</li>

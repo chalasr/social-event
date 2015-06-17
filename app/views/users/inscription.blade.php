@@ -59,7 +59,6 @@
                 <div class="row">
                   <div class="text-center">
                       {{ Form::submit('Inscription', array('class'=>'btn blue button-next'))}}
-                    </a>
                   </div>
                 </div>
               </div>
