@@ -59,7 +59,7 @@ class CandidatsController extends BaseController
             $enterprise->name = Input::get('name');
             $enterprise->juridical_status = Input::get('juridical_status');
             $enterprise->creation_date = Input::get('creation_date');
-            if(Input::get('member_of_group') != null && Input::get('member_of_group') != ''):
+            if(Input::get('member_of_group') != null && Input::get('member_of_group') != '')
               $enterprise->member_of_group = Input::get('member_of_group');
             $enterprise->postal_address = Input::get('postal_address');
             $enterprise->phone = Input::get('phone');
