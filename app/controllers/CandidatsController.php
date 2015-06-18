@@ -43,6 +43,8 @@ class CandidatsController extends BaseController
               return Redirect::to('/register/complete/step4');
             }elseif($enterprise->registration_state == 'step5'){
               return Redirect::to('/register/complete/step5');
+            }elseif($enterprise->registration_state == 'final'){
+              return Redirect::to('/register/complete/final');
             }
         }
     }
@@ -261,7 +263,7 @@ class CandidatsController extends BaseController
 
         if($enterprise->is_pay >= 1)
         {
-            return Redirect::action('CandidatsController@getCompleteRegistrationStep5')->with('message', 'Vous avez déjà effectué le payment');
+            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez déjà effectué le payment');
         }
         else
         {
@@ -269,12 +271,11 @@ class CandidatsController extends BaseController
             $payer->setPaymentMethod('paypal');
 
             $item_1 = new Item();
-            $item_1->setName('Ticket de participation Bref Rhônes-Alpes') // item name
+            $item_1->setName('Ticket de participation Bref Rhônes-Alpes')
                 ->setCurrency('EUR')
                 ->setQuantity(1)
-                ->setPrice('100'); // unit price
+                ->setPrice('100');
 
-            // add item to list
             $item_list = new ItemList();
             $item_list->setItems(array($item_1));
 
@@ -316,11 +317,9 @@ class CandidatsController extends BaseController
                 }
             }
 
-            // add payment ID to session
             Session::put('paypal_payment_id', $payment->getId());
 
             if(isset($redirect_url)) {
-                // redirect to paypal
                 return Redirect::away($redirect_url);
             }
 
@@ -337,27 +336,28 @@ class CandidatsController extends BaseController
         }
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
-        $enterprise->registration_state = 'step5';
+        $enterprise->registration_state = 'final';
         if($enterprise->is_pay != 0 OR $enterprise->is_pay === 1)
-            return Redirect::action('CandidatsController@getCompleteRegistrationStep5')->with('message', 'Vous avez déjà effectué le payment');
+            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez déjà effectué le payment');
         $enterprise->is_pay = 2;
         $user->enterprise()->save($enterprise);
-        return Redirect::action('HomeController@showWelcome')->with('message', 'Vous êtes désormais inscrit, nous étudirons votre dossier apres avoir reçu votre chèque.');
-
-
+        return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous êtes désormais inscrit, nous étudirons votre dossier apres avoir reçu votre chèque.');
     }
 
     public function getCompleteRegistrationStep5()
     {
-                return View::make('enterprises.complete-inscription-step5');
+        return View::make('enterprises.complete-inscription-step5');
+    }
+
+    public function getCompleteRegistrationFinal()
+    {
+        return View::make('enterprises.complete-inscription-final');
     }
 
     public function getPaymentStatus()
     {
-        // Get the payment ID before session clear
         $payment_id = Session::get('paypal_payment_id');
 
-        // clear the session payment ID
         Session::forget('paypal_payment_id');
 
         if (Input::get('PayerID') == '' || Input::get('token') == '') {
@@ -367,10 +367,6 @@ class CandidatsController extends BaseController
 
         $payment = Payment::get($payment_id, $this->_api_context);
 
-        // PaymentExecution object includes information necessary
-        // to execute a PayPal account payment.
-        // The payer_id is added to the request query parameters
-        // when the user is redirected from paypal back to your site
         $execution = new PaymentExecution();
         $execution->setPayerId(Input::get('PayerID'));
 
@@ -379,15 +375,15 @@ class CandidatsController extends BaseController
 
         // echo '<pre>';print_r($result);echo '</pre>';exit; // DEBUG RESULT, remove it later
 
-        if ($result->getState() == 'approved') { // payment made
+        if ($result->getState() == 'approved') {
             $user = User::find(Auth::user()->id);
             $enterprise = $user->enterprise()->first();
-            $enterprise->registration_state = 'step5';
+            $enterprise->registration_state = 'final';
             if($enterprise->is_pay != 0)
                 return Redirect::action('CandidatsController@getCompleteRegistrationStep5')->with('message', 'Vous avez déjà effectué le payment');
             $enterprise->is_pay = 1;
             $user->enterprise()->save($enterprise);
-            return Redirect::action('HomeController@showWelcome')->with('message', 'Le payement à été effectué.');
+            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Le payement à été effectué.');
         }
         return Redirect::action('CandidatsController@getCompleteRegistrationStep5')
             ->with('message', 'Le payement à été refusé.');

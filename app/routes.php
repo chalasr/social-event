@@ -52,4 +52,5 @@ Route::post('complete-register/step4', ['uses' => 'CandidatsController@storeComp
 Route::get('register/complete/step5',['uses'=>'CandidatsController@getCompleteRegistrationStep5']);
 Route::post('complete-register/step5/paypal', ['uses'=>'CandidatsController@StoreCompleteRegistrationStep5']);
 Route::post('complete-register/step5/check', ['uses' => 'CandidatsController@storeCompleteRegistrationStep5_check']);
+Route::get('register/complete/final', ['uses' => 'CandidatsController@getCompleteRegistrationFinal']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
