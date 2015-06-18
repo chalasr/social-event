@@ -8,6 +8,7 @@
     <meta content="" name="author">
     <title>BrefRH</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ URL::asset('favicon.ico') }}" media="screen"  charset="utf-8">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -18,6 +19,7 @@
     <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
 
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
@@ -40,7 +42,7 @@
                 @if(Auth::check())
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="username username-hide-on-mobile"> Bienvenue {{ $pseudo = Auth::user()->username }}</span>
+                            <span class="username username-hide-on-mobile"> {{ $pseudo = Auth::user()->email }} &nbsp;</span>
                         </a>
                     </li>
                     <li class="dropdown dropdown-quick-sidebar-toggler">
@@ -136,7 +138,6 @@
     <footer>
         <p>Bref RH</p>
     </footer>
-    <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/jquery-migrate.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
@@ -149,6 +150,7 @@
     <script src="{{ URL::asset('assets/global/scripts/metronic.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/script.js') }}" type="text/javascript"></script>
     <script>
         jQuery(document).ready(function() {
            Metronic.init(); // init metronic core componets

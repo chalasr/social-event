@@ -2,10 +2,12 @@
 
 @section('content')
   <div class="container">
+    <br>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
         <div class="panel panel-default">
-          <div class=" box blue panel-heading">
-            <h3 class="panel-title">{{ $candidate->email }}</h3>
+          <div class=" panel-heading">
+            <h3 class="panel-title">{{ $candidate->email }} <a class="floatRight btn btn-xs btn-default" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
+
           </div>
           <div class="panel-body">
             <div class="row">
@@ -226,7 +228,7 @@
           </div>
           <div class="panel-footer">
              @if(Auth::user()->role_id == 3)
-              <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+              <a type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
               <span class="pull-right">
                 <a class="btn btn-sm btn-success" href="{{ URL::to('admin/candidates/'.$candidate->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;<a class="btn btn-sm btn-danger" href="{{ URL::to('admin/candidates/delete/'.$candidate->id) }}"><i class="fa fa-trash"></i></a>
               </span>

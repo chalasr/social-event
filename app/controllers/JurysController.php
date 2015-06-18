@@ -81,31 +81,31 @@ class JurysController extends BaseController
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
-        $validator = Validator::make(Input::all(), Jury::$rules);
 
-        if($validator->passes()){
-            $jury = User::find($id);
-            $jury->email = Input::get('email');
-            if(!is_null($jury->password))
-                $jury->password = Hash::make(Input::get('password'));
-            $jury->society = Input::get('society');
-            $jury->firstname = Input::get('firstname');
-            $jury->lastname = Input::get('lastname');
-            $jury->phone = Input::get('phone');
-            $jury->city = Input::get('city');
+        $jury = User::find($id);
+        $jury->email = Input::get('email');
+        if(!is_null($jury->password))
+            $jury->password = Hash::make(Input::get('password'));
+        $jury->society = Input::get('society');
+        $jury->firstname = Input::get('firstname');
+        $jury->lastname = Input::get('lastname');
+        $jury->phone = Input::get('phone');
+        $jury->city = Input::get('city');
+        $jury->role_id = 2;
+        $jury->save();
+        if(Input::get('category') != null && Input::get('category') != ''){
             $dbCategory = Category::find(Input::get('category'));
-            $jury->role_id = 2;
-            $jury->save();
-            if(count($jury->categories()->get()) <= 1){
+            if(count($jury->categories()->get()) == 1){
                 if($jury->categories()->first()->id != Input::get('category')){
                     $jury->categories()->delete();
                     $jury->categories()->attach($dbCategory);
                 }
+            }else{
+              $jury->categories()->attach($dbCategory);
             }
-            return Redirect::to('/admin/jurys')->with('message', 'Le jury modifiée avec succès');
-        }else{
-            return Redirect::to('/admin/jurys/' . $id . '/edit')->withErrors($validator)->withInput();
         }
+        return Redirect::to('/admin/jurys')->with('message', 'Le jury modifiée avec succès');
+
     }
 
     /**

@@ -8,6 +8,7 @@
     <meta content="" name="author">
     <title>BrefRH</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ URL::asset('favicon.ico') }}" media="screen"  charset="utf-8">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -189,6 +190,7 @@
     <script src="{{ URL::asset('assets/global/scripts/metronic.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('js/script.js') }}" type="text/javascript"></script>
     <script>
     jQuery(document).ready(function() {
        Metronic.init(); // init metronic core componets

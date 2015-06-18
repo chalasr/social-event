@@ -19,6 +19,7 @@ Route::get('payment/status', array(
     'uses' => 'CandidatsController@getPaymentStatus',
 ));
 
+Route::get('/export/{id}', ['uses' => 'PrintController@htmlToPdf'])->where('id', $id);
 
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
 Route::get('/admin', array('uses' => 'CategoriesController@index'));

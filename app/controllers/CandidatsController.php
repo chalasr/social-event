@@ -218,11 +218,11 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
 
-        if(!empty(Input::get('external_collaborators_type')))
+        if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != '')
           $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
-        if(!empty(Input::get('internal_collaborators')))
+        if(Input::get('internal_collaborators') != null && Input::get('internal_collaborators' != ''))
           $enterprise->internal_collaborators = Input::get('internal_collaborators');
-        if(!empty(Input::get('project_certificates')))
+        if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != '')
           $enterprise->project_certificates = Input::get('project_certificates');
         $enterprise->registration_state = 'step5';
         $user->enterprise()->save($enterprise);
@@ -333,7 +333,7 @@ class CandidatsController extends BaseController
         // clear the session payment ID
         Session::forget('paypal_payment_id');
 
-        if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
+        if (Input::get('PayerID') == '' || Input::get('token') == '') {
             return Redirect::route('/register/complete/step5')
                 ->with('error', 'Le payement à été refusé.');
         }

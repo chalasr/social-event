@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 
-class PrintController extends BaseController 
+class PrintController extends BaseController
 {
-    public function index()
+    public function htmlToPdf($id)
     {
-    	return PDF::loadFile('http://bref.dev5.sutunam.com')->stream('category.pdf');
+    	return PDF::loadFile('http://bref.dev5.sutunam.com/admin/candidates/'.$id)->stream('candidat-'.$id.'.pdf');
     }
 }

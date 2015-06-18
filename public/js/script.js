@@ -1,31 +1,31 @@
 $(document).ready(function(){
-    setTimeout("$('.alert-success').slideToggle(500);",4000 );
-});
 
-if ($('#my-dropzone').length) {
-    Dropzone.autoDiscover = false;
-    var myDropzone = new Dropzone("#my-dropzone");
-    myDropzone.on("success", function(file) {
-        file = JSON.parse(file.xhr.responseText);
-        $('#totalSize').text(file.totalSize);
-        console.log(file);
-    });
-}
+  setTimeout("$('.alert-success').slideToggle(500);",4000 );
+  setTimeout("$('.alert-danger').slideToggle(500);",4000 );
 
-function changeStatus(){
-        window.open("http://localhost/Piscine_MVC_Cloud_Wac/cloud/public/share/1",'upload_image','menubar=no, scrollbars=no, top=100, left=100, width=700, height=200');
-}
+  $('#input_project_partners').hide();
+  $('input[name=have_partners]').change(function(){
+     $('#input_project_partners').slideToggle();
+  });
 
-$(function(){
-    $(".tab1").hide();
-    $(".drop102").click(function() {
-        $(".tab2").hide("slow");
-        $(".tab1").slideToggle("slow");
-    });
+  $('#ifgroup').hide();
+  $('input[name=have-group]').change(function(){
+     $('#ifgroup').slideToggle();
+  });
 
-    $(".tab2").hide();
-    $(".drop101").click(function() {
-        $(".tab1").hide("slow");
-        $(".tab2").slideToggle("slow");
-    });
+  $('#internal_collaborators_input').hide();
+  $('input[name=have_internal_search]').change(function(){
+     $('#internal_collaborators_input').slideToggle();
+  });
+
+  $('#external_collaborators_input').hide();
+  $('input[name=have_external_search]').change(function(){
+     $('#external_collaborators_input').slideToggle();
+  });
+
+  $('#have_certificates_input').hide();
+  $('input[name=have_certificates]').change(function(){
+     $('#have_certificates_input').slideToggle();
+  });
+
 });
