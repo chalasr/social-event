@@ -2,6 +2,11 @@
 
 @section('content')
   <div class="container">
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
     <div class="clearfix"></div>
     <div class="col-md-6">
       <div class="portlet box blue">
@@ -13,14 +18,6 @@
             <div class="form-wizard">
               <div class="form-body" style="height:252px;">
                 <div class="tab-content">
-                  <div class="alert alert-danger display-none">
-                        <button class="close" data-dismiss="alert"></button>
-                        Veuillez verifier les champs.
-                  </div>
-                  <div class="alert alert-success display-none">
-                        <button class="close" data-dismiss="alert"></button>
-                        Inscription validé !
-                      </div>
                   <div class="tab-pane active">
                     <div class="form-group">
                       <label class="control-label col-md-3">Adresse email <span class="required">

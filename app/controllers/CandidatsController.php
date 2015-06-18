@@ -73,8 +73,10 @@ class CandidatsController extends BaseController
             $user->enterprise()->save($enterprise);
             $user->enterprise_id = $enterprise->id;
             $user->save();
+
             return Redirect::to('/register/complete/step2');
         } else {
+
             return Redirect::to('register/complete')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
@@ -113,8 +115,8 @@ class CandidatsController extends BaseController
         $enterprise = $user->enterprise()->first();
         $enterprise->registration_state = 'step3';
         $user->enterprise()->save($enterprise);
-        return Redirect::to('/register/complete/step3');
 
+        return Redirect::to('/register/complete/step3');
     }
 
     public function getCompleteRegistrationStep3()
@@ -163,8 +165,7 @@ class CandidatsController extends BaseController
             $survey->product_informations = Input::get('product_informations');
             $survey->project_results = Input::get('project_results');
             $survey->project_rewards = Input::get('project_rewards');
-            if(!empty(Input::get('project_partners')))
-              $survey->project_partners = Input::get('project_partners');
+            $survey->project_partners = Input::get('project_partners');
             $files = Input::file('files');
             if(count($files) >= 1){
               foreach($files as $file){
@@ -217,11 +218,11 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
 
-        if(!empty(Input::get('external_collaborators_type')))
+        if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != '')
           $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
-        if(!empty(Input::get('internal_collaborators')))
+        if(Input::get('internal_collaborators') != null && Input::get('internal_collaborators' != ''))
           $enterprise->internal_collaborators = Input::get('internal_collaborators');
-        if(!empty(Input::get('project_certificates')))
+        if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != '')
           $enterprise->project_certificates = Input::get('project_certificates');
         $enterprise->registration_state = 'step5';
         $user->enterprise()->save($enterprise);
@@ -332,15 +333,15 @@ class CandidatsController extends BaseController
         // clear the session payment ID
         Session::forget('paypal_payment_id');
 
-        if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
+        if (Input::get('PayerID') == '' || Input::get('token') == '') {
             return Redirect::route('/register/complete/step5')
                 ->with('error', 'Le payement à été refusé.');
         }
 
         $payment = Payment::get($payment_id, $this->_api_context);
 
-        // PaymentExecution object includes information necessary 
-        // to execute a PayPal account payment. 
+        // PaymentExecution object includes information necessary
+        // to execute a PayPal account payment.
         // The payer_id is added to the request query parameters
         // when the user is redirected from paypal back to your site
         $execution = new PaymentExecution();

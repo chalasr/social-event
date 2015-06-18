@@ -2,6 +2,11 @@
 
 @section('content')
 	<div class="container">
+		<ul>
+				@foreach($errors->all() as $error)
+						<li>{{ $error }}</li>
+				@endforeach
+		</ul>
 		<div class="clearfix"></div>
 	    <div class="portlet light">
 			<div class="portlet-title">
@@ -37,7 +42,7 @@
 								<div class="text-center">
 								<img src="/assets/admin/pages/img/sens2pluslogo.png" style="width: 200px; height: 200px;">
 								</div>
-							</div>						
+							</div>
 					</div>
 						<div class="clearfix"></div>
 						<hr />
@@ -108,4 +113,3 @@
 		</div>
 	</div>
 @stop
-

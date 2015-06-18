@@ -31,7 +31,7 @@
               <label>{{Form::radio('have-group', 'oui', array('class'=>'form-control'))}}Oui</label>
             </div>
             <div class="right-label-flex">
-              <label>{{Form::radio('have-group', 'non', array('class'=>'form-control'))}}Non</label>
+              <label>{{Form::radio('have-group', 'non', array('class'=>'form-control', 'checked' => 'true'))}}Non</label>
             </div>
           </div>
         </div>
