@@ -11,7 +11,7 @@
 	    <div class="portlet light">
 			<div class="portlet-title">
 				<div class="caption">
-					Finaliser mon inscription
+				Vous avez finalisé votre inscription.
 				</div>
 			</div>
 			<div class="portlet-body">
@@ -46,39 +46,10 @@
 					</div>
 						<div class="clearfix"></div>
 						<hr />
-						<h3>Votre dossier ne sera validé qu'à réception du règlement de votre participation.<br>
-							Les frais d'enregistrement s'élèvent à 100€ TTC par dossier de candidature.
-						</h3>
-						<hr />
 						<div class="col-md-6">
 							<div class="pricing hover-effect">
-								<div class="pricing-head">
-									<h3>Payement<span>
-									par Paypal</span>
-									</h3>
-									<h4><i>100</i>€</i>
-									<span>
-									pour la participation </span>
-									</h4>
-								</div>
-								<div class="pricing-footer">
-					            	<div class="form-actions">
-					                	<div class="row">
-					                  		<div class="text-center">
-					               				<img src="/assets/admin/pages/img/paypalbutton.jpg">
-					                      		{{ Form::open(array('url'=>'complete-register/step5/paypal')) }}
-												{{ Form::submit('Payer' ,array('class'=>'btn blue button-next')) }}
-												{{ Form::close() }}
-					                		</div>
-					                	</div>
-					              	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="pricing hover-effect">
-									<h3>Payement<span>
-									par chèque</span>
+									<h3>Payment par chèque<span>
+									</span>
 									</h3>
 									<h4>
 									<span>
@@ -93,17 +64,8 @@
 									Le Factory<br>
 									69219 Lyon<br>
 								</div>
-								<div class="pricing-footer">
-									<p>
-									Une facture acquittée vous sera envoyée.
-									</p>
-									{{ Form::open(array('url'=>'complete-register/step5/check')) }}
-									{{ Form::submit('Accepter',  array('class'=>'btn blue button-next')) }}
-									{{ Form::close() }}
-								</div>
 							</div>
 						</div>
-					</div>
 				</div>
 				<hr />
 				<div class="text-center">
