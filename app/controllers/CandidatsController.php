@@ -98,7 +98,7 @@ class CandidatsController extends BaseController
         }
         $categories = Category::all();
 
-        return View::make('enterprises.complete-inscription-step2')->with($categories);
+        return View::make('enterprises.complete-inscription-step2', compact('categories'));
     }
 
     public function storeCompleteRegistrationStep2()
@@ -107,9 +107,8 @@ class CandidatsController extends BaseController
           return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
         }
         $user = User::find(Auth::user()->id);
-        $countCategories = count(Category::all());
-        for ($i=1; $i <= $countCategories; $i++) {
-            $dbCategory = Category::find($i);
+        $categories = Category::all();
+        foreach($categories as $dbCategory) {
             if(Input::has($dbCategory->id)){
               $user->categories()->attach($dbCategory);
             }
