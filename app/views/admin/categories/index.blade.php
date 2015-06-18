@@ -5,7 +5,7 @@
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					Toutes les catégories
+					Catégories
 				</div>
 			</div>
 			<div class="portlet-body" style="display: block;">

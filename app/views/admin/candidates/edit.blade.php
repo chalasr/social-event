@@ -94,7 +94,7 @@
                   </table>
                 </div>
                 <hr>
-                <h4 class="text-center"><b>Catégories choisies par le candidat</b></h4>
+                <h4 class="text-center"><b>Non choisies</b></h4>
                 <hr>
                 <div class="well">
                   <table class="table">

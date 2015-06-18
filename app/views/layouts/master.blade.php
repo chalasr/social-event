@@ -110,10 +110,10 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li>
-                                        <a href="{{ URL::to('admin/categories/') }}">Gerer les catégories</a>
+                                        <a href="{{ URL::to('admin/categories/') }}">Gestion Catégories</a>
                                     </li>
                                     <li>
-                                        <a href="{{ URL::to('admin/categories/create') }}">Ajouter une catégorie</a>
+                                        <a href="{{ URL::to('admin/categories/create') }}">Ajouter une Catégorie</a>
                                     </li>
                                 </ul>
                             </li>
@@ -125,10 +125,10 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li>
-                                        <a href="{{ URL::to('admin/jurys/') }}">Gerer le jury</a>
+                                        <a href="{{ URL::to('admin/jurys/') }}">Gestion Jury</a>
                                     </li>
                                     <li>
-                                        <a href="{{ URL::to('admin/jurys/create') }}">Ajouter un jury</a>
+                                        <a href="{{ URL::to('admin/jurys/create') }}">Ajouter un Jury</a>
                                     </li>
                                 </ul>
                             </li>
@@ -140,7 +140,7 @@
                                 </a>
                                 <ul class="sub-menu">
                                     <li>
-                                      <a href="{{ URL::to('admin/candidates/')}}">Gerer les dossiers candidats</a>
+                                      <a href="{{ URL::to('admin/candidates/')}}">Gerer les Candidatures</a>
                                     </li>
                                 </ul>
                             </li>

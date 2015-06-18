@@ -46,15 +46,13 @@
                         </a>
                     </li>
                     <li class="dropdown dropdown-quick-sidebar-toggler">
-                        <?php $url = action('UsersController@getLogout');?>
-                        <a href="<?php echo $url; ?>" class="dropdown-toggle">
+                        <a href="{{ URL::to('/users/logout') }}" class="dropdown-toggle">
                             <i class="icon-logout"></i>
                         </a>
                     </li>
                 @elseif(!Auth::check())
                     <li class="dropdown dropdown-user">
-                                <?php $url = action('UsersController@getRegister');?>
-                        <a href="<?php echo $url; ?>" class="dropdown-toggle">
+                        <a href="{{ URL::to('/register') }}" class="dropdown-toggle">
                             <i>Se connecter</i>
                         </a>
                     </li>
@@ -79,11 +77,11 @@
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ URL::to('admin/categories/') }}">
-                        Gerer les catégories</a>
+                        Gestion Catégories</a>
                     </li>
                     <li>
                         <a href="{{ URL::to('admin/categories/create') }}">
-                        Ajouter une catégorie</a>
+                        Ajouter une Catégorie</a>
                     </li>
                 </ul>
             </li>
@@ -96,11 +94,11 @@
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ URL::to('admin/jurys/') }}">
-                        Gerer le jury</a>
+                        Gestion Jury</a>
                     </li>
                     <li>
                         <a href="{{ URL::to('admin/jurys/create') }}">
-                        Ajouter un jury</a>
+                        Ajouter un Jury</a>
                     </li>
                 </ul>
             </li>
@@ -113,7 +111,7 @@
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ URL::to('admin/candidates/')}}">
-                        Gerer les dossiers candidat</a>
+                        Gestion Candidatures</a>
                     </li>
                 </ul>
             </li>

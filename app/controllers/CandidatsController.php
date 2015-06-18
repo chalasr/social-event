@@ -98,7 +98,7 @@ class CandidatsController extends BaseController
         }
         $categories = Category::all();
 
-        return View::make('enterprises.complete-inscription-step2', compact('categories'));
+        return View::make('enterprises.complete-inscription-step2')->with($categories);
     }
 
     public function storeCompleteRegistrationStep2()
@@ -341,7 +341,7 @@ class CandidatsController extends BaseController
             return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez déjà effectué le payment');
         $enterprise->is_pay = 2;
         $user->enterprise()->save($enterprise);
-        return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous êtes désormais inscrit, nous étudirons votre dossier apres avoir reçu votre chèque.');
+        return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Voutre candidature est complète, nous l\'étudirons une fois votre participation encaissée, puis nous reviendrons vers vous..');
     }
 
     public function getCompleteRegistrationStep5()

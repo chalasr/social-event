@@ -62,16 +62,16 @@
 									</h4>
 								</div>
 								<div class="pricing-footer">
-					            	<div class="form-actions">
-					                	<div class="row">
-					                  		<div class="text-center">
-					               				<img src="/assets/admin/pages/img/paypalbutton.jpg">
-					                      		{{ Form::open(array('url'=>'complete-register/step5/paypal')) }}
-												{{ Form::submit('Payer' ,array('class'=>'btn blue button-next')) }}
-												{{ Form::close() }}
-					                		</div>
-					                	</div>
-					              	</div>
+		            	<div class="form-actions">
+		                	<div class="row">
+		                  		<div class="text-center">
+		               				<img src="/assets/admin/pages/img/paypalbutton.jpg">
+		                      		{{ Form::open(array('url'=>'complete-register/step5/paypal')) }}
+															{{ Form::submit('Je paye sur Paypal' ,array('class'=>'btn blue button-next')) }}
+															{{ Form::close() }}
+		                		</div>
+		                	</div>
+		              	</div>
 								</div>
 							</div>
 						</div>
@@ -98,7 +98,7 @@
 									Une facture acquittée vous sera envoyée.
 									</p>
 									{{ Form::open(array('url'=>'complete-register/step5/check')) }}
-									{{ Form::submit('Accepter',  array('class'=>'btn blue button-next')) }}
+									{{ Form::submit('Je paye par chèque',  array('class'=>'btn blue button-next')) }}
 									{{ Form::close() }}
 								</div>
 							</div>
