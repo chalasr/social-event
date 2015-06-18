@@ -19,8 +19,10 @@
     <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('assets/global/css/plugins-md.css') }}" rel="stylesheet" type="text/css">
 </head>
-<body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
+    <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
     <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
         <div class="page-header-inner">
             <div class="page-logo">
@@ -198,5 +200,5 @@
        QuickSidebar.init(); // init quick sidebar
     });
     </script>
-</body>
+    </body>
 </html>

@@ -256,68 +256,95 @@ class CandidatsController extends BaseController
 
     public function storeCompleteRegistrationStep5()
     {
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
 
-        $payer = new Payer();
-        $payer->setPaymentMethod('paypal');
+        if($enterprise->is_pay >= 1)
+        {
+            return Redirect::action('CandidatsController@getCompleteRegistrationStep5')->with('message', 'Vous avez déjà effectué le payment');
+        }
+        else
+        {
+            $payer = new Payer();
+            $payer->setPaymentMethod('paypal');
 
-        $item_1 = new Item();
-        $item_1->setName('Ticket de participation Bref Rhônes-Alpes') // item name
-            ->setCurrency('EUR')
-            ->setQuantity(1)
-            ->setPrice('100'); // unit price
+            $item_1 = new Item();
+            $item_1->setName('Ticket de participation Bref Rhônes-Alpes') // item name
+                ->setCurrency('EUR')
+                ->setQuantity(1)
+                ->setPrice('100'); // unit price
 
-        // add item to list
-        $item_list = new ItemList();
-        $item_list->setItems(array($item_1));
+            // add item to list
+            $item_list = new ItemList();
+            $item_list->setItems(array($item_1));
 
-        $amount = new Amount();
-        $amount->setCurrency('EUR')
-            ->setTotal(100);
+            $amount = new Amount();
+            $amount->setCurrency('EUR')
+                ->setTotal(100);
 
-        $transaction = new Transaction();
-        $transaction->setAmount($amount)
-            ->setItemList($item_list)
-            ->setDescription('Your transaction description');
+            $transaction = new Transaction();
+            $transaction->setAmount($amount)
+                ->setItemList($item_list)
+                ->setDescription('Your transaction description');
 
-        $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::route('payment.status'))
-            ->setCancelUrl(URL::route('payment.status'));
+            $redirect_urls = new RedirectUrls();
+            $redirect_urls->setReturnUrl(URL::route('payment.status'))
+                ->setCancelUrl(URL::route('payment.status'));
 
-        $payment = new Payment();
-        $payment->setIntent('Sale')
-            ->setPayer($payer)
-            ->setRedirectUrls($redirect_urls)
-            ->setTransactions(array($transaction));
+            $payment = new Payment();
+            $payment->setIntent('Sale')
+                ->setPayer($payer)
+                ->setRedirectUrls($redirect_urls)
+                ->setTransactions(array($transaction));
 
-        try {
-            $payment->create($this->_api_context);
-        } catch (\PayPal\Exception\PPConnectionException $ex) {
-            if (\Config::get('app.debug')) {
-                echo "Exception: " . $ex->getMessage() . PHP_EOL;
-                $err_data = json_decode($ex->getData(), true);
-                exit;
-            } else {
-                die('Some error occur, sorry for inconvenient');
+            try {
+                $payment->create($this->_api_context);
+            } catch (\PayPal\Exception\PPConnectionException $ex) {
+                if (\Config::get('app.debug')) {
+                    echo "Exception: " . $ex->getMessage() . PHP_EOL;
+                    $err_data = json_decode($ex->getData(), true);
+                    exit;
+                } else {
+                    die('Some error occur, sorry for inconvenient');
+                }
             }
-        }
 
-        foreach($payment->getLinks() as $link) {
-            if($link->getRel() == 'approval_url') {
-                $redirect_url = $link->getHref();
-                break;
+            foreach($payment->getLinks() as $link) {
+                if($link->getRel() == 'approval_url') {
+                    $redirect_url = $link->getHref();
+                    break;
+                }
             }
+
+            // add payment ID to session
+            Session::put('paypal_payment_id', $payment->getId());
+
+            if(isset($redirect_url)) {
+                // redirect to paypal
+                return Redirect::away($redirect_url);
+            }
+
+            return Redirect::action('CandidatsController@getCompleteRegistrationStep5')
+                ->with('error', 'Une erreur est survenue');
         }
+    }
 
-        // add payment ID to session
-        Session::put('paypal_payment_id', $payment->getId());
-
-        if(isset($redirect_url)) {
-            // redirect to paypal
-            return Redirect::away($redirect_url);
+    public function storeCompleteRegistrationStep5_check()
+    {
+        if(!Auth::check())
+        {
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
         }
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
+        $enterprise->registration_state = 'step5';
+        if($enterprise->is_pay != 0 OR $enterprise->is_pay === 1)
+            return Redirect::action('CandidatsController@getCompleteRegistrationStep5')->with('message', 'Vous avez déjà effectué le payment');
+        $enterprise->is_pay = 2;
+        $user->enterprise()->save($enterprise);
+        return Redirect::action('HomeController@showWelcome')->with('message', 'Vous êtes désormais inscrit, nous étudirons votre dossier apres avoir reçu votre chèque.');
 
-        return Redirect::route('/register/complete/step5')
-            ->with('error', 'Une erreur est survenue');
+
     }
 
     public function getCompleteRegistrationStep5()
@@ -334,8 +361,8 @@ class CandidatsController extends BaseController
         Session::forget('paypal_payment_id');
 
         if (Input::get('PayerID') == '' || Input::get('token') == '') {
-            return Redirect::route('/register/complete/step5')
-                ->with('error', 'Le payement à été refusé.');
+            return Redirect::action('CandidatsController@getCompleteRegistrationStep5')
+                ->with('message', 'Le payement à été refusé.');
         }
 
         $payment = Payment::get($payment_id, $this->_api_context);
@@ -353,9 +380,16 @@ class CandidatsController extends BaseController
         // echo '<pre>';print_r($result);echo '</pre>';exit; // DEBUG RESULT, remove it later
 
         if ($result->getState() == 'approved') { // payment made
-            return Redirect::to('/admin/categories/')->with('success', 'Le payement à été effectué.');
+            $user = User::find(Auth::user()->id);
+            $enterprise = $user->enterprise()->first();
+            $enterprise->registration_state = 'step5';
+            if($enterprise->is_pay != 0)
+                return Redirect::action('CandidatsController@getCompleteRegistrationStep5')->with('message', 'Vous avez déjà effectué le payment');
+            $enterprise->is_pay = 1;
+            $user->enterprise()->save($enterprise);
+            return Redirect::action('HomeController@showWelcome')->with('message', 'Le payement à été effectué.');
         }
-        return Redirect::route('/register/complete/step5')
-            ->with('error', 'Le payement à été refusé.');
+        return Redirect::action('CandidatsController@getCompleteRegistrationStep5')
+            ->with('message', 'Le payement à été refusé.');
     }
 }

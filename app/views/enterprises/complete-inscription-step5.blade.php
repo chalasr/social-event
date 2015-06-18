@@ -66,7 +66,7 @@
 					                	<div class="row">
 					                  		<div class="text-center">
 					               				<img src="/assets/admin/pages/img/paypalbutton.jpg">
-					                      		{{ Form::open(array('url'=>'complete-register/step5')) }}
+					                      		{{ Form::open(array('url'=>'complete-register/step5/paypal')) }}
 												{{ Form::submit('Payer' ,array('class'=>'btn blue button-next')) }}
 												{{ Form::close() }}
 					                		</div>
@@ -97,7 +97,7 @@
 									<p>
 									Une facture acquittée vous sera envoyée.
 									</p>
-									{{ Form::open(array('url'=>'complete-register/step5')) }}
+									{{ Form::open(array('url'=>'complete-register/step5/check')) }}
 									{{ Form::submit('Accepter',  array('class'=>'btn blue button-next')) }}
 									{{ Form::close() }}
 								</div>

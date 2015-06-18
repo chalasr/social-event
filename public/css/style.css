@@ -561,3 +561,15 @@ margin-top: 100px;
     width: 65px; 
     height: 20px;
 }
+
+.banner
+{
+    max-height: 1000px;
+    max-width: 1000px;
+}
+
+.footerbanner
+{
+    max-height: 1000px;
+    max-width: 1000px;
+}
