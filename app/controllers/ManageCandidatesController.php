@@ -22,8 +22,6 @@ class ManageCandidatesController extends BaseController
      */
     public function show($id)
     {
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $candidate = User::find($id);
         $survey = false;
         $activity = false;

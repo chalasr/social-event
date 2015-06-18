@@ -227,12 +227,14 @@
             </div>
           </div>
           <div class="panel-footer">
+            @if(Auth::check())
              @if(Auth::user()->role_id == 3)
               <a type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
               <span class="pull-right">
                 <a class="btn btn-sm btn-success" href="{{ URL::to('admin/candidates/'.$candidate->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;<a class="btn btn-sm btn-danger" href="{{ URL::to('admin/candidates/delete/'.$candidate->id) }}"><i class="fa fa-trash"></i></a>
               </span>
               @endif
+            @endif
           </div>
         </div>
       </div>
