@@ -262,8 +262,8 @@ class CandidatsController extends BaseController
         $item_1 = new Item();
         $item_1->setName('Ticket de participation Bref Rhônes-Alpes') // item name
             ->setCurrency('EUR')
-            ->setQuantity(100)
-            ->setPrice('1'); // unit price
+            ->setQuantity(1)
+            ->setPrice('100'); // unit price
 
         // add item to list
         $item_list = new ItemList();
@@ -349,11 +349,10 @@ class CandidatsController extends BaseController
         //Execute the payment
         $result = $payment->execute($execution, $this->_api_context);
 
-        echo '<pre>';print_r($result);echo '</pre>';exit; // DEBUG RESULT, remove it later
+        // echo '<pre>';print_r($result);echo '</pre>';exit; // DEBUG RESULT, remove it later
 
         if ($result->getState() == 'approved') { // payment made
-            return Redirect::route('/')
-                ->with('success', 'Le payement à été effectué.');
+            return Redirect::to('/admin/categories/')->with('success', 'Le payement à été effectué.');
         }
         return Redirect::route('/register/complete/step5')
             ->with('error', 'Le payement à été refusé.');

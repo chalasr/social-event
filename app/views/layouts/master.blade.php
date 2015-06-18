@@ -24,7 +24,7 @@
         <div class="page-header-inner">
             <div class="page-logo">
                 <a href="{{ URL::to('/') }}">
-                <img src="{{ URL::asset('assets/admin/layout/img/logo.png') }}" alt="logo" class="logo-default">
+                <img src="{{ URL::asset('assets/admin/pages/img/breflogo.png') }}" alt="logo" class="logo-default breflogo">
                 </a>
                 <div class="menu-toggler sidebar-toggler hide">
                 </div>
