@@ -22,11 +22,15 @@ class ManageCandidatesController extends BaseController
      */
     public function show($id)
     {
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $candidate = User::find($id);
+        $survey = false;
+        $activity = false;
         $enterprise = $candidate->enterprise()->first();
-        return View::make('admin/candidates/show', compact('candidate', 'enterprise'));
+        if(!empty($enterprise->survey_id))
+          $survey = Survey::findOrFail($enterprise->survey_id);
+        if(!empty($enterprise->survey_id))
+          $activity = Activity::find($enterprise->activity_id);
+        return View::make('admin/candidates/show', compact('candidate', 'enterprise', 'survey', 'activity'));
     }
 
     /**
@@ -53,6 +57,7 @@ class ManageCandidatesController extends BaseController
                 }
             }
         }
+
         return View::make('admin/candidates/edit', compact('candidate', 'categories'));
     }
 

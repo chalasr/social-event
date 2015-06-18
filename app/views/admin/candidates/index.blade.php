@@ -1,7 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-
+<style media="screen">
+		.table-hover tr:hover{
+				cursor:pointer;
+		}
+</style>
 	<div class="container">
 		<div class="portlet box blue">
 			<div class="portlet-title">
@@ -27,7 +31,7 @@
 		   			</thead>
 		   			<tbody>
 					   @foreach($candidates as $candidate)
-						<tr>
+						<tr onclick="location.href='{{ URL::to('admin/candidates/'.$candidate->id) }}'">
 							<td>
 								{{ $candidate->email }}
 							</td>
@@ -37,9 +41,9 @@
 								@endforeach
 							</td>
 							<td>
-								<a class="btn btn-info" href="{{ URL::to('admin/candidates/'.$candidate->id) }}"><i class="fa fa-eye"></i></a> &nbsp;
-								<a class="btn btn-success" href="{{ URL::to('admin/candidates/'.$candidate->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;
-								<a class="btn btn-danger" href="{{ URL::to('admin/candidates/delete/'.$candidate->id) }}"><i class="fa fa-trash"></i></a>
+								<a class="btn btn-sm btn-info" href="{{ URL::to('admin/candidates/'.$candidate->id) }}"><i class="fa fa-eye"></i></a> &nbsp;
+								<a class="btn btn-sm btn-success" href="{{ URL::to('admin/candidates/'.$candidate->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;
+								<a class="btn btn-sm btn-danger" href="{{ URL::to('admin/candidates/delete/'.$candidate->id) }}"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 						@endforeach

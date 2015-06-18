@@ -39,8 +39,8 @@
 							<td>{{ $jury->phone }}</td>
 							<td>{{ $jury->city }}</td>
 							<td>
-								<a class="btn btn-info" href="{{ URL::to('admin/jurys/'.$jury->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;
-								<a class="btn btn-danger" href="{{ URL::to('admin/jurys/delete/'.$jury->id) }}"><i class="fa fa-trash"></i></a>
+								<a class="btn btn-sm btn-info" href="{{ URL::to('admin/jurys/'.$jury->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;
+								<a class="btn btn-sm btn-danger" href="{{ URL::to('admin/jurys/delete/'.$jury->id) }}"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 						@endforeach
