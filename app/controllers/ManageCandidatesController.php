@@ -30,7 +30,6 @@ class ManageCandidatesController extends BaseController
           $survey = Survey::findOrFail($enterprise->survey_id);
         if(!empty($enterprise->survey_id))
           $activity = Activity::find($enterprise->activity_id);
-
         return View::make('admin/candidates/show', compact('candidate', 'enterprise', 'survey', 'activity'));
     }
 

@@ -1,29 +1,18 @@
 <?php
 
-use JonnyW\PhantomJs\Client;
-
 class PrintController extends BaseController
 {
     public function htmlToPdf($id)
     {
+      $request = Request::create('/admin/candidates/'.$id, 'GET', array());
+      $content = Route::dispatch($request)->getContent();
+      $user = User::find($id);
+      $email = $user->email;
+      // $file = 'candidat.html';
+      // $handle = fopen(public_path($file), 'w') or die('Cannot open file:  '.$file);
+      // fwrite($handle, $content);
 
-        $client = Client::getInstance();
+      return PDF::loadHTML($content)->save(public_path('candidat-'.$email.'.pdf'));
 
-        /**
-         * @see JonnyW\PhantomJs\Message\Request
-         **/
-        $request = $client->getMessageFactory()->createRequest('http://bref.dev5.sutunam.com/admin/candidates/'.$id, 'GET');
-
-        /**
-         * @see JonnyW\PhantomJs\Message\Response
-         **/
-        $response = $client->getMessageFactory()->createResponse();
-
-        // Send the request
-        $client->send($request, $response);
-
-
-            // Dump the requested page content
-            return $response->getContent();
     }
 }

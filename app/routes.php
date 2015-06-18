@@ -13,6 +13,7 @@
 
 $id = '[0-9]+';
 
+
 // this is after make the payment, PayPal redirect back to your site
 Route::get('payment/status', array(
     'as' => 'payment.status',

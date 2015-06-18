@@ -9,8 +9,8 @@
 		"h4cc/wkhtmltopdf-amd64": "0.12.x",
     "h4cc/wkhtmltoimage-amd64": "0.12.x",
     "paypal/rest-api-sdk-php": "*",
-		"nitmedia/wkhtml2pdf": "dev-master",
-		"jonnyw/php-phantomjs": "3.*"
+		"barryvdh/laravel-snappy": "0.1.x",
+		"barryvdh/laravel-dompdf": "0.4.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -24,12 +24,10 @@
 	},
 	"scripts": {
 		"post-install-cmd": [
-			"PhantomInstaller\\Installer::installPhantomJS",
 			"php artisan clear-compiled",
 			"php artisan optimize"
 		],
 		"post-update-cmd": [
-			"PhantomInstaller\\Installer::installPhantomJS",
 			"php artisan clear-compiled",
 			"php artisan optimize"
 		],
@@ -38,8 +36,7 @@
 		]
 	},
 	"config": {
-		"preferred-install": "dist",
-		"bin-dir": "bin"
+		"preferred-install": "dist"
 	},
 	"minimum-stability": "stable"
 }
