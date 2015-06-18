@@ -12,7 +12,7 @@ class PrintController extends BaseController
       // $handle = fopen(public_path($file), 'w') or die('Cannot open file:  '.$file);
       // fwrite($handle, $content);
 
-      return PDF::loadHTML($content)->save(public_path('candidat-'.$email.'.pdf'));
+      return PDF::loadHTML($content)->save(public_path('candidat.pdf'));
 
     }
 }
