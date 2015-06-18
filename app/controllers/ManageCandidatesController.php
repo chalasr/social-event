@@ -9,10 +9,11 @@ class ManageCandidatesController extends BaseController
      */
     public function index()
     {
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
-            $candidates = User::where('role_id', '=', "1")->get();
-            return View::make('admin/candidates/index', compact('candidates'));
+          if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
+          if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+          $candidates = User::where('role_id', '=', "1")->get();
+
+          return View::make('admin/candidates/index', compact('candidates'));
     }
 
     /**

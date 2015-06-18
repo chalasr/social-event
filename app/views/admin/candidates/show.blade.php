@@ -196,9 +196,6 @@
                       </tr>
                    </tbody>
                 </table>
-                {{--
-
-                project_certificates --}}
                 @if($enterprise)
                 <table class="table table-hover table-user-information">
                   <tbody>
