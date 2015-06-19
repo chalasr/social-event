@@ -19,7 +19,7 @@
     <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
-    <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
+
 
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
@@ -136,6 +136,7 @@
     <footer>
         <p>Bref RH</p>
     </footer>
+    <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/jquery-migrate.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
@@ -149,12 +150,36 @@
     <script src="{{ URL::asset('assets/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('js/script.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jspdf.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jspdf/plugins/standard_fonts_metrics.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jspdf/plugins/split_text_to_size.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jspdf/plugins/from_html.js') }}"></script>
     <script>
-        jQuery(document).ready(function() {
-           Metronic.init(); // init metronic core componets
-           Layout.init(); // init layout
-           QuickSidebar.init(); // init quick sidebar
-        });
+      $(document).ready(function() {
+         Metronic.init(); // init metronic core componets
+         Layout.init(); // init layout
+         QuickSidebar.init(); // init quick sidebar
+         var uri = document.location.pathname;
+         var splitUri = uri.split('/');
+         var candidatId = splitUri[3];
+
+         var doc = new jsPDF();
+
+         var specialElementHandlers = {
+           '.container': function(element, renderer){
+              return true;
+            }
+         };
+
+         $('#pdf').click(function(){
+              var html=$(".container").html();
+              doc.fromHTML(html,15,15, {
+                 'elementHandlers': specialElementHandlers
+              });
+
+              doc.save("candidat-" + candidatId + ".pdf");
+         });
+    });
     </script>
 </body>
 </html>

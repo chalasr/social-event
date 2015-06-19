@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/~Robin/SUTUNAM/bref',
+	'url' => 'http://localhost:8000',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -121,7 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Barryvdh\DomPDF\ServiceProvider',
+		'Barryvdh\Snappy\ServiceProvider',
 		//	'Way\Generators\GeneratorsServiceProvider',
 	),
 
@@ -189,7 +189,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'PDF' => 'Barryvdh\DomPDF\Facade',
+		'PDF' => 'Barryvdh\Snappy\Facades\SnappyPdf',
 		'Image' => 'Barryvdh\Snappy\Facades\SnappyImage',
 
 	),
