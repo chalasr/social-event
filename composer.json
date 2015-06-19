@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-    "paypal/rest-api-sdk-php": "*",
+    "paypal/rest-api-sdk-php": "*"
 	},
 	"autoload": {
 		"classmap": [
