@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                       <td>Téléphone Candidat :</td>
-                      <td>{{ $enterprise->candidate_informations }}</td>
+                      <td>{{ $enterprise->candidate_phone }}</td>
                     </tr>
                     <tr>
                       <td>Email candidat :</td>
