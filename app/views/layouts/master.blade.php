@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
     <title>BrefRH</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all') }}" rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -16,13 +17,14 @@
     <link href="{{ URL::asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
+     <link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
 </head>
 <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
     <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
         <div class="page-header-inner">
             <div class="page-logo">
                 <a href="{{ URL::to('/') }}">
-                <img src="../../assets/admin/layout/img/logo.png" alt="logo" class="logo-default">
+                <img src="{{ URL::asset('assets/admin/layout/img/logo.png') }}" alt="logo" class="logo-default">
                 </a>
                 <div class="menu-toggler sidebar-toggler hide">
                 </div>
@@ -34,7 +36,7 @@
                 @if(Auth::check())
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="username username-hide-on-mobile"> Bienvenue {{ $pseudo = Auth::user()->username }}</span>
+                            <span class="username username-hide-on-mobile"> {{ $pseudo = Auth::user()->email }} &nbsp;</span>
                         </a>
                     </li>
                     <li class="dropdown dropdown-quick-sidebar-toggler">
@@ -71,15 +73,9 @@
                         <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
-                            @if(Auth::user()->role_id == 1 && Auth::user()->enterprise_id != 0)
-                            <li>
-                                <a href="{{ URL::to('/register/complete/step2') }}">Reprendre ma candidature</a>
-                            </li>
-                             @elseif(Auth::user()->role_id == 1 && Auth::user()->enterprise_id == 0)
-                            <li>
-                                <a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a>
-                            </li>
-                            @endif
+                          <li>
+                              <a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a>
+                          </li>
                         </ul>
                     </li>
                 @elseif(Auth::user()->role_id == 2)
@@ -151,14 +147,10 @@
             @elseif(!Auth::check())
                     <li>
                         <a href="{{URL::to('/register') }}">
-                        <i class="icon-diamond"></i>
-                        <span class="title">S'inscrire</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{URL::to('/register') }}">
+                      <br>
                         <i class="icon-diamond"></i>
                         <span class="title">Accés Candidat</span>
+
                         </a>
                     </li>
             @endif
@@ -167,6 +159,7 @@
     <div class="page-content-wrapper">
         <div class="page-content" style="min-height:1010px; margin-top:50px;">
             <div class="clearfix"></div>
+            <h3 class="page-title"></h3>
             <div class="row">
                 <div class="portlet light top-content">
                     @if(Session::has('message'))

@@ -18,14 +18,6 @@ class Enterprise extends Eloquent {
 		'created_at',
 		'updated_at',
 		'registration_state',
-		'project_arguments',
-		'project_results',
-		'project_partners',
-		'project_rewards',
-		'activity_id',
-		'internal_collaborators',
-		'external_collaborators_type',
-		'project_certificates',
 	];
 
 	public static $rules = array(

@@ -9,10 +9,10 @@ class JurysController extends BaseController
      */
     public function index()
     {
-      if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-      if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
-        $jurys = User::where('role_id', '=', "2")->get();
-        return View::make('admin/jurys/index', compact('jurys'));
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+            $jurys = User::where('role_id', '=', "2")->get();
+            return View::make('admin/jurys/index', compact('jurys'));
     }
     /**
      * Show the form for creating a new resource.
@@ -21,9 +21,10 @@ class JurysController extends BaseController
      */
     public function create()
     {
-         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
-            return View::make('admin/jurys/new');
+        $categories = Category::all();
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+            return View::make('admin/jurys/new', compact('categories'));
     }
     /**
      * Store a newly created resource in storage.
@@ -38,20 +39,20 @@ class JurysController extends BaseController
         $validator = Validator::make(Input::all(), Jury::$rules);
         if($validator->passes())
         {
-            $add = new User;
-            $add->email = Input::get('email');
-            $add->password = Hash::make(Input::get('password'));
-            $add->society = Input::get('society');
-            $add->firstname = Input::get('firstname');
-            $add->lastname = Input::get('lastname');
-            $add->phone = Input::get('phone');
-            $add->city = Input::get('city');
-            $add->role_id = 2;
-            $add->save();
+            $jury = new User;
+            $jury->email = Input::get('email');
+            $jury->password = Hash::make(Input::get('password'));
+            $jury->society = Input::get('society');
+            $jury->firstname = Input::get('firstname');
+            $jury->lastname = Input::get('lastname');
+            $jury->phone = Input::get('phone');
+            $jury->city = Input::get('city');
+            $dbCategory = Category::find(Input::get('category'));
+            $jury->role_id = 2;
+            $jury->save();
+            $jury->categories()->attach($dbCategory);
             return Redirect::to('admin/jurys')->with('message', 'Le jury a été créé avec succès');
-        }
-        else
-        {
+        }else{
             return Redirect::to('admin/jurys/create')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
@@ -66,8 +67,9 @@ class JurysController extends BaseController
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        $categories = Category::all();
         $jury = User::find($id);
-        return View::make('admin/jurys/edit', compact('jury'));
+        return View::make('admin/jurys/edit', compact('jury', 'categories'));
     }
     /**
      * Update the specified resource in storage.
@@ -91,12 +93,18 @@ class JurysController extends BaseController
             $jury->lastname = Input::get('lastname');
             $jury->phone = Input::get('phone');
             $jury->city = Input::get('city');
+            $dbCategory = Category::find(Input::get('category'));
             $jury->role_id = 2;
             $jury->save();
+            if(count($jury->categories()->get()) <= 1){ 
+                if($jury->categories()->first()->id != Input::get('category')){
+                    $jury->categories()->delete();
+                    $jury->categories()->attach($dbCategory);
+                }
+            }
+            return Redirect::to('/admin/jurys')->with('message', 'Le jury modifiée avec succès');
         }else{
-            return Redirect::to('/admin/jurys/' . $id . '/edit')
-                ->withErrors($validator)->withInput();
-            return Redirect::to('/admin/jurys/')->with('message', 'Catégorie modifiée avec succès');
+            return Redirect::to('/admin/jurys/' . $id . '/edit')->withErrors($validator)->withInput();
         }
     }
 

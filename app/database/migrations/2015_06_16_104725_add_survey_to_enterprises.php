@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFieldsToEnterprises extends Migration {
+class AddSurveyToEnterprises extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,10 +14,8 @@ class AddFieldsToEnterprises extends Migration {
 	{
 		Schema::table('enterprises', function(Blueprint $table)
 		{
-			$table->integer('activity_id')->nullable();
-		  $table->integer('internal_collaborators')->nullable();
-		  $table->text('external_collaborators_type')->nullable();
-			$table->text('project_certificates')->nullable();
+			$table->unsignedInteger('survey_id')->nullable();
+			$table->foreign('survey_id')->references('id')->on('surveys')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 
