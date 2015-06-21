@@ -10,12 +10,6 @@
 
           </div>
           <div class="panel-body">
-                <h5 class="text-center"><b>Participation</b></h5>
-                <ul class="text-center">
-                  @foreach ($candidate->categories()->get() as $category)
-                    <li>{{ $category->name }}</li>
-                  @endforeach
-                </ul>
             <div class="row">
               <div class=" col-md-9 col-lg-12">
                 @if($enterprise)
@@ -207,6 +201,15 @@
                 @endif
                 @endif
               </div>
+            </div>
+            <br><br>
+            <div class="text-center">
+              <h5><b>Participation</b></h5>
+              <ul>
+                @foreach ($candidate->categories()->get() as $category)
+                  <li>{{ $category->name }}</li>
+                @endforeach
+              </ul>
             </div>
           </div>
           <div class="panel-footer">

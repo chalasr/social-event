@@ -173,7 +173,7 @@
 
          $('#pdf').click(function(){
               var html=$(".container").html();
-              doc.fromHTML(html,15,15, {
+              doc.fromHTML(html, 30,5, {
                  'elementHandlers': specialElementHandlers
               });
 

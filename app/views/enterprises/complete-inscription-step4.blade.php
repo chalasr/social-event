@@ -85,7 +85,7 @@
           </div>
           <br>
           <div class="form-group" id="internal_collaborators_input">
-            {{Form::label('internal_collaborators', 'Lesquels ?')}}
+            {{Form::label('internal_collaborators', 'Combien ?')}}
             {{ Form::text('internal_collaborators', null, array('class' => 'form-control'))}}
           </div>
         </div>
