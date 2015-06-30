@@ -11,6 +11,7 @@
 	      </ul>
 	    </div>
 	 @endif
+	 <div class="form-wizard">
 		<div class="clearfix"></div>
 	    <div class="portlet light">
 			<div class="portlet-title">
@@ -24,7 +25,7 @@
 	            <span class="number">
 	            1 </span>
 	            <span class="desc">
-	            <i class="fa fa-check"></i> Entreprise </span>
+	            <i class="fa fa-check"></i> Idendité </span>
 	            </a>
 	          </li>
 	          <li>
@@ -32,7 +33,7 @@
 	            <span class="number">
 	            2 </span>
 	            <span class="desc">
-	            <i class="fa fa-check"></i> Catégorie </span>
+	            <i class="fa fa-check"></i> Participation </span>
 	            </a>
 	          </li>
 	          <li>
@@ -40,7 +41,7 @@
 	            <span class="number">
 	            3 </span>
 	            <span class="desc">
-	            <i class="fa fa-check"></i> Description de l'entreprise </span>
+	            <i class="fa fa-check"></i> Entreprise </span>
 	            </a>
 	          </li>
 	          <li>
@@ -48,7 +49,7 @@
 	            <span class="number">
 	            4 </span>
 	            <span class="desc">
-	            <i class="fa fa-check"></i> Chiffre d'affaire </span>
+	            <i class="fa fa-check"></i> Activité </span>
 	            </a>
 	          </li>
 	          <li class="active">

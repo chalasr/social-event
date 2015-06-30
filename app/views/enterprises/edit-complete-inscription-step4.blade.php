@@ -12,7 +12,8 @@
     </div>
   @endif
   <div class="form-wizard">
-    {{ Form::open(array('url'=>'complete-register/step4','method' => 'post', 'class'=>'form-signup')) }}
+        {{ Form::open(array('url'=> ['edit/complete-register/step4'],'action' => 'updateCompleteRegistrationStep4', 'method' => 'PATCH', 'class'=>'form-horizontal')) }}
+
       <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Votre entreprise en quelques chiffres</span></h2>
       <ul class="nav nav-pills nav-justified steps">
           <li>
@@ -80,21 +81,21 @@
              <tbody>
                 <tr>
                    <td>2013</td>
-                   <td>{{ Form::text('ca_2013', null, array('class' => 'form-control'))}}</td>
-                   <td>{{ Form::text('net_2013', null, array('class' => 'form-control'))}}</td>
-                   <td>{{ Form::text('effectif_2013', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('ca_2013', $activity->ca_2013, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('net_2013', $activity->net_2013, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_2013', $activity->effectif_2013, array('class' => 'form-control'))}}</td>
                 </tr>
                 <tr>
                    <td>2014</td>
-                   <td>{{ Form::text('ca_2014', null, array('class' => 'form-control'))}}</td>
-                   <td>{{ Form::text('net_2014', null, array('class' => 'form-control'))}}</td>
-                   <td>{{ Form::text('effectif_2014', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('ca_2014',  $activity->ca_2014, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('net_2014',  $activity->net_2014, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_2014', $activity->effectif_2014, array('class' => 'form-control'))}}</td>
                 </tr>
                 <tr>
                    <td>2015 (prévision)</td>
-                   <td>{{ Form::text('ca_2015', null, array('class' => 'form-control'))}}</td>
-                   <td>{{ Form::text('net_2015', null, array('class' => 'form-control'))}}</td>
-                   <td>{{ Form::text('effectif_2015', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('ca_2015', $activity->ca_2015, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('net_2015', $activity->net_2015, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_2015', $activity->effectif_2015, array('class' => 'form-control'))}}</td>
                 </tr>
              </tbody>
           </table>
@@ -112,18 +113,18 @@
              <tbody>
                 <tr>
                    <td>2013</td>
-                   <td>{{ Form::text('rd_2013', null, array('class' => 'form-control'))}}</td>
-                   <td>{{ Form::text('effectif_rd_2013', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('rd_2013', $activity->rd_2013, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_rd_2013', $activity->effectif_rd_2013, array('class' => 'form-control'))}}</td>
                 </tr>
                 <tr>
                    <td>2014</td>
-                   <td>{{ Form::text('rd_2014', null, array('class' => 'form-control'))}}</td>
-                   <td>{{ Form::text('effectif_rd_2014', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('rd_2014', $activity->rd_2014, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_rd_2014', $activity->effectif_rd_2014, array('class' => 'form-control'))}}</td>
                 </tr>
                 <tr>
                    <td>2015 (prévision)</td>
-                   <td>{{ Form::text('rd_2015', null, array('class' => 'form-control'))}}</td>
-                   <td>{{ Form::text('effectif_rd_2015', null, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('rd_2015', $activity->rd_2015, array('class' => 'form-control'))}}</td>
+                   <td>{{ Form::text('effectif_rd_2015', $activity->effectif_rd_2015, array('class' => 'form-control'))}}</td>
                 </tr>
              </tbody>
           </table>
