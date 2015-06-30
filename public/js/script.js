@@ -7,6 +7,10 @@ $(document).ready(function(){
   $('input[name=have_partners]').change(function(){
      $('#input_project_partners').slideToggle();
   });
+  $('#input_project_rewards').hide();
+  $('input[name=have_rewards]').change(function(){
+     $('#input_project_rewards').slideToggle();
+  });
 
   $('#ifgroup').hide();
   $('input[name=have-group]').change(function(){
@@ -23,6 +27,10 @@ $(document).ready(function(){
      $('#external_collaborators_input').slideToggle();
   });
 
+  $('#have_certificates_input').hide();
+  $('input[name=have_certificates]').change(function(){
+     $('#have_certificates_input').slideToggle();
+  });
   $('#have_certificates_input').hide();
   $('input[name=have_certificates]').change(function(){
      $('#have_certificates_input').slideToggle();

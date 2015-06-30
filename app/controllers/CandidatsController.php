@@ -67,7 +67,9 @@ class CandidatsController extends BaseController
             $enterprise->phone = Input::get('phone');
             if(Input::get('telecopie') != null && Input::get('telecopie') != '')
               $enterprise->telecopie = Input::get('telecopie');
-            $enterprise->leaders_informations = Input::get('leaders_informations');
+            $enterprise->leader_name = Input::get('leader_name');
+            $enterprise->leader_email = Input::get('leader_email');
+            $enterprise->leader_phone = Input::get('leader_phone');
             $enterprise->candidate_informations = Input::get('candidate_informations');
             $enterprise->candidate_phone = Input::get('candidate_phone');
             $enterprise->candidate_email = Input::get('candidate_email');
@@ -245,8 +247,10 @@ class CandidatsController extends BaseController
             $survey->wanted_impact = Input::get('wanted_impact');
             $survey->product_informations = Input::get('product_informations');
             $survey->project_results = Input::get('project_results');
-            $survey->project_rewards = Input::get('project_rewards');
-            $survey->project_partners = Input::get('project_partners');
+            if(Input::get('project_rewards') != null && Input::get('project_rewards') != '')
+              $survey->project_rewards = Input::get('project_rewards');
+            if(Input::get('project_partners') != null && Input::get('project_partners') != '')
+              $survey->project_partners = Input::get('project_partners');
             $files = Input::file('files');
             if(count($files) >= 1 && !empty($files[0])){
                 foreach($files as $file){

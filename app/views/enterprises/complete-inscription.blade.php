@@ -52,7 +52,7 @@
             <span class="number">
             5 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Payment </span>
+            <i class="fa fa-check"></i> Paiement </span>
             </a>
           </li>
           <li>
@@ -69,8 +69,10 @@
         </div>
         <hr>
           <div class="note note-success">
-             Vous êtes désormais pré-inscris, afin de finaliser votre candidature, vous devez remplir le formulaire ci-dessous.<br>
-              Si vous le souhaitez, vous pouvez revenir plus tard pour cette étape.
+             Vous êtes désormais pré-inscris. <br>
+             Afin de finaliser votre candidature, vous devez remplir le formulaire ci-dessous.<br>
+             Vous avez la possibilité, pour chaque étape déjà validée, de revenir sur vos réponses en vous servant du menu ci-dessus.<br>
+             À chaque validation d'étape, au moment d'en entamer une nouvelle, vous pouvez décider de revenir plus tard pour finaliser votre candidature.
           </div>
         <hr>
         <div class="clearfix"></div>
@@ -109,17 +111,30 @@
         </div>
         <div class="flex">
           <div class="form-group">
-            {{Form::label('phone', 'Tèl :', array('class' => 'control-label'))}}
+            {{Form::label('phone', 'Téléphone :', array('class' => 'control-label'))}}
             {{Form::text('phone', null, array('class'=>' form-control'))}}
           </div>
-          <div class=" right-label-flex form-group">
+          <div class="right-label-flex form-group">
             {{Form::label('telecopie', 'Télécopie :', array('class' => 'control-label'))}}
             {{Form::text('telecopie', null, array('class'=>' form-control', 'placeholder' => 'Facultatif'))}}
           </div>
         </div>
+        <hr>
+        <h4 class="text-center"><b>Informations concernant le dirigeant de l'entreprise</b></h4>
+        <hr>
         <div class="form-group">
-          {{Form::label('leaders_informations', 'Nom, fonction, coordonnées et email du (de la) dirigeant(e) :', array('class' => 'control-label'))}}
-          {{Form::text('leaders_informations', null, array('class'=>'form-control'))}}
+          {{Form::label('leader_name', 'Nom et fonction :', array('class' => 'control-label'))}}
+          {{Form::text('leader_name', null, array('class'=>'form-control'))}}
+        </div>
+
+        <div class="form-group">
+          {{Form::label('leader_phone', 'Téléphone :', array('class' => 'control-label'))}}
+          {{Form::text('leader_phone', null, array('class'=>'form-control'))}}
+        </div>
+
+        <div class="form-group">
+          {{Form::label('leader_email', 'Email :', array('class' => 'control-label'))}}
+          {{Form::text('leader_email', null, array('class'=>'form-control'))}}
         </div>
         <hr>
         <h4 class="text-center"><b>Personne en charge du dossier de candidature</b></h4>
@@ -130,7 +145,7 @@
         </div>
         <div class="flex">
           <div class="form-group">
-            {{Form::label('candidate_phone', 'Tèl :', array('class' => 'control-label'))}}
+            {{Form::label('candidate_phone', 'Téléphone :', array('class' => 'control-label'))}}
             {{Form::text('candidate_phone', null, array('class'=>' form-control'))}}
           </div>
         </div>

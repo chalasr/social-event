@@ -75,6 +75,28 @@
 		</div>
 			<div class="portlet-body">
 				<div class="row margin-bottom-40">
+						<div class="col-md-6">
+							<div class="pricing hover-effect">
+									<h3>Payment par chèque<span>
+									</span>
+									</h3>
+									<h4>
+									<span>
+										À l'ordre de IDM Rhône-Alpes<br>
+										Merci de préciser le nom de l'entreprise candidate au dos du chèque, s'il est différent du nom de la structure débitrice. Merci d'envoyer votre chèque à l'adresse suivante :</span>
+									</h4>
+								<div class="well">
+									<h4>Bref Rhône-Alpes</h4>
+									<address>
+									66, cours Charlemagne<br>
+									BP2429<br>
+									Le Factory<br>
+									69219 Lyon<br>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<hr />
 					<div class="col-md-12">
 						<h3 class="form-section">Contacts</h3>
 						<p>
@@ -103,28 +125,6 @@
 								</div>
 							</div>
 					</div>
-						<div class="clearfix"></div>
-						<hr />
-						<div class="col-md-6">
-							<div class="pricing hover-effect">
-									<h3>Payment par chèque<span>
-									</span>
-									</h3>
-									<h4>
-									<span>
-										À l'ordre de IDM Rhône-Alpes<br>
-										Merci de préciser le nom de l'entreprise candidate au dos du chèque, s'il est différent du nom de la structure débitrice. Merci d'envoyer votre chèque à l'adresse suivante :</span>
-									</h4>
-								<div class="well">
-									<h4>Bref Rhône-Alpes</h4>
-									<address>
-									66, cours Charlemagne<br>
-									BP2429<br>
-									Le Factory<br>
-									69219 Lyon<br>
-								</div>
-							</div>
-						</div>
 				</div>
 				<hr />
 				<div class="text-center">

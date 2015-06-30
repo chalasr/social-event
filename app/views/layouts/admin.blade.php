@@ -156,9 +156,7 @@
     <script src="{{ URL::asset('assets/admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('js/script.js') }}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jspdf.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/jspdf/plugins/standard_fonts_metrics.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/jspdf/plugins/split_text_to_size.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/jspdf/plugins/from_html.js') }}"></script>
+
     <script>
       $(document).ready(function() {
          Metronic.init(); // init metronic core componets
