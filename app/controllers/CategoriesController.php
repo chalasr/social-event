@@ -45,7 +45,7 @@ class CategoriesController extends BaseController
         }
         else
         {
-            return Redirect::to('admin/categories/new')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('admin/categories/create')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
     /**

@@ -27,8 +27,7 @@ class UsersController extends BaseController
             $user->save();
 
             if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
-              return Redirect::to('/register/complete')->with('message', "Vous êtes désormais pré-inscris, afin de finaliser votre candidature, vous devez remplir le formulaire ci-dessous.
-              Si vous le souhaitez, vous pouvez revenir plus tard pour cette étape.");
+              return Redirect::to('/register/complete');
             }
 
         } else {

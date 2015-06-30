@@ -2,11 +2,15 @@
 
 @section('content')
 	<div class="container">
-		<ul>
-				@foreach($errors->all() as $error)
-						<li>{{ $error }}</li>
-				@endforeach
-		</ul>
+	  @if($errors->all() == true)
+	    <div class="note note-danger">
+	      <ul>
+	          @foreach($errors->all() as $error)
+	              <li>{{ $error }}</li>
+	          @endforeach
+	      </ul>
+	    </div>
+	  @endif
 		<div class="clearfix"></div>
 	    <div class="portlet light">
 			<div class="portlet-title">
@@ -14,6 +18,60 @@
 				Vous avez finalisé votre inscription.
 				</div>
 			</div>
+						<ul class="nav nav-pills nav-justified steps">
+	          <li>
+	            <a href="#tab1" data-toggle="tab" class="step">
+	            <span class="number">
+	            1 </span>
+	            <span class="desc">
+	            <i class="fa fa-check"></i> Entreprise </span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="#tab2" data-toggle="tab" class="step">
+	            <span class="number">
+	            2 </span>
+	            <span class="desc">
+	            <i class="fa fa-check"></i> Catégorie </span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="#tab3" data-toggle="tab" class="step active">
+	            <span class="number">
+	            3 </span>
+	            <span class="desc">
+	            <i class="fa fa-check"></i> Description de l'entreprise </span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="#tab4" data-toggle="tab" class="step">
+	            <span class="number">
+	            4 </span>
+	            <span class="desc">
+	            <i class="fa fa-check"></i> Chiffre d'affaire </span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="#tab4" data-toggle="tab" class="step">
+	            <span class="number">
+	            5 </span>
+	            <span class="desc">
+	            <i class="fa fa-check"></i> Payement </span>
+	            </a>
+	          </li>
+	          <li class="active">
+	            <a href="#tab4" data-toggle="tab" class="step">
+	            <span class="number">
+	            6 </span>
+	            <span class="desc">
+	            <i class="fa fa-check"></i> Terminer </span>
+	            </a>
+	          </li>
+        	</ul>
+        	<div id="bar" class="progress progress-striped" role="progressbar">
+          		<div class="progress-bar progress-bar-success" style="width: 100%;"></div>
+        	</div>
+		</div>
 			<div class="portlet-body">
 				<div class="row margin-bottom-40">
 					<div class="col-md-12">
@@ -72,6 +130,5 @@
 					<h3>ATTENTION : Date limite des dépôts de candidature vendredi 2 octobre 2015</h3>
 				</div>
 			</div>
-		</div>
 	</div>
 @stop

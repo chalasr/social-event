@@ -6,8 +6,9 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <title>BrefRH</title>
+    <title>Bref R-A Innovation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ URL::asset('assets/global/css/plugins-md.css') }}" rel="stylesheet" type="text/css">
     <link rel="icon" href="{{ URL::asset('favicon.ico') }}" media="screen"  charset="utf-8">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all" rel="stylesheet" type="text/css"/>
@@ -20,7 +21,6 @@
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ URL::asset('assets/global/css/plugins-md.css') }}" rel="stylesheet" type="text/css">
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
     <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
@@ -42,9 +42,10 @@
                             <span class="username username-hide-on-mobile"> {{ $pseudo = Auth::user()->email }} &nbsp;</span>
                         </a>
                     </li>
-                    <li class="dropdown dropdown-quick-sidebar-toggler">
+                     <li class="dropdown dropdown-user">
                         <?php $url = action('UsersController@getLogout');?>
                         <a href="<?php echo $url; ?>" class="dropdown-toggle">
+                            <span class="username"> Déconnexion  &nbsp;</span>
                             <i class="icon-logout"></i>
                         </a>
                     </li>
@@ -173,10 +174,13 @@
                     @yield('content')
                 </div>
             </div>
+            <div class="text-center">
+                    <img src="/assets/admin/pages/img/logos.jpg" class="footerbanner">
+            </div>
         </div>
     </div>
     <footer>
-        <p>Bref RH</p>
+        <p>Bref R-A Innovation</p>
     </footer>
 
     <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>

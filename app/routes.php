@@ -41,18 +41,26 @@ Route::group(array('prefix' => '/admin'), function(){
 //Candidates views
 Route::controller('users', 'UsersController');
 Route::get('register', array('uses' => 'UsersController@getRegister', 'as' => 'register'));
+
 Route::get('register/complete', ['uses' => 'CandidatsController@getCompleteRegistration']);
 Route::post('complete-register', ['uses' => 'CandidatsController@storeCompleteRegistration']);
+
 Route::get('register/complete/step2', ['uses' => 'CandidatsController@getCompleteRegistrationStep2']);
 Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeCompleteRegistrationStep2']);
+
 Route::get('register/complete/step2', ['uses' => 'CandidatsController@getCompleteRegistrationStep2']);
 Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeCompleteRegistrationStep2']);
+
 Route::get('register/complete/step3', ['uses' => 'CandidatsController@getCompleteRegistrationStep3']);
 Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeCompleteRegistrationStep3']);
+
 Route::get('register/complete/step4', ['uses' => 'CandidatsController@getCompleteRegistrationStep4']);
 Route::post('complete-register/step4', ['uses' => 'CandidatsController@storeCompleteRegistrationStep4']);
+
 Route::get('register/complete/step5',['uses'=>'CandidatsController@getCompleteRegistrationStep5']);
 Route::post('complete-register/step5/paypal', ['uses'=>'CandidatsController@StoreCompleteRegistrationStep5']);
 Route::post('complete-register/step5/check', ['uses' => 'CandidatsController@storeCompleteRegistrationStep5_check']);
+
+
 Route::get('register/complete/final', ['uses' => 'CandidatsController@getCompleteRegistrationFinal']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
