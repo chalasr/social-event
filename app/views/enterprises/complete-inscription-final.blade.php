@@ -11,6 +11,7 @@
 	      </ul>
 	    </div>
 	  @endif
+	  <div class="form-wizard">
 		<div class="clearfix"></div>
 	    <div class="portlet light">
 			<div class="portlet-title">
@@ -18,13 +19,13 @@
 				Vous avez finalisé votre inscription.
 				</div>
 			</div>
-						<ul class="nav nav-pills nav-justified steps">
+			<ul class="nav nav-pills nav-justified steps">
 	          <li>
 	            <a href="#tab1" data-toggle="tab" class="step">
 	            <span class="number">
 	            1 </span>
 	            <span class="desc">
-	            <i class="fa fa-check"></i> Entreprise </span>
+	            <i class="fa fa-check"></i> Idendité </span>
 	            </a>
 	          </li>
 	          <li>
@@ -32,7 +33,7 @@
 	            <span class="number">
 	            2 </span>
 	            <span class="desc">
-	            <i class="fa fa-check"></i> Catégorie </span>
+	            <i class="fa fa-check"></i> Participation </span>
 	            </a>
 	          </li>
 	          <li>
@@ -40,7 +41,7 @@
 	            <span class="number">
 	            3 </span>
 	            <span class="desc">
-	            <i class="fa fa-check"></i> Description de l'entreprise </span>
+	            <i class="fa fa-check"></i> Entreprise </span>
 	            </a>
 	          </li>
 	          <li>
@@ -48,7 +49,7 @@
 	            <span class="number">
 	            4 </span>
 	            <span class="desc">
-	            <i class="fa fa-check"></i> Chiffre d'affaire </span>
+	            <i class="fa fa-check"></i> Activité </span>
 	            </a>
 	          </li>
 	          <li>
@@ -56,7 +57,7 @@
 	            <span class="number">
 	            5 </span>
 	            <span class="desc">
-	            <i class="fa fa-check"></i> Payement </span>
+	            <i class="fa fa-check"></i> Payment </span>
 	            </a>
 	          </li>
 	          <li class="active">
@@ -130,5 +131,6 @@
 					<h3>ATTENTION : Date limite des dépôts de candidature vendredi 2 octobre 2015</h3>
 				</div>
 			</div>
+		</div>
 	</div>
 @stop

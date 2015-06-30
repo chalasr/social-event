@@ -85,6 +85,41 @@ class CandidatsController extends BaseController
         }
     }
 
+    public function editCompleteRegistration()
+    {
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
+        // $enterprise = Enterprise::find($id);
+        return View::make('enterprises.edit-complete-inscription', compact('enterprise'));
+    }
+
+    public function updateCompleteRegistration()
+    {
+        $validator = Validator::make(Input::all(), Enterprise::$rules);
+        if ($validator->passes()) {
+            $user = User::find(Auth::user()->id);
+            $enterprise = $user->enterprise()->first();
+            $enterprise->name = Input::get('name');
+            $enterprise->juridical_status = Input::get('juridical_status');
+            $enterprise->creation_date = Input::get('creation_date');
+            if(Input::get('member_of_group') != null && Input::get('member_of_group') != '')
+              $enterprise->member_of_group = Input::get('member_of_group');
+            $enterprise->postal_address = Input::get('postal_address');
+            $enterprise->phone = Input::get('phone');
+            if(Input::get('telecopie') != null && Input::get('telecopie') != '')
+              $enterprise->telecopie = Input::get('telecopie');
+            $enterprise->leaders_informations = Input::get('leaders_informations');
+            $enterprise->candidate_informations = Input::get('candidate_informations');
+            $enterprise->candidate_phone = Input::get('candidate_phone');
+            $enterprise->candidate_email = Input::get('candidate_email');
+            $enterprise->save();
+
+            return Redirect::to('register/complete')->with('message', 'Le contenu à bien été modifié');
+        }else{
+            return Redirect::to('register/edit-complete')->with('error', 'Veuillez corriger les érreurs suivante')->withInput();
+        }
+    }
+
     public function getCompleteRegistrationStep2()
     {
         if (!Auth::check()) {
@@ -121,6 +156,29 @@ class CandidatsController extends BaseController
 
         return Redirect::to('/register/complete/step3');
     }
+
+    public function editCompleteRegistrationStep2()
+    {
+        // $user = User::find(Auth::user()->id);
+        // $userCategories = User::find(Auth::user()->id)->categories()->get();
+        $categories = Category::all();
+        return View::make('enterprises.edit-complete-inscription-step2', compact('categories'));
+    }
+
+    public function updateCompleteRegistrationStep2()
+    {
+        $user = User::find(Auth::user()->id);
+        $categories = Category::all();
+        foreach($categories as $dbCategory){
+            if(Input::has($dbCategory->id)){
+                $user->categories()->attach($dbCategory);
+            }
+        }
+        $enterprise = $user->enterprise()->first();
+        $user->enterprise()->save($enterprise);
+        return Redirect::to('register/complete/final');    
+    }
+
 
     public function getCompleteRegistrationStep3()
     {
@@ -197,6 +255,74 @@ class CandidatsController extends BaseController
             return Redirect::to('register/complete/step3')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
+
+    public function editCompleteRegistrationStep3()
+    {
+        if (!Auth::check()){
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+
+        $user = User::find(Auth::user()->id);
+        $userCategories = User::find(Auth::user()->id)->categories()->get();
+        $userEnterprise = $user->enterprise()->first();
+        $userSurvey = $userEnterprise->survey_id;
+        $userFiles = $userEnterprise->files()->first();
+        $survey = Survey::find($userSurvey);
+        return View::make('enterprises.edit-complete-inscription-step3', compact('survey'));
+    }
+
+    public function updateCompleteRegistrationStep3()
+    {
+        if (!Auth::check()) {
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
+
+        $validator = Validator::make(Input::all(), Survey::$rules);
+        if ($validator->passes()) {
+            $user = User::find(Auth::user()->id);
+            $userCategories = User::find(Auth::user()->id)->categories()->get();
+            $userEnterprise = $user->enterprise()->first();
+            $userSurvey = $userEnterprise->survey_id;
+            $userFiles = $userEnterprise->files()->first();
+            $survey = Survey::find($userSurvey);
+            $survey->enterprise_activity = Input::get('enterprise_activity');
+            $survey->project_origin = Input::get('project_origin');
+            $survey->innovative_arguments = Input::get('innovative_arguments');
+            $survey->wanted_impact = Input::get('wanted_impact');
+            $survey->product_informations = Input::get('product_informations');
+            $survey->project_results = Input::get('project_results');
+            $survey->project_rewards = Input::get('project_rewards');
+            $survey->project_partners = Input::get('project_partners');
+            $files = Input::file('files');
+            
+            if(count($files) >= 1 && !empty($files[0])){
+                foreach($files as $file){
+                    $rules = array('file' => 'required');
+                    $destinationPath = 'public/uploads/' . Auth::User()->id;
+                    $filename = $file->getClientOriginalName();
+                    $upload_success = $file->move($destinationPath, $filename);
+
+                    $file = new Upload;
+                    $file->name = $filename;
+                    $file->path = $destinationPath;
+                    $file->enterprise_id = $enterprise->id;
+                    $file->save();
+                }
+            }
+            $survey->save();
+            $survey->enterprise()->save($enterprise);
+            $user->enterprise()->save($enterprise);
+
+
+            return Redirect::to('/register/complete/step4');
+        } else {
+            return Redirect::to('register/complete/step3')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+        }
+    }
+
     /**
      *  Get registration step 4 template (Upload)
      * @return redirect to next register step
@@ -235,6 +361,63 @@ class CandidatsController extends BaseController
         $validator = Validator::make(Input::all(), Activity::$rules);
         if ($validator->passes()) {
             $activity = new Activity();
+            $activity->ca_2013 = Input::get('ca_2013');
+            $activity->effectif_2013 = Input::get('effectif_2013');
+            $activity->net_2013 = Input::get('net_2013');
+            $activity->rd_2013 = Input::get('rd_2013');
+            $activity->effectif_rd_2013 = Input::get('effectif_rd_2013');
+            $activity->ca_2014 = Input::get('ca_2014');
+            $activity->effectif_2014 = Input::get('effectif_2014');
+            $activity->net_2014 = Input::get('net_2014');
+            $activity->rd_2014 = Input::get('rd_2014');
+            $activity->effectif_rd_2014 = Input::get('effectif_rd_2014');
+            $activity->ca_2015 = Input::get('ca_2015');
+            $activity->effectif_2015 = Input::get('effectif_2015');
+            $activity->net_2015 = Input::get('net_2015');
+            $activity->rd_2015 = Input::get('rd_2015');
+            $activity->effectif_rd_2015 = Input::get('effectif_rd_2015');
+            $activity->enterprise_id = $enterprise->id;
+            $activity->save();
+            $activity->enterprise()->save($enterprise);
+            return Redirect::to('/register/complete/step5');
+        } else {
+            return Redirect::to('register/complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+        }
+    }
+
+    public function editCompleteRegistrationStep4()
+    {
+        if (!Auth::check()) {
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
+        $activity = Activity::find($enterprise->activity_id);
+        return View::make('enterprises.edit-complete-inscription-step4', compact('activity'));
+    }
+
+    public function updateCompleteRegistrationStep4()
+    {
+        if (!Auth::check()) {
+            return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
+
+        if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != '')
+          $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
+        if(Input::get('internal_collaborators') != null && Input::get('internal_collaborators' != ''))
+          $enterprise->internal_collaborators = Input::get('internal_collaborators');
+        if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != '')
+          $enterprise->project_certificates = Input::get('project_certificates');
+        
+        $user->enterprise()->save($enterprise);
+        $validator = Validator::make(Input::all(), Activity::$rules);
+        if ($validator->passes()) {
+            $user = User::find(Auth::user()->id);
+            $enterprise = $user->enterprise()->first();
+            $activity = Activity::find($enterprise->activity_id);
             $activity->ca_2013 = Input::get('ca_2013');
             $activity->effectif_2013 = Input::get('effectif_2013');
             $activity->net_2013 = Input::get('net_2013');

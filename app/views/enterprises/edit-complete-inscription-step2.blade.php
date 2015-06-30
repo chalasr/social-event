@@ -67,7 +67,7 @@
           <div class="progress-bar progress-bar-success" style="width: 33.75%;"></div>
         </div>
   <div class="well">
-      {{ Form::open(array('url'=>'complete-register/step2', 'class'=>'form-signup')) }}
+      {{ Form::open(array('url'=> ['edit/complete-register-step2'],'action' => 'updateCompleteRegistrationStep2', 'method' => 'PATCH', 'class'=>'form-horizontal')) }}
           <div class="well">
         		<table class="table">
         		   <thead>
