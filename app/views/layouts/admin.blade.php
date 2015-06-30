@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <title>Bref R-A Innovation</title>
+    <title>Trophées Bref R-A Innovation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ URL::asset('favicon.ico') }}" media="screen"  charset="utf-8">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
