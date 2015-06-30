@@ -389,7 +389,7 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
         $activity = Activity::find($enterprise->activity_id);
-        return View::make('enterprises.edit-complete-inscription-step4', compact('activity'));
+        return View::make('enterprises.edit-complete-inscription-step4', compact('activity', 'enterprise'));
     }
 
     public function updateCompleteRegistrationStep4()
