@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <title>BrefRH</title>
+    <title>Bref R-A Innovation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ URL::asset('favicon.ico') }}" media="screen"  charset="utf-8">
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
@@ -15,11 +15,12 @@
     <link href="{{ URL::asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/global/css/plugins-md.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
-    <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
+
 
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
@@ -47,6 +48,7 @@
                     </li>
                     <li class="dropdown dropdown-quick-sidebar-toggler">
                         <a href="{{ URL::to('/users/logout') }}" class="dropdown-toggle">
+                          <span class="username"> Déconnexion  &nbsp;</span>
                             <i class="icon-logout"></i>
                         </a>
                     </li>
@@ -132,10 +134,14 @@
                 </div>
             </div>
         </div>
+                    <div class="text-center">
+                    <img src="/assets/admin/pages/img/logos.jpg" class="footerbanner">
+            </div>
     </div>
     <footer>
-        <p>Bref RH</p>
+        <p>Bref R-A Innovation</p>
     </footer>
+    <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/jquery-migrate.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
@@ -149,12 +155,36 @@
     <script src="{{ URL::asset('assets/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('js/script.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jspdf.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jspdf/plugins/standard_fonts_metrics.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jspdf/plugins/split_text_to_size.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jspdf/plugins/from_html.js') }}"></script>
     <script>
-        jQuery(document).ready(function() {
-           Metronic.init(); // init metronic core componets
-           Layout.init(); // init layout
-           QuickSidebar.init(); // init quick sidebar
-        });
+      $(document).ready(function() {
+         Metronic.init(); // init metronic core componets
+         Layout.init(); // init layout
+         QuickSidebar.init(); // init quick sidebar
+         var uri = document.location.pathname;
+         var splitUri = uri.split('/');
+         var candidatId = splitUri[3];
+
+         var doc = new jsPDF();
+
+         var specialElementHandlers = {
+           '.container': function(element, renderer){
+              return true;
+            }
+         };
+
+         $('#pdf').click(function(){
+              var html=$(".container").html();
+              doc.fromHTML(html, 30,5, {
+                 'elementHandlers': specialElementHandlers
+              });
+
+              doc.save("candidat-" + candidatId + ".pdf");
+         });
+    });
     </script>
 </body>
 </html>

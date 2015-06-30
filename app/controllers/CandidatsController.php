@@ -168,19 +168,19 @@ class CandidatsController extends BaseController
             $survey->project_rewards = Input::get('project_rewards');
             $survey->project_partners = Input::get('project_partners');
             $files = Input::file('files');
-            if(count($files) >= 1){
-              foreach($files as $file){
-                  $rules = array('file' => 'required');
-                  $destinationPath = 'public/uploads/' . Auth::User()->id;
-                  $filename = $file->getClientOriginalName();
-                  $upload_success = $file->move($destinationPath, $filename);
+            if(count($files) >= 1 && !empty($files[0])){
+                foreach($files as $file){
+                    $rules = array('file' => 'required');
+                    $destinationPath = 'public/uploads/' . Auth::User()->id;
+                    $filename = $file->getClientOriginalName();
+                    $upload_success = $file->move($destinationPath, $filename);
 
-                  $file = new Upload;
-                  $file->name = $filename;
-                  $file->path = $destinationPath;
-                  $file->enterprise_id = $enterprise->id;
-                  $file->save();
-              }
+                    $file = new Upload;
+                    $file->name = $filename;
+                    $file->path = $destinationPath;
+                    $file->enterprise_id = $enterprise->id;
+                    $file->save();
+                }
             }
             $survey->save();
             $survey->enterprise()->save($enterprise);

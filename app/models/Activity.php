@@ -24,21 +24,21 @@ class Activity extends Eloquent {
 	];
 
 	public static $rules = array(
-		'ca_2013' => 'required',
-		'net_2013' => 'required',
-		'effectif_2013' => 'required',
-		'rd_2013' => 'required',
-		'effectif_rd_2013' => 'required',
-		'ca_2014' => 'required',
-		'net_2014' => 'required',
-		'effectif_2014' => 'required',
-		'rd_2014' => 'required',
-		'effectif_rd_2014' => 'required',
-		'ca_2015' => 'required',
-		'net_2015' => 'required',
-		'effectif_2015' => 'required',
-		'rd_2015' => 'required',
-		'effectif_rd_2015' => 'required',
+		// 'ca_2013' => 'required',
+		// 'net_2013' => 'required',
+		// 'effectif_2013' => 'required',
+		// 'rd_2013' => 'required',
+		// 'effectif_rd_2013' => 'required',
+		// 'ca_2014' => 'required',
+		// 'net_2014' => 'required',
+		// 'effectif_2014' => 'required',
+		// 'rd_2014' => 'required',
+		// 'effectif_rd_2014' => 'required',
+		// 'ca_2015' => 'required',
+		// 'net_2015' => 'required',
+		// 'effectif_2015' => 'required',
+		// 'rd_2015' => 'required',
+		// 'effectif_rd_2015' => 'required',
   );
 	/**
 	 * The database table used by the model.

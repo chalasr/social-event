@@ -6,32 +6,12 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
         <div class="panel panel-default">
           <div class=" panel-heading">
-            <h3 class="panel-title">{{ $candidate->email }} <a class="floatRight btn btn-xs btn-default" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
+            <h3 class="panel-title">{{ $candidate->email }} - {{ date('d/m/Y', strtotime($candidate->created_at)) }}<a class="floatRight btn btn-xs btn-default" id="pdf" href="#"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
 
           </div>
           <div class="panel-body">
             <div class="row">
               <div class=" col-md-9 col-lg-12">
-                <table class="table table-hover table-user-information">
-                  <tbody>
-                    <tr>
-                      <td>Participation :</td>
-                      <td>
-                        @foreach ($candidate->categories()->get() as $category)
-                          {{ $category->name }} ,
-                        @endforeach
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Inscris le</td>
-                      <td>{{ date('d/m/Y', strtotime($candidate->created_at)) }}</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
                 @if($enterprise)
                 <h5 class="text-center"><b>Carte d'identité</b></h5>
                 <br>
@@ -79,7 +59,7 @@
                     </tr>
                     <tr>
                       <td>Téléphone Candidat :</td>
-                      <td>{{ $enterprise->candidate_informations }}</td>
+                      <td>{{ $enterprise->candidate_phone }}</td>
                     </tr>
                     <tr>
                       <td>Email candidat :</td>
@@ -221,6 +201,15 @@
                 @endif
                 @endif
               </div>
+            </div>
+            <br><br>
+            <div class="text-center">
+              <h5><b>Participation</b></h5>
+              <ul>
+                @foreach ($candidate->categories()->get() as $category)
+                  <li>{{ $category->name }}</li>
+                @endforeach
+              </ul>
             </div>
           </div>
           <div class="panel-footer">
