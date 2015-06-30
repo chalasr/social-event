@@ -12,6 +12,7 @@
     </div>
   @endif
     {{ Form::open(array('url'=>'complete-register', 'class'=>'form-signup')) }}
+        <div class="form-wizard">
         <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Carte d'identité</span></h2>
         <ul class="nav nav-pills nav-justified steps">
           <li class="active">
@@ -19,7 +20,7 @@
             <span class="number">
             1 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Entreprise </span>
+            <i class="fa fa-check"></i> Identité </span>
             </a>
           </li>
           <li>
@@ -27,15 +28,15 @@
             <span class="number">
             2 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Catégorie </span>
+            <i class="fa fa-check"></i> Participation </span>
             </a>
           </li>
           <li>
-            <a href="#tab3" data-toggle="tab" class="step active">
+            <a href="#tab3" data-toggle="tab" class="step">
             <span class="number">
             3 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Description de l'entreprise </span>
+            <i class="fa fa-check"></i> Entreprise </span>
             </a>
           </li>
           <li>
@@ -43,7 +44,7 @@
             <span class="number">
             4 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Chiffre d'affaire </span>
+            <i class="fa fa-check"></i> Activité </span>
             </a>
           </li>
           <li>
@@ -142,6 +143,7 @@
           {{ Form::submit('Enregistrer et passer à l\'étape suivante', array('class'=>'btn btn-primary btn-block')) }}
           <br>
         </div>
+      </div>
 
       {{ Form::close() }}
 </div>
