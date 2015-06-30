@@ -178,6 +178,7 @@ class CandidatsController extends BaseController
                     }
                 }
             }
+        //test
         }
 
         return View::make('enterprises.edit-complete-inscription-step2', compact('candidate', 'categories'));
