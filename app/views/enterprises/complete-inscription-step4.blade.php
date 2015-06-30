@@ -16,15 +16,15 @@
       <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Votre entreprise en quelques chiffres</span></h2>
       <ul class="nav nav-pills nav-justified steps">
           <li>
-            <a href="#tab1" data-toggle="tab" class="step">
+            <a href="{{ URL::to('register/edit-complete') }}" class="step">
             <span class="number">
             1 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Idendité </span>
+            <i class="fa fa-check"></i> Identité </span>
             </a>
           </li>
           <li>
-            <a href="#tab2" data-toggle="tab" class="step">
+            <a href="{{ URL::to('register/edit-complete/step2') }}" class="step">
             <span class="number">
             2 </span>
             <span class="desc">
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab3" data-toggle="tab" class="step active">
+            <a href="{{ URL::to('register/edit-complete/step3') }}" class="step">
             <span class="number">
             3 </span>
             <span class="desc">
@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="active">
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a href="#tab4" data-toggle="tab" class="step active">
             <span class="number">
             4 </span>
             <span class="desc">
@@ -48,7 +48,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a class="step">
             <span class="number">
             5 </span>
             <span class="desc">
@@ -56,7 +56,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a class="step">
             <span class="number">
             6 </span>
             <span class="desc">

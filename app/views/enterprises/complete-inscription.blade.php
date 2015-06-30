@@ -24,7 +24,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab2" data-toggle="tab" class="step">
+            <a class="step">
             <span class="number">
             2 </span>
             <span class="desc">
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab3" data-toggle="tab" class="step">
+            <a class="step">
             <span class="number">
             3 </span>
             <span class="desc">
@@ -40,7 +40,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a class="step">
             <span class="number">
             4 </span>
             <span class="desc">
@@ -48,7 +48,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a class="step">
             <span class="number">
             5 </span>
             <span class="desc">
@@ -56,7 +56,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a class="step">
             <span class="number">
             6 </span>
             <span class="desc">

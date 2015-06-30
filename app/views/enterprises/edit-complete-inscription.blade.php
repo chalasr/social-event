@@ -24,7 +24,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab2" data-toggle="tab" class="step">
+            <a href="{{ URL::to('register/edit-complete/step2') }}" class="step">
             <span class="number">
             2 </span>
             <span class="desc">
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab3" data-toggle="tab" class="step">
+            <a href="{{ URL::to('register/edit-complete/step3') }}" class="step">
             <span class="number">
             3 </span>
             <span class="desc">
@@ -40,7 +40,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a href="{{ URL::to('register/edit-complete/step4') }}" class="step">
             <span class="number">
             4 </span>
             <span class="desc">
@@ -48,7 +48,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a href="{{ URL::to('register/complete/step5') }}" class="step">
             <span class="number">
             5 </span>
             <span class="desc">
@@ -56,7 +56,7 @@
             </a>
           </li>
           <li>
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a class="step">
             <span class="number">
             6 </span>
             <span class="desc">
@@ -67,11 +67,6 @@
         <div id="bar" class="progress progress-striped" role="progressbar">
           <div class="progress-bar progress-bar-success" style="width: 17%;"></div>
         </div>
-        <hr>
-          <div class="note note-success">
-             Vous êtes désormais pré-inscris, afin de finaliser votre candidature, vous devez remplir le formulaire ci-dessous.<br>
-              Si vous le souhaitez, vous pouvez revenir plus tard pour cette étape.
-          </div>
         <hr>
         <div class="clearfix"></div>
         <h4 class="text-center"><b>Entreprise concernée</b></h4>

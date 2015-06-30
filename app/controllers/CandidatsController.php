@@ -87,14 +87,23 @@ class CandidatsController extends BaseController
 
     public function editCompleteRegistration()
     {
+        if (!Auth::check()){
+          return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
-        // $enterprise = Enterprise::find($id);
+        if(count($enterprise) == 0){
+          return Redirect::to('/register/complete');
+        }
+
         return View::make('enterprises.edit-complete-inscription', compact('enterprise'));
     }
 
     public function updateCompleteRegistration()
     {
+        if (!Auth::check()){
+          return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
         $validator = Validator::make(Input::all(), Enterprise::$rules);
         if ($validator->passes()) {
             $user = User::find(Auth::user()->id);
@@ -159,14 +168,23 @@ class CandidatsController extends BaseController
 
     public function editCompleteRegistrationStep2()
     {
-        // $user = User::find(Auth::user()->id);
-        // $userCategories = User::find(Auth::user()->id)->categories()->get();
+        if (!Auth::check()){
+          return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce   formulaire');
+        }
+        $user = User::find(Auth::user()->id);
+        $userCategories = $user->categories()->get();
+        if(count($userCategories) == 0){
+          return Redirect::to('/register/complete')->with('error', 'Vous n\'avez pas encore validé cette étape');;
+        }
         $categories = Category::all();
         return View::make('enterprises.edit-complete-inscription-step2', compact('categories'));
     }
 
     public function updateCompleteRegistrationStep2()
     {
+        if (!Auth::check()){
+          return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
         $user = User::find(Auth::user()->id);
         $categories = Category::all();
         foreach($categories as $dbCategory){
@@ -176,7 +194,7 @@ class CandidatsController extends BaseController
         }
         $enterprise = $user->enterprise()->first();
         $user->enterprise()->save($enterprise);
-        return Redirect::to('register/complete/final');    
+        return Redirect::to('register/complete/final');
     }
 
 
@@ -263,11 +281,13 @@ class CandidatsController extends BaseController
         }
 
         $user = User::find(Auth::user()->id);
-        $userCategories = User::find(Auth::user()->id)->categories()->get();
         $userEnterprise = $user->enterprise()->first();
         $userSurvey = $userEnterprise->survey_id;
-        $userFiles = $userEnterprise->files()->first();
         $survey = Survey::find($userSurvey);
+        if(empty($userSurvey) || !$userSurvey){
+          return Redirect::to('/register/complete');
+        }
+
         return View::make('enterprises.edit-complete-inscription-step3', compact('survey'));
     }
 
@@ -297,7 +317,7 @@ class CandidatsController extends BaseController
             $survey->project_rewards = Input::get('project_rewards');
             $survey->project_partners = Input::get('project_partners');
             $files = Input::file('files');
-            
+
             if(count($files) >= 1 && !empty($files[0])){
                 foreach($files as $file){
                     $rules = array('file' => 'required');
@@ -331,6 +351,14 @@ class CandidatsController extends BaseController
     {
         if (!Auth::check()) {
             return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
+        }
+
+        $user = User::find(Auth::user()->id);
+        $userEnterprise = $user->enterprise()->first();
+        $userSurvey = $userEnterprise->survey_id;
+        $survey = Survey::find($userSurvey);
+        if(empty($userSurvey) || !$userSurvey){
+          return Redirect::to('/register/complete');
         }
 
         return View::make('enterprises.complete-inscription-step4');
@@ -393,6 +421,10 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
         $activity = Activity::find($enterprise->activity_id);
+
+        if(!$activity || empty($activity)){
+          return Redirect::to('register/complete');
+        }
         return View::make('enterprises.edit-complete-inscription-step4', compact('activity'));
     }
 
@@ -411,7 +443,7 @@ class CandidatsController extends BaseController
           $enterprise->internal_collaborators = Input::get('internal_collaborators');
         if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != '')
           $enterprise->project_certificates = Input::get('project_certificates');
-        
+
         $user->enterprise()->save($enterprise);
         $validator = Validator::make(Input::all(), Activity::$rules);
         if ($validator->passes()) {
