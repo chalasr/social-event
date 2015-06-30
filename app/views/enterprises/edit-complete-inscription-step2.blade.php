@@ -66,35 +66,65 @@
         <div id="bar" class="progress progress-striped" role="progressbar">
           <div class="progress-bar progress-bar-success" style="width: 33.75%;"></div>
         </div>
-  <div class="well">
-      {{ Form::open(array('url'=> ['edit/complete-register-step2'],'action' => 'updateCompleteRegistrationStep2', 'method' => 'PATCH', 'class'=>'form-horizontal')) }}
-          <div class="well">
-        		<table class="table">
-        		   <thead>
-        		      <tr>
-        		         <th>Nom</th>
-        		         <th>Description</th>
-        		         <th>Selectionner</th>
-        		      </tr>
-        		   </thead>
-        		   <tbody>
-        		   @foreach($categories as $category)
-        		      <tr>
-        		         <td>{{ $category->name }}</td>
-        		         <td>{{ $category->description }}</td>
-        		         <td><input type="checkbox" name="{{ $category->id }}"></td>
-                    </tr>
-        			@endforeach
-        		   </tbody>
-        		</table>
-            <div class="submitLarge">
-              {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
+    <div class="well">
+      <div class="portlet-body form">
+        {{ Form::open(array('url'=> ['edit/complete-register/step2', $candidate->id], 'method' => 'PATCH', 'class'=>'form-horizontal')) }}
+        <div class="form-wizard">
+          <div class="form-body">
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab1">
+                <hr>
+                <h4 class="text-center"><b>Catégories choisies par le candidat</b></h4>
+                <hr>
+                <div class="well">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($candidate->categories as $category)
+                      <tr>
+                        <td>{{ $category->name }}</td>
+                        <td>{{ $category->description }}</td>
+                        <td><a class="btn btn-danger" href="{{ URL::to('edit/complete-register/step2/remove-participation/'.$category->id)}}">Supprimer</a></td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+                <hr>
+                <h4 class="text-center"><b>Non choisies</b></h4>
+                <hr>
+                <div class="well">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($categories as $category)
+                      <tr>
+                        <td>{{ $category->name }}</td>
+                        <td>{{ $category->description }}</td>
+                        <td><a class="btn btn-info" href="{{ URL::to('edit/complete-register/step2/add-participation/' .$category->id)}}">Ajouter</a></td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
-        	</div>
-
-        {{ Form::close() }}
-  </div>
-  </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
 @stop
