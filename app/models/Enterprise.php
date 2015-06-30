@@ -25,10 +25,12 @@ class Enterprise extends Eloquent {
 		'juridical_status' => 'required',
 		'creation_date' => 'required',
 		'postal_address' => 'required',
-		'phone' => 'required|digits:10',
-		'leaders_informations' => 'required',
+		'phone' => 'required|numeric',
+		'leader_name' => 'required',
+		'leader_email' => 'required|email',
+		'leader_phone' => 'required|numeric',
 		'candidate_informations' => 'required',
-		'candidate_phone' => 'required|digits:10',
+		'candidate_phone' => 'required|numeric',
 		'candidate_email' => 'required|email',
   );
 	/**

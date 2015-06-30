@@ -107,7 +107,18 @@
             {{Form::text('project_partners', null, array('class'=>'form-control'))}}
           </div>
           <div class="form-group">
-            {{Form::label('project_rewards', 'Votre entreprise a-t-elle été déjà récompensée pour cette innovation ou pour d’autres innovations ? Par quel organisme ?', array('class' => 'control-label'))}}
+            {{Form::label('project_rewards', 'Votre entreprise a-t-elle été déjà récompensée pour cette innovation ou pour d’autres innovations ?', array('class' => 'control-label'))}}
+            <div class="flex">
+              <div>
+                <label>{{Form::radio('have_rewards', 'oui', array('class'=>'form-control'))}}Oui</label>
+              </div>
+              <div class="right-label-flex">
+                <label>{{Form::radio('have_rewards', 'non', array('class'=>'form-control', 'checked' => 'true'))}}Non</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" id="input_project_rewards">
+            {{Form::label('project_rewards', 'Par quel organisme ?', array('class' => 'control-label'))}}
             {{Form::text('project_rewards', null, array('class'=>'form-control'))}}
           </div>
           <div class="form-group">

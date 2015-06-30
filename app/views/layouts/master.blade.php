@@ -24,7 +24,7 @@
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ URL::asset('assets/admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css">
 </head>
-    <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
+    <body class="page-md page-header-fixed page-quick-sidebar-over-content">
     <div class="page-header md-shadow-z-1-i navbar">
         <div class="page-header-inner">
             <div class="page-logo">
@@ -153,10 +153,8 @@
             @elseif(!Auth::check())
                     <li>
                         <a href="{{URL::to('/register') }}">
-                      <br>
                         <i class="icon-diamond"></i>
                         <span class="title">Accés Candidat</span>
-
                         </a>
                     </li>
             @endif

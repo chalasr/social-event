@@ -141,6 +141,10 @@
             </div>
           </div>
           <br>
+          <div class="form-group" id="internal_collaborators_input">
+            {{Form::label('internal_collaborators', 'Par combien de personnes ?')}}
+            {{ Form::text('internal_collaborators', null, array('class' => 'form-control', 'checked' => 'true'))}}
+          </div>
         </div>
         <div class="form-group">
           <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{Form::label('have_external_search', ' Avec l’aide de prestataires extérieurs ?')}}
