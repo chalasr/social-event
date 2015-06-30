@@ -25,13 +25,13 @@
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
 
-        <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+        <div class="page-header md-shadow-z-1-i navbar">
         <!-- BEGIN HEADER INNER -->
         <div class="page-header-inner">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="{{ URL::to('/') }}">
-                <img src="{{ URL::asset('assets/admin/pages/img/breflogo.png') }}" alt="logo" class="logo-default breflogo">
+                <img src="{{ URL::asset('assets/admin/pages/img/logo_R-A_Innovation.png') }}" alt="logo" class="logo-default breflogo">
                 </a>
                 <div class="menu-toggler sidebar-toggler hide">
                 </div>

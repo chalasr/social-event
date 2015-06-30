@@ -558,8 +558,8 @@ margin-top: 100px;
 
 .breflogo
 {
-    width: 65px; 
-    height: 25px;
+    width: 210px; 
+    height: 80px;
 }
 
 .banner
@@ -572,4 +572,10 @@ margin-top: 100px;
 {
     max-height: 1000px;
     max-width: 1000px;
+}
+.navbar-nav>li>a {
+  line-height: 74px !important;
+}
+.page-header.navbar {
+    height: 100px !important;
 }
