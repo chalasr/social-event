@@ -157,24 +157,46 @@ class CandidatsController extends BaseController
 
     public function editCompleteRegistrationStep2()
     {
-        // $user = User::find(Auth::user()->id);
-        // $userCategories = User::find(Auth::user()->id)->categories()->get();
-        $categories = Category::all();
-        return View::make('enterprises.edit-complete-inscription-step2', compact('categories'));
-    }
+        // $candidate = User::find(Auth::user()->id);
+        // // $userCategories = User::find(Auth::user()->id)->categories()->get();
+        // $categories = Category::all();
+        // return View::make('enterprises.edit-complete-inscription-step2', compact('categories', 'candidate'));
 
-    public function updateCompleteRegistrationStep2()
-    {
-        $user = User::find(Auth::user()->id);
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        $candidate = User::find(Auth::user()->id);
+        $userCategories = $candidate->categories;
+        $countUserCats = count($userCategories);
         $categories = Category::all();
-        foreach($categories as $dbCategory){
-            if(Input::has($dbCategory->id)){
-                $user->categories()->attach($dbCategory);
+        $countCats = count($categories);
+        foreach($userCategories as $userCat){
+            for ($i=0; $i < $countCats; $i++) {
+                if(isset($categories[$i])){
+                    if($userCat->id == $categories[$i]->id){
+                        unset($categories[$i]);
+                    }
+                }
             }
         }
-        $enterprise = $user->enterprise()->first();
-        $user->enterprise()->save($enterprise);
-        return Redirect::to('register/complete/final');    
+
+        return View::make('enterprises.edit-complete-inscription-step2', compact('candidate', 'categories'));
+    }
+
+    public function removeCategoryFromEnterprise($categoryId)
+    {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        $candidate = User::find(Auth::user()->id);
+        $category = Category::find($categoryId);
+        $candidate->categories()->detach($category);
+        return Redirect::to('register/edit-complete/step2')->with('message', 'Candidature mise à jour avec succès');
+    }
+
+    public function addCategoryToEnterprise($categoryId)
+    {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        $candidate = User::find(Auth::user()->id);
+        $category = Category::find($categoryId);
+        $candidate->categories()->attach($category);
+        return Redirect::to('register/edit-complete/step2')->with('message', 'Candidature mise à jour avec succès');
     }
 
 

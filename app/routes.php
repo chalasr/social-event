@@ -51,8 +51,10 @@ Route::patch('edit/complete-register','CandidatsController@updateCompleteRegistr
 Route::get('register/complete/step2', ['uses' => 'CandidatsController@getCompleteRegistrationStep2']);
 Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeCompleteRegistrationStep2']);
 
-Route::get('register/edit-complete/step2', 'CandidatsController@editCompleteRegistrationStep2');
-Route::patch('edit/complete-register/step2','CandidatsController@updateCompleteRegistrationStep2');
+Route::get('register/edit-complete/step2/', 'CandidatsController@editCompleteRegistrationStep2');
+// Route::patch('edit/complete-register/step2','CandidatsController@updateCompleteRegistrationStep2');
+Route::get('edit/complete-register/step2/remove-participation/{categoryId}', 'CandidatsController@removeCategoryFromEnterprise')->where('categoryId', $id);
+Route::get('edit/complete-register/step2/add-participation/{categoryId}', 'CandidatsController@addCategoryToEnterprise')->where('categoryId', $id);
 
 Route::get('register/complete/step3', ['uses' => 'CandidatsController@getCompleteRegistrationStep3']);
 Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeCompleteRegistrationStep3']);
