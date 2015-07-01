@@ -202,7 +202,25 @@
                 @endif
               </div>
             </div>
-            <br><br>
+            <h5 class="text-center"><b>Pièce jointe</b></h5>
+                <br>
+                <table class="table">
+                   <thead>
+                      <tr>
+                         <th>Nom</th>
+                         <th>Télécharger</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                        @foreach($files as $file)
+                      <tr>
+                         <td>{{ $file->name }}</td>
+                         <td><a href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}">Lien</a></td>
+                      </tr>
+                        @endforeach
+                   </tbody>
+                </table>
+                <br><br>
             <div class="text-center">
               <h5><b>Participation</b></h5>
               <ul>
