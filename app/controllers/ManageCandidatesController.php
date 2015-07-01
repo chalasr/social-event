@@ -41,10 +41,13 @@ class ManageCandidatesController extends BaseController
     {
         $candidate = Auth::user()->id;
         $file = Upload::findOrFail($id);
-        $filePath = $file->path;
+        $filePath = public_path($file->path);
         $fileName = $file->name;
-        if(file_exists(DIRECTORY_SEPARATOR.$filePath.DIRECTORY_SEPARATOR.$fileName))
-            return Response::download(DIRECTORY_SEPARATOR.$filePath.DIRECTORY_SEPARATOR.$fileName);
+        if(file_exists($filePath.DIRECTORY_SEPARATOR.$fileName))
+            return Response::download($filePath.DIRECTORY_SEPARATOR.$fileName);
+        else{
+          print_r($filePath.DIRECTORY_SEPARATOR.$filename);die;
+        }
     }
 
     /**

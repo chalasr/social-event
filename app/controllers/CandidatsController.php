@@ -356,9 +356,9 @@ class CandidatsController extends BaseController
             if(count($files) >= 1 && !empty($files[0])){
                 foreach($files as $file){
                     $rules = array('file' => 'required');
-                    $destinationPath = 'public/uploads/' . Auth::User()->id;
+                    $destinationPath = 'uploads/'.Auth::User()->id;
                     $filename = $file->getClientOriginalName();
-                    $upload_success = $file->move($destinationPath, $filename);
+                    $upload_success = $file->move(public_path($destinationPath), $filename);
 
                     $file = new Upload;
                     $file->name = $filename;
@@ -497,7 +497,7 @@ class CandidatsController extends BaseController
         }else{
             return Redirect::to('register/complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($lightValidator)->withInput();
         }
-        
+
         $validator = Validator::make(Input::all(), Activity::$rules);
         if ($validator->passes()) {
             $user = User::find(Auth::user()->id);
