@@ -13,7 +13,7 @@
             <div class="row">
               <div class=" col-md-9 col-lg-12">
                 @if($enterprise)
-                <h5 class="text-center"><b>Carte d'identité</b></h5>
+                <h5 class="text-left"><b>Carte d'identité</b></h5>
                 <br>
                 <table class="table table-hover table-user-information">
                   <tbody>
@@ -74,7 +74,7 @@
                 @endif
 
                 @if($survey)
-                <h5 class="text-center"><b>Questionnaire</b></h5>
+                <h5 class="text-left"><b>Questionnaire</b></h5>
                 <br>
                 <table class="table table-hover table-user-information">
                   <tbody>
@@ -118,7 +118,7 @@
                 </table>
                 @endif
                 @if($activity)
-                <h5 class="text-center"><b>Chiffres entreprise</b></h5>
+                <h5 class="text-left"><b>Chiffres entreprise</b></h5>
                 <br>
                 <table class="table">
                    <thead>
@@ -202,7 +202,7 @@
                 @endif
               </div>
             </div>
-            <h5 class="text-center"><b>Pièce jointe</b></h5>
+            <h5 class="text-left"><b>Pièce jointe</b></h5>
                 <br>
                 <table class="table">
                    <thead>
@@ -221,7 +221,7 @@
                    </tbody>
                 </table>
                 <br><br>
-            <div class="text-center">
+            <div class="text-left">
               <h5><b>Participation</b></h5>
               <ul>
                 @foreach ($candidate->categories()->get() as $category)

@@ -6,7 +6,7 @@
 			<div class="text-center">
 				<div class="imagewrap">
 					<img src="/assets/admin/pages/img/haut.jpg" class="banner">
-					<a type="button" href="{{ URL::to('/register') }}" class="btn red button1 "/>Inscription</a>
+					<a href="{{ URL::to('/register') }}" class="btn btn-lg red button1 "/><b>S'INSCRIRE</b></a>
 				</div>
 			</div>
 		</div>
