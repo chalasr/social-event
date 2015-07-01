@@ -25,6 +25,8 @@ class ManageCandidatesController extends BaseController
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
         $candidate = User::find($id);
+        $userEnterprise = $candidate->enterprise()->first();
+        $files = $userEnterprise->files()->get();
         $survey = false;
         $activity = false;
         $enterprise = $candidate->enterprise()->first();
@@ -32,7 +34,17 @@ class ManageCandidatesController extends BaseController
           $survey = Survey::findOrFail($enterprise->survey_id);
         if(!empty($enterprise->survey_id))
           $activity = Activity::find($enterprise->activity_id);
-        return View::make('admin/candidates/show', compact('candidate', 'enterprise', 'survey', 'activity'));
+        return View::make('admin/candidates/show', compact('candidate', 'files', 'enterprise', 'survey', 'activity'));
+    }
+
+    public function getDownload($id)
+    {
+        $candidate = Auth::user()->id;
+        $file = Upload::findOrFail($id);
+        $filePath = $file->path;
+        $fileName = $file->name;
+        if(file_exists(DIRECTORY_SEPARATOR.$filePath.DIRECTORY_SEPARATOR.$fileName))
+            return Response::download(DIRECTORY_SEPARATOR.$filePath.DIRECTORY_SEPARATOR.$fileName);
     }
 
     /**
