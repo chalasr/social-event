@@ -34,9 +34,9 @@
 								{{ $category->description }}
 							</td>
 							<td>
-							<a class="btn btn-sm btn-info" href="{{ URL::to('admin/categories/'.$category->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;
+								<a class="btn btn-sm btn-info" href="{{ URL::to('admin/categories/'.$category->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;&nbsp;
 								<a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer cette catégorie ?')" href="{{ URL::to('admin/categories/delete/'.$category->id) }}"><i class="fa fa-trash"></i></a>
-								</td>
+							</td>
 						</tr>
 					@endforeach
 					</tbody>

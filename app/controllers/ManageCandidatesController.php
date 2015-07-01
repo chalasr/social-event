@@ -46,7 +46,7 @@ class ManageCandidatesController extends BaseController
         if(file_exists($filePath.DIRECTORY_SEPARATOR.$fileName))
             return Response::download($filePath.DIRECTORY_SEPARATOR.$fileName);
         else{
-          print_r($filePath.DIRECTORY_SEPARATOR.$filename);die;
+            return Redirect::to('/admin/candidates/show')->with('message', 'Le fichier n\'est plus existant');
         }
     }
 

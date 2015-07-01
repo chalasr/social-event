@@ -105,6 +105,28 @@
             {{ Form::label('files[]', 'N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.')}}
             {{ Form::file('files[]', array('multiple'=>true, 'class' => 'form-control')) }}
           </div>
+          <hr />
+          <h5 class="text-center"><b>Fichier déjà ajouté(s)</b></h5>
+                <table class="table">
+                   <thead>
+                      <tr>
+                         <th>Nom</th>
+                         <th>Action</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                    @foreach($files as $file)
+                      <tr>
+                         <td>{{ $file->name }}</td>
+                          <td>
+                            <a class="btn btn-sm btn-info" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}"><i class="fa fa-eye"></i></a> &nbsp;&nbsp;
+                            <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer cette catégorie ?')"  href="{{ URL::to('edit/delite-file/step3/'.$file->id) }}"><i class="fa fa-trash"></i></a>
+                          </td>
+                      </tr>
+                    @endforeach
+                   </tbody>
+                </table>
+                <br><br>
           <br>
           <div class="submitLarge">
             {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}

@@ -319,11 +319,11 @@ class CandidatsController extends BaseController
         $userEnterprise = $user->enterprise()->first();
         $userSurvey = $userEnterprise->survey_id;
         $survey = Survey::find($userSurvey);
+        $files = $userEnterprise->files()->get();
         if(empty($userSurvey) || !$userSurvey){
           return Redirect::to('/register/complete');
         }
-
-        return View::make('enterprises.edit-complete-inscription-step3', compact('survey'));
+        return View::make('enterprises.edit-complete-inscription-step3', compact('survey', 'files'));
     }
 
     public function updateCompleteRegistrationStep3()
@@ -376,6 +376,20 @@ class CandidatsController extends BaseController
         } else {
             return Redirect::to('register/complete/step3')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
+    }
+
+    public function getDeleteFile($id){
+
+        $candidate = Auth::user()->id;
+        $file = Upload::findOrFail($id);
+        $filePath = public_path($file->path);
+        $fileName = $file->name;
+
+        if(file_exists($filePath.DIRECTORY_SEPARATOR.$fileName)){
+            File::delete($filePath.DIRECTORY_SEPARATOR.$fileName);
+        }
+        Upload::destroy($id);
+        return Redirect::to('register/edit-complete/step3')->with('message', 'Le fichier a bien été supprimé');
     }
 
     /**
@@ -469,7 +483,6 @@ class CandidatsController extends BaseController
           return Redirect::to('register/complete');
         }
         return View::make('enterprises.edit-complete-inscription-step4', compact('activity', 'enterprise'));
-
     }
 
     public function updateCompleteRegistrationStep4()
