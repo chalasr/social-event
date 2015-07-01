@@ -480,15 +480,24 @@ class CandidatsController extends BaseController
 
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
-
-        if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != '')
-          $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
-        if(Input::get('internal_collaborators') != null && Input::get('internal_collaborators' != ''))
-          $enterprise->internal_collaborators = Input::get('internal_collaborators');
-        if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != '')
-          $enterprise->project_certificates = Input::get('project_certificates');
-
-        $user->enterprise()->save($enterprise);
+        $lightRules = ['internal_collaborators' => 'numeric'];
+        $lightValidator = Validator::make(Input::all(), $lightRules);
+        if ($lightValidator->passes()) {
+            if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != ''){
+                $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
+            }
+            if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != ''){
+                $enterprise->project_certificates = Input::get('project_certificates');
+            }
+            if(Input::get('internal_collaborators') != null &&  Input::get('internal_collaborators') != ''){
+                $enterprise->internal_collaborators = Input::get('internal_collaborators');
+            }
+            $enterprise->registration_state = 'step5';
+            $user->enterprise()->save($enterprise);
+        }else{
+            return Redirect::to('register/complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($lightValidator)->withInput();
+        }
+        
         $validator = Validator::make(Input::all(), Activity::$rules);
         if ($validator->passes()) {
             $user = User::find(Auth::user()->id);
