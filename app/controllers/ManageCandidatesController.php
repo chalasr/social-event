@@ -39,14 +39,14 @@ class ManageCandidatesController extends BaseController
 
     public function getDownload($id)
     {
-        $candidate = Auth::user()->id;
         $file = Upload::findOrFail($id);
         $filePath = public_path($file->path);
         $fileName = $file->name;
-        if(file_exists($filePath.DIRECTORY_SEPARATOR.$fileName))
+        $candidate = User::where('enterprise_id', $file->enterprise_id)->first();
+        if(file_exists($filePath.DIRECTORY_SEPARATOR.$fileName)){
             return Response::download($filePath.DIRECTORY_SEPARATOR.$fileName);
-        else{
-          print_r($filePath.DIRECTORY_SEPARATOR.$filename);die;
+        }else{
+          return Redirect::to('admin/candidates/'.$candidate->id)->with('error', 'Le fichier demandé n\'existe plus');
         }
     }
 
