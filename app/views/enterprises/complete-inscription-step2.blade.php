@@ -51,7 +51,7 @@
             <span class="number">
             5 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Payment </span>
+            <i class="fa fa-check"></i> Paiement </span>
             </a>
           </li>
           <li>
@@ -59,41 +59,44 @@
             <span class="number">
             6 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Terminer </span>
+            <i class="fa fa-check"></i> Finaliser </span>
             </a>
           </li>
         </ul>
         <div id="bar" class="progress progress-striped" role="progressbar">
           <div class="progress-bar progress-bar-success" style="width: 33.75%;"></div>
         </div>
-  <div class="well">
-      {{ Form::open(array('url'=>'complete-register/step2', 'class'=>'form-signup')) }}
-          <div class="well">
-        		<table class="table">
-        		   <thead>
-        		      <tr>
-        		         <th>Nom</th>
-        		         <th>Description</th>
-        		         <th>Selectionner</th>
-        		      </tr>
-        		   </thead>
-        		   <tbody>
-        		   @foreach($categories as $category)
-        		      <tr>
-        		         <td>{{ $category->name }}</td>
-        		         <td>{{ $category->description }}</td>
-        		         <td><input type="checkbox" name="{{ $category->id }}"></td>
-                    </tr>
-        			@endforeach
-        		   </tbody>
-        		</table>
-            <div class="submitLarge">
-              {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
-            </div>
-        	</div>
-
-        {{ Form::close() }}
-  </div>
+        <hr>
+        <div class="note note-success">
+            Sélectionnez au maximum 2 categories correspondantes à votre innovation.
+        </div>
+        <div class="well">
+            {{ Form::open(array('url'=>'complete-register/step2', 'class'=>'form-signup')) }}
+                <div class="well">
+              		<table class="table">
+              		   <thead>
+              		      <tr>
+              		         <th>Nom</th>
+              		         <th>Description</th>
+              		         <th>Selectionner</th>
+              		      </tr>
+              		   </thead>
+              		   <tbody>
+              		   @foreach($categories as $category)
+              		      <tr>
+              		         <td>{{ $category->name }}</td>
+              		         <td>{{ $category->description }}</td>
+              		         <td><input type="checkbox" name="{{ $category->id }}"></td>
+                          </tr>
+              			@endforeach
+              		   </tbody>
+              		</table>
+                  <div class="submitLarge">
+                    {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
+                  </div>
+              	</div>
+              {{ Form::close() }}
+        </div>
   </div>
 </div>
 

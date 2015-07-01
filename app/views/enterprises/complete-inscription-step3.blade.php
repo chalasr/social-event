@@ -52,7 +52,7 @@
             <span class="number">
             5 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Payment </span>
+            <i class="fa fa-check"></i> Paiement </span>
             </a>
           </li>
           <li>
@@ -60,7 +60,7 @@
             <span class="number">
             6 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Terminer </span>
+            <i class="fa fa-check"></i> Finaliser </span>
             </a>
           </li>
         </ul>

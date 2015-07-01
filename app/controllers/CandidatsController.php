@@ -31,9 +31,9 @@ class CandidatsController extends BaseController
             return Redirect::to('/register')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
         }
         $user = User::findOrFail(Auth::user()->id);
-        if(count($user->enterprise()->first()) == 0)
+        if(count($user->enterprise()->first()) == 0){
             return View::make('enterprises.complete-inscription');
-        else{
+        }else{
             $enterprise = $user->enterprise()->first();
             if($enterprise->registration_state == 'step2'){
                 return Redirect::to('/register/complete/step2');
@@ -115,9 +115,12 @@ class CandidatsController extends BaseController
               $enterprise->member_of_group = Input::get('member_of_group');
             $enterprise->postal_address = Input::get('postal_address');
             $enterprise->phone = Input::get('phone');
-            if(Input::get('telecopie') != null && Input::get('telecopie') != '')
+            if(Input::get('telecopie') != null && Input::get('telecopie') != ''){
               $enterprise->telecopie = Input::get('telecopie');
-            $enterprise->leaders_informations = Input::get('leaders_informations');
+            }
+            $enterprise->leader_name = Input::get('leader_name');
+            $enterprise->leader_email = Input::get('leader_email');
+            $enterprise->leader_phone = Input::get('leader_phone');
             $enterprise->candidate_informations = Input::get('candidate_informations');
             $enterprise->candidate_phone = Input::get('candidate_phone');
             $enterprise->candidate_email = Input::get('candidate_email');
@@ -152,6 +155,11 @@ class CandidatsController extends BaseController
         if (!Auth::check()){
           return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
         }
+        $countSelection = count(Input::all());
+        if($countSelection > 3){
+            return Redirect::to('register/complete/step2')->with('error', 'Vous pouvez sélectionner deux catégories au maximum');
+        }
+
         $user = User::find(Auth::user()->id);
         $categories = Category::all();
         foreach($categories as $dbCategory) {
@@ -159,6 +167,7 @@ class CandidatsController extends BaseController
               $user->categories()->attach($dbCategory);
             }
         }
+
         $enterprise = $user->enterprise()->first();
         $enterprise->registration_state = 'step3';
         $user->enterprise()->save($enterprise);
@@ -171,18 +180,12 @@ class CandidatsController extends BaseController
         if (!Auth::check()){
           return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce   formulaire');
         }
-        $user = User::find(Auth::user()->id);
-        $userCategories = $user->categories()->get();
+        $candidate = User::find(Auth::user()->id);
+        $userCategories = $candidate->categories()->get();
         if(count($userCategories) == 0){
           return Redirect::to('/register/complete')->with('error', 'Vous n\'avez pas encore validé cette étape');;
         }
-        // $candidate = User::find(Auth::user()->id);
-        // // $userCategories = User::find(Auth::user()->id)->categories()->get();
-        // $categories = Category::all();
-        // return View::make('enterprises.edit-complete-inscription-step2', compact('categories', 'candidate'));
 
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        $candidate = User::find(Auth::user()->id);
         $countUserCats = count($userCategories);
         $categories = Category::all();
         $countCats = count($categories);
@@ -194,7 +197,6 @@ class CandidatsController extends BaseController
                     }
                 }
             }
-        //test
         }
 
         return View::make('enterprises.edit-complete-inscription-step2', compact('candidate', 'categories'));
@@ -202,7 +204,10 @@ class CandidatsController extends BaseController
 
     public function removeCategoryFromEnterprise($categoryId)
     {
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(!Auth::check()){
+            return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        }
+
         $candidate = User::find(Auth::user()->id);
         $category = Category::find($categoryId);
         $candidate->categories()->detach($category);
@@ -211,8 +216,17 @@ class CandidatsController extends BaseController
 
     public function addCategoryToEnterprise($categoryId)
     {
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(!Auth::check()){
+            return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        }
         $candidate = User::find(Auth::user()->id);
+        $userCategories = $candidate->categories()->get();
+        $countUserCats = count($userCategories);
+
+        if($countUserCats == 2){
+            return Redirect::to('register/edit-complete/step2')->with('error', 'Vous pouvez sélectionner deux catégories au maximum');
+        }
+
         $category = Category::find($categoryId);
         $candidate->categories()->attach($category);
         return Redirect::to('register/edit-complete/step2')->with('message', 'Candidature mise à jour avec succès');

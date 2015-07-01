@@ -52,7 +52,7 @@
             <span class="number">
             5 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Payment </span>
+            <i class="fa fa-check"></i> Paiement </span>
             </a>
           </li>
           <li>
@@ -60,7 +60,7 @@
             <span class="number">
             6 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Terminer </span>
+            <i class="fa fa-check"></i> Finaliser </span>
             </a>
           </li>
         </ul>
@@ -144,7 +144,7 @@
           <br>
           <div class="form-group" id="internal_collaborators_input">
             {{Form::label('internal_collaborators', 'Par combien de personnes ?')}}
-            {{ Form::text('internal_collaborators', null, array('class' => 'form-control', 'checked' => 'true'))}}
+            {{ Form::text('internal_collaborators', null, array('class' => 'form-control'))}}
           </div>
         </div>
         <div class="form-group">
@@ -160,7 +160,7 @@
           <br>
           <div class="form-group" id="external_collaborators_input">
             {{Form::label('external_collaborators_type', 'Lesquels ?')}}
-            {{ Form::text('external_collaborators_type', null, array('class' => 'form-control', 'checked' => 'true'))}}
+            {{ Form::text('external_collaborators_type', null, array('class' => 'form-control'))}}
           </div>
         </div>
         <br>

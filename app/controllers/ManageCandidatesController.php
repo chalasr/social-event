@@ -114,6 +114,12 @@ class ManageCandidatesController extends BaseController
         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
 
         $candidate = User::find($id);
+        $userCategories = $candidate->categories()->get();
+        $countUserCats = count($userCategories);
+        if($countUserCats == 2){
+            return Redirect::to('register/edit-complete/step2')->with('error', 'Vous pouvez sélectionner deux catégories au maximum par candidature');
+        }
+
         $category = Category::find($categoryId);
         $candidate->categories()->attach($category);
 

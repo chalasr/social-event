@@ -52,7 +52,7 @@
             <span class="number">
             5 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Payment </span>
+            <i class="fa fa-check"></i> Paiement </span>
             </a>
           </li>
           <li>
@@ -60,7 +60,7 @@
             <span class="number">
             6 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Terminer </span>
+            <i class="fa fa-check"></i> Finaliser </span>
             </a>
           </li>
         </ul>
@@ -101,9 +101,22 @@
             {{Form::text('telecopie', $enterprise->telecopie, array('class'=>' form-control', 'placeholder' => 'Facultatif'))}}
           </div>
         </div>
+        <hr>
+        <h4 class="text-center"><b>Informations concernant le dirigeant de l'entreprise</b></h4>
+        <hr>
         <div class="form-group">
-          {{Form::label('leaders_informations', 'Nom, fonction, coordonnées et email du (de la) dirigeant(e) :', array('class' => 'control-label'))}}
-          {{Form::text('leaders_informations', $enterprise->leaders_informations, array('class'=>'form-control'))}}
+          {{Form::label('leader_name', 'Nom et fonction :', array('class' => 'control-label'))}}
+          {{Form::text('leader_name', $enterprise->leader_name, array('class'=>'form-control'))}}
+        </div>
+
+        <div class="form-group">
+          {{Form::label('leader_phone', 'Téléphone :', array('class' => 'control-label'))}}
+          {{Form::text('leader_phone', $enterprise->leader_phone, array('class'=>'form-control'))}}
+        </div>
+
+        <div class="form-group">
+          {{Form::label('leader_email', 'Email :', array('class' => 'control-label'))}}
+          {{Form::text('leader_email', $enterprise->leader_email, array('class'=>'form-control'))}}
         </div>
         <hr>
         <h4 class="text-center"><b>Personne en charge du dossier de candidature</b></h4>
