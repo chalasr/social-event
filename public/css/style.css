@@ -677,14 +677,18 @@ margin-top: 100px;
         margin-top: -90px;
     }
 }
-.navbar-nav>li>a {
-  line-height: 74px !important;
-}
-.page-header.navbar {
-    height: 100px !important;
+
+@media screen and (min-width: 1000px) {
+    .navbar-nav>li>a {
+      line-height: 74px !important;
+    }
 }
 
 .form-wizard .steps > li.done > a.step .number {
   background-color: #B2DFDB !important;
   color: #fff;
+}
+
+.page-header.navbar {
+    height: 100px !important;
 }

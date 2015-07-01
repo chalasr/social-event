@@ -68,6 +68,9 @@
         <div id="bar" class="progress progress-striped" role="progressbar">
           <div class="progress-bar progress-bar-success" style="width: 67.30%;"></div>
         </div>
+        <div class="note note-success">
+          <h4>Bref s'engage à conserver ces confidentielles</h4>
+        </div>
       <div class="well">
           <table class="table">
              <thead>
@@ -152,11 +155,11 @@
           {{ Form::text('project_certificates', $enterprise->project_certificates, array('class' => 'form-control'))}}
         </div>
         <div class="submitLarge">
-        {{ Form::submit('Finaliser l\'inscription', ['class' => 'btn btn-primary btn-block']) }}
+        {{ Form::submit('Finaliser mon inscription', ['class' => 'btn btn-primary btn-block']) }}
         </div>
       </div>
       {{ Form::close() }}
-    <div class="form-wizard">
+  </div>
 </div>
 
 @stop

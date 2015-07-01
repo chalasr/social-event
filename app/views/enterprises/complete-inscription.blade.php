@@ -69,10 +69,9 @@
         </div>
         <hr>
           <div class="note note-success">
-             Vous êtes désormais pré-inscris. <br>
-             Afin de finaliser votre candidature, vous devez remplir le formulaire ci-dessous.<br>
-             Vous avez la possibilité, pour chaque étape déjà validée, de revenir sur vos réponses en vous servant du menu ci-dessus.<br>
-             À chaque validation d'étape, au moment d'en entamer une nouvelle, vous pouvez décider de revenir plus tard pour finaliser votre candidature.
+            Afin de finaliser votre candidature, vous merci de remplir le formulaire ci-dessous.<br>
+            Vous avez la possibilité, pour chaque étape déjà validée, de revenir sur vos réponses en vous servant du menu ci-dessus.<br>
+            Une fois une étape validée vous avez la possibilité de quitter l'application et de revenir plus tard pour finaliser votre candidature.<br>
           </div>
         <hr>
         <div class="clearfix"></div>

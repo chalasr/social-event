@@ -125,16 +125,14 @@
           {{Form::label('candidate_informations', 'Nom et fonction :', array('class' => 'control-label'))}}
           {{Form::text('candidate_informations', $enterprise->candidate_informations, array('class'=>'form-control'))}}
         </div>
-        <div class="flex">
-          <div class="form-group">
-            {{Form::label('candidate_phone', 'Tèl :', array('class' => 'control-label'))}}
+        <div class="form-group">
+            {{Form::label('candidate_phone', 'Téléphone :', array('class' => 'control-label'))}}
             {{Form::text('candidate_phone', $enterprise->candidate_phone, array('class'=>' form-control'))}}
-          </div>
         </div>
-          <div class="form-group">
-            {{Form::label('candidate_email', 'Email :', array('class' => 'control-label'))}}
-            {{Form::text('candidate_email', $enterprise->candidate_email, array('class'=>' form-control'))}}
-          </div>
+        <div class="form-group">
+          {{Form::label('candidate_email', 'Email :', array('class' => 'control-label'))}}
+          {{Form::text('candidate_email', $enterprise->candidate_email, array('class'=>' form-control'))}}
+        </div>
         <br>
         <div class="submitLarge">
           {{ Form::submit('Enregistrer les modifications', array('class'=>'btn btn-primary btn-block')) }}

@@ -55,7 +55,7 @@
                     <li class="dropdown dropdown-user">
                         <?php $url = action('UsersController@getRegister');?>
                         <a href="<?php echo $url; ?>" class="dropdown-toggle">
-                            <i>Inscription</i>
+                            <i>Inscription/Connexion</i>
                         </a>
                     </li>
                 @endif
