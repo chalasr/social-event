@@ -69,7 +69,7 @@
           <div class="progress-bar progress-bar-success" style="width: 67.30%;"></div>
         </div>
         <div class="note note-success">
-          <h4>Bref s'engage à conserver ces confidentielles</h4>
+          <h4>Bref s'engage à conserver ces données <b>confidentielles</b> .</h4>
         </div>
       <div class="well">
           <table class="table">
