@@ -31,9 +31,5 @@ $(document).ready(function(){
   $('input[name=have_certificates]').change(function(){
      $('#have_certificates_input').slideToggle();
   });
-  $('#have_certificates_input').hide();
-  $('input[name=have_certificates]').change(function(){
-     $('#have_certificates_input').slideToggle();
-  });
 
 });
