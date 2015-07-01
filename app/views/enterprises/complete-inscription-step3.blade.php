@@ -15,7 +15,7 @@
     {{ Form::open(array('url'=>'complete-register/step3', 'class'=>'form-signup','enctype' => 'multipart/form-data', 'files' => true)) }}
         <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Questionnaire</span></h2>
         <ul class="nav nav-pills nav-justified steps">
-          <li>
+          <li class="done">
             <a href="{{ URL::to('register/edit-complete') }}" class="step">
             <span class="number">
             1 </span>
@@ -23,7 +23,7 @@
             <i class="fa fa-check"></i> Identité </span>
             </a>
           </li>
-          <li>
+          <li class="done">
             <a href="{{ URL::to('register/edit-complete/step2') }}" class="step">
             <span class="number">
             2 </span>

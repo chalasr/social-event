@@ -20,40 +20,40 @@
 				</div>
 			</div>
 			<ul class="nav nav-pills nav-justified steps">
-						<li>
-							<a href="#tab1" data-toggle="tab" class="step" aria-expanded="true">
+						<li class="done">
+							<a class="step" aria-expanded="true">
 							<span class="number">
 							1 </span>
 							<span class="desc">
 							<i class="fa fa-check"></i> Identité </span>
 							</a>
 						</li>
-						<li>
-							<a href="{{ URL::to('register/edit-complete/step2') }}" class="step">
+						<li class="done">
+							<a class="step">
 							<span class="number">
 							2 </span>
 							<span class="desc">
 							<i class="fa fa-check"></i> Participation </span>
 							</a>
 						</li>
-						<li>
-							<a href="{{ URL::to('register/edit-complete/step3') }}" class="step">
+						<li class="done">
+							<a class="step">
 							<span class="number">
 							3 </span>
 							<span class="desc">
 							<i class="fa fa-check"></i> Entreprise </span>
 							</a>
 						</li>
-						<li>
-							<a href="{{ URL::to('register/edit-complete/step4') }}" class="step">
+						<li class="done">
+							<a class="step">
 							<span class="number">
 							4 </span>
 							<span class="desc">
 							<i class="fa fa-check"></i> Activité </span>
 							</a>
 						</li>
-						<li>
-							<a href="{{ URL::to('register/complete/step5') }}" class="step">
+						<li class="done">
+							<a class="step">
 							<span class="number">
 							5 </span>
 							<span class="desc">
@@ -61,7 +61,7 @@
 							</a>
 						</li>
 	          <li class="active">
-	            <a href="#tab4" data-toggle="tab" class="step">
+	            <a class="step">
 	            <span class="number">
 	            6 </span>
 	            <span class="desc">

@@ -16,7 +16,7 @@
 
       <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Votre entreprise en quelques chiffres</span></h2>
       <ul class="nav nav-pills nav-justified steps">
-        <li>
+        <li class="done">
           <a href="{{ URL::to('register/edit-complete') }}" class="step">
           <span class="number">
           1 </span>
@@ -24,7 +24,7 @@
           <i class="fa fa-check"></i> Identité </span>
           </a>
         </li>
-        <li>
+        <li class="done">
           <a href="{{ URL::to('register/edit-complete/step2') }}" class="step">
           <span class="number">
           2 </span>
@@ -32,7 +32,7 @@
           <i class="fa fa-check"></i> Participation </span>
           </a>
         </li>
-        <li>
+        <li class="done">
           <a href="{{ URL::to('register/edit-complete/step3') }}" class="step">
           <span class="number">
           3 </span>
@@ -57,7 +57,7 @@
           </a>
         </li>
           <li>
-            <a href="#tab4" data-toggle="tab" class="step">
+            <a class="step">
             <span class="number">
             6 </span>
             <span class="desc">
@@ -151,9 +151,9 @@
           {{Form::label('project_certificates', 'Précisez le nombre de brevets, marques ou dessins et modèles déposés et pour quel type de produits ou services :')}}
           {{ Form::text('project_certificates', $enterprise->project_certificates, array('class' => 'form-control'))}}
         </div>
-      </div>
-      <div class="submitLarge">
-      {{ Form::submit('Passer au payment', ['class' => 'btn btn-primary btn-block']) }}
+        <div class="submitLarge">
+        {{ Form::submit('Finaliser l\'inscription', ['class' => 'btn btn-primary btn-block']) }}
+        </div>
       </div>
       {{ Form::close() }}
     <div class="form-wizard">

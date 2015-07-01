@@ -46,7 +46,7 @@ class UsersController extends BaseController
     public function postSignin()
     {
         if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
-            return Redirect::to('/')->with('message', 'Vous êtes connecté !');
+            return Redirect::to('/register/complete')->with('message', 'Vous êtes connecté !');
         } else {
             return Redirect::to('/register')
             ->with('error', 'Votre email/password est incorrect !')

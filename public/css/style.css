@@ -671,8 +671,8 @@ margin-top: 100px;
     }
     .button1
     {
-        height: 35px;
-        width: 100px;
+        height: 40px;
+        width: 122px;
         margin-left: -120px;
         margin-top: -90px;
     }
@@ -682,4 +682,9 @@ margin-top: 100px;
 }
 .page-header.navbar {
     height: 100px !important;
+}
+
+.form-wizard .steps > li.done > a.step .number {
+  background-color: #B2DFDB !important;
+  color: #fff;
 }

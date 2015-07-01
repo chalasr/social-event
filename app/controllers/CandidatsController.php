@@ -95,6 +95,9 @@ class CandidatsController extends BaseController
         if(count($enterprise) == 0){
           return Redirect::to('/register/complete');
         }
+        if($enterprise->registration_state == 'final'){
+          return Redirect::to('/register/complete/final')->with('error', 'Votre candidature est en train d\'être étudiée. <br> En attendant, vous ne pouvez plus revenir sur vos réponses .');
+        }
 
         return View::make('enterprises.edit-complete-inscription', compact('enterprise'));
     }
@@ -184,6 +187,10 @@ class CandidatsController extends BaseController
         $userCategories = $candidate->categories()->get();
         if(count($userCategories) == 0){
           return Redirect::to('/register/complete')->with('error', 'Vous n\'avez pas encore validé cette étape');;
+        }
+        $enterprise = $candidate->enterprise()->first();
+        if($enterprise->registration_state == 'final'){
+          return Redirect::to('/register/complete/final')->with('error', 'Votre candidature est en train d\'être étudiée. <br> En attendant, vous ne pouvez plus revenir sur vos réponses .');
         }
 
         $countUserCats = count($userCategories);
@@ -286,9 +293,9 @@ class CandidatsController extends BaseController
             if(count($files) >= 1 && !empty($files[0])){
                 foreach($files as $file){
                     $rules = array('file' => 'required');
-                    $destinationPath = 'public/uploads/' . Auth::User()->id;
+                    $destinationPath = 'uploads/'.Auth::User()->id;
                     $filename = $file->getClientOriginalName();
-                    $upload_success = $file->move($destinationPath, $filename);
+                    $upload_success = $file->move(public_path($destinationPath), $filename);
 
                     $file = new Upload;
                     $file->name = $filename;
@@ -317,6 +324,11 @@ class CandidatsController extends BaseController
 
         $user = User::find(Auth::user()->id);
         $userEnterprise = $user->enterprise()->first();
+
+        if($userEnterprise->registration_state == 'final'){
+          return Redirect::to('/register/complete/final')->with('error', 'Votre candidature est en train d\'être étudiée. <br> En attendant, vous ne pouvez plus revenir sur vos réponses .');
+        }
+
         $userSurvey = $userEnterprise->survey_id;
         $survey = Survey::find($userSurvey);
         $files = $userEnterprise->files()->get();
@@ -477,6 +489,10 @@ class CandidatsController extends BaseController
         }
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
+        if($enterprise->registration_state == 'final'){
+          return Redirect::to('/register/complete/final')->with('error', 'Votre candidature est en train d\'être étudiée. <br> En attendant, vous ne pouvez plus revenir sur vos réponses .');
+        }
+
         $activity = Activity::find($enterprise->activity_id);
 
         if(!$activity || empty($activity)){

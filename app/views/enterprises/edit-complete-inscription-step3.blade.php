@@ -15,7 +15,7 @@
     {{ Form::open(array('url'=> ['edit/complete-register/step3'],'action' => 'updateCompleteRegistrationStep3', 'method' => 'PATCH', 'class'=>'form-horizontal','enctype' => 'multipart/form-data', 'files' => true)) }}
         <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Questionnaire</span></h2>
         <ul class="nav nav-pills nav-justified steps">
-          <li>
+          <li class="done">
             <a href="{{ URL::to('register/edit-complete') }}" class="step">
             <span class="number">
             1 </span>
@@ -23,7 +23,7 @@
             <i class="fa fa-check"></i> Identité </span>
             </a>
           </li>
-          <li>
+          <li class="done">
             <a href="{{ URL::to('register/edit-complete/step2') }}" class="step">
             <span class="number">
             2 </span>
@@ -106,7 +106,7 @@
             {{ Form::file('files[]', array('multiple'=>true, 'class' => 'form-control')) }}
           </div>
           <hr />
-          <h5 class="text-center"><b>Fichier déjà ajouté(s)</b></h5>
+          <h5 class="text-left"><b>Pièce(s) jointe(s) à votre dossier</b></h5>
                 <table class="table">
                    <thead>
                       <tr>
@@ -119,8 +119,8 @@
                       <tr>
                          <td>{{ $file->name }}</td>
                           <td>
-                            <a class="btn btn-sm btn-info" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}"><i class="fa fa-eye"></i></a> &nbsp;&nbsp;
-                            <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer cette catégorie ?')"  href="{{ URL::to('edit/delite-file/step3/'.$file->id) }}"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-sm btn-info" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}"><i class="fa fa-eye"></i></a> &nbsp;
+                            <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce fichier ?')"  href="{{ URL::to('edit/delite-file/step3/'.$file->id) }}"><i class="fa fa-trash"></i></a>
                           </td>
                       </tr>
                     @endforeach
