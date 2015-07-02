@@ -63,6 +63,8 @@ class CandidatsController extends BaseController
             $enterprise->creation_date = Input::get('creation_date');
             if(Input::get('member_of_group') != null && Input::get('member_of_group') != '')
               $enterprise->member_of_group = Input::get('member_of_group');
+            else
+              $enterprise->member_of_group == 'non';
             $enterprise->postal_address = Input::get('postal_address');
             $enterprise->phone = Input::get('phone');
             if(Input::get('telecopie') != null && Input::get('telecopie') != '')

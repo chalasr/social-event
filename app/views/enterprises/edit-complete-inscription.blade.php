@@ -85,7 +85,7 @@
         </div>
         <div class="form-group">
           {{Form::label('have-group', 'Votre entreprise appartient-elle à un groupe ?')}}
-          {{Form::text('member_of_group', $enterprise->member_of_group, array('class'=>'form-control'))}}
+          {{Form::text('member_of_group', $enterprise->member_of_group != null ? $enterprise->member_of_group : 'non', array('class'=>'form-control'))}}
         </div>
         <div class="form-group">
           {{Form::label('postal_address', 'Adresse postale complète :', array('class' => 'control-label'))}}

@@ -27,8 +27,14 @@ class Survey extends Eloquent {
 		'enterprise_id',
 	];
 
-	public static $rules = array(
-  );
+	public static $rules = [
+		'enterprise_activity' => 'required',
+		'project_origin' => 'required',
+		'innovative_arguments' => 'required',
+		'wanted_impact' => 'required',
+		'product_informations' => 'required',
+		'project_results' => 'required',
+	];
 	/**
 	 * The database table used by the model.
 	 *
