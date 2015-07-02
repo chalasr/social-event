@@ -69,7 +69,7 @@
         </div>
         <hr>
           <div class="note note-success">
-            Afin de finaliser votre candidature, vous merci de remplir le formulaire ci-dessous.<br>
+            Afin de finaliser votre candidature, merci de remplir le formulaire ci-dessous.<br>
             Vous avez la possibilité, pour chaque étape déjà validée, de revenir sur vos réponses en vous servant du menu ci-dessus.<br>
             Une fois une étape validée vous avez la possibilité de quitter l'application et de revenir plus tard pour finaliser votre candidature.<br>
           </div>

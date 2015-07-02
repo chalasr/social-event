@@ -102,12 +102,12 @@
                       <td>{{ $survey->project_results }}</td>
                     </tr>
                     <tr>
-                      <td>Soutenu par :</td>
-                      <td>{{ $survey->project_partners }}</td>
+                      <td>Soutien extérieur :</td>
+                      <td>{{ $survey->project_partners != null ? $survey->project_partners : 'Non' }}</td>
                     </tr>
                     <tr>
                       <td>Récompenses :</td>
-                      <td>{{ $survey->project_rewards }}</td>
+                      <td>{{ $survey->project_rewards != null ? $survey->project_rewards : 'Non'  }}</td>
                     </tr>
                     <tr>
                       <td></td>
@@ -181,15 +181,15 @@
 
                     <tr>
                       <td>Effectif recherche interne :</td>
-                      <td>{{ $enterprise->internal_collaborators }}</td>
+                      <td>{{ $enterprise->internal_collaborators != null ? $enterprise->internal_collaborators : 'Non'  }}</td>
                     </tr>
                     <tr>
                       <td>Prestataires extérieurs :</td>
-                      <td>{{ $enterprise->external_collaborators_type }}</td>
+                      <td>{{ $enterprise->external_collaborators_type != null ? $enterprise->external_collaborators_type : 'Non' }}</td>
                     </tr>
                     <tr>
                       <td>Brevets déposés :</td>
-                      <td>{{ $enterprise->project_certificates }}</td>
+                      <td>{{ $enterprise->project_certificates != null ? $enterprise->project_certificates : 'Non' }}</td>
                     </tr>
                     <tr>
                       <td></td>
@@ -218,7 +218,7 @@
                          <td><a href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}">Lien</a></td>
                       </tr>
                         @endforeach
-                      @endif  
+                      @endif
                    </tbody>
                 </table>
                 <br><br>

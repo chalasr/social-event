@@ -46,6 +46,9 @@ class UsersController extends BaseController
     public function postSignin()
     {
         if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
+            if(Auth::user()->role_id == 3)
+                return Redirect::to('/')->with('message', 'Vous êtes connecté !');
+
             return Redirect::to('/register/complete')->with('message', 'Vous êtes connecté !');
         } else {
             return Redirect::to('/register')
