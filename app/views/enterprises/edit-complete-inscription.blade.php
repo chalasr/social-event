@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -88,8 +88,22 @@
           {{Form::text('member_of_group', $enterprise->member_of_group != null ? $enterprise->member_of_group : 'Non', array('class'=>'form-control'))}}
         </div>
         <div class="form-group">
-          {{Form::label('postal_address', 'Adresse postale complète :', array('class' => 'control-label'))}}
+          {{Form::label('postal_address', 'Adresse :', array('class' => 'control-label'))}}
           {{Form::text('postal_address', $enterprise->postal_address, array('class'=>'form-control'))}}
+        </div>
+        <div class="form-group">
+          {{Form::label('address_complement', 'Complément :', array('class' => 'control-label'))}}
+          {{Form::text('address_complement', $enterprise->address_complement, array('class'=>'form-control', 'placeholder' => 'Facultatif'))}}
+        </div>
+        <div class="flex">
+          <div class="form-group">
+            {{Form::label('postal_code', 'Code postal :', array('class' => 'control-label'))}}
+            {{Form::text('postal_code', $enterprise->postal_code, array('class'=>' form-control'))}}
+          </div>
+          <div class="right-label-flex form-group">
+            {{Form::label('city', 'Ville :', array('class' => 'control-label'))}}
+            {{Form::text('city', $enterprise->city, array('class'=>' form-control')) }}
+          </div>
         </div>
         <div class="flex">
           <div class="form-group">
@@ -104,11 +118,20 @@
         <hr>
         <h4 class="text-center"><b>Informations concernant le dirigeant de l'entreprise</b></h4>
         <hr>
-        <div class="form-group">
-          {{Form::label('leader_name', 'Nom et fonction :', array('class' => 'control-label'))}}
-          {{Form::text('leader_name', $enterprise->leader_name, array('class'=>'form-control'))}}
+        <div class="flex">
+          <div class="form-group">
+            {{Form::label('leader_name', 'Nom :', array('class' => 'control-label'))}}
+            {{Form::text('leader_name', $enterprise->leader_name, array('class'=>'form-control'))}}
+          </div>
+          <div class="right-label-flex form-group">
+            {{Form::label('leader_firstname', 'Prénom :', array('class' => 'control-label'))}}
+            {{Form::text('leader_firstname', $enterprise->leader_firstname, array('class'=>'form-control'))}}
+          </div>
+          <div class="right-label-flex form-group">
+            {{Form::label('leader_position', 'Fonction :', array('class' => 'control-label'))}}
+            {{Form::text('leader_position', $enterprise->leader_position, array('class'=>'form-control'))}}
+          </div>
         </div>
-
         <div class="form-group">
           {{Form::label('leader_phone', 'Téléphone :', array('class' => 'control-label'))}}
           {{Form::text('leader_phone', $enterprise->leader_phone, array('class'=>'form-control'))}}
@@ -121,9 +144,19 @@
         <hr>
         <h4 class="text-center"><b>Personne en charge du dossier de candidature</b></h4>
         <hr>
-        <div class="form-group">
-          {{Form::label('candidate_informations', 'Nom et fonction :', array('class' => 'control-label'))}}
-          {{Form::text('candidate_informations', $enterprise->candidate_informations, array('class'=>'form-control'))}}
+        <div class="flex">
+          <div class="form-group">
+            {{Form::label('candidate_name', 'Nom :', array('class' => 'control-label'))}}
+            {{Form::text('candidate_name', $enterprise->candidate_name, array('class'=>'form-control'))}}
+          </div>
+          <div class="right-label-flex form-group">
+            {{Form::label('candidate_firstname', 'Prénom :', array('class' => 'control-label'))}}
+            {{Form::text('candidate_firstname', $enterprise->candidate_firstname, array('class'=>'form-control'))}}
+          </div>
+          <div class="right-label-flex form-group">
+            {{Form::label('candidate_informations', 'Fonction :', array('class' => 'control-label'))}}
+            {{Form::text('candidate_informations', $enterprise->candidate_informations, array('class'=>'form-control'))}}
+          </div>
         </div>
         <div class="form-group">
             {{Form::label('candidate_phone', 'Téléphone :', array('class' => 'control-label'))}}
