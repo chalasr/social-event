@@ -13,7 +13,7 @@ use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 
-class CandidatsController extends BaseController implements UserInterface, RemindableInterface
+class CandidatsController extends BaseController
 {
     private $_api_context;
 

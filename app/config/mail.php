@@ -1,13 +1,13 @@
-<?php 
+<?php
 
 return array(
     'driver' => 'smtp',
     'host' => 'smtp.gmail.com',
     'port' => 465,
-    'from' => array('address' => 'skylaxdev@gmail.com', 'name' => 'Skylaxdev'),
+    'from' => array('address' => 'robin.chalas@gmail.com', 'name' => 'Robin Chalas'),
     'encryption' => 'ssl',
-    'username' => 'skylaxdev@gmail.com',
-    'password' => 'lolilol69',
+    'username' => 'robin.chalas@gmail.com',
+    'password' => 'PASSWORD',
     'sendmail' => '/usr/sbin/sendmail -bs',
     'pretend' => false,
 );
