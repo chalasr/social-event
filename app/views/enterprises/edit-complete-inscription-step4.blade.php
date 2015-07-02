@@ -139,20 +139,20 @@
         <br>
         <div class="form-group" >
           {{Form::label('internal_collaborators', 'Par combien de personnes ?')}}
-          {{ Form::text('internal_collaborators', $enterprise->internal_collaborators, array('class' => 'form-control', 'checked' => 'true'))}}
+          {{ Form::text('internal_collaborators', $enterprise->internal_collaborators != null ? $enterprise->internal_collaborators : 'Non', array('class' => 'form-control', 'checked' => 'true'))}}
         </div>
         <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{Form::label('have_external_search', ' Avec l’aide de prestataires extérieurs ?')}}
         <br>
         <div class="form-group">
           {{Form::label('external_collaborators_type', 'Lesquels ?', array('class' => 'control-label'))}}
-          {{ Form::text('external_collaborators_type', $enterprise->external_collaborators_type, array('class' => 'form-control'))}}
+          {{ Form::text('external_collaborators_type', $enterprise->external_collaborators_type != null ? $enterprise->external_collaborators_type : 'Non', array('class' => 'form-control'))}}
         </div>
         <br>
         <h4><b>Déposez-vous des brevets, marques, dessins ou modèles ?</b></h4>
         <br>
         <div class="form-group">
           {{Form::label('project_certificates', 'Précisez le nombre de brevets, marques ou dessins et modèles déposés et pour quel type de produits ou services :')}}
-          {{ Form::text('project_certificates', $enterprise->project_certificates, array('class' => 'form-control'))}}
+          {{ Form::text('project_certificates', $enterprise->project_certificates != null ? $enterprise->project_certificates : 'Non', array('class' => 'form-control'))}}
         </div>
         <div class="submitLarge">
         {{ Form::submit('Finaliser mon inscription', ['class' => 'btn btn-primary btn-block']) }}

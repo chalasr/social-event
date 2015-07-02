@@ -63,8 +63,6 @@ class CandidatsController extends BaseController
             $enterprise->creation_date = Input::get('creation_date');
             if(Input::get('member_of_group') != null && Input::get('member_of_group') != '')
               $enterprise->member_of_group = Input::get('member_of_group');
-            else
-              $enterprise->member_of_group == 'non';
             $enterprise->postal_address = Input::get('postal_address');
             $enterprise->phone = Input::get('phone');
             if(Input::get('telecopie') != null && Input::get('telecopie') != '')
@@ -161,6 +159,9 @@ class CandidatsController extends BaseController
           return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce formulaire');
         }
         $countSelection = count(Input::all());
+        if($countSelection < 2){
+            return Redirect::to('register/complete/step2')->with('error', 'Vous devez sélectionner une catégorie au minimum');
+        }
         if($countSelection > 3){
             return Redirect::to('register/complete/step2')->with('error', 'Vous pouvez sélectionner deux catégories au maximum');
         }
@@ -386,9 +387,9 @@ class CandidatsController extends BaseController
             $user->enterprise()->save($enterprise);
 
 
-            return Redirect::to('/register/complete/step4');
+            return Redirect::to('/register/edit-complete/step3')->with('message', 'Modifications prises en compte avec succès');
         } else {
-            return Redirect::to('register/complete/step3')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('register/edit-complete/step3')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
 
@@ -440,23 +441,18 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
 
-        $lightRules = ['internal_collaborators' => 'numeric'];
-        $lightValidator = Validator::make(Input::all(), $lightRules);
-        if ($lightValidator->passes()) {
-            if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != ''){
-                $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
-            }
-            if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != ''){
-                $enterprise->project_certificates = Input::get('project_certificates');
-            }
-            if(Input::get('internal_collaborators') != null &&  Input::get('internal_collaborators') != ''){
-                $enterprise->internal_collaborators = Input::get('internal_collaborators');
-            }
-            $enterprise->registration_state = 'step5';
-            $user->enterprise()->save($enterprise);
-        }else{
-            return Redirect::to('register/complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($lightValidator)->withInput();
+        if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != ''){
+            $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
         }
+        if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != ''){
+            $enterprise->project_certificates = Input::get('project_certificates');
+        }
+        if(Input::get('internal_collaborators') != null &&  Input::get('internal_collaborators') != ''){
+            $enterprise->internal_collaborators = Input::get('internal_collaborators');
+        }
+        $enterprise->registration_state = 'step5';
+        $user->enterprise()->save($enterprise);
+
         $validator = Validator::make(Input::all(), Activity::$rules);
         if ($validator->passes()) {
             $activity = new Activity();
@@ -478,6 +474,7 @@ class CandidatsController extends BaseController
             $activity->enterprise_id = $enterprise->id;
             $activity->save();
             $activity->enterprise()->save($enterprise);
+
             return Redirect::to('/register/complete/step5');
         } else {
             return Redirect::to('register/complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
@@ -511,23 +508,17 @@ class CandidatsController extends BaseController
 
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
-        $lightRules = ['internal_collaborators' => 'numeric'];
-        $lightValidator = Validator::make(Input::all(), $lightRules);
-        if ($lightValidator->passes()) {
-            if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != ''){
-                $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
-            }
-            if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != ''){
-                $enterprise->project_certificates = Input::get('project_certificates');
-            }
-            if(Input::get('internal_collaborators') != null &&  Input::get('internal_collaborators') != ''){
-                $enterprise->internal_collaborators = Input::get('internal_collaborators');
-            }
-            $enterprise->registration_state = 'step5';
-            $user->enterprise()->save($enterprise);
-        }else{
-            return Redirect::to('register/complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($lightValidator)->withInput();
+        if(Input::get('external_collaborators_type') != null && Input::get('external_collaborators_type') != ''){
+            $enterprise->external_collaborators_type = Input::get('external_collaborators_type');
         }
+        if(Input::get('project_certificates') != null &&  Input::get('project_certificates') != ''){
+            $enterprise->project_certificates = Input::get('project_certificates');
+        }
+        if(Input::get('internal_collaborators') != null &&  Input::get('internal_collaborators') != ''){
+            $enterprise->internal_collaborators = Input::get('internal_collaborators');
+        }
+        $enterprise->registration_state = 'step5';
+        $user->enterprise()->save($enterprise);
 
         $validator = Validator::make(Input::all(), Activity::$rules);
         if ($validator->passes()) {
@@ -552,9 +543,10 @@ class CandidatsController extends BaseController
             $activity->enterprise_id = $enterprise->id;
             $activity->save();
             $activity->enterprise()->save($enterprise);
+
             return Redirect::to('/register/complete/step5');
         } else {
-            return Redirect::to('register/complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('register/edit-complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
 

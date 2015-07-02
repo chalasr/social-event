@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-  setTimeout("$('.alert-success').slideToggle(500);",4000 );
-  setTimeout("$('.alert-danger').slideToggle(500);",4000 );
+  setTimeout("$('.alert-success').slideToggle(500);",6000 );
+  setTimeout("$('.alert-danger').slideToggle(500);",6000 );
 
   $('#input_project_partners').hide();
   $('input[name=have_partners]').change(function(){

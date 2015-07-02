@@ -95,11 +95,11 @@
           <div class="form-group">
             {{Form::label('have_partners', 'Votre innovation est-elle soutenue par des organismes ou des institutions ?', array('class' => 'control-label'))}}
             {{Form::label('project_partners', 'Lesquels ?', array('class' => 'control-label'))}}
-            {{Form::text('project_partners', $survey->project_partners, array('class'=>'form-control'))}}
+            {{Form::text('project_partners', $survey->project_partners != null ? $survey->project_partners : 'Non', array('class'=>'form-control'))}}
           </div>
           <div class="form-group">
             {{Form::label('project_rewards', 'Votre entreprise a-t-elle été déjà récompensée pour cette innovation ou pour d’autres innovations ? Par quel organisme ?', array('class' => 'control-label'))}}
-            {{Form::text('project_rewards', $survey->project_rewards, array('class'=>'form-control'))}}
+            {{Form::text('project_rewards', $survey->project_rewards != null ? $survey->project_rewards : 'Non', array('class'=>'form-control'))}}
           </div>
           <div class="form-group">
             {{ Form::label('files[]', 'N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.')}}
