@@ -12,7 +12,7 @@
   </div>
   @endif
   <div class="clearfix"></div>
-  <div class="col-md-6">
+  <div class="col-md-8 col-md-offset-2">
     <div class="portlet box blue">
       <div class="portlet-title">
         <h3>Demande de changement de mot de passe</h3>

@@ -73,8 +73,11 @@ class RemindersController extends Controller {
 				return Redirect::back()->with('error', Lang::get($response));
 
 			case Password::PASSWORD_RESET:
-
-				return Redirect::to('/');
+			if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
+					return Redirect::to('/register/complete');
+			}else{
+					return Redirect::to('/');
+			}
 		}
 	}
 
