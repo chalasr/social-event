@@ -7,7 +7,7 @@ return array(
     'from' => array('address' => 'robin.chalas@gmail.com', 'name' => 'Robin Chalas'),
     'encryption' => 'ssl',
     'username' => 'robin.chalas@gmail.com',
-    'password' => 'PASSWORD',
+    'password' => '03050712',
     'sendmail' => '/usr/sbin/sendmail -bs',
-    'pretend' => false,
+    'pretend' => false,""
 );
