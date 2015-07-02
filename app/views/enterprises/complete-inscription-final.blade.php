@@ -33,7 +33,7 @@
 							<span class="number">
 							2 </span>
 							<span class="desc">
-							<i class="fa fa-check"></i> Participation </span>
+							<i class="fa fa-check"></i> Catégories </span>
 							</a>
 						</li>
 						<li class="done">
@@ -41,7 +41,7 @@
 							<span class="number">
 							3 </span>
 							<span class="desc">
-							<i class="fa fa-check"></i> Entreprise </span>
+							<i class="fa fa-check"></i> Innovation </span>
 							</a>
 						</li>
 						<li class="done">
@@ -49,7 +49,7 @@
 							<span class="number">
 							4 </span>
 							<span class="desc">
-							<i class="fa fa-check"></i> Activité </span>
+							<i class="fa fa-check"></i> Chiffres </span>
 							</a>
 						</li>
 						<li class="done">
@@ -77,13 +77,13 @@
 				<div class="row margin-bottom-40">
 						<div class="col-md-6">
 							<div class="pricing hover-effect">
-									<h3>Payment par chèque<span>
+									<h3>paiement par chèque<span>
 									</span>
 									</h3>
 									<h4>
 									<span>
 										À l'ordre de IDM Rhône-Alpes<br>
-										Merci de préciser le nom de l'entreprise candidate au dos du chèque, s'il est différent du nom de la structure débitrice. Merci d'envoyer votre chèque à l'adresse suivante :</span>
+										Merci de préciser le nom de l'Innovation candidate au dos du chèque, s'il est différent du nom de la structure débitrice. Merci d'envoyer votre chèque à l'adresse suivante :</span>
 									</h4>
 								<div class="well">
 									<h4>Bref Rhône-Alpes</h4>

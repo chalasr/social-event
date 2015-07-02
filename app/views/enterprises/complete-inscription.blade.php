@@ -28,7 +28,7 @@
             <span class="number">
             2 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Participation </span>
+            <i class="fa fa-check"></i> Catégories </span>
             </a>
           </li>
           <li>
@@ -36,7 +36,7 @@
             <span class="number">
             3 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Entreprise </span>
+            <i class="fa fa-check"></i> Innovation </span>
             </a>
           </li>
           <li>
@@ -44,7 +44,7 @@
             <span class="number">
             4 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Activité </span>
+            <i class="fa fa-check"></i> Chiffres </span>
             </a>
           </li>
           <li>

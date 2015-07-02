@@ -28,7 +28,7 @@
             <span class="number">
             2 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Participation </span>
+            <i class="fa fa-check"></i> Catégories </span>
             </a>
           </li>
           <li class="done">
@@ -36,7 +36,7 @@
             <span class="number">
             3 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Entreprise </span>
+            <i class="fa fa-check"></i> Innovation </span>
             </a>
           </li>
           <li class="active">
@@ -44,7 +44,7 @@
             <span class="number">
             4 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Activité </span>
+            <i class="fa fa-check"></i> Chiffres </span>
             </a>
           </li>
           <li>
@@ -109,7 +109,7 @@
                 <tr>
                    <th>Année</th>
                    <th>Montant R&D (en % du C.A.)</th>
-                   <th>Moyens humains</th>
+                   <th>Éffectif R&D</th>
                 </tr>
              </thead>
              <tbody>
@@ -184,7 +184,7 @@
           </div>
         </div>
       <div class="submitLarge">
-      {{ Form::submit('Passer au payment', ['class' => 'btn btn-primary btn-block']) }}
+      {{ Form::submit('Passer au paiement', ['class' => 'btn btn-primary btn-block']) }}
       </div>
       </div>
       {{ Form::close() }}

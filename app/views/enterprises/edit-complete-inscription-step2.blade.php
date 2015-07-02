@@ -12,7 +12,7 @@
     </div>
   @endif
   <div class="form-wizard">
-  <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Participation</span></h2>
+  <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Catégories</span></h2>
         <ul class="nav nav-pills nav-justified steps">
           <li class="done">
             <a href="{{ URL::to('register/edit-complete') }}" class="step" >
@@ -27,7 +27,7 @@
             <span class="number">
             2 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Participation </span>
+            <i class="fa fa-check"></i> Catégories </span>
             </a>
           </li>
           <li>
@@ -35,7 +35,7 @@
             <span class="number">
             3 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Entreprise </span>
+            <i class="fa fa-check"></i> Innovation </span>
             </a>
           </li>
           <li>
@@ -43,7 +43,7 @@
             <span class="number">
             4 </span>
             <span class="desc">
-            <i class="fa fa-check"></i> Activité </span>
+            <i class="fa fa-check"></i> Chiffres </span>
             </a>
           </li>
           <li>
@@ -90,7 +90,7 @@
                       <tr>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
-                        <td><a class="btn btn-danger" href="{{ URL::to('edit/complete-register/step2/remove-participation/'.$category->id)}}">Supprimer</a></td>
+                        <td><a class="btn btn-danger" href="{{ URL::to('edit/complete-register/step2/remove-Catégories/'.$category->id)}}">Supprimer</a></td>
                       </tr>
                       @endforeach
                     </tbody>
@@ -113,7 +113,7 @@
                       <tr>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
-                        <td><a class="btn btn-info" href="{{ URL::to('edit/complete-register/step2/add-participation/' .$category->id)}}">Ajouter</a></td>
+                        <td><a class="btn btn-info" href="{{ URL::to('edit/complete-register/step2/add-Catégories/' .$category->id)}}">Ajouter</a></td>
                       </tr>
                       @endforeach
                     </tbody>
