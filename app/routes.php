@@ -46,6 +46,10 @@ Route::get('register', array('uses' => 'UsersController@getRegister', 'as' => 'r
 Route::get('register/complete', ['uses' => 'CandidatsController@getCompleteRegistration']);
 Route::post('complete-register', ['uses' => 'CandidatsController@storeCompleteRegistration']);
 
+Route::get('register/password/remind', ['uses' => 'RemindersController@getRemind']);
+Route::post('register/password/reset', ['uses' => 'RemindersController@postRemind']);
+
+
 Route::get('register/edit-complete', 'CandidatsController@editCompleteRegistration');
 Route::patch('edit/complete-register','CandidatsController@updateCompleteRegistration');
 
