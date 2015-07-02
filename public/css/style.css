@@ -580,6 +580,13 @@ margin-top: 100px;
     margin-left: -250px;
     margin-top: -280px;
 }
+.btnrsz
+{
+    height: 87px;
+    width: 180px;
+    margin-left: -250px;
+    margin-top: -220px;
+}
 @media screen and (max-width: 1210px) {
     .banner
     {
@@ -591,13 +598,12 @@ margin-top: 100px;
         max-height: 800px;
         max-width: 800px;
     }
-    .button1
+    .btnrsz
     {
-        height: 40px;
-        width: 170px;
-        line-height: 2.5;
-        margin-left: -230px;
-        margin-top: -240px;
+        height: 87px;
+        width: 160px;
+        margin-left: -220px;
+        margin-top: -164px;
     }
 }
 @media screen and (max-width: 1068px) {
@@ -618,6 +624,14 @@ margin-top: 100px;
         margin-left: -210px;
         margin-top: -200px;
     }
+        .btnrsz
+    {
+        height: 87px;
+        width: 160px;
+        margin-left: -210px;
+        margin-top: -154px;
+    }
+}
 }
 @media screen and (max-width: 730px) {
     .banner
@@ -654,8 +668,17 @@ margin-top: 100px;
     {
         height: 40px;
         width: 150px;
-        margin-left: -170px;
-        margin-top: -120px;
+        margin-left: -100px;
+        margin-top: -60px;
+    }
+    .btnrsz
+    {
+        font-size: 10px !important;
+        height: 60px;
+        width: 110px;
+        margin-left: 295px;
+        margin-top: -600px;
+
     }
 }
 @media screen and (max-width: 530px) {
@@ -676,6 +699,16 @@ margin-top: 100px;
         margin-left: -120px;
         margin-top: -90px;
     }
+    .btnrsz
+    {
+        font-size: 10px !important;
+        height: 60px;
+        width: 110px;
+        margin-left: 250px;
+        margin-top: -500px;
+
+    }
+
 }
 
 @media screen and (min-width: 1000px) {
