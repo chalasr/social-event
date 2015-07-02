@@ -40,30 +40,5 @@
 		<div class="text-center">
 			<img src="/assets/admin/pages/img/logos.jpg" class="footerbanner">
         </div>
-    <footer>
-        <p>Bref R-A Innovation</p>
-    </footer>
-
-    <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery-migrate.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery.cokie.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/scripts/metronic.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('js/script.js') }}" type="text/javascript"></script>
-    <script>
-    jQuery(document).ready(function() {
-       Metronic.init(); // init metronic core componets
-       Layout.init(); // init layout
-       QuickSidebar.init(); // init quick sidebar
-    });
-    </script>
     </body>
 </html>
