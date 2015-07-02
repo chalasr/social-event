@@ -99,6 +99,9 @@
                         Veuillez indiquer votre mot de passe </span>
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-7"><span class="help-block"><a href="{{ URL::to('/password/remind/') }}">Mot de passe oublié</a></span></label>
+                    </div>
                   </div>
                 </div>
               </div>
