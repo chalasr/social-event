@@ -169,7 +169,7 @@
          var doc = new jsPDF();
 
          var specialElementHandlers = {
-           '#pdf': function(element, renderer){
+           '.container': function(element, renderer){
               return true;
             }
          };

@@ -25,16 +25,14 @@ class ManageCandidatesController extends BaseController
     {
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
         $candidate = User::find($id);
-        $userEnterprise = $candidate->enterprise()->first();
-        $files = $userEnterprise->files()->get();
+        $enterprise = $candidate->enterprise()->first();
         $survey = false;
         $activity = false;
-        $enterprise = $candidate->enterprise()->first();
         if(!empty($enterprise->survey_id))
           $survey = Survey::findOrFail($enterprise->survey_id);
         if(!empty($enterprise->survey_id))
           $activity = Activity::find($enterprise->activity_id);
-        return View::make('admin/candidates/show', compact('candidate', 'files', 'enterprise', 'survey', 'activity'));
+        return View::make('admin/candidates/show', compact('candidate', 'enterprise', 'survey', 'activity'));
     }
 
     public function getDownload($id)
@@ -44,7 +42,7 @@ class ManageCandidatesController extends BaseController
         $fileName = $file->name;
         $candidate = User::where('enterprise_id', $file->enterprise_id)->first();
         if(file_exists($filePath.DIRECTORY_SEPARATOR.$fileName)){
-            return Response::download($filePath.DIRECTORY_SEPARATOR.$fileName);
+           return Response::download($filePath.DIRECTORY_SEPARATOR.$fileName);
         }else{
           return Redirect::to('admin/candidates/'.$candidate->id)->with('error', 'Le fichier demandé n\'existe plus');
         }

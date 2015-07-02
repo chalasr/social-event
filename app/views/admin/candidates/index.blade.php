@@ -25,6 +25,9 @@
 			        		Catégories
 			        	</th>
 			        	<th>
+			        		Paiement
+			        	</th>
+			        	<th>
 			        		Actions
 			        	</th>
 		      		</tr>
@@ -39,6 +42,19 @@
 								@foreach ($candidate->categories()->get() as $category)
 									{{ $category->name }} ,
 								@endforeach
+							</td>
+							<td>
+									@if($candidate->enterprise()->first())
+											@if($candidate->enterprise()->first()->is_pay == 1)
+												Paypal
+											@elseif($candidate->enterprise()->first()->is_pay == 2)
+												Chèque
+											@else
+												Non
+											@endif
+									@else
+											Non
+									@endif
 							</td>
 							<td>
 								<div class="flex">

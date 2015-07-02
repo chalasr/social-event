@@ -7,7 +7,6 @@
         <div class="panel panel-default">
           <div class=" panel-heading">
             <h3 class="panel-title">{{ $candidate->email }} - {{ date('d/m/Y', strtotime($candidate->created_at)) }}<a class="floatRight btn btn-xs btn-default" id="pdf" href="#"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
-
           </div>
           <div class="panel-body">
             <div class="row">
@@ -212,12 +211,14 @@
                       </tr>
                    </thead>
                    <tbody>
-                        @foreach($files as $file)
+                     @if($enterprise)
+                        @foreach($enterprise->files()->get() as $file)
                       <tr>
                          <td>{{ $file->name }}</td>
                          <td><a href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}">Lien</a></td>
                       </tr>
                         @endforeach
+                      @endif  
                    </tbody>
                 </table>
                 <br><br>

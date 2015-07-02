@@ -15,7 +15,7 @@
     {{ Form::open(array('url'=>'complete-register/step4','method' => 'post', 'class'=>'form-signup')) }}
       <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Votre entreprise en quelques chiffres</span></h2>
       <ul class="nav nav-pills nav-justified steps">
-          <li>
+          <li class="done">
             <a href="{{ URL::to('register/edit-complete') }}" class="step">
             <span class="number">
             1 </span>
@@ -23,7 +23,7 @@
             <i class="fa fa-check"></i> Identité </span>
             </a>
           </li>
-          <li>
+          <li class="done">
             <a href="{{ URL::to('register/edit-complete/step2') }}" class="step">
             <span class="number">
             2 </span>
@@ -31,7 +31,7 @@
             <i class="fa fa-check"></i> Participation </span>
             </a>
           </li>
-          <li>
+          <li class="done">
             <a href="{{ URL::to('register/edit-complete/step3') }}" class="step">
             <span class="number">
             3 </span>
@@ -68,7 +68,7 @@
           <div class="progress-bar progress-bar-success" style="width: 67.30%;"></div>
         </div>
         <div class="note note-success">
-          <h4>Bref s'engage à conserver ces confidentielles</h4>
+          <h4>Bref s'engage à conserver ces données <b>confidentielles</b> .</h4>
         </div>
       <div class="well">
           <table class="table">
@@ -183,12 +183,12 @@
             {{ Form::text('project_certificates', null, array('class' => 'form-control'))}}
           </div>
         </div>
-      </div>
       <div class="submitLarge">
-      {{ Form::submit('Finaliser mon inscription', ['class' => 'btn btn-primary btn-block']) }}
+      {{ Form::submit('Passer au payment', ['class' => 'btn btn-primary btn-block']) }}
+      </div>
       </div>
       {{ Form::close() }}
-    <div class="form-wizard">
+    </div>
 </div>
 
 @stop

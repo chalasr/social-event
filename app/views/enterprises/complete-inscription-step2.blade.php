@@ -14,7 +14,7 @@
   <div class="form-wizard">
   <h2 class="form-signup-heading">Votre candidature <span class="floatRight">Participation</span></h2>
         <ul class="nav nav-pills nav-justified steps">
-          <li>
+          <li class="done">
             <a href="{{ URL::to('register/edit-complete') }}" class="step">
             <span class="number">
             1 </span>

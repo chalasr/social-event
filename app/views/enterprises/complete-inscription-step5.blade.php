@@ -20,7 +20,7 @@
 				</div>
 			<div class="clearfix"></div>
 			<ul class="nav nav-pills nav-justified steps">
-						<li>
+						<li class="done">
 							<a href="{{ URL::to('register/edit-complete') }}" class="step">
 							<span class="number">
 							1 </span>
@@ -28,7 +28,7 @@
 							<i class="fa fa-check"></i> Identité </span>
 							</a>
 						</li>
-						<li>
+						<li class="done">
 							<a href="{{ URL::to('register/edit-complete/step2') }}" class="step">
 							<span class="number">
 							2 </span>
@@ -36,7 +36,7 @@
 							<i class="fa fa-check"></i> Participation </span>
 							</a>
 						</li>
-						<li>
+						<li class="done">
 							<a href="{{ URL::to('register/edit-complete/step3') }}" class="step">
 							<span class="number">
 							3 </span>
@@ -44,7 +44,7 @@
 							<i class="fa fa-check"></i> Entreprise </span>
 							</a>
 						</li>
-	          <li>
+	          <li class="done">
 	            <a href="{{ URL::to('register/edit-complete/step4') }}" class="step">
 	            <span class="number">
 	            4 </span>
@@ -61,7 +61,7 @@
 	            </a>
 	          </li>
 	          <li>
-	            <a href="#tab4" data-toggle="tab" class="step">
+	            <a class="step">
 	            <span class="number">
 	            6 </span>
 	            <span class="desc">
