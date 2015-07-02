@@ -29,7 +29,7 @@ class RemindersController extends Controller {
 				return Redirect::back()->with('error', Lang::get($response));
 
 			case Password::REMINDER_SENT:
-				return Redirect::back()->with('status', Lang::get($response));
+				return Redirect::to('/register')->with('message', 'Vous allez recevoir un e-mail vous permettant de changer votre mot de passe.');
 		}
 	}
 
@@ -73,6 +73,7 @@ class RemindersController extends Controller {
 				return Redirect::back()->with('error', Lang::get($response));
 
 			case Password::PASSWORD_RESET:
+
 				return Redirect::to('/');
 		}
 	}
