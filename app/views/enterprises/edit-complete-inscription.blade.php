@@ -67,6 +67,13 @@
         <div id="bar" class="progress progress-striped" role="progressbar">
           <div class="progress-bar progress-bar-success" style="width: 17%;"></div>
         </div>
+        <div class="note note-success">
+          Afin de participer aux Trophées Bref Rhône-Alpes de l'Innovation 2015, veuillez remplir le dossier ci-dessous.<br><br>
+          Vous avez la possibilité, après chaque étape déjà validée, de revenir en arrière en vous servant du menu ci-dessus.<br>
+          Une fois une étape terminée, vous pouvez quitter l'application et revenir plus tard pour finaliser votre candidature.<br>
+          En tant que candidat et pour rencontrer d'autres dirigeants et décideurs, vous serez invité aux cérémonies de remise des Trophées le 23 novembre à Grenoble et le 10 décembre à Lyon.<br><br>
+          Nous vous rappelons qu'un dossier clair et complet est un atout supplémentaire pour votre candidature, fortement apprécié par le jury!
+        </div>
         <hr>
         <div class="clearfix"></div>
         <h4 class="text-center"><b>Entreprise concernée</b></h4>
