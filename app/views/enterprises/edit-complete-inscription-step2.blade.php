@@ -90,7 +90,7 @@
                       <tr>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
-                        <td><a class="btn btn-danger" href="{{ URL::to('edit/complete-register/step2/remove-Catégories/'.$category->id)}}">Supprimer</a></td>
+                        <td><a class="btn btn-danger" href="{{ URL::to('edit/complete-register/step2/remove-participation/'.$category->id)}}">Supprimer</a></td>
                       </tr>
                       @endforeach
                     </tbody>
@@ -113,7 +113,7 @@
                       <tr>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
-                        <td><a class="btn btn-info" href="{{ URL::to('edit/complete-register/step2/add-Catégories/' .$category->id)}}">Ajouter</a></td>
+                        <td><a class="btn btn-info" href="{{ URL::to('edit/complete-register/step2/add-participation/' .$category->id)}}">Ajouter</a></td>
                       </tr>
                       @endforeach
                     </tbody>

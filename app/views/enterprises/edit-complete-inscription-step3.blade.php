@@ -120,7 +120,7 @@
                          <td>{{ $file->name }}</td>
                           <td>
                             <a class="btn btn-sm btn-info" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}"><i class="fa fa-eye"></i></a> &nbsp;
-                            <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce fichier ?')"  href="{{ URL::to('edit/delite-file/step3/'.$file->id) }}"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce fichier ?')"  href="{{ URL::to('edit/delete-file/step3/'.$file->id) }}"><i class="fa fa-trash"></i></a>
                           </td>
                       </tr>
                     @endforeach

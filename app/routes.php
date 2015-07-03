@@ -69,7 +69,7 @@ Route::get('register/complete/step3', ['uses' => 'CandidatsController@getComplet
 Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeCompleteRegistrationStep3']);
 
 Route::get('register/edit-complete/step3', 'CandidatsController@editCompleteRegistrationStep3');
-Route::get('edit/delite-file/step3/{id}','CandidatsController@getDeleteFile')->where('id', $id);
+Route::get('edit/delete-file/step3/{id}','CandidatsController@getDeleteFile')->where('id', $id);
 Route::patch('edit/complete-register/step3','CandidatsController@updateCompleteRegistrationStep3');
 
 Route::get('register/complete/step4', ['uses' => 'CandidatsController@getCompleteRegistrationStep4']);
