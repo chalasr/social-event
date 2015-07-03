@@ -210,13 +210,18 @@
     $(function () {
        'use strict';
        // Change this to the location of your server-side upload handler:
-       var url = '/api/basic'
+       var url = '{{ URL::to('upload') }}';
+       var deleteUrl = '/file/remove/';
        $('#fileupload').fileupload({
            url: url,
            dataType: 'json',
            done: function (e, data) {
                $.each(data.result.files, function (index, file) {
                    $('<p/>').text(file.name).appendTo('#files');
+                  /*
+                   $('<p/>').html('<a href="'+deleteUrl+file.id+'">Delete</a>').appendTo('#files'); 
+                  **/
+
                });
            },
            progressall: function (e, data) {

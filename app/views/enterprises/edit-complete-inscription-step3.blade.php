@@ -101,12 +101,10 @@
             {{Form::label('project_rewards', 'Votre entreprise a-t-elle été déjà récompensée pour cette innovation ou pour d’autres innovations ? Par quel organisme ?', array('class' => 'control-label'))}}
             {{Form::text('project_rewards', $survey->project_rewards != null ? $survey->project_rewards : 'Non', array('class'=>'form-control'))}}
           </div>
-          <div class="form-group">
-            {{ Form::label('files[]', 'N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.')}}
-            {{ Form::file('files[]', array('multiple'=>true, 'class' => 'form-control')) }}
-          </div>
+
           <hr />
           <h5 class="text-left"><b>Pièce(s) jointe(s) à votre dossier</b></h5>
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Upload</button>
                 <table class="table">
                    <thead>
                       <tr>
@@ -120,7 +118,7 @@
                          <td>{{ $file->name }}</td>
                           <td>
                             <a class="btn btn-sm btn-info" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}"><i class="fa fa-eye"></i></a> &nbsp;
-                            <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce fichier ?')"  href="{{ URL::to('edit/delite-file/step3/'.$file->id) }}"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce fichier ?')"  href="{{ URL::to('edit/delete-file/step3/'.$file->id) }}"><i class="fa fa-trash"></i></a>
                           </td>
                       </tr>
                     @endforeach
@@ -134,6 +132,33 @@
       	</div>
 
       {{ Form::close() }}
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Pièces jointes</h4>
+            </div>
+            <div class="modal-body">
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Sélectionnez vos fichiers</span>
+                    <input id="fileupload" type="file" name="files[]" multiple>
+                </span>
+                <br>
+                <br>
+                <div id="progress" class="progress">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+                <div id="files" class="files"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
     </div>
 </div>
 @stop

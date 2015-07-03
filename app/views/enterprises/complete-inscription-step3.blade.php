@@ -122,9 +122,13 @@
             {{Form::label('project_rewards', 'Par quel organisme ?', array('class' => 'control-label'))}}
             {{Form::text('project_rewards', null, array('class'=>'form-control'))}}
           </div>
+          <br>
           <div class="form-group">
-            {{ Form::label('files[]', 'N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.')}}
-            {{ Form::file('files[]', array('multiple'=>true, 'class' => 'form-control')) }}
+
+          <label class="control-label">
+            N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
+          </label><br>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers</button>
           </div>
           <br>
           <div class="submitLarge">
@@ -133,6 +137,34 @@
       	</div>
 
       {{ Form::close() }}
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Pièces jointes</h4>
+            </div>
+            <div class="modal-body">
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Sélectionnez vos fichiers</span>
+                    <input id="fileupload" type="file" name="files[]" multiple>
+                </span>
+                <br>
+                <br>
+                <div id="progress" class="progress">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+                <div id="files" class="files"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
     </div>
 </div>
 @stop

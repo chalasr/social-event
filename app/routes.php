@@ -46,13 +46,10 @@ Route::get('register', array('uses' => 'UsersController@getRegister', 'as' => 'r
 Route::get('register/complete', ['uses' => 'CandidatsController@getCompleteRegistration']);
 Route::post('complete-register', ['uses' => 'CandidatsController@storeCompleteRegistration']);
 
-Route::get('basic', function() {
-    return View::make('upload.basic');
-});
-
-
-Route::post('api/basic', ['uses' => 'CandidatsController@uploadFile']); 
-
+// UPLOAD
+// Route::get('basic', function() {
+//     return View::make('upload.basic');
+// });
 Route::controller('password', 'RemindersController');
 Route::get('register/edit-complete', 'CandidatsController@editCompleteRegistration');
 Route::patch('edit/complete-register','CandidatsController@updateCompleteRegistration');
@@ -69,7 +66,8 @@ Route::get('register/complete/step3', ['uses' => 'CandidatsController@getComplet
 Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeCompleteRegistrationStep3']);
 
 Route::get('register/edit-complete/step3', 'CandidatsController@editCompleteRegistrationStep3');
-Route::get('edit/delite-file/step3/{id}','CandidatsController@getDeleteFile')->where('id', $id);
+Route::get('edit/delete-file/step3/{id}','CandidatsController@getDeleteFile')->where('id', $id);
+Route::post('file/remove/{id}','CandidatsController@removeUploadedFile')->where('id', $id);
 Route::patch('edit/complete-register/step3','CandidatsController@updateCompleteRegistrationStep3');
 
 Route::get('register/complete/step4', ['uses' => 'CandidatsController@getCompleteRegistrationStep4']);
@@ -85,3 +83,5 @@ Route::post('complete-register/step5/check', ['uses' => 'CandidatsController@sto
 
 Route::get('register/complete/final', ['uses' => 'CandidatsController@getCompleteRegistrationFinal']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
+
+Route::post('upload', ['uses' => 'CandidatsController@uploadFile']);

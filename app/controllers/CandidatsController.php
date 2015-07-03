@@ -308,26 +308,10 @@ class CandidatsController extends BaseController
               $survey->project_rewards = Input::get('project_rewards');
             if(Input::get('project_partners') != null && Input::get('project_partners') != '')
               $survey->project_partners = Input::get('project_partners');
-            $files = Input::file('files');
-            if(count($files) >= 1 && !empty($files[0])){
-                foreach($files as $file){
-                    $rules = array('file' => 'required');
-                    $destinationPath = 'uploads/'.Auth::User()->id;
-                    $filename = $file->getClientOriginalName();
-                    $upload_success = $file->move(public_path($destinationPath), $filename);
-
-                    $file = new Upload;
-                    $file->name = $filename;
-                    $file->path = $destinationPath;
-                    $file->enterprise_id = $enterprise->id;
-                    $file->save();
-                }
-            }
             $survey->save();
             $survey->enterprise()->save($enterprise);
             $enterprise->registration_state = 'step4';
             $user->enterprise()->save($enterprise);
-
 
             return Redirect::to('/register/complete/step4');
         } else {
@@ -382,32 +366,12 @@ class CandidatsController extends BaseController
             $survey->project_results = Input::get('project_results');
             $survey->project_rewards = Input::get('project_rewards');
             $survey->project_partners = Input::get('project_partners');
-            $files = Input::file('files');
-
-            if(count($files) >= 1 && !empty($files[0])){
-                foreach($files as $file){
-                    $rules = array('file' => 'required');
-                    $destinationPath = 'uploads/'.Auth::User()->id;
-                    $filename = $file->getClientOriginalName();
-                    $upload_success = $file->move(public_path($destinationPath), $filename);
-
-                    $file = new Upload;
-                    $file->name = $filename;
-                    $file->path = $destinationPath;
-                    $file->enterprise_id = $enterprise->id;
-                    $file->save();
-                }
-            }
-            $survey->save();
-            $survey->enterprise()->save($enterprise);
-            $user->enterprise()->save($enterprise);
 
             $survey->save();
             $survey->enterprise()->save($enterprise);
             $user->enterprise()->save($enterprise);
 
-
-            return Redirect::to('/register/edit-complete/step3')->with('message', 'Modifications prises en compte avec succès');
+            return Redirect::to('/register/complete')->with('message', 'Modifications prises en compte avec succès');
         } else {
             return Redirect::to('register/edit-complete/step3')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
@@ -428,15 +392,24 @@ class CandidatsController extends BaseController
         if(count($files) >= 1 && !empty($files[0])){
             foreach ($files as $file) {
                 $filename = $file->getClientOriginalName();
+                $dbFiles = Upload::where('name', $filename)->where('enterprise_id', $enterprise->id);
                 $file->move($uploadPath, $filename);
 
-                $file = new Upload;
-                $file->name = $filename;
-                $file->path = $assetPath;
-                $file->enterprise_id = $enterprise->id;
-                $file->save();
+                if(!$dbFiles->count()){
+                  $file = new Upload;
+                  $file->name = $filename;
+                  $file->path = $assetPath;
+                  $file->enterprise_id = $enterprise->id;
+                  $file->save();
+                  $name = $filename;
+                  $id = $file->id;
 
-                $results[] = compact('filename');
+                  $results[] = compact('name', 'id');
+                }else {
+                  $name = $filename;
+                  $results[] = compact('name');
+                }
+
             }
         }
 
@@ -458,6 +431,21 @@ class CandidatsController extends BaseController
         }
         Upload::destroy($id);
         return Redirect::to('register/edit-complete/step3')->with('message', 'Le fichier a bien été supprimé');
+    }
+
+    public function removeUploadedFile($id)
+    {
+
+        $candidate = Auth::user()->id;
+        $file = Upload::findOrFail($id);
+        $filePath = public_path($file->path);
+        $fileName = $file->name;
+
+        if(file_exists($filePath.DIRECTORY_SEPARATOR.$fileName)){
+            File::delete($filePath.DIRECTORY_SEPARATOR.$fileName);
+        }
+        Upload::destroy($id);
+        return Response::json('success');
     }
 
     /**
@@ -599,7 +587,7 @@ class CandidatsController extends BaseController
 
             return Redirect::to('/register/complete/step5');
         } else {
-            return Redirect::to('register/edit-complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
+            return Redirect::to('register/complete/step4')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
         }
     }
 
