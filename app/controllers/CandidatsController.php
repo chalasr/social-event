@@ -402,6 +402,10 @@ class CandidatsController extends BaseController
             $survey->enterprise()->save($enterprise);
             $user->enterprise()->save($enterprise);
 
+            $survey->save();
+            $survey->enterprise()->save($enterprise);
+            $user->enterprise()->save($enterprise);
+
 
             return Redirect::to('/register/edit-complete/step3')->with('message', 'Modifications prises en compte avec succès');
         } else {
@@ -409,7 +413,40 @@ class CandidatsController extends BaseController
         }
     }
 
-    public function getDeleteFile($id){
+    public function uploadFile()
+    {
+        $assetPath = 'uploads/'.Auth::User()->id;
+        $uploadPath = public_path($assetPath);
+
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
+
+        $files = Input::file('files');
+
+        $results = array();
+
+        if(count($files) >= 1 && !empty($files[0])){
+            foreach ($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $file->move($uploadPath, $filename);
+
+                $file = new Upload;
+                $file->name = $filename;
+                $file->path = $assetPath;
+                $file->enterprise_id = $enterprise->id;
+                $file->save();
+
+                $results[] = compact('filename');
+            }
+        }
+
+        return array(
+            'files' => $results
+        );
+    }
+
+    public function getDeleteFile($id)
+    {
 
         $candidate = Auth::user()->id;
         $file = Upload::findOrFail($id);
