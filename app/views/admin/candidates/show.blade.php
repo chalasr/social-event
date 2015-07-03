@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                       <td>Adresse postale :</td>
-                      <td>{{ $enterprise->postal_address }}</td>
+                      <td>{{ $enterprise->postal_address.' '.$enterprise->address_complement }}</td>
                     </tr>
                     <tr>
                       <td>Téléphone :</td>
@@ -49,11 +49,27 @@
                       <td>{{ $enterprise->website }}</td>
                     </tr>
                     <tr>
-                      <td>Informations dirigeants :</td>
-                      <td>{{ $enterprise->leaders_informations }}</td>
+                      <td>Nom dirigeant :</td>
+                      <td>{{ $enterprise->leader_name }}</td>
                     </tr>
                     <tr>
-                      <td>Informations candidat :</td>
+                      <td>Prenom dirigeant :</td>
+                      <td>{{ $enterprise->leader_firstname }}</td>
+                    </tr>
+                    <tr>
+                      <td>Fonction dirigeant :</td>
+                      <td>{{ $enterprise->leader_position }}</td>
+                    </tr>
+                    <tr>
+                      <td>Nom candidat :</td>
+                      <td>{{ $enterprise->candidate_name }}</td>
+                    </tr>
+                    <tr>
+                      <td>Prenom candidat :</td>
+                      <td>{{ $enterprise->candidate_firstname }}</td>
+                    </tr>
+                    <tr>
+                      <td>Fonction candidat :</td>
                       <td>{{ $enterprise->candidate_informations }}</td>
                     </tr>
                     <tr>

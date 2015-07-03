@@ -524,7 +524,7 @@ margin-top: 100px;
 }
 
 .right-label-flex{
-    margin-left: 2%;
+    margin-left: 2% !important;
 }
 
 .flex{

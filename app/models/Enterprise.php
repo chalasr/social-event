@@ -25,14 +25,19 @@ class Enterprise extends Eloquent {
 		'juridical_status' => 'required',
 		'creation_date' => 'required',
 		'postal_address' => 'required',
+		'postal_code' => 'required',
+		'city' => 'required',
 		'phone' => 'required',
 		'leader_name' => 'required',
-		'leader_email' => 'required|email',
-		'leader_phone' => 'required',
+		'leader_firstname' => 'required',
+		'leader_position' => 'required',
+		'leader_email' => 'email',
 		'candidate_informations' => 'required',
 		'candidate_phone' => 'required',
 		'candidate_email' => 'required|email',
-  );
+		'candidate_firstname' => 'required',
+		'candidate_name' => 'required',
+	);
 	/**
 	 * The database table used by the model.
 	 *

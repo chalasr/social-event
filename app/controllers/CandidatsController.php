@@ -63,16 +63,26 @@ class CandidatsController extends BaseController
             $enterprise->creation_date = Input::get('creation_date');
             if(Input::get('member_of_group') != null && Input::get('member_of_group') != '')
               $enterprise->member_of_group = Input::get('member_of_group');
+            $enterprise->city = Input::get('city');
+            $enterprise->postal_code = Input::get('postal_code');
             $enterprise->postal_address = Input::get('postal_address');
+            if(Input::get('address_complement') != null && Input::get('address_complement') != '')
+            $enterprise->address_complement = Input::get('address_complement');
             $enterprise->phone = Input::get('phone');
-            if(Input::get('telecopie') != null && Input::get('telecopie') != '')
+            if(Input::get('telecopie') != null && Input::get('telecopie') != ''){
               $enterprise->telecopie = Input::get('telecopie');
+            }
             $enterprise->leader_name = Input::get('leader_name');
+            $enterprise->leader_firstname = Input::get('leader_firstname');
+            $enterprise->leader_position = Input::get('leader_position');
             $enterprise->leader_email = Input::get('leader_email');
             $enterprise->leader_phone = Input::get('leader_phone');
+            $enterprise->candidate_name = Input::get('candidate_name');
+            $enterprise->candidate_firstname = Input::get('candidate_firstname');
             $enterprise->candidate_informations = Input::get('candidate_informations');
             $enterprise->candidate_phone = Input::get('candidate_phone');
             $enterprise->candidate_email = Input::get('candidate_email');
+
             $enterprise->registration_state = 'step2';
             $user->enterprise()->save($enterprise);
             $user->enterprise_id = $enterprise->id;
@@ -116,14 +126,20 @@ class CandidatsController extends BaseController
             $enterprise->creation_date = Input::get('creation_date');
             if(Input::get('member_of_group') != null && Input::get('member_of_group') != '')
               $enterprise->member_of_group = Input::get('member_of_group');
+            $enterprise->city = Input::get('city');
+            $enterprise->postal_code = Input::get('postal_code');
             $enterprise->postal_address = Input::get('postal_address');
             $enterprise->phone = Input::get('phone');
             if(Input::get('telecopie') != null && Input::get('telecopie') != ''){
               $enterprise->telecopie = Input::get('telecopie');
             }
             $enterprise->leader_name = Input::get('leader_name');
+            $enterprise->leader_firstname = Input::get('leader_firstname');
+            $enterprise->leader_position = Input::get('leader_position');
             $enterprise->leader_email = Input::get('leader_email');
             $enterprise->leader_phone = Input::get('leader_phone');
+            $enterprise->candidate_name = Input::get('candidate_name');
+            $enterprise->candidate_firstname = Input::get('candidate_firstname');
             $enterprise->candidate_informations = Input::get('candidate_informations');
             $enterprise->candidate_phone = Input::get('candidate_phone');
             $enterprise->candidate_email = Input::get('candidate_email');
@@ -386,6 +402,10 @@ class CandidatsController extends BaseController
             $survey->enterprise()->save($enterprise);
             $user->enterprise()->save($enterprise);
 
+            $survey->save();
+            $survey->enterprise()->save($enterprise);
+            $user->enterprise()->save($enterprise);
+
 
             return Redirect::to('/register/edit-complete/step3')->with('message', 'Modifications prises en compte avec succès');
         } else {
@@ -393,7 +413,40 @@ class CandidatsController extends BaseController
         }
     }
 
-    public function getDeleteFile($id){
+    public function uploadFile()
+    {
+        $assetPath = 'uploads/'.Auth::User()->id;
+        $uploadPath = public_path($assetPath);
+
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
+
+        $files = Input::file('files');
+
+        $results = array();
+
+        if(count($files) >= 1 && !empty($files[0])){
+            foreach ($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $file->move($uploadPath, $filename);
+
+                $file = new Upload;
+                $file->name = $filename;
+                $file->path = $assetPath;
+                $file->enterprise_id = $enterprise->id;
+                $file->save();
+
+                $results[] = compact('filename');
+            }
+        }
+
+        return array(
+            'files' => $results
+        );
+    }
+
+    public function getDeleteFile($id)
+    {
 
         $candidate = Auth::user()->id;
         $file = Upload::findOrFail($id);
