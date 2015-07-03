@@ -11,8 +11,6 @@ class PrintController extends BaseController
             // fwrite($handle, $content);
             $pdf = PDF::loadHTML($content);
 
-            $pdf->save('candidat-'.$id.'.pdf');
-
             return $pdf->download('candidat-'.$id.'.pdf');
 
             // return 'test';

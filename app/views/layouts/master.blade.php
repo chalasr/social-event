@@ -219,7 +219,7 @@
                $.each(data.result.files, function (index, file) {
                    $('<p/>').text(file.name).appendTo('#files');
                   /*
-                   $('<p/>').html('<a href="'+deleteUrl+file.id+'">Delete</a>').appendTo('#files'); 
+                   $('<p/>').html('<a href="'+deleteUrl+file.id+'">Delete</a>').appendTo('#files');
                   **/
 
                });
