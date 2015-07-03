@@ -8,18 +8,18 @@
     <meta content="" name="author">
     <title>Trophées Bref R-A Innovation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ URL::asset('favicon.ico') }}" media="screen"  charset="utf-8">
-    <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/global/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/global/css/plugins-md.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
-    <link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="http://bref.dev5.sutunam.com/favicon.ico" media="screen"  charset="utf-8">
+    <link href="http://bref.dev5.sutunam.com/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all" rel="stylesheet" type="text/css"/>
+    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <link href="http://bref.dev5.sutunam.com/assets/global/css/plugins-md.css" rel="stylesheet" type="text/css"/>
+    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+    <link href="http://bref.dev5.sutunam.com/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="http://bref.dev5.sutunam.com/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="http://bref.dev5.sutunam.com/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
 
 
 </head>
@@ -31,7 +31,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="{{ URL::to('/') }}">
-                <img src="{{ URL::asset('assets/admin/pages/img/logo_R-A_Innovation.png') }}" alt="logo" class="logo-default breflogo">
+                <img src="http://bref.dev5.sutunam.com/assets/admin/pages/img/logo_R-A_Innovation.png" alt="logo" class="logo-default breflogo">
                 </a>
                 <div class="menu-toggler sidebar-toggler hide">
                 </div>
@@ -135,27 +135,27 @@
             </div>
         </div>
                     <div class="text-center">
-                    <img src="/assets/admin/pages/img/logos.jpg" class="footerbanner">
+                    <img src="http://bref.dev5.sutunam.com/assets/admin/pages/img/logos.jpg" class="footerbanner">
             </div>
     </div>
     <footer>
         <p>Bref R-A Innovation</p>
     </footer>
-    <script src="{{ URL::asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery-migrate.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/jquery.cokie.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/global/scripts/metronic.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('assets/admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('js/script.js') }}" type="text/javascript"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/jspdf.min.js') }}"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+    <script src="http://bref.dev5.sutunam.com/js/script.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://bref.dev5.sutunam.com/js/jspdf.min.js"></script>
 
     <script>
       $(document).ready(function() {

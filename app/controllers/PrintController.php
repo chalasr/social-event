@@ -10,7 +10,10 @@ class PrintController extends BaseController
             // $handle = fopen(public_path($file), 'w') or die('Cannot open file:  '.$file);
             // fwrite($handle, $content);
             $pdf = PDF::loadHTML($content);
-            return PDF::download('/Users/Robin/Sites/SUTUNAM/bref/c15.pdf');
+
+            $pdf->save('candidat-'.$id.'.pdf');
+
+            return $pdf->download('candidat-'.$id.'.pdf');
 
             // return 'test';
     }
