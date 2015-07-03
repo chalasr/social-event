@@ -16,7 +16,7 @@
 	    <div class="portlet light">
 			<div class="portlet-title">
 				<div class="caption">
-					paiement
+					Paiement
 				</div>
 			<div class="clearfix"></div>
 			<ul class="nav nav-pills nav-justified steps">
@@ -121,6 +121,7 @@
 									BP2429<br>
 									Le Factory<br>
 									69219 Lyon<br>
+									Tél : 04 37 49 77 90<br>
 								</div>
 								<div class="pricing-footer">
 									{{ Form::open(array('url'=>'complete-register/step5/check')) }}
@@ -149,7 +150,7 @@
 						</address>
 						<adresse>
 							<strong>Téléphone</strong><br>
-							04 37 49 77 90<br><br>
+							04 37 24 02 58<br><br>
 						</adresse>
 						<address>
 							<strong>Email</strong><br>

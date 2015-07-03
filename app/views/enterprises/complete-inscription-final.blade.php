@@ -53,7 +53,7 @@
 							</a>
 						</li>
 						<li class="done">
-							<a class="step">
+							<a href="{{ URL::to('register/complete/step5') }}" class="step">
 							<span class="number">
 							5 </span>
 							<span class="desc">
@@ -92,6 +92,7 @@
 									BP2429<br>
 									Le Factory<br>
 									69219 Lyon<br>
+									Tél : 04 37 49 77 90<br>
 								</div>
 							</div>
 						</div>

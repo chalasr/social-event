@@ -598,6 +598,13 @@ margin-top: 100px;
         max-height: 800px;
         max-width: 800px;
     }
+    .button1
+    {
+        height: 45px;
+        width: 180px;
+        margin-left: 480px;
+        margin-top: -1030px;
+    }
     .btnrsz
     {
         height: 87px;
@@ -624,14 +631,13 @@ margin-top: 100px;
         margin-left: -210px;
         margin-top: -200px;
     }
-        .btnrsz
+    .btnrsz
     {
-        height: 87px;
-        width: 160px;
+        height: 80px;
+        width: 180px;
         margin-left: -210px;
         margin-top: -154px;
     }
-}
 }
 @media screen and (max-width: 730px) {
     .banner
@@ -651,8 +657,19 @@ margin-top: 100px;
         margin-left: -180px;
         margin-top: -140px;
     }
-
+    .btnrsz
+    {   
+        font-size: 10px !important ;
+        height: 60px;
+        width: 100px;
+        margin-left: 330px;
+        margin-top: -700px;
+    }
 }
+
+
+
+
 @media screen and (max-width: 630px) {
     .banner
     {
@@ -666,10 +683,11 @@ margin-top: 100px;
     }
     .button1
     {
+        font-size : 12px !important;
         height: 40px;
-        width: 150px;
-        margin-left: -100px;
-        margin-top: -60px;
+        width: 120px;
+        margin-left: 290px;
+        margin-top: -630px;
     }
     .btnrsz
     {

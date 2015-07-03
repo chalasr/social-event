@@ -381,12 +381,9 @@ class CandidatsController extends BaseController
     {
         $assetPath = 'uploads/'.Auth::User()->id;
         $uploadPath = public_path($assetPath);
-
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
-
         $files = Input::file('files');
-
         $results = array();
 
         if(count($files) >= 1 && !empty($files[0])){
@@ -396,18 +393,18 @@ class CandidatsController extends BaseController
                 $file->move($uploadPath, $filename);
 
                 if(!$dbFiles->count()){
-                  $file = new Upload;
-                  $file->name = $filename;
-                  $file->path = $assetPath;
-                  $file->enterprise_id = $enterprise->id;
-                  $file->save();
-                  $name = $filename;
-                  $id = $file->id;
+                    $file = new Upload;
+                    $file->name = $filename;
+                    $file->path = $assetPath;
+                    $file->enterprise_id = $enterprise->id;
+                    $file->save();
+                    $name = $filename;
+                    $id = $file->id;
 
-                  $results[] = compact('name', 'id');
+                    $results[] = compact('name', 'id');
                 }else {
-                  $name = $filename;
-                  $results[] = compact('name');
+                    $name = $filename;
+                    $results[] = compact('name');
                 }
 
             }
@@ -596,17 +593,17 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
 
-        if($enterprise->is_pay >= 1)
+        if($enterprise->is_pay == 1)
         {
-            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez déjà effectué le payment');
+            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez déjà effectué le paiement');
         }
-        else
+        elseif($enterprise->is_pay == 0 || $enterprise->is_pay == 2)
         {
             $payer = new Payer();
             $payer->setPaymentMethod('paypal');
 
             $item_1 = new Item();
-            $item_1->setName('Ticket de participation Bref Rhônes-Alpes')
+            $item_1->setName('Ticket de participation Bref Rhône-Alpes')
                 ->setCurrency('EUR')
                 ->setQuantity(1)
                 ->setPrice('100');
@@ -697,7 +694,7 @@ class CandidatsController extends BaseController
 
         if (Input::get('PayerID') == '' || Input::get('token') == '') {
             return Redirect::action('CandidatsController@getCompleteRegistrationStep5')
-                ->with('message', 'Le payement à été refusé.');
+                ->with('message', 'Le paiement à été refusé.');
         }
 
         $payment = Payment::get($payment_id, $this->_api_context);
@@ -714,13 +711,14 @@ class CandidatsController extends BaseController
             $user = User::find(Auth::user()->id);
             $enterprise = $user->enterprise()->first();
             $enterprise->registration_state = 'final';
-            if($enterprise->is_pay != 0)
-                return Redirect::action('CandidatsController@getCompleteRegistrationStep5')->with('message', 'Vous avez déjà effectué le payment');
-            $enterprise->is_pay = 1;
+            if($enterprise->is_pay == 2)
+                $enterprise->is_pay = 1;
+                $user->enterprise()->save($enterprise);
+                return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez changez votre méthode de paiement par Paypal');
             $user->enterprise()->save($enterprise);
-            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Le payement à été effectué.');
+            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Le paiement à été effectué.');
         }
         return Redirect::action('CandidatsController@getCompleteRegistrationStep5')
-            ->with('message', 'Le payement à été refusé.');
+            ->with('message', 'Le paiement à été refusé.');
     }
 }
