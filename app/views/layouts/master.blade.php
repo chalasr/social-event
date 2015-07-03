@@ -23,6 +23,8 @@
     <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ URL::asset('assets/admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{ URL::asset('assets/admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('/css/jquery.fileupload.css') }}" rel="stylesheet">
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content">
     <div class="page-header md-shadow-z-1-i navbar">
@@ -196,12 +198,40 @@
     <script src="{{ URL::asset('assets/global/scripts/metronic.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('/js/jquery.ui.widget.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('/js/jquery.iframe-transport.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('/js/jquery.fileupload.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('js/script.js') }}" type="text/javascript"></script>
     <script>
     jQuery(document).ready(function() {
        Metronic.init(); // init metronic core componets
        Layout.init(); // init layout
        QuickSidebar.init(); // init quick sidebar
+    });
+
+    /*jslint unparam: true */
+    /*global window, $ */
+    $(function () {
+        'use strict';
+        // Change this to the location of your server-side upload handler:
+        var url = '/api/basic'
+        $('#fileupload').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (e, data) {
+                $.each(data.result.files, function (index, file) {
+                    $('<p/>').text(file.name).appendTo('#files');
+                });
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+        }).prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
     });
     </script>
     </body>

@@ -1,0 +1,7 @@
+{
+  "name": "brefRH",
+  "version": "0.1.0",
+  "devDependencies": {
+  	"blueimp-file-upload": "~9.4"
+  }
+}
