@@ -155,33 +155,12 @@
     <script src="http://bref.dev5.sutunam.com/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
     <script src="http://bref.dev5.sutunam.com/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
     <script src="http://bref.dev5.sutunam.com/js/script.js" type="text/javascript"></script>
-    <script type="text/javascript" src="http://bref.dev5.sutunam.com/js/jspdf.min.js"></script>
 
     <script>
       $(document).ready(function() {
          Metronic.init(); // init metronic core componets
          Layout.init(); // init layout
          QuickSidebar.init(); // init quick sidebar
-         var uri = document.location.pathname;
-         var splitUri = uri.split('/');
-         var candidatId = splitUri[3];
-
-         var doc = new jsPDF();
-
-         var specialElementHandlers = {
-           '.container': function(element, renderer){
-              return true;
-            }
-         };
-
-         $('#pdf').click(function(){
-              var html=$(".container").html();
-              doc.fromHTML(html, 30,5, {
-                 'elementHandlers': specialElementHandlers
-              });
-
-              doc.save("candidat-" + candidatId + ".pdf");
-         });
     });
     </script>
 </body>

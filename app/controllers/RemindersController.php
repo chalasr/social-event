@@ -74,8 +74,13 @@ class RemindersController extends Controller {
 
 			case Password::PASSWORD_RESET:
 			if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
+					if(Auth::user()->role_id == 3){
+							return Redirect::to('/');
+					}
+
 					return Redirect::to('/register/complete');
 			}else{
+				
 					return Redirect::to('/');
 			}
 		}
