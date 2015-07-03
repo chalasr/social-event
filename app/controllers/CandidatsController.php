@@ -555,11 +555,11 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
 
-        if($enterprise->is_pay >= 1)
+        if($enterprise->is_pay == 1)
         {
-            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez déjà effectué le payment');
+            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez déjà effectué le paaiement par Paypal');
         }
-        else
+        elseif($enterprise->is_pay == 0 || $enterprise->is_pay == 2)
         {
             $payer = new Payer();
             $payer->setPaymentMethod('paypal');
@@ -673,11 +673,13 @@ class CandidatsController extends BaseController
             $user = User::find(Auth::user()->id);
             $enterprise = $user->enterprise()->first();
             $enterprise->registration_state = 'final';
-            if($enterprise->is_pay != 0)
-                return Redirect::action('CandidatsController@getCompleteRegistrationStep5')->with('message', 'Vous avez déjà effectué le payment');
+            if($enterprise->is_pay == 2)
+                $enterprise->is_pay = 1;
+                $user->enterprise()->save($enterprise);
+                return Redirect::action('CandidatsController@getCompleteRegistrationStep5')->with('message', 'Vous avez avez changer votre méthode de paiement par Paypal');
             $enterprise->is_pay = 1;
             $user->enterprise()->save($enterprise);
-            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Le payement à été effectué.');
+            return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Le paaieement à été effectué.');
         }
         return Redirect::action('CandidatsController@getCompleteRegistrationStep5')
             ->with('message', 'Le payement à été refusé.');
