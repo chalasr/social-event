@@ -103,8 +103,11 @@
           </div>
 
           <hr />
-          <h5 class="text-left"><b>Pièce(s) jointe(s) à votre dossier</b></h5>
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Upload</button>
+          <label class="control-label">
+            N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
+          </label><br><br>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Importer des documents</button>
+          <br><br>
                 <table class="table">
                    <thead>
                       <tr>
