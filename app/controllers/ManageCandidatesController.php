@@ -23,7 +23,6 @@ class ManageCandidatesController extends BaseController
      */
     public function show($id)
     {
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
         $candidate = User::find($id);
         $enterprise = $candidate->enterprise()->first();
         $survey = false;

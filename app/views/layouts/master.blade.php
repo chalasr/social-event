@@ -8,18 +8,18 @@
     <meta content="" name="author">
     <title>Trophées Bref R-A Innovation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="http://bref.dev5.sutunam.com/favicon.ico" media="screen"  charset="utf-8">
-    <link href="http://bref.dev5.sutunam.com/css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="{{URL::to('/')}}/favicon.ico" media="screen"  charset="utf-8">
+    <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all" rel="stylesheet" type="text/css"/>
-    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
-    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-    <link href="http://bref.dev5.sutunam.com/assets/global/css/plugins-md.css" rel="stylesheet" type="text/css"/>
-    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
-    <link href="http://bref.dev5.sutunam.com/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
-    <link href="http://bref.dev5.sutunam.com/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
-    <link href="http://bref.dev5.sutunam.com/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+    <link href="{{URL::to('/')}}/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{URL::to('/')}}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{URL::to('/')}}/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{URL::to('/')}}/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <link href="{{URL::to('/')}}/assets/global/css/plugins-md.css" rel="stylesheet" type="text/css"/>
+    <link href="{{URL::to('/')}}/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{URL::to('/')}}/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="{{URL::to('/')}}/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="{{URL::to('/')}}/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content">
     <div class="page-header md-shadow-z-1-i navbar">
@@ -180,23 +180,23 @@
         <p>Bref R-A Innovation</p>
     </footer>
 
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/global/scripts/metronic.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/js/script.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/js/jquery.ui.widget.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/js/jquery.iframe-transport.js" type="text/javascript"></script>
-    <script src="http://bref.dev5.sutunam.com/js/jquery.fileupload.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/js/script.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/js/jquery.ui.widget.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/js/jquery.iframe-transport.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/js/jquery.fileupload.js" type="text/javascript"></script>
     <script>
     jQuery(document).ready(function() {
        Metronic.init(); // init metronic core componets
