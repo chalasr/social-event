@@ -34,6 +34,24 @@ class ManageCandidatesController extends BaseController
         return View::make('admin/candidates/show', compact('candidate', 'enterprise', 'survey', 'activity'));
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @return Response
+     */
+    public function exportCandidate($id)
+    {
+        $candidate = User::find($id);
+        $enterprise = $candidate->enterprise()->first();
+        $survey = false;
+        $activity = false;
+        if(!empty($enterprise->survey_id))
+          $survey = Survey::findOrFail($enterprise->survey_id);
+        if(!empty($enterprise->survey_id))
+          $activity = Activity::find($enterprise->activity_id);
+        return View::make('admin/candidates/export', compact('candidate', 'enterprise', 'survey', 'activity'));
+    }
+
     public function getDownload($id)
     {
         $file = Upload::findOrFail($id);

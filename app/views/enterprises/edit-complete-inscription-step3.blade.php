@@ -106,7 +106,7 @@
           <label class="control-label">
             N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
           </label><br><br>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Importer des documents</button>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers</button>
           <br><br>
                 <table class="table">
                    <thead>

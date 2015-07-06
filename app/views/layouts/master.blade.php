@@ -20,6 +20,7 @@
     <link href="{{URL::to('/')}}/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
     <link href="{{URL::to('/')}}/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{URL::to('/')}}/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{URL::to('/')}}/css/jquery.fileupload.css" media="screen" title="no title" charset="utf-8">
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content">
     <div class="page-header md-shadow-z-1-i navbar">
