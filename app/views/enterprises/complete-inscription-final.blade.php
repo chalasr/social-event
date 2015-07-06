@@ -77,7 +77,7 @@
 				<div class="row margin-bottom-40">
 						<div class="col-md-6">
 							<div class="pricing hover-effect">
-									<h3>paiement par chèque<span>
+									<h3>Paiement par chèque<span>
 									</span>
 									</h3>
 									<h4>
@@ -96,19 +96,33 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-5 col-md-offset-1">
+							<div class="pricing hover-effect">
+									<h3>Votre dossier de candidature<span>
+									</span>
+									</h3>
+									<h4>
+									<span>
+										Ci-dessous,<br>
+										Vous trouverez un lien vous permettant de télécharger votre dossier de candidature au format PDF<br></span>
+									</h4>
+									<br><br>
+									<a class="btn btn-default btn-lg" href="{{ URL::to('export/'.Auth::user()->id) }}">MON DOSSIER CANDIDAT FORMAT PDF</a>
+							</div>
+						</div>
 						<div class="clearfix"></div>
 						<hr />
 					<div class="col-md-12">
 						<h3 class="form-section">Contacts</h3>
 						<p>
-							POUR TOUT RESEIGNEMENT CONCERNANT VOTRE DOSSIER OU VOTRE RÈGLEMENT, VEUILLEZ CONTACTER NOTRE PARTENAIRE, PLUS2SENS
+							POUR TOUT RENSEIGNEMENT CONCERNANT VOTRE DOSSIER OU VOTRE RÈGLEMENT, VEUILLEZ CONTACTER NOTRE PARTENAIRE, PLUS2SENS
 						</p>
 						<div class="col-md-4 well">
 							<h4>PLUS2SENS</h4>
 							<address>
 								<strong>Adresse</strong><br>
 								104, rue Tronchet<br>
-								69008 Lyon
+								69006 Lyon
 							</address>
 							<adresse>
 								<strong>Téléphone</strong><br>
@@ -116,7 +130,7 @@
 							</adresse>
 							<address>
 								<strong>Email</strong><br>
-								<a href="mailto:carmela@plus2sens.com">
+								<a href="mailto:carmela@plus2sens.com?subject=Bref Rhône-Alpes - Contact candidat">
 								carmela@plus2sens.com </a>
 							</address>
 						</div>

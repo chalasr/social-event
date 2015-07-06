@@ -142,7 +142,7 @@
           {{ Form::text('internal_collaborators', $enterprise->internal_collaborators != null ? $enterprise->internal_collaborators : 'Non', array('class' => 'form-control', 'checked' => 'true'))}}
         </div>
         <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{Form::label('have_external_search', ' Avec l’aide de prestataires extérieurs ?')}}
-        <br>
+        <br><br>
         <div class="form-group">
           {{Form::label('external_collaborators_type', 'Lesquels ?', array('class' => 'control-label'))}}
           {{ Form::text('external_collaborators_type', $enterprise->external_collaborators_type != null ? $enterprise->external_collaborators_type : 'Non', array('class' => 'form-control'))}}

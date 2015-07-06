@@ -12,17 +12,17 @@
             <div class="row">
               <div class=" col-md-9 col-lg-12">
                 @if($enterprise)
-                <h5 class="text-left"><b>Carte d'identité</b></h5>
+                <h4 class="text-left"><b>1) Identité</b></h4>
                 <br>
                 <table class="table table-hover table-user-information">
                   <tbody>
                     <tr>
-                      <td>Nom :</td>
+                      <td>Nom de l'entreprise :</td>
                       <td>{{ $enterprise->name }}</td>
                     </tr>
                     <tr>
-                      <td>Groupe :</td>
-                      <td>{{ $enterprise->member_of_group }}</td>
+                      <td>Membre d'un groupe :</td>
+                      <td>{{ $enterprise->member_of_group != null ? $enterprise->member_of_group : 'Non' }}</td>
                     </tr>
                     <tr>
                       <td>Forme Juridique :</td>
@@ -33,8 +33,41 @@
                       <td>{{ $enterprise->creation_date }}</td>
                     </tr>
                     <tr>
-                      <td>Adresse postale :</td>
+                      <td>Adresse :</td>
                       <td>{{ $enterprise->postal_address.' '.$enterprise->address_complement }}</td>
+                    </tr>
+                    <tr>
+                      <td>Code postal :</td>
+                      <td>{{ $enterprise->postal_code }}</td>
+                    </tr>
+                    <tr>
+                      <td>Ville :</td>
+                      <td>{{ $enterprise->city }}</td>
+                    </tr>
+                    <tr>
+                      <td>Nom, prénom du dirigeant</td>
+                      <td>{{ $enterprise->leader_name }}&nbsp;{{ $enterprise->leader_firstname }}</td>
+                    </tr>
+                    <tr>
+                      <td>Fonction du dirigeant :</td>
+                      <td>{{ $enterprise->leader_position }}</td>
+                    </tr>
+                    <tr>
+                      <td>Nom, Prénom du candidat</td>
+                      <td>{{ $enterprise->candidate_name }}&nbsp;{{ $enterprise->candidate_firstname }}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Fonction du candidat:</td>
+                      <td>{{ $enterprise->candidate_informations }}</td>
+                    </tr>
+                    <tr>
+                      <td>Téléphone Candidat :</td>
+                      <td>{{ $enterprise->candidate_phone }}</td>
+                    </tr>
+                    <tr>
+                      <td>Email candidat :</td>
+                      <td>{{ $enterprise->candidate_email }}</td>
                     </tr>
                     <tr>
                       <td>Téléphone :</td>
@@ -49,91 +82,58 @@
                       <td>{{ $enterprise->website }}</td>
                     </tr>
                     <tr>
-                      <td>Nom dirigeant :</td>
-                      <td>{{ $enterprise->leader_name }}</td>
-                    </tr>
-                    <tr>
-                      <td>Prenom dirigeant :</td>
-                      <td>{{ $enterprise->leader_firstname }}</td>
-                    </tr>
-                    <tr>
-                      <td>Fonction dirigeant :</td>
-                      <td>{{ $enterprise->leader_position }}</td>
-                    </tr>
-                    <tr>
-                      <td>Nom candidat :</td>
-                      <td>{{ $enterprise->candidate_name }}</td>
-                    </tr>
-                    <tr>
-                      <td>Prenom candidat :</td>
-                      <td>{{ $enterprise->candidate_firstname }}</td>
-                    </tr>
-                    <tr>
-                      <td>Fonction candidat :</td>
-                      <td>{{ $enterprise->candidate_informations }}</td>
-                    </tr>
-                    <tr>
-                      <td>Téléphone Candidat :</td>
-                      <td>{{ $enterprise->candidate_phone }}</td>
-                    </tr>
-                    <tr>
-                      <td>Email candidat :</td>
-                      <td>{{ $enterprise->candidate_email }}</td>
-                    </tr>
-                    <tr>
                       <td></td>
                       <td></td>
                     </tr>
                   </tbody>
                 </table>
                 @endif
-
+                @if($enterprise)
+                  <h4 class="text-left"><b>2) Catégories</b></h4><br>
+                    @foreach ($candidate->categories()->get() as $category)
+                      <p>{{ $category->name }}</p>
+                    @endforeach
+                  <br>
+                @endif
                 @if($survey)
-                <h5 class="text-left"><b>Questionnaire</b></h5>
-                <br>
-                <table class="table table-hover table-user-information">
-                  <tbody>
-                    <tr>
-                      <td>Activité de l'entreprise :</td>
-                      <td>{{ $survey->enterprise_activity }}</td>
-                    </tr>
-                    <tr>
-                      <td>Origine du projet :</td>
-                      <td>{{ $survey->project_origin }}</td>
-                    </tr>
-                    <tr>
-                      <td>Différence avec les produits/services existants :</td>
-                      <td>{{ $survey->innovative_arguments }}</td>
-                    </tr>
-                    <tr>
-                      <td>Marché cible :</td>
-                      <td>{{ $survey->wanted_impact }}</td>
-                    </tr>
-                    <tr>
-                      <td>Prix et canaux de distribution :</td>
-                      <td>{{ $survey->product_informations }}</td>
-                    </tr>
-                    <tr>
-                      <td>Premiers résultats :</td>
-                      <td>{{ $survey->project_results }}</td>
-                    </tr>
-                    <tr>
-                      <td>Soutien extérieur :</td>
-                      <td>{{ $survey->project_partners != null ? $survey->project_partners : 'Non' }}</td>
-                    </tr>
-                    <tr>
-                      <td>Récompenses :</td>
-                      <td>{{ $survey->project_rewards != null ? $survey->project_rewards : 'Non'  }}</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
+                <h4 class="text-left"><b>3) Innovation</b></h4><br>
+                  <div class="form-group">
+                    {{Form::label('enterprise_activity', 'Décrivez, en quelques lignes, la nature de l’activité de votre entreprise.', array('class' => 'control-label'))}}
+                    {{Form::textarea('enterprise_activity', $survey->enterprise_activity, array('class'=>'form-control'))}}
+                  </div><br><br>
+                  <div class="form-group">
+                    {{Form::label('project_origin', 'Quelle est l’origine de votre innovation ? A quel besoin répond-elle ? ', array('class' => 'control-label'))}}
+                    {{Form::textarea('project_origin', $survey->project_origin, array('class'=>'form-control'))}}
+                  </div><br><br>
+                  <div class="form-group">
+                    {{Form::label('innovative_arguments', 'En quoi votre innovation se différencie-t-elle des produits ou services existants ? ', array('class' => 'control-label'))}}
+                    {{Form::textarea('innovative_arguments', $survey->innovative_arguments, array('class'=>'form-control'))}}
+                  </div><br><br>
+                  <div class="form-group">
+                    {{Form::label('wanted_impact', 'Quel est votre marché cible ? National ou international ?', array('class' => 'control-label'))}}
+                    {{Form::textarea('wanted_impact', $survey->wanted_impact, array('class'=>'form-control'))}}
+                  </div><br><br>
+                  <div class="form-group">
+                    {{Form::label('product_informations', 'A quel prix entendez-vous vendre votre produit ou service innovant ? A travers quels canaux de distribution (grossistes, grande distribution, réseau en propre, distributeurs, etc. ) ?', array('class' => 'control-label'))}}
+                    {{Form::textarea('product_informations', $survey->product_informations, array('class'=>'form-control'))}}
+                  </div><br><br>
+                  <div class="form-group">
+                    {{Form::label('project_results', 'Concernant le produit ou service concerné, quels sont vos premiers résultats ? Et vos perspectives commerciales (chiffre d’affaires généré) à moyen terme ?', array('class' => 'control-label'))}}
+                    {{Form::textarea('project_results', $survey->project_results, array('class'=>'form-control'))}}
+                  </div><br><br>
+                  <div class="form-group">
+                    {{Form::label('have_partners', 'Votre innovation est-elle soutenue par des organismes ou des institutions ?', array('class' => 'control-label'))}}
+                    {{Form::label('project_partners', 'Si oui, lesquels ?', array('class' => 'control-label'))}}
+                    {{Form::text('project_partners', $survey->project_partners != null ? $survey->project_partners : 'Non', array('class'=>'form-control'))}}
+                  </div><br><br>
+                  <div class="form-group">
+                    {{Form::label('project_rewards', 'Votre entreprise a-t-elle été déjà récompensée pour cette innovation ou pour d’autres innovations ?', array('class' => 'control-label'))}}
+                    {{Form::label('project_rewards', 'Si oui, par quel organisme ?', array('class' => 'control-label'))}}
+                    {{Form::text('project_rewards', $survey->project_rewards != null ? $survey->project_rewards : 'Non', array('class'=>'form-control'))}}
+                  </div><br>
                 @endif
                 @if($activity)
-                <h5 class="text-left"><b>Chiffres entreprise</b></h5>
+                <h4 class="text-left"><b>4) Chiffres</b></h4>
                 <br>
                 <table class="table">
                    <thead>
@@ -192,60 +192,52 @@
                    </tbody>
                 </table>
                 @if($enterprise)
-                <table class="table table-hover table-user-information">
-                  <tbody>
-
-                    <tr>
-                      <td>Effectif recherche interne :</td>
-                      <td>{{ $enterprise->internal_collaborators != null ? $enterprise->internal_collaborators : 'Non'  }}</td>
-                    </tr>
-                    <tr>
-                      <td>Prestataires extérieurs :</td>
-                      <td>{{ $enterprise->external_collaborators_type != null ? $enterprise->external_collaborators_type : 'Non' }}</td>
-                    </tr>
-                    <tr>
-                      <td>Brevets déposés :</td>
-                      <td>{{ $enterprise->project_certificates != null ? $enterprise->project_certificates : 'Non' }}</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
+                <br>
+                <div>
+                  <h5><b>Votre recherche est-elle réalisée  :</b></h5>
+                  <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{Form::label('have_internal_search', ' En interne ?')}}
+                  <br>
+                  <div class="form-group" >
+                    {{Form::label('internal_collaborators', 'Par combien de personnes ?')}}
+                    {{ Form::text('internal_collaborators', $enterprise->internal_collaborators != null ? $enterprise->internal_collaborators : 'Non', array('class' => 'form-control', 'checked' => 'true'))}}
+                  </div>
+                  <i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{Form::label('have_external_search', ' Avec l’aide de prestataires extérieurs ?')}}
+                  <br><br>
+                  <div class="form-group">
+                    {{Form::label('external_collaborators_type', 'Lesquels ?', array('class' => 'control-label'))}}
+                    {{ Form::text('external_collaborators_type', $enterprise->external_collaborators_type != null ? $enterprise->external_collaborators_type : 'Non', array('class' => 'form-control'))}}
+                  </div>
+                  <br>
+                  <h5><b>Déposez-vous des brevets, marques, dessins ou modèles ?</b></h5>
+                  <div class="form-group">
+                    {{Form::label('project_certificates', 'Précisez le nombre de brevets, marques ou dessins et modèles déposés et pour quel type de produits ou services :')}}
+                    {{ Form::text('project_certificates', $enterprise->project_certificates != null ? $enterprise->project_certificates : 'Non', array('class' => 'form-control'))}}
+                  </div>
+                </div>
                 @endif
                 @endif
               </div>
             </div>
-            <h5 class="text-left"><b>Pièce jointe</b></h5>
-                <br>
-                <table class="table">
-                   <thead>
-                      <tr>
-                         <th>Nom</th>
-                         <th>Télécharger</th>
-                      </tr>
-                   </thead>
-                   <tbody>
-                     @if($enterprise)
-                        @foreach($enterprise->files()->get() as $file)
-                      <tr>
-                         <td>{{ $file->name }}</td>
-                         <td><a href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}">Lien</a></td>
-                      </tr>
-                        @endforeach
-                      @endif
-                   </tbody>
-                </table>
-                <br><br>
-            <div class="text-left">
-              <h5><b>Participation</b></h5>
-              <ul>
-                @foreach ($candidate->categories()->get() as $category)
-                  <li>{{ $category->name }}</li>
-                @endforeach
-              </ul>
-            </div>
+            <h4 class="text-left"><b><br>4) Pièce(s) jointe(s)</b></h4>
+              <br>
+              <table class="table">
+                 <thead>
+                    <tr>
+                       <th>Nom</th>
+                       <th>Télécharger</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                   @if($enterprise)
+                      @foreach($enterprise->files()->get() as $file)
+                    <tr>
+                       <td>{{ $file->name }}</td>
+                       <td><a class="btn btn-default btn-sm" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}">Télécharger</a></td>
+                    </tr>
+                      @endforeach
+                    @endif
+                 </tbody>
+              </table>
           </div>
           <div class="panel-footer">
             @if(Auth::check())
