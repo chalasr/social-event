@@ -6,7 +6,7 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
         <div class="panel panel-default">
           <div class=" panel-heading">
-            <h3 class="panel-title">{{ $candidate->email }} - {{ date('d/m/Y', strtotime($candidate->created_at)) }}<a class="floatRight btn btn-xs btn-default" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
+            <h3 class="panel-title">{{ $candidate->email }} - {{ date('d/m/Y', strtotime($candidate->created_at)) }}<a class="floatRight btn btn-xs btn-default" target="_blank" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
           </div>
           <div class="panel-body">
             <div class="row">
@@ -242,12 +242,12 @@
           <div class="panel-footer">
             @if(Auth::check())
              @if(Auth::user()->role_id == 3)
-             @if($enterprise)
-              <a type="button" href="mailto:{{ $enterprise->candidate_email }}?subject=Bref Rhône-Alpes - Votre candidature au trophée de l'innovation" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-             @endif
-              <span class="pull-right">
-                <a class="btn btn-sm btn-success" href="{{ URL::to('admin/candidates/'.$candidate->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;<a class="btn btn-sm btn-danger" href="{{ URL::to('admin/candidates/delete/'.$candidate->id) }}"><i class="fa fa-trash"></i></a>
-              </span>
+               @if($enterprise)
+                <a type="button" href="mailto:{{ $enterprise->candidate_email }}?subject=Bref Rhône-Alpes - Votre candidature au trophée de l'innovation" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+               @endif
+                <span class="pull-right">
+                  <a class="btn btn-sm btn-success" onclick="return confirm('Voulez vous vraiment supprimer cette candidature ?')"  href="{{ URL::to('admin/candidates/'.$candidate->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;<a class="btn btn-sm btn-danger" href="{{ URL::to('admin/candidates/delete/'.$candidate->id) }}"><i class="fa fa-trash"></i></a>
+                </span>
               @endif
             @endif
           </div>

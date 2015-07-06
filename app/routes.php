@@ -20,7 +20,7 @@ Route::get('payment/status', array(
     'uses' => 'CandidatsController@getPaymentStatus',
 ));
 
-Route::get('/export/{id}', ['uses' => 'PrintController@htmlToPdf'])->where('id', $id);
+Route::get('/export/{id}', ['uses' => 'ManageCandidatesController@htmlToPdf'])->where('id', $id);
 Route::get('/candidate/export/{id}', ['uses' => 'ManageCandidatesController@exportCandidate'])->where('id', $id);
 
 Route::get('/', array('uses' => 'HomeController@showWelcome'));

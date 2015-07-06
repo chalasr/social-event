@@ -20,8 +20,6 @@
     <link href="{{URL::to('/')}}/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
     <link href="{{URL::to('/')}}/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{URL::to('/')}}/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
-
-
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
 
@@ -134,9 +132,9 @@
                 </div>
             </div>
         </div>
-                    <div class="text-center">
-                    <img src="{{URL::to('/')}}/assets/admin/pages/img/logos.jpg" class="footerbanner">
-            </div>
+        <div class="text-center">
+          <img src="{{URL::to('/')}}/assets/admin/pages/img/logos.jpg" class="footerbanner">
+        </div>
     </div>
     <footer>
         <p>Bref R-A Innovation</p>

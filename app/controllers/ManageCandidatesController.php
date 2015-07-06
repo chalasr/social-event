@@ -52,6 +52,21 @@ class ManageCandidatesController extends BaseController
         return View::make('admin/candidates/export', compact('candidate', 'enterprise', 'survey', 'activity'));
     }
 
+    /**
+     * Export candidate view from HTML to PDF using wkhtmltopdf
+     * @param  is_integer $id the specified candidate
+     * @return document     PDF view
+     */
+    public function htmlToPdf($id)
+    {
+        $request = Request::create('/candidate/export/'.$id, 'GET', array());
+        $content = Route::dispatch($request)->getContent();
+
+        $pdf = PDF::loadHTML($content);
+
+        return $pdf->stream('candidat-'.$id.'.pdf');
+    }
+
     public function getDownload($id)
     {
         $file = Upload::findOrFail($id);

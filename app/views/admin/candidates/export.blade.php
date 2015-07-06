@@ -24,7 +24,6 @@
     <body class="page-md page-header-fixed page-quick-sidebar-over-content">
     <div class="page-content-wrapper">
         <div class="page-content" style="min-height:1010px; margin-top:50px;">
-            <div class="clearfix"></div>
             <h3 class="page-title"></h3>
             <div class="row">
                 <div class="portlet light top-content">
@@ -34,11 +33,13 @@
                         <p class="alert alert-danger">{{ Session::get('error') }}</p>
                     @endif
                     <div class="container">
+                      <h3 class="text-center">Dossier de candidature - Trophée de l'innovation - Bref Rhône-Alpes</h3>
+                      <br>
                       <br>
                       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
                           <div class="panel panel-default">
                             <div class=" panel-heading">
-                              <h3 class="panel-title">{{ $candidate->email }} - {{ date('d/m/Y', strtotime($candidate->created_at)) }}<a class="floatRight btn btn-xs btn-default" target="_blank" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
+                              <h3 class="panel-title">{{ $candidate->email }} <span class="floatRight">{{ date('d/m/Y', strtotime($candidate->created_at)) }}</span></h3>
                             </div>
                             <div class="panel-body">
                               <div class="row">
@@ -286,12 +287,11 @@
                           </div>
                         </div>
                 </div>
+              </div>
             </div>
         </div>
     </div>
-    <footer>
         <p>Bref R-A Innovation</p>
-    </footer>
 
     <script src="{{URL::to('/')}}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>

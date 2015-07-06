@@ -10,7 +10,7 @@
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-				Gestion candidats - 
+				Gestion candidats -
 						{{$candidates->count()}}
 				</div>
 			</div>
@@ -61,7 +61,7 @@
 								<div class="flex">
 									<a class="btn btn-sm btn-info" href="{{ URL::to('admin/candidates/'.$candidate->id) }}"><i class="fa fa-eye"></i></a> &nbsp;
 									<a class="btn btn-sm btn-success" href="{{ URL::to('admin/candidates/'.$candidate->id.'/edit/') }}"><i class="fa fa-pencil"></i></a> &nbsp;
-									<a class="btn btn-sm btn-danger" href="{{ URL::to('admin/candidates/delete/'.$candidate->id) }}"><i class="fa fa-trash"></i></a>
+									<a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer cette candidature ?')" href="{{ URL::to('admin/candidates/delete/'.$candidate->id) }}"><i class="fa fa-trash"></i></a>
 								</div>
 							</td>
 						</tr>
