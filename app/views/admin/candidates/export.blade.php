@@ -31,12 +31,11 @@
         }
     </style>
     <style type="text/css" media="print">
-    div.pdfpage
-    {
-        page-break-before: always;
-        page-break-inside: avoid;
-    }
-</style>
+        .pdfpage{
+            page-break-before: always !important;
+            page-break-inside: avoid !important;
+        }
+    </style>
     <div class="page-content-wrapper">
         <div class="page-content" style="min-height:1010px; margin-top:50px;">
             <h3 class="page-title"></h3>
@@ -205,6 +204,7 @@
                                   @endif
                                   @if($activity)
                                   <div class="pdfpage">
+                                    <br><br>
                                       <h4 class="text-left"><b>4) Chiffres</b></h4>
                                       <br>
                                       <table class="table">
