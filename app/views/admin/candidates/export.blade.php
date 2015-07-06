@@ -38,7 +38,7 @@
                       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
                           <div class="panel panel-default">
                             <div class=" panel-heading">
-                              <h3 class="panel-title">{{ $candidate->email }} - {{ date('d/m/Y', strtotime($candidate->created_at)) }}<a class="floatRight btn btn-xs btn-default" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
+                              <h3 class="panel-title">{{ $candidate->email }} - {{ date('d/m/Y', strtotime($candidate->created_at)) }}<a class="floatRight btn btn-xs btn-default" target="_blank" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
                             </div>
                             <div class="panel-body">
                               <div class="row">
@@ -132,32 +132,32 @@
                                     <div class="form-group">
                                       {{Form::label('enterprise_activity', 'Décrivez, en quelques lignes, la nature de l’activité de votre entreprise.', array('class' => 'control-label'))}}
                                       {{Form::textarea('enterprise_activity', $survey->enterprise_activity, array('class'=>'form-control'))}}
-                                    </div><br><br>
+                                    </div><br>
                                     <div class="form-group">
                                       {{Form::label('project_origin', 'Quelle est l’origine de votre innovation ? A quel besoin répond-elle ? ', array('class' => 'control-label'))}}
                                       {{Form::textarea('project_origin', $survey->project_origin, array('class'=>'form-control'))}}
-                                    </div><br><br>
+                                    </div><br>
                                     <div class="form-group">
                                       {{Form::label('innovative_arguments', 'En quoi votre innovation se différencie-t-elle des produits ou services existants ? ', array('class' => 'control-label'))}}
                                       {{Form::textarea('innovative_arguments', $survey->innovative_arguments, array('class'=>'form-control'))}}
-                                    </div><br><br>
+                                    </div><br>
                                     <div class="form-group">
                                       {{Form::label('wanted_impact', 'Quel est votre marché cible ? National ou international ?', array('class' => 'control-label'))}}
                                       {{Form::textarea('wanted_impact', $survey->wanted_impact, array('class'=>'form-control'))}}
-                                    </div><br><br>
+                                    </div><br>
                                     <div class="form-group">
                                       {{Form::label('product_informations', 'A quel prix entendez-vous vendre votre produit ou service innovant ? A travers quels canaux de distribution (grossistes, grande distribution, réseau en propre, distributeurs, etc. ) ?', array('class' => 'control-label'))}}
                                       {{Form::textarea('product_informations', $survey->product_informations, array('class'=>'form-control'))}}
-                                    </div><br><br>
+                                    </div><br>
                                     <div class="form-group">
                                       {{Form::label('project_results', 'Concernant le produit ou service concerné, quels sont vos premiers résultats ? Et vos perspectives commerciales (chiffre d’affaires généré) à moyen terme ?', array('class' => 'control-label'))}}
                                       {{Form::textarea('project_results', $survey->project_results, array('class'=>'form-control'))}}
-                                    </div><br><br>
+                                    </div><br>
                                     <div class="form-group">
                                       {{Form::label('have_partners', 'Votre innovation est-elle soutenue par des organismes ou des institutions ?', array('class' => 'control-label'))}}
                                       {{Form::label('project_partners', 'Si oui, lesquels ?', array('class' => 'control-label'))}}
                                       {{Form::text('project_partners', $survey->project_partners != null ? $survey->project_partners : 'Non', array('class'=>'form-control'))}}
-                                    </div><br><br>
+                                    </div><br>
                                     <div class="form-group">
                                       {{Form::label('project_rewards', 'Votre entreprise a-t-elle été déjà récompensée pour cette innovation ou pour d’autres innovations ?', array('class' => 'control-label'))}}
                                       {{Form::label('project_rewards', 'Si oui, par quel organisme ?', array('class' => 'control-label'))}}
