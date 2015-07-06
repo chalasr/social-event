@@ -4,7 +4,7 @@ class PrintController extends BaseController
 {
     public function htmlToPdf($id)
     {
-        $request = Request::create('/candidate/export'.$id, 'GET', array());
+        $request = Request::create('/admin/candidates/'.$id, 'GET', array());
         $content = Route::dispatch($request)->getContent();
         $pdf = PDF::loadHTML($content);
 
