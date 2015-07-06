@@ -658,7 +658,7 @@ margin-top: 100px;
         margin-top: -140px;
     }
     .btnrsz
-    {   
+    {
         font-size: 10px !important ;
         height: 60px;
         width: 100px;
@@ -742,4 +742,8 @@ margin-top: 100px;
 
 .page-header.navbar {
     height: 100px !important;
+}
+
+.boldLabel{
+  font-weight: bold !important;
 }
