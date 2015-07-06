@@ -30,7 +30,13 @@
           height: inherit !important;
         }
     </style>
-
+    <style type="text/css" media="print">
+    div.pdfpage
+    {
+        page-break-before: always;
+        page-break-inside: avoid;
+    }
+</style>
     <div class="page-content-wrapper">
         <div class="page-content" style="min-height:1010px; margin-top:50px;">
             <h3 class="page-title"></h3>
@@ -140,6 +146,7 @@
                                   </div>
                                     @endif
                                   @if($survey)
+                                  <br>
                                   <div class="pdfpage">
                                     <h4 class="text-left"><b>3) Innovation</b></h4><br>
                                       <div class="form-group">
