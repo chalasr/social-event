@@ -33,7 +33,7 @@
                         <p class="alert alert-danger">{{ Session::get('error') }}</p>
                     @endif
                     <div class="container">
-                      <h3 class="text-center">Dossier de candidature - Trophée de l'innovation - Bref Rhône-Alpes</h3>
+                      <h3 class="text-center">Dossier de candidature - Trophée de l'innovation <br>Bref Rhône-Alpes</h3>
                       <br>
                       <br>
                       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
