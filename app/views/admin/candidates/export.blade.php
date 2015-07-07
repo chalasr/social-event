@@ -299,7 +299,7 @@
                               </div>
                               @if($enterprise)
                               <div class="pdfpage">
-                                  <h4 class="text-left"><b><br>4) Pièce(s) jointe(s)</b></h4>
+                                  <h4 class="text-left"><b><br>Pièce(s) jointe(s)</b></h4>
                                   <br>
                                   <table class="table">
                                      <thead>
