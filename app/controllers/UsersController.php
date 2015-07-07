@@ -47,9 +47,11 @@ class UsersController extends BaseController
     {
         if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))) {
             if(Auth::user()->role_id == 3)
-                return Redirect::to('/')->with('message', 'Vous êtes connecté !');
+                return Redirect::to('/')->with('message', 'Bienvenue. Vous êtes connecté en tant qu\'administrateur !');
+            if(Auth::user()->role_id == 2)
+                return Redirect::to('/')->with('message', 'Bienvenue dans votre espace jury !');
 
-            return Redirect::to('/register/complete')->with('message', 'Vous êtes connecté !');
+            return Redirect::to('/register/complete')->with('message', 'Bienvenue dans votre espace candidat !');
         } else {
             return Redirect::to('/register')
             ->with('error', 'Votre email/password est incorrect !')

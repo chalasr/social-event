@@ -86,12 +86,12 @@
                     <li>
                         <a href="javascript:;">
                         <i class="icon-diamond"></i>
-                        <span class="title">Candidature</span>
+                        <span class="title">Candidatures</span>
                         <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="{{ URL::to('#') }}">Afficher les candidatures</a>
+                                <a href="{{ URL::to('/jury/candidates') }}">Afficher les candidatures</a>
                             </li>
                         </ul>
                     </li>

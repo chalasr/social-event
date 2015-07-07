@@ -14,65 +14,65 @@
 	  <div class="form-wizard">
 		<div class="clearfix"></div>
 	    <div class="portlet light">
-			<div class="portlet-title">
-				<div class="caption">
-				Vous avez finalisé votre inscription.
-				</div>
+					<div class="portlet-title">
+						<div class="caption">
+						Vous avez finalisé votre inscription.
+						</div>
+					</div>
+					<ul class="nav nav-pills nav-justified steps">
+								<li class="done">
+									<a class="step" aria-expanded="true">
+									<span class="number">
+									1 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Identité </span>
+									</a>
+								</li>
+								<li class="done">
+									<a class="step">
+									<span class="number">
+									2 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Catégories </span>
+									</a>
+								</li>
+								<li class="done">
+									<a class="step">
+									<span class="number">
+									3 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Innovation </span>
+									</a>
+								</li>
+								<li class="done">
+									<a class="step">
+									<span class="number">
+									4 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Chiffres </span>
+									</a>
+								</li>
+								<li class="done">
+									<a href="{{ URL::to('register/complete/step5') }}" class="step">
+									<span class="number">
+									5 </span>
+									<span class="desc">
+									<i class="fa fa-check"></i> Paiement </span>
+									</a>
+								</li>
+			          <li class="active">
+			            <a class="step">
+			            <span class="number">
+			            6 </span>
+			            <span class="desc">
+			            <i class="fa fa-check"></i> Finaliser </span>
+			            </a>
+			          </li>
+		        	</ul>
+		        	<div id="bar" class="progress progress-striped" role="progressbar">
+		          		<div class="progress-bar progress-bar-success" style="width: 100%;"></div>
+		        	</div>
 			</div>
-			<ul class="nav nav-pills nav-justified steps">
-						<li class="done">
-							<a class="step" aria-expanded="true">
-							<span class="number">
-							1 </span>
-							<span class="desc">
-							<i class="fa fa-check"></i> Identité </span>
-							</a>
-						</li>
-						<li class="done">
-							<a class="step">
-							<span class="number">
-							2 </span>
-							<span class="desc">
-							<i class="fa fa-check"></i> Catégories </span>
-							</a>
-						</li>
-						<li class="done">
-							<a class="step">
-							<span class="number">
-							3 </span>
-							<span class="desc">
-							<i class="fa fa-check"></i> Innovation </span>
-							</a>
-						</li>
-						<li class="done">
-							<a class="step">
-							<span class="number">
-							4 </span>
-							<span class="desc">
-							<i class="fa fa-check"></i> Chiffres </span>
-							</a>
-						</li>
-						<li class="done">
-							<a href="{{ URL::to('register/complete/step5') }}" class="step">
-							<span class="number">
-							5 </span>
-							<span class="desc">
-							<i class="fa fa-check"></i> Paiement </span>
-							</a>
-						</li>
-	          <li class="active">
-	            <a class="step">
-	            <span class="number">
-	            6 </span>
-	            <span class="desc">
-	            <i class="fa fa-check"></i> Finaliser </span>
-	            </a>
-	          </li>
-        	</ul>
-        	<div id="bar" class="progress progress-striped" role="progressbar">
-          		<div class="progress-bar progress-bar-success" style="width: 100%;"></div>
-        	</div>
-		</div>
 			<div class="portlet-body">
 				<div class="row margin-bottom-40">
 						<div class="col-md-6">
@@ -107,7 +107,7 @@
 										Vous trouverez un lien vous permettant de télécharger votre dossier de candidature au format PDF<br></span>
 									</h4>
 									<br><br>
-									<a class="btn btn-default btn-lg" href="{{ URL::to('export/'.Auth::user()->id) }}">MON DOSSIER CANDIDAT FORMAT PDF</a>
+									<a class="btn btn-default btn-lg" target="_blank" href="{{ URL::to('export/'.Auth::user()->id) }}">MON DOSSIER CANDIDAT FORMAT PDF</a>
 							</div>
 						</div>
 						<div class="clearfix"></div>

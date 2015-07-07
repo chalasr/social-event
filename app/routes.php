@@ -25,6 +25,7 @@ Route::get('/candidate/export/{id}', ['uses' => 'ManageCandidatesController@expo
 
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
 Route::get('/admin', array('uses' => 'CategoriesController@index'));
+Route::get('/jury/candidates', 'JurysController@getCandidates')->where('id', $id);
 
 Route::group(array('prefix' => '/admin'), function(){
 	$id = '[0-9]+';
@@ -47,10 +48,6 @@ Route::get('register', array('uses' => 'UsersController@getRegister', 'as' => 'r
 Route::get('register/complete', ['uses' => 'CandidatsController@getCompleteRegistration']);
 Route::post('complete-register', ['uses' => 'CandidatsController@storeCompleteRegistration']);
 
-// UPLOAD
-// Route::get('basic', function() {
-//     return View::make('upload.basic');
-// });
 Route::controller('password', 'RemindersController');
 Route::get('register/edit-complete', 'CandidatsController@editCompleteRegistration');
 Route::patch('edit/complete-register','CandidatsController@updateCompleteRegistration');
@@ -82,8 +79,5 @@ Route::get('register/complete/step5',['uses'=>'CandidatsController@getCompleteRe
 Route::post('complete-register/step5/paypal', ['uses'=>'CandidatsController@StoreCompleteRegistrationStep5']);
 Route::post('complete-register/step5/check', ['uses' => 'CandidatsController@storeCompleteRegistrationStep5_check']);
 
-
 Route::get('register/complete/final', ['uses' => 'CandidatsController@getCompleteRegistrationFinal']);
 Route::get('login', array('uses' => 'UsersController@getLogin', 'as' => 'login'));
-
-Route::post('upload', ['uses' => 'CandidatsController@uploadFile']);
