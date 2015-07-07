@@ -384,7 +384,6 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
         $files = Input::file('files');
-        $i = 0;
         $results = array();
 
         if(count($files) >= 1 && !empty($files[0])){
@@ -392,31 +391,34 @@ class CandidatsController extends BaseController
                 $filename = $file->getClientOriginalName();
                 $fileType = $file->getClientMimeType();
                 $fileSize = $file->getClientSize();
+
                 $maxFileSize = 52428800;
+                $allowedTypes = ['application/pdf', 'application/zip', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
 
-                if($fileSize <= $maxFileSize){
-                    $dbFiles = Upload::where('name', $filename)->where('enterprise_id', $enterprise->id);
-                    $file->move($uploadPath, $filename);
-                    if(!$dbFiles->count()){
-                        $file = new Upload;
-                        $file->name = $filename;
-                        $file->path = $assetPath;
-                        $file->enterprise_id = $enterprise->id;
-                        $file->save();
-                        $name = $filename;
-                        $id = $file->id;
-
-                        $results[] = compact('name', 'id');
-                    }else {
-                        $name = $filename;
-                        $results[] = compact('name');
+                if(in_array($fileType, $allowedTypes)){
+                    if($fileSize <= $maxFileSize){
+                        $dbFiles = Upload::where('name', $filename)->where('enterprise_id', $enterprise->id);
+                        $file->move($uploadPath, $filename);
+                        if(!$dbFiles->count()){
+                            $file = new Upload;
+                            $file->name = $filename;
+                            $file->path = $assetPath;
+                            $file->enterprise_id = $enterprise->id;
+                            $file->save();
+                            $name = $filename;
+                            $id = $file->id;
+                        }else {
+                            $name = $filename;
+                        }
+                    }else{
+                        $info = 'Fichier trop volumineux';
+                        $name = $info.' : '.$filename;
                     }
-                // $results[] = compact('fileSize', 'fileType');
                 }else{
-                    $info = 'Fichier trop volumineux';
+                    $info = 'Format non supporté';
                     $name = $info.' : '.$filename;
-                    $results[] = compact('name', 'id');
                 }
+                $results[] = compact('name');
             }
         }
 

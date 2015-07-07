@@ -152,6 +152,11 @@
                     <input id="fileupload" type="file" name="files[]" multiple>
                 </span>
                 <br>
+                <span class="text-muted"><br>
+                    Formats autorisés: PDF, ZIP, DOC, DOCX <br>
+                    Taille maximale: 50Mo
+                </span>
+                <br>
                 <br>
                 <div id="progress" class="progress">
                     <div class="progress-bar progress-bar-success"></div>

@@ -232,7 +232,7 @@
                       @foreach($enterprise->files()->get() as $file)
                     <tr>
                        <td>{{ $file->name }}</td>
-                       <td><a class="btn btn-default btn-sm" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}">Télécharger</a></td>
+                       <td><a class="btn btn-default btn-sm" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}"><i class="fa fa-download"></i></a></td>
                     </tr>
                       @endforeach
                     @endif
