@@ -384,7 +384,7 @@ class CandidatsController extends BaseController
         $user = User::find(Auth::user()->id);
         $enterprise = $user->enterprise()->first();
         $files = Input::file('files');
-        // $results = array();
+        $results = array();
 
         if(count($files) >= 1 && !empty($files[0])){
             foreach ($files as $file) {
