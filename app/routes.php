@@ -26,6 +26,7 @@ Route::get('/candidate/export/{id}', ['uses' => 'ManageCandidatesController@expo
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
 Route::get('/admin', array('uses' => 'CategoriesController@index'));
 Route::get('/jury/candidates', 'JurysController@getCandidates')->where('id', $id);
+Route::post('upload', ['uses' => 'CandidatsController@uploadFile']);
 
 Route::group(array('prefix' => '/admin'), function(){
 	$id = '[0-9]+';
