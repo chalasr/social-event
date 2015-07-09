@@ -2,12 +2,12 @@
 
 return array(
     'driver' => 'smtp',
-    'host' => 'smtp.gmail.com',
-    'port' => 465,
-    'from' => array('address' => 'robin.chalas@gmail.com', 'name' => 'Robin Chalas'),
-    'encryption' => 'ssl',
-    'username' => 'robin.chalas@gmail.com',
-    'password' => '03050712',
+    'host' => 'localhost',
+    'port' => 25,
+    'from' => array('address' => 'rchalas@sutunam.com', 'name' => 'Bref Rhône-Alpes'),
+    'encryption' => 'tls',
+    // 'username' => null,
+    // 'password' => null,
     'sendmail' => '/usr/sbin/sendmail -bs',
     'pretend' => false,""
 );
