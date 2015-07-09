@@ -26,12 +26,18 @@
 			<div class="text-center">
 			  	<h1>Trophées Bref R-A Innovation</h1>
 			  	<hr>
-			    <h2>Générer un nouveau mot de passe</h2>
+			    <h2>Changement de mot de passe</h2>
 			    <div>
-		      		Pour générer un nouveau mot de passe, veuillez complêter ce formulaire : <a href="{{ URL::to('password/reset', array($token)) }}">Lien</a>
+		      		Pour changer votre mot de passe, veuillez cliquez sur le lien suivant afin d'accéder au formulaire et créer votre nouveau mot de passe : <br>
+               <a class="btn btn-default" href="{{ URL::to('password/reset', array($token)) }}">Nouveau mot de passe</a>
 		    		<br>
-		    		Si vous ne pouvez pas accéder au lien, veuillez copien ce lien {{ URL::to('password/reset', array($token)) }}
+		    		Si vous n'arrivez pas à accéder au formulaire, veuillez copier l'adressee suivante et l'ouvrir via votre naviguateur web : <br>
+            {{ URL::to('password/reset', array($token)) }}
 		    	</div>
+          <hr>
+          <div class="text-muted">
+              Si vous recevez ceci par erreur, merci de ne pas tenir compte de ce mail.
+          </div>
 		    </div>
 		</div>
 	</div>
