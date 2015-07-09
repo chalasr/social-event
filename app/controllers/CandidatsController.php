@@ -335,10 +335,11 @@ class CandidatsController extends BaseController
         $userSurvey = $userEnterprise->survey_id;
         $survey = Survey::find($userSurvey);
         $files = $userEnterprise->files()->get();
+        $links = $userEnterprise->links()->get();
         if(empty($userSurvey) || !$userSurvey){
           return Redirect::to('/register/complete');
         }
-        return View::make('enterprises.edit-complete-inscription-step3', compact('survey', 'files'));
+        return View::make('enterprises.edit-complete-inscription-step3', compact('survey', 'files', 'links'));
     }
 
     public function updateCompleteRegistrationStep3()
@@ -461,35 +462,10 @@ class CandidatsController extends BaseController
     }
 
     /**
-     * Upload a link as document
-     * @return response the result of AJAX request
+     * Remove file from system and database
+     * @param  number $id the specified resource
+     * @return redirect     301
      */
-    public function uploadLink()
-    {
-        $user = User::find(Auth::user()->id);
-        $enterprise = $user->enterprise()->first();
-        $link = Input::get('link');
-        $result = array();
-
-        $dbLink = Link::where('link', $link)->where('enterprise_id', $enterprise->id);
-        if(!$dbLink->count()){
-            $newLink = new Link;
-            $newLink->link = $link;
-            $newLink->enterprise_id = $enterprise->id;
-            $newLink->save();
-            $name = $link;
-        }else {
-            $name = $link;
-        }
-
-        $result[] = compact('name');
-
-        return array(
-            'link' => $result
-        );
-
-    }
-
     public function getDeleteFile($id)
     {
 
@@ -503,6 +479,50 @@ class CandidatsController extends BaseController
         }
         Upload::destroy($id);
         return Redirect::to('register/edit-complete/step3')->with('message', 'Le fichier a bien été supprimé');
+    }
+
+
+    /**
+     * Upload a link as document
+     * @return response the result of AJAX request
+     */
+    public function uploadLink()
+    {
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
+        $link = Input::get('link');
+        $result = array();
+
+        $dbLink = Link::where('link', $link)->where('enterprise_id', $enterprise->id);
+        if(!$dbLink->count()){
+            $validator = Validator::make(Input::all(), Link::$rules);
+            if ($validator->passes()) {
+                $newLink = new Link;
+                $newLink->link = $link;
+                $newLink->enterprise_id = $enterprise->id;
+                $newLink->save();
+                $name = $link;
+            }else{
+                $name = 'Vous devez entrer une url valide (exemple: http://www.google.fr)';
+            }
+        }else {
+            $name = $link;
+        }
+
+        $result[] = compact('name');
+
+        return array(
+            'link' => $result
+        );
+
+    }
+
+    public function removeLink($id)
+    {
+
+        $candidate = Auth::user()->id;
+        Link::destroy($id);
+        return Redirect::to('register/edit-complete/step3')->with('message', 'Le lien a bien été supprimé');
     }
 
     public function removeUploadedFile($id)
