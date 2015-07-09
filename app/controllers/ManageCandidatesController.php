@@ -45,7 +45,9 @@ class ManageCandidatesController extends BaseController
     {
 
         if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
-        if(Auth::user()->id != $id) return Redirect::to('/')->with('error', 'Vous n\'avez pas accès aux autres dossiers candidats');
+        if(Auth::user()->role_id != 3 && Auth::user()->role_id != 2){
+            if(Auth::user()->id != $id) return Redirect::to('/')->with('error', 'Vous n\'avez pas accès aux autres dossiers candidats');
+        }
         $candidate = User::find($id);
         $enterprise = $candidate->enterprise()->first();
         $survey = false;
