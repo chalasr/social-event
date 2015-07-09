@@ -147,10 +147,10 @@ class ManageCandidatesController extends BaseController
         return Redirect::to('/admin/candidates/'.$id.'/edit')->with('message', 'Candidature mise à jour avec succès');
     }
 
-    // /**
-    //  * Candidate validation by administrator
-    //  * @return Redirection 301
-    //  */
+     /**
+      * Candidate validation by administrator
+      * @return Redirection 301
+      */
     // public function valideCandidate()
     // {
     //     if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');

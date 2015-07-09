@@ -388,15 +388,15 @@ class CandidatsController extends BaseController
 
         if(count($files) >= 1 && !empty($files[0])){
             foreach ($files as $file) {
-                $filename = $file->getClientOriginalName();
                 $fileType = $file->getClientMimeType();
                 $fileSize = $file->getClientSize();
+                $filename = $file->getClientOriginalName();
 
                 $maxFileSize = 52428800;
                 $allowedTypes = ['application/pdf', 'application/zip', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
 
-                if($fileSize > $maxFileSize){
-                    $info = 'Ficher trop volumineux';
+                if(!in_array($fileType, $allowedTypes)){
+                    $info = 'Format non supporté';
                     $name = $info.' : '.$filename;
                     $results[] = compact('name');
 
@@ -405,8 +405,30 @@ class CandidatsController extends BaseController
                     );
                 }
 
-                if(!in_array($fileType, $allowedTypes)){
-                    $info = 'Format non supporté';
+                if($fileType == 'application/pdf'){
+                    $completeFilename = explode('.pdf', $filename);
+                    $filename = $completeFilename[0];
+                    $filename = Sanitize::string($filename);
+                    $filename = $filename.'.pdf';
+                }elseif($fileType == 'application/zip'){
+                    $completeFilename = explode('.zip', $filename);
+                    $filename = $completeFilename[0];
+                    $filename = Sanitize::string($filename);
+                    $filename = $filename.'.zip';
+                }elseif($fileType == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+                    $completeFilename = explode('.docx', $filename);
+                    $filename = $completeFilename[0];
+                    $filename = Sanitize::string($filename);
+                    $filename = $filename.'.docx';
+                }elseif($fileType == 'application/msword'){
+                    $completeFilename = explode('.doc', $filename);
+                    $filename = $completeFilename[0];
+                    $filename = Sanitize::string($filename);
+                    $filename = $filename.'.doc';
+                }
+
+                if($fileSize > $maxFileSize){
+                    $info = 'Ficher trop volumineux';
                     $name = $info.' : '.$filename;
                     $results[] = compact('name');
 
@@ -465,7 +487,7 @@ class CandidatsController extends BaseController
             File::delete($filePath.DIRECTORY_SEPARATOR.$fileName);
         }
         Upload::destroy($id);
-        
+
         return Response::json('success');
     }
 

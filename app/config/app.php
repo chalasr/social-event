@@ -191,7 +191,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'PDF' => 'Barryvdh\Snappy\Facades\SnappyPdf',
 		'Image' => 'Barryvdh\Snappy\Facades\SnappyImage',
-
+		'Sanitize' => 'Webpatser\Sanitize\Sanitize',
 	),
 
 );
