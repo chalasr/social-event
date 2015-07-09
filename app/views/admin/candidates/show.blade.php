@@ -114,25 +114,25 @@
                   <div class="form-group">
                     {{Form::label('enterprise_activity', 'Décrivez, en quelques lignes, la nature de l’activité de votre entreprise.', array('class' => 'control-label'))}}
                     <p class="form-control">
-                      {{ $survey->enterprise_activity }}
+                      {{ nl2br($survey->enterprise_activity) }}
                     </p>
                   </div><br>
                   <div class="form-group">
                     {{Form::label('project_origin', 'Quelle est l’origine de votre innovation ? A quel besoin répond-elle ? ', array('class' => 'control-label'))}}
                     <p class="form-control">
-                      {{ $survey->project_origin }}
+                      {{ nl2br($survey->project_origin) }}
                     </p>
                   </div><br>
                   <div class="form-group">
                     {{Form::label('innovative_arguments', 'En quoi votre innovation se différencie-t-elle des produits ou services existants ? ', array('class' => 'control-label'))}}
                     <p class="form-control">
-                      {{ $survey->innovative_arguments }}
+                      {{ nl2br($survey->innovative_arguments) }}
                     </p>
                   </div><br>
                   <div class="form-group">
                     {{Form::label('wanted_impact', 'Quel est votre marché cible ? National ou international ?', array('class' => 'control-label'))}}
                     <p class="form-control">
-                      {{ $survey->wanted_impact }}
+                      {{ nl2br($survey->wanted_impact) }}
                     </p>
                   </div><br>
               </div>
@@ -140,27 +140,27 @@
                   <div class="form-group">
                     {{Form::label('product_informations', 'A quel prix entendez-vous vendre votre produit ou service innovant ? A travers quels canaux de distribution (grossistes, grande distribution, réseau en propre, distributeurs, etc. ) ?', array('class' => 'control-label'))}}
                     <p class="form-control">
-                      {{ $survey->product_informations }}
+                      {{ nl2br($survey->product_informations) }}
                     </p>
                   </div><br>
                   <div class="form-group">
                     {{Form::label('project_results', 'Concernant le produit ou service concerné, quels sont vos premiers résultats ? Et vos perspectives commerciales (chiffre d’affaires généré) à moyen terme ?', array('class' => 'control-label'))}}
                     <p class="form-control">
-                      {{ $survey->project_results }}
+                      {{ nl2br($survey->project_results) }}
                     </p>
                   </div><br>
                   <div class="form-group">
                     {{Form::label('have_partners', 'Votre innovation est-elle soutenue par des organismes ou des institutions ?', array('class' => 'control-label'))}}
                     {{Form::label('project_partners', 'Si oui, lesquels ?', array('class' => 'control-label'))}}
                     <p class="form-control">
-                      {{{$survey->project_partners != null ? $survey->project_partners : 'Non'}}}
+                      {{{$survey->project_partners != null ? nl2br($survey->project_partners) : 'Non'}}}
                     </p>
                   </div><br>
                   <div class="form-group">
                     {{Form::label('project_rewards', 'Votre entreprise a-t-elle été déjà récompensée pour cette innovation ou pour d’autres innovations ?', array('class' => 'control-label'))}}
                     {{Form::label('project_rewards', 'Si oui, par quel organisme ?', array('class' => 'control-label'))}}
                     <p class="form-control">
-                      {{{$survey->project_rewards != null ? $survey->project_rewards : 'Non'}}}
+                      {{{$survey->project_rewards != null ? nl2br($survey->project_rewards) : 'Non'}}}
                     </p>
                   </div><br>
               </div>
