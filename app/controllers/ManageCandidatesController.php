@@ -64,7 +64,7 @@ class ManageCandidatesController extends BaseController
 
         $pdf = PDF::loadHTML($content);
 
-        return $pdf->stream('candidat-'.$id.'.pdf');
+        return $pdf->stream('bref-candidature-'.$id.'.pdf');
     }
 
     public function getDownload($id)
@@ -146,6 +146,25 @@ class ManageCandidatesController extends BaseController
 
         return Redirect::to('/admin/candidates/'.$id.'/edit')->with('message', 'Candidature mise à jour avec succès');
     }
+
+    // /**
+    //  * Candidate validation by administrator
+    //  * @return Redirection 301
+    //  */
+    // public function valideCandidate()
+    // {
+    //     if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+    //     if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+    //
+    //     $user = User::find(Auth::user()->id);
+    //     $enterprise = $user->enterprise()->first();
+    //
+    //     $enterprise->is_valid = 1;
+    //     $enterprise->save();
+    //
+    //     return new Response::json('success');
+    //
+    // }
 
     /**
      * Remove a category to specified user.

@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'inscription_trophees_innovation_bref_com',
-			'username'  => 'inscription.trop',
-			'password'  => 'HFQrDOuzcwS74CrJ09kg',
+			'database'  => 'bref_dev5_sutunam_com',
+			'username'  => 'bref.dev5.sutuna',
+			'password'  => 'OlhnXg8ncgKYWRdkDPUI',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

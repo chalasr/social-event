@@ -76,7 +76,7 @@
 			<div class="portlet-body">
 				<div class="row margin-bottom-40">
 
-						<h3>Votre dossier ne sera validé qu'à réception du règlement de votre Catégories.<br>
+						<h3>Votre dossier ne sera validé qu'à réception du règlement de votre participation.<br>
 							Les frais d'enregistrement s'élèvent à 100€ TTC par dossier de candidature.
 						</h3>
 						<h3>

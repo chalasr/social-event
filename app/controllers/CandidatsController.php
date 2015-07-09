@@ -454,6 +454,7 @@ class CandidatsController extends BaseController
             File::delete($filePath.DIRECTORY_SEPARATOR.$fileName);
         }
         Upload::destroy($id);
+        
         return Response::json('success');
     }
 

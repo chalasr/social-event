@@ -53,7 +53,7 @@
                       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
                           <div class="panel panel-default">
                             <div class=" panel-heading">
-                              <h3 class="panel-title">{{{$enterprise ? $enterprise->name : $candidate->email}}} <span class="floatRight">Créée le {{ date('d/m/Y', strtotime($candidate->created_at)) }}</span></h3>
+                              <h3 class="panel-title">{{{$enterprise ? $enterprise->name : $candidate->email}}} <span class="floatRight">Inscrit le {{ date('d/m/Y', strtotime($candidate->created_at)) }}</span></h3>
                             </div>
                             <div class="panel-body">
                               <div class="row">
@@ -86,7 +86,7 @@
                                         </tr>
                                         <tr>
                                           <td class="boldLabel">Code postal</td>
-                                          <td class="boldLabel">{{ $enterprise->postal_code }}</td>
+                                          <td>{{ $enterprise->postal_code }}</td>
                                         </tr>
                                         <tr>
                                           <td class="boldLabel">Ville</td>

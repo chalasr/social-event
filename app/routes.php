@@ -67,6 +67,7 @@ Route::get('register/edit-complete/step3', 'CandidatsController@editCompleteRegi
 Route::get('edit/delete-file/step3/{id}','CandidatsController@getDeleteFile')->where('id', $id);
 
 Route::post('file/remove/{id}','CandidatsController@removeUploadedFile')->where('id', $id);
+Route::post('upload', ['uses' => 'CandidatsController@uploadFile']);
 Route::patch('edit/complete-register/step3','CandidatsController@updateCompleteRegistrationStep3');
 
 Route::get('register/complete/step4', ['uses' => 'CandidatsController@getCompleteRegistrationStep4']);
