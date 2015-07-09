@@ -107,6 +107,8 @@
             N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
           </label><br><br>
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers</button>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Ajouter des liens externes</button>
+          
           <br><br>
                 <table class="table">
                    <thead>
@@ -130,8 +132,10 @@
                 <hr id="newFilesHr" style="border-top: 1px solid grey !important;">
                 <div id="uploadedFiles">
                 </div>
+                <hr id="newLinksHr" style="border-top: 1px solid grey !important;">
+                <div id="uploadedLinks">
+                </div>
                 <br><br>
-
           <br>
           <div class="submitLarge">
             {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
@@ -139,38 +143,68 @@
       	</div>
 
       {{ Form::close() }}
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Pièces jointes</h4>
-            </div>
-            <div class="modal-body">
-                <span class="btn btn-success fileinput-button">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    <span>Sélectionnez vos fichiers</span>
-                    <input id="fileupload" type="file" name="files[]" multiple>
-                </span>
-                <br>
-                <span class="text-muted"><br>
-                    Formats autorisés: PDF, ZIP, DOC, DOCX <br>
-                    Taille maximale: 50Mo
-                </span>
-                <br>
-                <br>
-                <div id="progress" class="progress">
-                    <div class="progress-bar progress-bar-success"></div>
+
+            {{--Files Upload modal--}}
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Pièces jointes</h4>
+                  </div>
+                  <div class="modal-body">
+                      <span class="btn btn-success fileinput-button">
+                          <i class="glyphicon glyphicon-plus"></i>
+                          <span>Sélectionnez vos fichiers</span>
+                          <input id="fileupload" type="file" name="files[]" multiple>
+                      </span>
+                      <br>
+                      <span class="text-muted"><br>
+                          Formats autorisés: PDF, ZIP, DOC, DOCX <br>
+                          Taille maximale: 50Mo
+                      </span>
+                      <br>
+                      <br>
+                      <div id="progress" class="progress">
+                          <div class="progress-bar progress-bar-success"></div>
+                      </div>
+                      <div id="files" class="files"></div>
+                  <div class="modal-footer">
+                    <button id="submitUpload" type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
+                  </div>
                 </div>
-                <div id="files" class="files"></div>
-            <div class="modal-footer">
-              <button type="button" id="submitUpload" class="btn btn-default" data-dismiss="modal">Valider</button>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+          {{--END Files Upload modal--}}
 
-    </div>
+          {{--Links Upload modal--}}
+            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Pièces jointes</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="link" id="link">
+                    </div>
+                      <span class="btn btn-success" id="submitLink">
+                          <i class="fa fa-plus"></i>
+                          <span>Ajouter votre lien</span>
+                      </span>
+                      <br><br>
+                      <div id="links" class="links"></div>
+                      <div class="modal-footer">
+                        <button id="submitUploadLink" type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{--END Links Upload modal--}}
+
     </div>
 </div>
 @stop

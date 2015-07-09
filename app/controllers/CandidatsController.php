@@ -460,6 +460,36 @@ class CandidatsController extends BaseController
         );
     }
 
+    /**
+     * Upload a link as document
+     * @return response the result of AJAX request
+     */
+    public function uploadLink()
+    {
+        $user = User::find(Auth::user()->id);
+        $enterprise = $user->enterprise()->first();
+        $link = Input::get('link');
+        $result = array();
+
+        $dbLink = Link::where('link', $link)->where('enterprise_id', $enterprise->id);
+        if(!$dbLink->count()){
+            $newLink = new Link;
+            $newLink->link = $link;
+            $newLink->enterprise_id = $enterprise->id;
+            $newLink->save();
+            $name = $link;
+        }else {
+            $name = $link;
+        }
+
+        $result[] = compact('name');
+
+        return array(
+            'link' => $result
+        );
+
+    }
+
     public function getDeleteFile($id)
     {
 

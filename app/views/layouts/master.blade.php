@@ -205,8 +205,7 @@
        QuickSidebar.init(); // init quick sidebar
     });
     $(function () {
-       'use strict';
-       // Change this to the location of your server-side upload handler:
+      //FILE UPLOAD
        var url = '{{ URL::to('upload') }}';
        var deleteUrl = '/file/remove/';
        $('#fileupload').fileupload({
@@ -233,6 +232,25 @@
            $('#uploadedFiles').html(newFiles);
            $('#newFilesHr').fadeIn();
            $('#uploadedFiles').fadeIn();
+       });
+
+       //LINK UPLOAD
+       $('#submitLink').click(function(){
+           var postUrl = '{{ URL::to('addlink') }}';
+           var inputLink = $('#link').val();
+           var dataLink = 'link='+inputLink;
+           if(inputLink != '' && inputLink != null){
+             $.post(postUrl, dataLink, function( data ) {
+                $('<p/>').text(data.link[0].name).appendTo('#links');
+             });
+           }
+       });
+
+       $('#submitUploadLink').click(function(){
+           var newLinks = $('#links').html();
+           $('#uploadedLinks').html(newLinks);
+           $('#newLinksHr').fadeIn();
+           $('#uploadedLinks').fadeIn();
        });
    });
     </script>

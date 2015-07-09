@@ -126,10 +126,13 @@
           <div class="form-group">
               <label class="control-label">
                 N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
-              </label><br>
+              </label><br><br>
               <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers</button>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Ajouter des liens externes</button>
           </div>
           <div id="uploadedFiles"></div>
+          <hr id="newLinksHr" style="border-top: 1px solid grey !important;">
+          <div id="uploadedLinks"></div>
           <br>
           <div class="submitLarge">
             {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
@@ -138,6 +141,7 @@
 
       {{ Form::close() }}
 
+      {{--Files Upload modal--}}
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -168,8 +172,35 @@
           </div>
         </div>
       </div>
-
     </div>
+    {{--END Files Upload modal--}}
+
+    {{--Links Upload modal--}}
+      <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Pièces jointes</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="link" id="link">
+              </div>
+                <span class="btn btn-success" id="submitLink">
+                    <i class="fa fa-plus"></i>
+                    <span>Ajouter votre lien</span>
+                </span>
+                <br><br>
+                <div id="links" class="links"></div>
+                <div class="modal-footer">
+                  <button id="submitUploadLink" type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{--END Links Upload modal--}}
     </div>
 </div>
 @stop

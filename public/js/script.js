@@ -1,7 +1,9 @@
 $(document).ready(function(){
 
 $('#uploadedFiles').hide();
+$('#uploadedLinks').hide();
 $('#newFilesHr').hide();
+$('#newLinksHr').hide();
 
   setTimeout("$('.alert-success').slideToggle(500);",6000 );
   setTimeout("$('.alert-danger').slideToggle(500);",6000 );
