@@ -66,10 +66,15 @@ class ManageCandidatesController extends BaseController
      */
     public function htmlToPdf($id)
     {
-
         $request = Request::create('/candidate/export/'.$id, 'GET', array());
+        $response = Route::dispatch($request);
+        $status = $response->headers->get('location');
         $content = Route::dispatch($request)->getContent();
 
+        if($status != NULL){
+            return Redirect::to('/')->with('error', 'Vous n\'avez pas accès aux autres dossiers candidats');
+        }
+        
         $pdf = PDF::loadHTML($content);
 
         return $pdf->stream('bref-candidature-'.$id.'.pdf');
