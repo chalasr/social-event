@@ -6,8 +6,8 @@ return array(
     'port' => 25,
     'from' => array('address' => 'rchalas@sutunam.com', 'name' => 'Bref Rhône-Alpes'),
     'encryption' => 'tls',
-    // 'username' => null,
-    // 'password' => null,
+    'username' => 'bref.dev5.sutunam.com',
+    'password' => 'OlhnXg8ncgKYWRdkDPUI',
     'sendmail' => '/usr/sbin/sendmail -bs',
     'pretend' => false,""
 );
