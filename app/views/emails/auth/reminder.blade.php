@@ -35,7 +35,7 @@
 			    <div>
 		      		<p>
 		      		  Pour changer votre mot de passe, veuillez cliquez sur le lien suivant afin d'accéder au formulaire et créer votre nouveau mot de passe :
-		      		</p> <br><br>
+		      		</p> <br>
                <a class="btn btn-default" href="{{ URL::to('password/reset', array($token)) }}">Nouveau mot de passe</a>
 		    		<br><br>
 		    		<p>
