@@ -124,12 +124,12 @@
           </div>
           <br>
           <div class="form-group">
-
-          <label class="control-label">
-            N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
-          </label><br>
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers</button>
+              <label class="control-label">
+                N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
+              </label><br>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers</button>
           </div>
+          <div id="uploadedFiles"></div>
           <br>
           <div class="submitLarge">
             {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
@@ -163,7 +163,7 @@
                 </div>
                 <div id="files" class="files"></div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
+              <button id="submitUpload" type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
             </div>
           </div>
         </div>

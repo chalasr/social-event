@@ -215,10 +215,7 @@
            done: function (e, data) {
                $.each(data.result.files, function (index, file) {
                    $('<p/>').text(file.name).appendTo('#files');
-                  /*
-                   $('<p/>').html('<a href="'+deleteUrl+file.id+'">Delete</a>').appendTo('#files');
-                  **/
-
+                  //  $('<p/>').html('<a href="'+deleteUrl+file.id+'">Delete</a>').appendTo('#files');
                });
            },
            progressall: function (e, data) {
@@ -230,6 +227,13 @@
            }
        }).prop('disabled', !$.support.fileInput)
            .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+       $('#submitUpload').click(function(){
+           var newFiles = $('#files').html();
+           $('#uploadedFiles').html(newFiles);
+           $('#newFilesHr').fadeIn();
+           $('#uploadedFiles').fadeIn();
+       });
    });
     </script>
     </body>

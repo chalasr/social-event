@@ -127,7 +127,11 @@
                     @endforeach
                    </tbody>
                 </table>
+                <hr id="newFilesHr" style="border-top: 1px solid grey !important;">
+                <div id="uploadedFiles">
+                </div>
                 <br><br>
+
           <br>
           <div class="submitLarge">
             {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
@@ -160,7 +164,7 @@
                 </div>
                 <div id="files" class="files"></div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
+              <button type="button" id="submitUpload" class="btn btn-default" data-dismiss="modal">Valider</button>
             </div>
           </div>
         </div>

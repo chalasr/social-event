@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+$('#uploadedFiles').hide();
+$('#newFilesHr').hide();
+
   setTimeout("$('.alert-success').slideToggle(500);",6000 );
   setTimeout("$('.alert-danger').slideToggle(500);",6000 );
 
