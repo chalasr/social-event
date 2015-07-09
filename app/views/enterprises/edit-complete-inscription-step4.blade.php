@@ -110,7 +110,7 @@
                 <tr>
                    <th>Année</th>
                    <th>Montant R&D (en % du C.A.)</th>
-                   <th>Éffectif R&D</th>
+                   <th>Effectif R&D</th>
                 </tr>
              </thead>
              <tbody>
