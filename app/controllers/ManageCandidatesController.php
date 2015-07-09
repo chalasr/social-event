@@ -74,10 +74,10 @@ class ManageCandidatesController extends BaseController
         if($status != NULL){
             return Redirect::to('/')->with('error', 'Vous n\'avez pas accès aux autres dossiers candidats');
         }
-        
+
         $pdf = PDF::loadHTML($content);
 
-        return $pdf->stream('bref-candidature-'.$id.'.pdf');
+        return $pdf->download('bref-candidature-'.$id.'.pdf');
     }
 
     public function getDownload($id)
