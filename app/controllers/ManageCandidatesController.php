@@ -23,6 +23,8 @@ class ManageCandidatesController extends BaseController
      */
     public function show($id)
     {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $candidate = User::find($id);
         $enterprise = $candidate->enterprise()->first();
         $survey = false;
@@ -41,6 +43,9 @@ class ManageCandidatesController extends BaseController
      */
     public function exportCandidate($id)
     {
+
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
+        if(Auth::user()->id != $id) return Redirect::to('/')->with('error', 'Vous n\'avez pas accès aux autres dossiers candidats');
         $candidate = User::find($id);
         $enterprise = $candidate->enterprise()->first();
         $survey = false;
@@ -59,6 +64,7 @@ class ManageCandidatesController extends BaseController
      */
     public function htmlToPdf($id)
     {
+
         $request = Request::create('/candidate/export/'.$id, 'GET', array());
         $content = Route::dispatch($request)->getContent();
 
