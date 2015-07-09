@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://bref.dev5.sutunam.com',
+	'url' => 'http://inscription.trophees-innovation-bref.com/',
 
 	/*
 	|--------------------------------------------------------------------------
