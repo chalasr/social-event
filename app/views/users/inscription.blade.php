@@ -30,7 +30,7 @@
                       <div class="col-md-8">
                         {{ Form::text('email', null, array('class'=>'form-control')) }}
                         <span class="help-block">
-                        exemple : michel@dupont.fr </span>
+                        Exemple : michel@dupont.fr </span>
                       </div>
                     </div>
                     <div class="form-group">
@@ -40,7 +40,7 @@
                       <div class="col-md-8">
                         {{ Form::password('password', array('class'=>'form-control')) }}
                         <span class="help-block">
-                        Veuillez indiquer votre mot de passe </span>
+                        Choississez votre mot de passe </span>
                       </div>
                     </div>
                     <div class="form-group">
@@ -50,7 +50,7 @@
                       <div class="col-md-8">
                         {{ Form::password('password_confirmation', array('class'=>'form-control')) }}
                         <span class="help-block">
-                        Veuillez confirmer votre mot de passe </span>
+                        Confirmer votre mot de passe </span>
                       </div>
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                       <div class="col-md-8">
                         {{ Form::text('email', null, array('class'=>'form-control')) }}
                         <span class="help-block">
-                        Veuillez indiquer votre adresse email </span>
+                        Adresse choisie durant votre inscription </span>
                       </div>
                     </div>
                     <div class="form-group">
@@ -96,12 +96,10 @@
                       <div class="col-md-8">
                         {{ Form::password('password', array('class'=>'form-control')) }}
                         <span class="help-block">
-                        Veuillez indiquer votre mot de passe </span>
+                      <a href="{{ URL::to('/password/remind/') }}">Mot de passe oublié ?</a> </span>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-7"><span class="help-block"><a href="{{ URL::to('/password/remind/') }}">Mot de passe oublié</a></span></label>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
