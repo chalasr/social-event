@@ -395,29 +395,40 @@ class CandidatsController extends BaseController
                 $maxFileSize = 52428800;
                 $allowedTypes = ['application/pdf', 'application/zip', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
 
-                if(in_array($fileType, $allowedTypes)){
-                    if($fileSize <= $maxFileSize){
-                        $dbFiles = Upload::where('name', $filename)->where('enterprise_id', $enterprise->id);
-                        $file->move($uploadPath, $filename);
-                        if(!$dbFiles->count()){
-                            $file = new Upload;
-                            $file->name = $filename;
-                            $file->path = $assetPath;
-                            $file->enterprise_id = $enterprise->id;
-                            $file->save();
-                            $name = $filename;
-                            $id = $file->id;
-                        }else {
-                            $name = $filename;
-                        }
-                    }else{
-                        $info = 'Fichier trop volumineux';
-                        $name = $info.' : '.$filename;
-                    }
-                }else{
+                if($fileSize > $maxFileSize){
+                    $info = 'Ficher trop volumineux';
+                    $name = $info.' : '.$filename;
+                    $results[] = compact('name');
+
+                    return array(
+                        'files' => $results
+                    );
+                }
+
+                if(!in_array($fileType, $allowedTypes)){
                     $info = 'Format non supporté';
                     $name = $info.' : '.$filename;
+                    $results[] = compact('name');
+
+                    return array(
+                        'files' => $results
+                    );
                 }
+
+                $dbFiles = Upload::where('name', $filename)->where('enterprise_id', $enterprise->id);
+                if(!$dbFiles->count()){
+                    $file->move($uploadPath, $filename);
+                    $file = new Upload;
+                    $file->name = $filename;
+                    $file->path = $assetPath;
+                    $file->enterprise_id = $enterprise->id;
+                    $file->save();
+                    $name = $filename;
+                    $id = $file->id;
+                }else {
+                    $name = $filename;
+                }
+
                 $results[] = compact('name');
             }
         }
