@@ -28,9 +28,9 @@
 			  	<hr>
 			    <h2>Changement de mot de passe</h2>
 			    <div>
-		      		Pour changer votre mot de passe, veuillez cliquez sur le lien suivant afin d'accéder au formulaire et créer votre nouveau mot de passe : <br>
+		      		Pour changer votre mot de passe, veuillez cliquez sur le lien suivant afin d'accéder au formulaire et créer votre nouveau mot de passe : <br><br>
                <a class="btn btn-default" href="{{ URL::to('password/reset', array($token)) }}">Nouveau mot de passe</a>
-		    		<br>
+		    		<br><br>
 		    		Si vous n'arrivez pas à accéder au formulaire, veuillez copier l'adressee suivante et l'ouvrir via votre naviguateur web : <br>
             {{ URL::to('password/reset', array($token)) }}
 		    	</div>
