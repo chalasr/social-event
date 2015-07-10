@@ -297,7 +297,7 @@
                                   @endif
                                 </div>
                               </div>
-                              @if($enterprise)
+                              @if($survey)
                               <div class="pdfpage">
                                   <h4 class="text-left"><b><br>Pièce(s) jointe(s)</b></h4>
                                   <br>
@@ -311,19 +311,36 @@
                                      <tbody>
                                           @foreach($enterprise->files()->get() as $file)
                                         <tr>
-                                           <td>{{ $file->name }}</td>
+                                           <td class="pieceTd">{{ $file->name }}</td>
                                            <td><a class="btn btn-default btn-sm" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}"><i class="fa fa-download"></i></a></td>
                                         </tr>
                                           @endforeach
                                      </tbody>
                                   </table>
                                 </div>
+                                <div class="pdfpage">
+                                    <br>
+                                    <table class="table">
+                                       <thead>
+                                          <tr>
+                                             <th>Lien</th>
+                                             <th>Ouvrir</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                            @foreach($enterprise->links()->get() as $link)
+                                          <tr>
+                                             <td class="pieceTd">{{ $link->link }}</td>
+                                             <td><a class="btn btn-default btn-sm" href="{{ $link->link }}"><i class="fa fa-external-link"></i></a></td>
+                                          </tr>
+                                            @endforeach
+                                       </tbody>
+                                    </table>
+                                  </div>
                               @endif
                             </div>
                             <div class="panel-footer">
-                               @if($enterprise)
-                                <a type="button" href="mailto:{{ $enterprise->candidate_email }}?subject=Bref Rhône-Alpes - Votre candidature au trophée de l'innovation" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                               @endif
+                              <br>
                             </div>
                           </div>
                         </div>

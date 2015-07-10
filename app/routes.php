@@ -58,7 +58,6 @@ Route::get('register/complete/step2', ['uses' => 'CandidatsController@getComplet
 Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeCompleteRegistrationStep2']);
 
 Route::get('register/edit-complete/step2/', 'CandidatsController@editCompleteRegistrationStep2');
-// Route::patch('edit/complete-register/step2','CandidatsController@updateCompleteRegistrationStep2');
 Route::get('edit/complete-register/step2/remove-participation/{categoryId}', 'CandidatsController@removeCategoryFromEnterprise')->where('categoryId', $id);
 Route::get('edit/complete-register/step2/add-participation/{categoryId}', 'CandidatsController@addCategoryToEnterprise')->where('categoryId', $id);
 
@@ -67,6 +66,7 @@ Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeComp
 
 Route::get('register/edit-complete/step3', 'CandidatsController@editCompleteRegistrationStep3');
 Route::get('edit/delete-file/step3/{id}','CandidatsController@getDeleteFile')->where('id', $id);
+Route::get('delete-link/{id}','CandidatsController@removeLink')->where('id', $id);
 
 Route::post('file/remove/{id}','CandidatsController@removeUploadedFile')->where('id', $id);
 Route::patch('edit/complete-register/step3','CandidatsController@updateCompleteRegistrationStep3');

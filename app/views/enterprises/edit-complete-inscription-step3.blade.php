@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+<style media="screen">
+  td{
+      width: 80%;
+  }
+</style>
 <div class="container">
     @if($errors->all() == true)
     <div class="note note-danger">
@@ -103,12 +108,11 @@
           </div>
 
           <hr />
-          <label class="control-label">
+          <h4>
             N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
-          </label><br><br>
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers</button>
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Ajouter des liens externes</button>
-          
+          </h4><br>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers supplémentaires</button>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Ajouter des liens externes supplémentaires</button>
           <br><br>
                 <table class="table">
                    <thead>
@@ -120,10 +124,30 @@
                    <tbody>
                     @foreach($files as $file)
                       <tr>
-                         <td>{{ $file->name }}</td>
+                         <td class="pieceTd">{{ $file->name }}</td>
                           <td>
                             <a class="btn btn-sm btn-info" href="{{ URL::to('admin/candidates/download/file/'.$file->id) }}"><i class="fa fa-download"></i></a> &nbsp;
                             <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce fichier ?')"  href="{{ URL::to('edit/delete-file/step3/'.$file->id) }}"><i class="fa fa-trash"></i></a>
+                          </td>
+                      </tr>
+                    @endforeach
+                   </tbody>
+                </table>
+                <hr style="border-top: 1px solid grey !important;">
+                <table class="table">
+                   <thead>
+                      <tr>
+                         <th>Nom</th>
+                         <th>Action</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                    @foreach($links as $link)
+                      <tr>
+                         <td class="pieceTd">{{ $link->link }}</td>
+                          <td>
+                            <a class="btn btn-sm btn-info" target="_blank" href="{{ $link->link }}"><i class="fa fa-external-link"></i></a> &nbsp;
+                            <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce lien ?')"  href="{{ URL::to('delete-link/'.$link->id) }}"><i class="fa fa-trash"></i></a>
                           </td>
                       </tr>
                     @endforeach

@@ -747,3 +747,7 @@ margin-top: 100px;
 .boldLabel{
   font-weight: bold !important;
 }
+
+.pieceTd{
+   width: 80%;
+}

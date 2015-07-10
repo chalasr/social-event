@@ -56,4 +56,9 @@ class Enterprise extends Eloquent {
 			return $this->hasMany('Upload');
 	}
 
+	public function links()
+	{
+			return $this->hasMany('Link');
+	}
+
 }

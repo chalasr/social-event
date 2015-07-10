@@ -241,7 +241,9 @@
            var dataLink = 'link='+inputLink;
            if(inputLink != '' && inputLink != null){
              $.post(postUrl, dataLink, function( data ) {
-                $('<p/>').text(data.link[0].name).appendTo('#links');
+                var link = data.link[0].name;
+                $('<a/>').text(data.link[0].name).attr('target', '_blank').attr('href', link).appendTo('#links');
+                $('<br>').appendTo('#links');
              });
            }
        });
