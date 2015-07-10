@@ -230,6 +230,8 @@
        $('#submitUpload').click(function(){
            var newFiles = $('#files').html();
            $('#uploadedFiles').html(newFiles);
+           $('<br>').prepend('#uploadedFiles');
+           $('#uploadedFiles').prepend('<br>');
            $('#newFilesHr').fadeIn();
            $('#uploadedFiles').fadeIn();
        });

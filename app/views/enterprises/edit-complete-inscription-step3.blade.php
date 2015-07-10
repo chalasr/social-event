@@ -111,8 +111,7 @@
           <h4>
             N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
           </h4><br>
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers supplémentaires</button>
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Ajouter des liens externes supplémentaires</button>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Ajouter des fichiers supplémentaires</button>
           <br><br>
                 <table class="table">
                    <thead>
@@ -133,7 +132,11 @@
                     @endforeach
                    </tbody>
                 </table>
+                <hr id="newFilesHr" style="border-top: 1px solid grey !important;">
+                <div id="uploadedFiles"></div>
                 <hr style="border-top: 1px solid grey !important;">
+                <h4>Si vous avez besoin de joindre des fichiers de plus de 50mo, <br> indiquez les liens pour les télécharger ou les visualiser en cliquant sur le bouton ci-dessous (lien Youtube, lien sur votre site internet, ...) <br> Attention les liens "wetransfer" ne sont valables que 7 jours dans la version gratuite et ne fonctionnent donc pas.</h4><br>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Ajouter des liens externes supplémentaires</button><br><br>
                 <table class="table">
                    <thead>
                       <tr>
@@ -153,12 +156,8 @@
                     @endforeach
                    </tbody>
                 </table>
-                <hr id="newFilesHr" style="border-top: 1px solid grey !important;">
-                <div id="uploadedFiles">
-                </div>
                 <hr id="newLinksHr" style="border-top: 1px solid grey !important;">
-                <div id="uploadedLinks">
-                </div>
+                <div id="uploadedLinks"></div>
                 <br><br>
           <br>
           <div class="submitLarge">

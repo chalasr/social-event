@@ -124,15 +124,18 @@
           </div>
           <br>
           <div class="form-group">
-              <label class="control-label">
+              <h4>
                 N’hésitez pas à joindre à votre dossier des produits (échantillons), photos, vidéos, et/ou un dossier de presse.
-              </label><br><br>
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Importer des fichiers</button>
+              </h4><br>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Ajouter des fichiers</button>
+              <br>
+              <div id="uploadedFiles"></div>
+              <hr style="border-top: 1px solid grey !important;">
+              <h4>Si vous avez besoin de joindre des fichiers de plus de 50mo, <br> indiquez les liens pour les télécharger ou les visualiser en cliquant sur le bouton ci-dessous (lien Youtube, lien sur votre site internet, ...) <br> Attention les liens "wetransfer" ne sont valables que 7 jours dans la version gratuite et ne fonctionnent donc pas.</h4><br>
               <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Ajouter des liens externes</button>
           </div>
-          <div id="uploadedFiles"></div>
-          <hr id="newLinksHr" style="border-top: 1px solid grey !important;">
           <div id="uploadedLinks"></div>
+          <hr id="newLinksHr" style="border-top: 1px solid grey !important;">
           <br>
           <div class="submitLarge">
             {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
