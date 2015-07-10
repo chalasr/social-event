@@ -497,7 +497,7 @@ class CandidatsController extends BaseController
         if(!$dbLink->count()){
             $validator = Validator::make(Input::all(), Link::$rules);
             if ($validator->passes()) {
-                Link::checkUrl($link);
+                $link = Link::checkUrl($link);
                 $newLink = new Link;
                 $newLink->link = $link;
                 $newLink->enterprise_id = $enterprise->id;
@@ -507,7 +507,7 @@ class CandidatsController extends BaseController
                 $name = 'Vous devez entrer une url valide (exemple: http://www.google.fr)';
             }
         }else {
-            $name = Link::checkUrl($link);;
+            $name = Link::checkUrl($link);
         }
 
         $result[] = compact('name');
@@ -700,7 +700,7 @@ class CandidatsController extends BaseController
             $payer->setPaymentMethod('paypal');
 
             $item_1 = new Item();
-            $item_1->setName('Ticket de participation Bref Rhône-Alpes')
+            $item_1->setName('Candidature Trophées Bref R-A Innovation 2015')
                 ->setCurrency('EUR')
                 ->setQuantity(1)
                 ->setPrice('100');
