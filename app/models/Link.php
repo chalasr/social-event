@@ -8,4 +8,12 @@ class Link extends Eloquent {
     );
 
     protected $table = 'links';
+
+    public static function checkUrl($link) {
+        if (!preg_match("~^(?:f|ht)tps?://~i", $link)) {
+            $link = "http://" . $link;
+        }
+        return $link;
+    }
+
 }
