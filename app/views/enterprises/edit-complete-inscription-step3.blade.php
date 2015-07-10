@@ -147,7 +147,7 @@
                    <tbody>
                     @foreach($links as $link)
                       <tr>
-                         <td class="pieceTd"><a href="{{ $link->link }}">{{ $link->link }}</a></td>
+                         <td class="pieceTd"><a target="_blank" href="{{ $link->link }}">{{ $link->link }}</a></td>
                           <td>
                             <a class="btn btn-sm btn-info" target="_blank" href="{{ $link->link }}"><i class="fa fa-external-link"></i></a> &nbsp;
                             <a class="btn btn-sm btn-danger" onclick="return confirm('Voulez vous vraiment supprimer ce lien ?')"  href="{{ URL::to('delete-link/'.$link->id) }}"><i class="fa fa-trash"></i></a>
