@@ -694,7 +694,7 @@ class CandidatsController extends BaseController
             $transaction = new Transaction();
             $transaction->setAmount($amount)
                 ->setItemList($item_list)
-                ->setDescription('Your transaction description');
+                ->setDescription('Votre transaction');
 
             $redirect_urls = new RedirectUrls();
             $redirect_urls->setReturnUrl(URL::route('payment.status'))
@@ -787,8 +787,9 @@ class CandidatsController extends BaseController
             $user = User::find(Auth::user()->id);
             $enterprise = $user->enterprise()->first();
             $enterprise->registration_state = 'final';
-            if($enterprise->is_pay == 2)
+            if($enterprise->is_pay == 2 || $enterprise->is_pay == 0){
                 $enterprise->is_pay = 1;
+            }
                 $user->enterprise()->save($enterprise);
                 return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez changez votre méthode de paiement par Paypal');
             $user->enterprise()->save($enterprise);
