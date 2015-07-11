@@ -8,6 +8,8 @@ composer.lock
 Thumbs.db
 /public/uploads/
 /app/config/database.php
+/app/config/database.php.prod
+/app/config/database.php.preprod
 /app/config/mail.php
 /app/config/paypal.php
 /app/config/paypal.prod.php
