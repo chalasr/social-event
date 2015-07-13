@@ -41,6 +41,7 @@ Route::group(array('prefix' => '/admin'), function(){
 	Route::get('/candidates/add-participation/{id}/{categoryId}', 'ManageCandidatesController@addCategoryToCandidate')->where('id', $id)->where('categoryId', $id);
 	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
 	Route::get('/candidates/download/file/{id}', 'ManageCandidatesController@getDownload')->where('id', $id);
+  Route::post('/candidate/valid/{id}', ['uses' => 'ManageCandidatesController@validCandidate'])->where('id', $id);
 });
 
 //Candidates views

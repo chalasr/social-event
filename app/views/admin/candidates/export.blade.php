@@ -329,10 +329,10 @@
                                        </thead>
                                        <tbody>
                                             @foreach($enterprise->links()->get() as $link)
-                                          <tr>
-                                             <td class="pieceTd">{{ $link->link }}</td>
-                                             <td><a class="btn btn-default btn-sm" href="{{ $link->link }}"><i class="fa fa-external-link"></i></a></td>
-                                          </tr>
+                                            <tr>
+                                               <td class="pieceTd"><a target="_blank" href="{{ $link->link }}">{{ $link->link }}</a></td>
+                                               <td><a class="btn btn-default btn-sm" target="_blank" href="{{ $link->link }}"><i class="fa fa-external-link"></i></a></td>
+                                            </tr>
                                             @endforeach
                                        </tbody>
                                     </table>

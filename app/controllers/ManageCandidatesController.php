@@ -164,20 +164,20 @@ class ManageCandidatesController extends BaseController
       * Candidate validation by administrator
       * @return Redirection 301
       */
-    // public function valideCandidate()
-    // {
-    //     if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-    //     if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
-    //
-    //     $user = User::find(Auth::user()->id);
-    //     $enterprise = $user->enterprise()->first();
-    //
-    //     $enterprise->is_valid = 1;
-    //     $enterprise->save();
-    //
-    //     return new Response::json('success');
-    //
-    // }
+    public function validCandidate($id)
+    {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+
+        $user = User::find($id);
+        $enterprise = $user->enterprise()->first();
+
+        $enterprise->is_valid = 1;
+        $user->enterprise()->save($enterprise);
+
+        return Response::json('success');
+
+    }
 
     /**
      * Remove a category to specified user.

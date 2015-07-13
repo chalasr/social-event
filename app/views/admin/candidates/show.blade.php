@@ -17,6 +17,8 @@
       <div class="panel panel-default">
         <div class=" panel-heading">
           <h3 class="panel-title">{{{$enterprise ? $enterprise->name : $candidate->email}}} <a class="floatRight btn btn-xs btn-default" target="_blank" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-file-pdf-o"></i> PDF</a></h3>
+          <input type="hidden" id="user" value="{{ $candidate->id }}">
+          <input type="checkbox" name="valid-user" id="btn-valid" @if($enterprise->is_valid == 1) checked="true" @endif >
         </div>
         <div class="panel-body">
           <div class="row">
@@ -293,8 +295,8 @@
                    <tbody>
                         @foreach($enterprise->links()->get() as $link)
                       <tr>
-                         <td class="pieceTd">{{ $link->link }}</td>
-                         <td><a class="btn btn-default btn-sm" href="{{ $link->link }}"><i class="fa fa-external-link"></i></a></td>
+                         <td class="pieceTd"><a target="_blank" href="{{ $link->link }}">{{ $link->link }}</a></td>
+                         <td><a class="btn btn-default btn-sm" target="_blank" href="{{ $link->link }}"><i class="fa fa-external-link"></i></a></td>
                       </tr>
                         @endforeach
                    </tbody>
