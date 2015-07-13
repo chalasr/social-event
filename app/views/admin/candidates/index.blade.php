@@ -7,6 +7,8 @@
 		}
 </style>
 	<div class="container">
+		<div style="display:none;" class="alert alert-success">
+		</div>
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
@@ -29,17 +31,20 @@
 			        		Paiement
 			        	</th>
 			        	<th>
+			        		Validation
+			        	</th>
+			        	<th>
 			        		Actions
 			        	</th>
 		      		</tr>
 		   			</thead>
 		   			<tbody>
 					   @foreach($candidates as $candidate)
-						<tr onclick="location.href='{{ URL::to('admin/candidates/'.$candidate->id) }}'">
-							<td>
+						<tr>
+							<td onclick="location.href='{{ URL::to('admin/candidates/'.$candidate->id) }}'">
 								{{ $candidate->email }}
 							</td>
-							<td>
+							<td onclick="location.href='{{ URL::to('admin/candidates/'.$candidate->id) }}'">
 								@foreach ($candidate->categories()->get() as $category)
 									{{ $category->name }} ,
 								@endforeach
@@ -56,6 +61,10 @@
 									@else
 											Non
 									@endif
+							</td>
+							<td>
+								<input type="hidden" id="{{ $candidate->id }}" value="{{ $candidate->id }}">
+								<input type="checkbox" class="form-control" onchange="validUser({{ $candidate->id }})" name="{{$candidate->id}}" class="valid" @if($candidate->enterprise()->first()->is_valid == 1) checked="true" @endif >
 							</td>
 							<td>
 								<div class="flex">

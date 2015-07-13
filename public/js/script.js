@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+var userId;
 $('#uploadedFiles').hide();
 $('#uploadedLinks').hide();
 $('#newFilesHr').hide();
@@ -90,19 +90,18 @@ $('#newLinksHr').hide();
          $('#uploadedLinks').fadeIn();
      });
 
-     $('#btn-valid').on("change",function(){
-         var userId = $('#user').val();
-         var validUrl = '/admin/candidate/valid/'+ userId;
-         var dataUser = 'id='+userId;
-         $.post(validUrl, dataUser, function(data){
-            if(data == 1)
-                $('.alert-success').text('Candidature validée avec succès');
-            else
-                $('.alert-success').text('Candidature invalidée avec succès');
+     validUser = function(userId){
+       var validUrl = '/admin/candidate/valid/'+ userId;
+       var dataUser = 'id='+userId;
+       $.post(validUrl, dataUser, function(data){
+          if(data == 1)
+              $('.alert-success').text('Candidature validée avec succès');
+          else
+              $('.alert-success').text('Candidature invalidée avec succès');
 
-            $('.alert-success').show();
-         });
-     });
+          $('.alert-success').show();
+       });
+     };
 
  });
 
