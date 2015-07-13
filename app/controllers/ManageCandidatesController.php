@@ -172,10 +172,10 @@ class ManageCandidatesController extends BaseController
         $user = User::find($id);
         $enterprise = $user->enterprise()->first();
 
-        $enterprise->is_valid = 1;
+        $enterprise->is_valid == 0 ? $enterprise->is_valid = 1 : $enterprise->is_valid = 0;
         $user->enterprise()->save($enterprise);
 
-        return Response::json('success');
+        return Response::json($enterprise->is_valid);
 
     }
 

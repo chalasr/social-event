@@ -152,6 +152,9 @@
     <script src="{{URL::to('/')}}/assets/global/scripts/metronic.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/js/jquery.ui.widget.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/js/jquery.iframe-transport.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/js/jquery.fileupload.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/js/script.js" type="text/javascript"></script>
 
     <script>

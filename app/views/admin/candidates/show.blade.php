@@ -10,6 +10,8 @@
     }
 </style>
 <div class="container">
+  <div class="alert alert-success" style="display:none;">
+  </div>
   <h3 class="text-center">Dossier de candidature - Trophée de l'innovation <br>Bref Rhône-Alpes</h3>
   <br>
   <br>
