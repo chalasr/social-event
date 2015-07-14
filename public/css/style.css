@@ -751,3 +751,7 @@ margin-top: 100px;
 .pieceTd{
    width: 80%;
 }
+
+.statusFilter{
+  margin-left: 2%;
+}

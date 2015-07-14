@@ -5,9 +5,32 @@
 		.table-hover tr:hover{
 				cursor:pointer;
 		}
+		.form-group{
+			width: 30% !important;
+		}
 </style>
 		<div class="alert alert-success ajax-success" style="display:none;"></div>
 		<div class="alert alert-danger ajax-danger" style="display:none;"></div>
+
+		<div class="well">
+				{{ Form::open(array('url'=>'admin/candidates/filter')) }}
+				<div class="flex">
+						<div class="form-group">
+								  {{ Form::select('category_name', array_merge(['' => 'Catégories'], $categories), null, array('class'=>'form-control')) }}
+						</div>
+						<div class="form-group statusFilter">
+									<select class="form-control" name="status" id="status">
+											<option value="">Status</option>
+											<option value="true">Validées</option>
+											<option value="false">Non validées</option>
+									</select>
+						</div>
+				</div>
+				{{ Form::submit('Filtrer', array('class'=>'btn blue button-next'))}}
+				<a class="btn blue button-next" href="{{ URL::to('/admin/candidates')}}">Réinitialiser</a>
+				{{ Form::close() }}
+		</div>
+
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
@@ -77,6 +100,9 @@
 		   			</tbody>
 					</table>
 				</div>
+			<div class="pagination">
+			<?php echo $candidates->links(); ?>
+			</div>
 			</div>
 		</div>
 

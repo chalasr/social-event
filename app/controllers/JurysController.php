@@ -33,8 +33,6 @@ class JurysController extends BaseController
         $currentJury = User::find(Auth::user()->id);
         $juryCategories = $currentJury->categories()->get()->toArray();
 
-        // $categoryName = 'TRANSPORTS ET VÉHICULES DU FUTUR';
-        // print_r($juryCategories);die;
         $categoryName = $juryCategories[0]['name'];
         $candidates = User::where('role_id', '=', 1)
         ->whereHas('categories', function($q) use($categoryName){
