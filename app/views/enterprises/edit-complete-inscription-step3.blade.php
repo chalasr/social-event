@@ -6,7 +6,6 @@
       width: 80%;
   }
 </style>
-<div class="container">
     @if($errors->all() == true)
     <div class="note note-danger">
       <ul>
@@ -229,5 +228,4 @@
           {{--END Links Upload modal--}}
 
     </div>
-</div>
 @stop

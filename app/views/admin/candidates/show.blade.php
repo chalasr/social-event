@@ -9,7 +9,6 @@
       height: inherit !important;
     }
 </style>
-<div class="container">
   <h3 class="text-center">Dossier de candidature - Trophée de l'innovation <br>Bref Rhône-Alpes</h3>
   <br>
   <br>
@@ -308,5 +307,4 @@
         </div>
       </div>
     </div>
-</div>
 @stop

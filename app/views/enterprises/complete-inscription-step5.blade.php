@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-	<div class="container">
 	@if($errors->all() == true)
 	    <div class="note note-danger">
 	      <ul>

@@ -164,12 +164,14 @@
             <h3 class="page-title"></h3>
             <div class="row">
                 <div class="portlet light top-content">
-                    @if(Session::has('message'))
-                        <p class="alert alert-success">{{ Session::get('message') }}</p>
-                    @elseif(Session::has('error'))
-                        <p class="alert alert-danger">{{ Session::get('error') }}</p>
-                    @endif
+                  @if(Session::has('message'))
+                      <p class="alert alert-success flash-success">{{ Session::get('message') }}</p>
+                  @elseif(Session::has('error'))
+                      <p class="alert alert-danger flash-danger">{{ Session::get('error') }}</p>
+                  @endif
+                  <div class="container">
                     @yield('content')
+                  </div>
                 </div>
             </div>
             <div class="text-center">
