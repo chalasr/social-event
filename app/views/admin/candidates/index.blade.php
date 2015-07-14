@@ -7,8 +7,6 @@
 		}
 </style>
 	<div class="container">
-		<div style="display:none;" class="alert alert-success">
-		</div>
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
