@@ -7,6 +7,8 @@
 		}
 </style>
 	<div class="container">
+		<div class="alert alert-success ajax-success" style="display:none;"></div>
+		<div class="alert alert-danger ajax-danger" style="display:none;"></div>
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">

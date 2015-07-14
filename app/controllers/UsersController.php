@@ -12,7 +12,7 @@ class UsersController extends BaseController
     public function getRegister()
     {
         if (Auth::check()) {
-            return Redirect::to('/')->with('message', 'Vous ne pouvez pas vous inscrire en étant déjà connecté');
+            return Redirect::to('/')->with('error', 'Vous ne pouvez pas vous inscrire en étant déjà connecté');
         }
         return View::make('users.inscription');
     }

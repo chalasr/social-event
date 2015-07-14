@@ -221,7 +221,7 @@ class ManageCandidatesController extends BaseController
         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être  administrateur pour accéder à cette partie du site');
         $candidat = User::find($id);
         User::destroy($id);
-        return Redirect::to('/admin/candidates/')->with('message', 'Candidat supprimée avec succès');
+        return Redirect::to('/admin/candidates/')->with('message', 'Candidat supprimé avec succès');
     }
 
 }

@@ -5,8 +5,8 @@ $('#uploadedLinks').hide();
 $('#newFilesHr').hide();
 $('#newLinksHr').hide();
 
-  setTimeout("$('.alert-success').slideToggle(500);",6000 );
-  setTimeout("$('.alert-danger').slideToggle(500);",6000 );
+  setTimeout("$('.flash-success').slideToggle(500);",6000 );
+  setTimeout("$('.flash-danger').slideToggle(500);",6000 );
 
   $('#input_project_partners').hide();
   $('input[name=have_partners]').change(function(){
@@ -95,11 +95,12 @@ $('#newLinksHr').hide();
        var dataUser = 'id='+userId;
        $.post(validUrl, dataUser, function(data){
           if(data == 1)
-              $('.alert-success').text('Candidature validée avec succès');
+              $('.ajax-success').text('Candidature validée avec succès');
           else
-              $('.alert-success').text('Candidature invalidée avec succès');
+              $('.ajax-success').text('Candidature invalidée avec succès');
 
-          $('.alert-success').show();
+          $('.ajax-success').slideToggle();
+          setTimeout("$('.ajax-success').slideToggle(500);",6000 );
        });
      };
 

@@ -124,9 +124,9 @@
             <div class="row">
                 <div class="portlet light top-content">
                     @if(Session::has('message'))
-                        <p class="alert alert-success">{{ Session::get('message') }}</p>
+                        <p class="alert alert-success flash-success">{{ Session::get('message') }}</p>
                     @elseif(Session::has('error'))
-                        <p class="alert alert-danger">{{ Session::get('error') }}</p>
+                        <p class="alert alert-danger flash-danger">{{ Session::get('error') }}</p>
                     @endif
                     @yield('content')
                 </div>
