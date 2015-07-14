@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-	<div class="container">
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
@@ -44,5 +43,4 @@
 				</div>
 			</div>
 		</div>
-	</div>
 @stop

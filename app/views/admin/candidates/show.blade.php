@@ -67,7 +67,6 @@
                       <td class="boldLabel">Nom, Prénom du candidat</td>
                       <td>{{ $enterprise->candidate_name }}&nbsp;{{ $enterprise->candidate_firstname }}</td>
                     </tr>
-
                     <tr>
                       <td class="boldLabel">Fonction du candidat</td>
                       <td>{{ $enterprise->candidate_informations }}</td>

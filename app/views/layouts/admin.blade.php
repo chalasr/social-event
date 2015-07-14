@@ -128,12 +128,14 @@
                     @elseif(Session::has('error'))
                         <p class="alert alert-danger flash-danger">{{ Session::get('error') }}</p>
                     @endif
-                    @yield('content')
+                    <div class="container">
+                      @yield('content')
+                    </div>
+                    <div class="text-center">
+                      <img src="{{URL::to('/')}}/assets/admin/pages/img/logos.jpg" class="footerbanner">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center">
-          <img src="{{URL::to('/')}}/assets/admin/pages/img/logos.jpg" class="footerbanner">
         </div>
     </div>
     <footer>
