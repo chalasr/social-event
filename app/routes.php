@@ -62,6 +62,7 @@ Route::post('complete-register/step2', ['uses' => 'CandidatsController@storeComp
 Route::get('register/edit-complete/step2/', 'CandidatsController@editCompleteRegistrationStep2');
 Route::get('edit/complete-register/step2/remove-participation/{categoryId}', 'CandidatsController@removeCategoryFromEnterprise')->where('categoryId', $id);
 Route::get('edit/complete-register/step2/add-participation/{categoryId}', 'CandidatsController@addCategoryToEnterprise')->where('categoryId', $id);
+Route::post('register/edit-complete/step2', 'CandidatsController@updateCompleteRegistrationStep2');
 
 Route::get('register/complete/step3', ['uses' => 'CandidatsController@getCompleteRegistrationStep3']);
 Route::post('complete-register/step3', ['uses' => 'CandidatsController@storeCompleteRegistrationStep3']);

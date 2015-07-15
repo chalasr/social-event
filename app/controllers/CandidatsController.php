@@ -228,6 +228,18 @@ class CandidatsController extends BaseController
         return View::make('enterprises.edit-complete-inscription-step2', compact('candidate', 'categories'));
     }
 
+    /**
+     * Update step 2
+     */
+    public function updateCompleteRegistrationStep2()
+    {
+        if (!Auth::check()){
+          return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce   formulaire');
+        }
+
+          return Redirect::to('register/complete/step3')->with('message', 'Candidature mise à jour avec succès');
+    }
+
     public function removeCategoryFromEnterprise($categoryId)
     {
         if(!Auth::check()){

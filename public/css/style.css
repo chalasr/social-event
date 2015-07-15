@@ -539,11 +539,6 @@ margin-top: 100px;
   float:left;
 }
 
-.submitLarge{
-  margin-left: 33%;
-  width: 30%;
-}
-
 .top-content {
     margin-top: 30px;
 }
@@ -587,6 +582,23 @@ margin-top: 100px;
     margin-left: -250px;
     margin-top: -220px;
 }
+
+@media screen and (max-width: 1580px) {
+  .container{
+    width: 100% !important;
+  }
+}
+
+@media screen and (min-width: 1068px) {
+    .submitLarge{
+      margin-left: 35%;
+    }
+
+    .submitLarge input[type=submit]{
+        width: 280px !important;
+    }
+}
+
 @media screen and (max-width: 1210px) {
     .banner
     {
@@ -638,7 +650,15 @@ margin-top: 100px;
         margin-left: -210px;
         margin-top: -154px;
     }
+    .submitLarge input[type=submit]{
+        width: 100%;
+    }
+    .submitLarge{
+      margin-left: 0% !important;
+    }
 }
+
+
 @media screen and (max-width: 730px) {
     .banner
     {
@@ -665,9 +685,11 @@ margin-top: 100px;
         margin-left: 330px;
         margin-top: -700px;
     }
+    .submitLarge{
+      margin-left: 0%;
+    }
+
 }
-
-
 
 
 @media screen and (max-width: 630px) {

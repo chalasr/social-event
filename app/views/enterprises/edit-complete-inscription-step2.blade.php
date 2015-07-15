@@ -67,7 +67,7 @@
         </div>
     <div class="well">
       <div class="portlet-body form">
-        {{ Form::open(array('url'=> ['edit/complete-register/step2', $candidate->id], 'method' => 'PATCH', 'class'=>'form-horizontal')) }}
+        {{ Form::open(array('url'=> 'register/edit-complete/step2', 'method' => 'POST', 'class'=>'form-horizontal')) }}
         <div class="form-wizard">
           <div class="form-body">
             <div class="tab-content">
@@ -117,6 +117,10 @@
                       @endforeach
                     </tbody>
                   </table>
+                  <div class="submitLarge">
+                    {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
+                  </div>
+              {{ Form::close() }}
                 </div>
               </div>
             </div>
