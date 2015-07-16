@@ -93,24 +93,28 @@ $('#newLinksHr').hide();
      validUser = function(userId){
        var validUrl = '/admin/candidate/valid/'+ userId;
        var dataUser = 'id='+userId;
+       var cible, hauteur;
        $.post(validUrl, dataUser, function(data){
           if(data == 1){
               $('.ajax-success').text('Candidature validée avec succès');
-              $('.ajax-success').slideToggle();
-              // setTimeout("$('.ajax-success').slideToggle(500);",6000 );
+              cible = 'success'
           }else if(data == 0){
               $('.ajax-success').text('Candidature invalidée avec succès');
-              $('.ajax-success').slideToggle();
-              // setTimeout("$('.ajax-success').slideToggle(500);",6000 );
+              cible = 'success'
           }else if(data == 'missing'){
               $('.ajax-danger').text('Impossible de valider la candidature, manque d\'informations');
-              $('.ajax-danger').slideToggle();
               $('input[name='+userId+']').attr('checked', false);
-              // setTimeout("$('.ajax-danger').slideToggle(500);",6000 );
+              cible = 'danger';
           }
+          $('.ajax-'+cible+'').slideToggle();
+          hauteur = $(".ajax-success").offset().top;
+          hauteur = hauteur - 200;
+          $("html,body").animate({
+              scrollTop: hauteur
+          }, 200);
+          setTimeout("$('.ajax-"+cible+"').slideToggle(500);",6000 );
        });
      };
-
  });
 
 });

@@ -173,12 +173,14 @@
     <script src="{{URL::to('/')}}/js/jquery.fileupload.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/js/script.js" type="text/javascript"></script>
 
-    <script>
+    <script type="text/javascript">
       $(document).ready(function() {
          Metronic.init(); // init metronic core componets
          Layout.init(); // init layout
          QuickSidebar.init(); // init quick sidebar
-    });
+    		 setTimeout("$('.checker').removeClass('checker')",500 );
+    		//  setTimeout("$('.validTd div').addClass('checker')",500 );
+    	});
     </script>
 </body>
 </html>

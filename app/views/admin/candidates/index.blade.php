@@ -9,8 +9,6 @@
 			width: 30% !important;
 		}
 </style>
-		<div class="alert alert-success ajax-success" style="display:none;"></div>
-		<div class="alert alert-danger ajax-danger" style="display:none;"></div>
 
 		<div class="well">
 				{{ Form::open(array('url'=>'admin/candidates/filter')) }}
@@ -31,6 +29,8 @@
 				{{ Form::close() }}
 		</div>
 
+		<div class="alert alert-success ajax-success" style="display:none;"></div>
+		<div class="alert alert-danger ajax-danger" style="display:none;"></div>
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
@@ -84,7 +84,7 @@
 											Non
 									@endif
 							</td>
-							<td>
+							<td class="validTd">
 								<input type="hidden" id="{{ $candidate->id }}" value="{{ $candidate->id }}">
 								<input type="checkbox" class="form-control" onchange="validUser({{ $candidate->id }})" name="{{$candidate->id}}" class="valid" @if($candidate->enterprise()->first()) @if($candidate->enterprise()->first()->is_valid == 1) checked="true" @endif @endif>
 							</td>
