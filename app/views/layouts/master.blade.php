@@ -147,6 +147,20 @@
                             </li>
                         </ul>
                     </li>
+                    @if(Auth::user()->enterprise_id)
+                    <li>
+                        <a href="javascript:;">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Ma candidature</span>
+                        <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                          <li>
+                              <a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a>
+                          </li>
+                        </ul>
+                    </li>
+                    @endif
                 @endif
             @elseif(!Auth::check())
                     <li>

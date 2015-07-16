@@ -237,23 +237,20 @@ class ManageCandidatesController extends BaseController
      */
    public function validCandidate($id)
    {
-       if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-       if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
 
-       $user = User::find($id);
-       $enterprise = $user->enterprise()->first();
+        $user = User::find($id);
+        $enterprise = $user->enterprise()->first();
 
-       $enterprise->is_valid == 0 ? $enterprise->is_valid = 1 : $enterprise->is_valid = 0;
-       $user->enterprise()->save($enterprise);
+        if(!$enterprise){
+            return Response::json('missing');
+        }
 
-       if($enterprise->is_valid == 1){
-           Mail::send('emails.candidates.validation', array('key' => 'value'), function($message) use($user)
-           {
-               $message->to($user->email, 'Candidat')->subject('Bref RA - Validation de votre candidature!');
-           });
-       }
+        $enterprise->is_valid == 0 ? $enterprise->is_valid = 1 : $enterprise->is_valid = 0;
+        $user->enterprise()->save($enterprise);
 
-       return Response::json($enterprise->is_valid);
+        return Response::json($enterprise->is_valid);
 
    }
 
