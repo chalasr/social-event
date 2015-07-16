@@ -68,7 +68,7 @@
         <h4><b>Participation</b></h4>
       </div>
       <div class="portlet-body form">
-        {{ Form::open(array('route'=> ['admin..candidates.update', $candidate->id], 'method' => 'PATCH', 'class'=>'form-horizontal')) }}
+        {{ Form::open(array('url'=> URL::to('/admin/candidate/update'), 'method' => 'POST', 'class'=>'form-horizontal')) }}
         <div class="form-wizard">
           <div class="form-body">
             <div class="tab-content">
@@ -118,6 +118,10 @@
                       @endforeach
                     </tbody>
                   </table>
+                  <div class="submitLarge">
+                    {{ Form::submit('Valider', ['class' => 'btn btn-primary btn-block']) }}
+                  </div>
+              {{ Form::close() }}
                 </div>
               </div>
             </div>

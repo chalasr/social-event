@@ -189,6 +189,15 @@ class ManageCandidatesController extends BaseController
         return Redirect::to('/admin/candidates')->with('message', 'Candidat modifié avec succès');
     }
 
+    public function updateCandidate()
+    {
+        if (!Auth::check()){
+          return Redirect::to('/')->with('message', 'Vous devez être inscrit pour accéder à votre espace candidat et remplir ce   formulaire');
+        }
+
+        return Redirect::to('admin/candidates')->with('message', 'Candidature mise à jour avec succès');
+    }
+
     /**
      * Add a category to specified user.
      *

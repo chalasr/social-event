@@ -43,6 +43,7 @@ Route::group(array('prefix' => '/admin'), function(){
 	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
 	Route::get('/candidates/download/file/{id}', 'ManageCandidatesController@getDownload')->where('id', $id);
   Route::post('/candidate/valid/{id}', ['uses' => 'ManageCandidatesController@validCandidate'])->where('id', $id);
+  Route::post('/candidate/update', 'ManageCandidatesController@updateCandidate');
 });
 
 //Candidates views
