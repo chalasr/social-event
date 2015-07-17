@@ -86,7 +86,7 @@
 							</td>
 							<td class="validTd">
 								<input type="hidden" id="{{ $candidate->id }}" value="{{ $candidate->id }}">
-								<input type="checkbox" class="form-control" onchange="validUser({{ $candidate->id }})" name="{{$candidate->id}}" class="valid" @if($candidate->enterprise()->first()) @if($candidate->enterprise()->first()->is_valid == 1) checked="true" @endif @endif>
+								<input type="checkbox" onchange="validUser({{ $candidate->id }})" name="{{$candidate->id}}" class="valid" @if($candidate->enterprise()->first()) @if($candidate->enterprise()->first()->is_valid == 1) checked="true" @endif @endif>
 							</td>
 							<td>
 								<div class="flex">

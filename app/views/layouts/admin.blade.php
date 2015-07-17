@@ -175,11 +175,11 @@
 
     <script type="text/javascript">
       $(document).ready(function() {
-         Metronic.init(); // init metronic core componets
+        //  Metronic.init(); // init metronic core componets
          Layout.init(); // init layout
          QuickSidebar.init(); // init quick sidebar
-    		 setTimeout("$('.checker').removeClass('checker')",500 );
-    		//  setTimeout("$('.validTd div').addClass('checker')",500 );
+    		//  setTimeout("$('.checker').removeClass('checker')",1000 );
+    		//  setTimeout("$('.validTd div').addClass('checker')",1500 );
     	});
     </script>
 </body>
