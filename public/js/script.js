@@ -129,7 +129,7 @@ $('#newLinksHr').hide();
               cible = 'success'
           }else if(data == 'missing'){
               $('.ajax-danger').text('Impossible de valider le paiement, manque d\'informations');
-              $('input[name='+userId+']').attr('checked', false);
+              $('input[name=pay-'+userId+']').attr('checked', false);
               cible = 'danger';
           }
           $('.ajax-'+cible+'').slideToggle();

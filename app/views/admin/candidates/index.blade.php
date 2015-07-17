@@ -95,7 +95,7 @@
 							</td>
 							<td class="validTd">
 								<input type="hidden" value="{{ $candidate->id }}">
-								<input type="checkbox" onchange="validPayment({{ $candidate->id }})" name="{{$candidate->id}}" class="valid" @if($candidate->enterprise()->first()) @if($candidate->enterprise()->first()->payment_status == 1) checked="true" @endif @endif>
+								<input type="checkbox" onchange="validPayment({{ $candidate->id }})" name="pay-{{$candidate->id}}" class="valid" @if($candidate->enterprise()->first()) @if($candidate->enterprise()->first()->payment_status == 1) checked="true" @endif @endif>
 							</td>
 							<td class="validTd">
 								<input type="hidden" value="{{ $candidate->id }}">
