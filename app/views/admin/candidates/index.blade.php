@@ -44,13 +44,19 @@
 		   			<thead>
 		      		<tr>
 			        	<th>
-			        		Adresse email
+			        		Entreprise
+			        	</th>
+			        	<th>
+			        		Inscrit le
 			        	</th>
 			        	<th>
 			        		Catégories
 			        	</th>
 			        	<th>
 			        		Paiement
+			        	</th>
+			        	<th>
+			        		Status
 			        	</th>
 			        	<th>
 			        		Validation
@@ -64,7 +70,10 @@
 					   @foreach($candidates as $candidate)
 						<tr>
 							<td onclick="location.href='{{ URL::to('admin/candidates/'.$candidate->id) }}'">
-								{{ $candidate->email }}
+								{{{$candidate->enterprise()->first() ? $candidate->enterprise()->first()->name : $candidate->email}}}
+							</td>
+							<td>
+									{{ date('d/m/Y', strtotime($candidate->created_at)) }}
 							</td>
 							<td onclick="location.href='{{ URL::to('admin/candidates/'.$candidate->id) }}'">
 								@foreach ($candidate->categories()->get() as $category)
@@ -78,14 +87,18 @@
 											@elseif($candidate->enterprise()->first()->is_pay == 2)
 												Chèque
 											@else
-												Non
+												Non défini
 											@endif
 									@else
-											Non
+											Non défini
 									@endif
 							</td>
 							<td class="validTd">
-								<input type="hidden" id="{{ $candidate->id }}" value="{{ $candidate->id }}">
+								<input type="hidden" value="{{ $candidate->id }}">
+								<input type="checkbox" onchange="validPayment({{ $candidate->id }})" name="{{$candidate->id}}" class="valid" @if($candidate->enterprise()->first()) @if($candidate->enterprise()->first()->payment_status == 1) checked="true" @endif @endif>
+							</td>
+							<td class="validTd">
+								<input type="hidden" value="{{ $candidate->id }}">
 								<input type="checkbox" onchange="validUser({{ $candidate->id }})" name="{{$candidate->id}}" class="valid" @if($candidate->enterprise()->first()) @if($candidate->enterprise()->first()->is_valid == 1) checked="true" @endif @endif>
 							</td>
 							<td>

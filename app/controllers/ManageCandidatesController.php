@@ -264,6 +264,29 @@ class ManageCandidatesController extends BaseController
    }
 
     /**
+     * Candidate payment validation by administrator
+     * @return Redirection 301
+     */
+   public function validPayment($id)
+   {
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+
+        $user = User::find($id);
+        $enterprise = $user->enterprise()->first();
+
+        if(!$enterprise){
+            return Response::json('missing');
+        }
+
+        $enterprise->payment_status == 0 ? $enterprise->payment_status = 1 : $enterprise->payment_status = 0;
+        $user->enterprise()->save($enterprise);
+
+        return Response::json($enterprise->payment_status);
+
+   }
+
+    /**
      *  Delete specified resource
      * @param  number $id The candidat entity
      * @return HTTP 301 The redirection to index
