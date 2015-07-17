@@ -278,6 +278,9 @@ class ManageCandidatesController extends BaseController
         if(!$enterprise){
             return Response::json('missing');
         }
+        if($enterprise->is_pay == 0){
+            return Response::json('missing');
+        }
 
         $enterprise->payment_status == 0 ? $enterprise->payment_status = 1 : $enterprise->payment_status = 0;
         $user->enterprise()->save($enterprise);
