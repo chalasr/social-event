@@ -31,25 +31,19 @@
 			<div class="text-center">
 			  	<h1>Bref Rhône-Alpes <br> Trophée de l'innovation</h1>
 			  	<hr>
-			    <h2>Validation de votre candidature</h2>
+			    <h2>Notification de validation d'une candidature</h2>
 			    <div>
+            <br><br>
 		      		<p>
-                 Cher(e) candidat(e),<br><br>
-
-                 Merci d'avoir rempli votre dossier en ligne pour notre trophée de l'innovation annuel.<br>
-		      		   Nous sommes heureux de vous annonçer que l'étude de votre candidature est terminée.<br>
-                 Celle-ci a été acceptée et définitivement validée par notre équipe.<br><br>
-
-                 En attendant de se revoir lors du concours, n'hesitez pas à nous contacter pour tout renseignements.<br>
-                 Nous vous tiendrons au courant par mail de l'organisation de l'évènement.<br><br>
-
-                 Veuillez acceptez nos plus sincères salutations,<br>
-                 L'équipe Bref Rhône-Alpes .
+                  La candidature de l'entreprise : <b>{{ $enterprise }}</b> vient d'être validée par un administrateur. <br>
+                  En cliquant sur le lien ci-dessous, vous pouvez télécharger le dossier candidat de l'entreprise.<br><br>
+                  <a class="btn btn-default" href="{{ URL::to('export/'.$user) }}">Candidature {{ $enterprise }}</a>
+                  <br>
               </p> <br>
 		    	</div>
           <hr>
           <div class="text-muted">
-              Si vous recevez ceci par erreur, merci de ne pas tenir compte de ce mail.
+              <a href="http://inscription.trophees-innovation-bref.com/">Trophée de l'innovation - Bref Rhône Alpes</a>
           </div>
 		    </div>
 		</div>

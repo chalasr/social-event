@@ -94,7 +94,7 @@
 		                	<div class="row">
 		                  		<div class="text-center">
 		               				<img src="/assets/admin/pages/img/paypalbutton.jpg">
-		                      		{{ Form::open(array('url'=>'complete-register/step5/paypal')) }}
+		                      		{{ Form::open(array('url'=>'complete-register/step5/paypal', 'onsubmit'=> 'return confirm("En cliquant sur OK vous serez redirigé sur la page de paiement et votre dossier sera envoyé à notre équipe sans possibilité de la modifier par la suite")')) }}
 															{{ Form::submit('Je paie sur Paypal' ,array('class'=>'btn blue button-next')) }}
 															{{ Form::close() }}
 		                		</div>
@@ -123,7 +123,7 @@
 									Tél : 04 37 49 77 90<br>
 								</div>
 								<div class="pricing-footer">
-									{{ Form::open(array('url'=>'complete-register/step5/check')) }}
+									{{ Form::open(array('url'=>'complete-register/step5/check', 'onsubmit'=> 'return confirm("En cliquant sur OK vous serez redirigé sur la page de paiement et votre dossier sera envoyé à notre équipe sans possibilité de la modifier par la suite")')) }}
 									{{ Form::submit('Je paie par chèque',  array('class'=>'btn blue button-next')) }}
 									{{ Form::close() }}
 								</div>
