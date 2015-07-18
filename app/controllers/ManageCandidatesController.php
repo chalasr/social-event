@@ -267,7 +267,7 @@ class ManageCandidatesController extends BaseController
         if($enterprise->is_valid == 1){
             Mail::send('emails.candidates.validation', $data, function($message) use($user)
             {
-                $message->to('robin.chalas@gmail.com')->subject('Validation d\'une candidature - Bref RA');
+                $message->to('nserre@brefonline.com')->subject('Validation d\'une candidature - Bref RA');
             });
         }
 
