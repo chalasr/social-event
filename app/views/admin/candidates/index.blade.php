@@ -113,9 +113,11 @@
 		   			</tbody>
 					</table>
 				</div>
-			<div class="pagination">
-			<?php echo $candidates->links(); ?>
-			</div>
+				@if($pagination)
+				<div class="pagination">
+						<?php echo $candidates->links(); ?>
+				</div>
+				@endif
 			</div>
 		</div>
 

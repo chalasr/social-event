@@ -14,8 +14,9 @@ class ManageCandidatesController extends BaseController
 
           $candidates = User::where('role_id', '=', "1")->paginate(10);
           $categories = Category::lists('name', 'name');
+          $pagination = true;
 
-          return View::make('admin/candidates/index', compact('candidates', 'categories'));
+          return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination'));
     }
 
     /**
@@ -38,13 +39,13 @@ class ManageCandidatesController extends BaseController
             ->whereHas('enterprise', function($q) use($status){
                 $q->where('is_valid', '=', $status);
             })
-            ->paginate(10);
+            ->get();
         }elseif(!Input::get('status') && Input::get('category_name')){
             $categoryName = Input::get('category_name');
             $candidates = User::where('role_id', '=', 1)
             ->whereHas('categories', function($q) use($categoryName){
                 $q->where('name', '=', $categoryName);
-            })->paginate(10);
+            })->get();
         }elseif(!Input::get('category_name') && Input::get('status')){
             // print_r(Input::get('status'));die;
             Input::get('status') == 'false' ? $status = 0 : $status = 1;
@@ -53,13 +54,14 @@ class ManageCandidatesController extends BaseController
             ->whereHas('enterprise', function($q) use($status){
                 $q->where('is_valid', '=', $status);
             })
-            ->paginate(10);
+            ->get();
         }else{
-            $candidates = User::where('role_id', '=', "1")->paginate(10);
+            $candidates = User::where('role_id', '=', "1")->get();
         }
         $categories = Category::lists('name', 'name');
+        $pagination = false;
 
-        return View::make('admin/candidates/index', compact('candidates', 'categories'));
+        return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination'));
     }
 
     /**

@@ -12,7 +12,6 @@
   <h3 class="text-center">Dossier de candidature - Trophée de l'innovation <br>Bref Rhône-Alpes</h3>
   <br>
   <br>
-  @if($candidate && $enterprise)
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
       <div class="panel panel-default">
         <div class=" panel-heading">
@@ -308,5 +307,4 @@
         </div>
       </div>
     </div>
-  @endif
 @stop
