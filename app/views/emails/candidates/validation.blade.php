@@ -29,7 +29,7 @@
   <div class="row">
 		<div class="col-md-12">
 			<div class="text-center">
-			  	<h1>Bref Rhône-Alpes <br> Trophée de l'innovation</h1>
+			  	<h1>Bref Rhône-Alpes <br> Trophées de l'innovation</h1>
 			  	<hr>
 			    <h2>Notification de validation d'une candidature</h2>
 			    <div>
@@ -43,7 +43,7 @@
 		    	</div>
           <hr>
           <div class="text-muted">
-              <a href="http://inscription.trophees-innovation-bref.com/">Trophée de l'innovation - Bref Rhône Alpes</a>
+              <a href="http://inscription.trophees-innovation-bref.com/">Trophées de l'innovation - Bref Rhône Alpes</a>
           </div>
 		    </div>
 		</div>

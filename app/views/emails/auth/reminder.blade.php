@@ -29,7 +29,7 @@
   <div class="row">
 		<div class="col-md-12">
 			<div class="text-center">
-			  	<h1>Bref Rhône-Alpes <br> Trophée de l'innovation</h1>
+			  	<h1>Bref Rhône-Alpes <br> Trophées de l'innovation</h1>
 			  	<hr>
 			    <h2>Changement de mot de passe</h2>
 			    <div>
