@@ -35,7 +35,7 @@
 			<div class="portlet-title">
 				<div class="caption">
 				Gestion candidats -
-						{{$candidates->count()}}
+						{{$candidates->count().' '.$title}} 
 				</div>
 			</div>
 			<div class="portlet-body" style="display: block;">

@@ -15,8 +15,9 @@ class ManageCandidatesController extends BaseController
           $candidates = User::where('role_id', '=', "1")->paginate(10);
           $categories = Category::lists('name', 'name');
           $pagination = true;
+          $title = '';
 
-          return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination'));
+          return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination', 'title'));
     }
 
     /**
@@ -40,12 +41,14 @@ class ManageCandidatesController extends BaseController
                 $q->where('is_valid', '=', $status);
             })
             ->get();
+            $status == 0 ? $title = "Non validés - Catégorie ".$categoryName : $title = "Validés - Catégorie ".$categoryName;
         }elseif(!Input::get('status') && Input::get('category_name')){
             $categoryName = Input::get('category_name');
             $candidates = User::where('role_id', '=', 1)
             ->whereHas('categories', function($q) use($categoryName){
                 $q->where('name', '=', $categoryName);
             })->get();
+            $title = "Catégorie ".$categoryName;
         }elseif(!Input::get('category_name') && Input::get('status')){
             // print_r(Input::get('status'));die;
             Input::get('status') == 'false' ? $status = 0 : $status = 1;
@@ -55,13 +58,15 @@ class ManageCandidatesController extends BaseController
                 $q->where('is_valid', '=', $status);
             })
             ->get();
+            $status == 0 ? $title = "Non validés" : $title = "Validés";
         }else{
             $candidates = User::where('role_id', '=', "1")->get();
+            $title = '';
         }
         $categories = Category::lists('name', 'name');
         $pagination = false;
 
-        return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination'));
+        return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination', 'title'));
     }
 
     /**
