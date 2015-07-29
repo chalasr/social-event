@@ -266,17 +266,6 @@ class ManageCandidatesController extends BaseController
 
         $enterprise->is_valid == 0 ? $enterprise->is_valid = 1 : $enterprise->is_valid = 0;
         $user->enterprise()->save($enterprise);
-        $enterpriseName = $enterprise->name;
-        $data = [
-            'enterprise' => $enterpriseName,
-            'user' => $id,
-        ];
-        if($enterprise->is_valid == 1){
-            Mail::send('emails.candidates.validation', $data, function($message) use($user)
-            {
-                $message->to('nserre@brefonline.com')->subject('Validation d\'une candidature - Bref RA');
-            });
-        }
 
         return Response::json($enterprise->is_valid);
 

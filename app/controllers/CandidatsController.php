@@ -782,6 +782,20 @@ class CandidatsController extends BaseController
             return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez déjà effectué le payment');
         $enterprise->is_pay = 2;
         $user->enterprise()->save($enterprise);
+        if($enterprise->is_pay == 2){
+            $enterpriseName = $enterprise->name;
+            $data = [
+                'enterprise' => $enterpriseName,
+                'user' => Auth::user()->id,
+            ];
+            $admins = User::where('role_id', '=', 3)->get();
+            foreach($admins as $admin){
+                Mail::send('emails.candidates.payment', $data, function($message) use($admin)
+                {
+                    $message->to($admin->email)->subject('Paiement d\'un candidat - Bref RA');
+                });
+            }
+        }
         return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Voutre candidature est complète, nous l\'étudirons une fois votre participation encaissée, puis nous reviendrons vers vous..');
     }
 
@@ -820,12 +834,26 @@ class CandidatsController extends BaseController
             $user = User::find(Auth::user()->id);
             $enterprise = $user->enterprise()->first();
             $enterprise->registration_state = 'final';
-            if($enterprise->is_pay == 2 || $enterprise->is_pay == 0){
+            if($enterprise->is_pay == 2){
                 $enterprise->is_pay = 1;
-            }
-                $user->enterprise()->save($enterprise);
                 return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez changez votre méthode de paiement par Paypal');
+            }
+            $enterprise->is_pay = 1;
             $user->enterprise()->save($enterprise);
+            if($enterprise->is_pay == 1){
+                $enterpriseName = $enterprise->name;
+                $data = [
+                    'enterprise' => $enterpriseName,
+                    'user' => Auth::user()->id,
+                ];
+                $admins = User::where('role_id', '=', 3)->get();
+                foreach($admins as $admin){
+                    Mail::send('emails.candidates.payment', $data, function($message) use($admin)
+                    {
+                        $message->to($admin->email)->subject('Paiement d\'un candidat - Bref RA');
+                    });
+                }
+            }
             return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Le paiement à été effectué.');
         }
         return Redirect::action('CandidatsController@getCompleteRegistrationStep5')
