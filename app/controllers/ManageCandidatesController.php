@@ -76,16 +76,18 @@ class ManageCandidatesController extends BaseController
      */
     public function show($id)
     {
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
-        if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+        if(!Auth::check())
+            return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
+        if(Auth::user()->role_id != 3)
+            return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $candidate = User::find($id);
         $candidate ? $enterprise = $candidate->enterprise()->first() : $enterprise = false;
         $survey = false;
         $activity = false;
         if(!empty($enterprise->survey_id))
-          $survey = Survey::findOrFail($enterprise->survey_id);
+            $survey = Survey::findOrFail($enterprise->survey_id);
         if(!empty($enterprise->survey_id))
-          $activity = Activity::find($enterprise->activity_id);
+            $activity = Activity::find($enterprise->activity_id);
         return View::make('admin/candidates/show', compact('candidate', 'enterprise', 'survey', 'activity'));
     }
 
@@ -120,6 +122,7 @@ class ManageCandidatesController extends BaseController
      */
     public function htmlToPdf($id)
     {
+        $candidate = User::find($id);
         $request = Request::create('/candidate/export/'.$id, 'GET', array());
         $response = Route::dispatch($request);
         $status = $response->headers->get('location');
@@ -128,9 +131,12 @@ class ManageCandidatesController extends BaseController
         if($status != NULL){
             return Redirect::to('/')->with('error', 'Vous n\'avez pas accès aux autres dossiers candidats');
         }
-
         $pdf = PDF::loadHTML($content);
 
+        if($candidate->enterprise()->first()){
+            $enterpriseName = $candidate->enterprise()->first()->name;
+            return $pdf->download('bref-candidature-'.$enterpriseName.'.pdf');
+        }
         return $pdf->download('bref-candidature-'.$id.'.pdf');
     }
 
@@ -268,7 +274,6 @@ class ManageCandidatesController extends BaseController
         $user->enterprise()->save($enterprise);
 
         return Response::json($enterprise->is_valid);
-
    }
 
     /**
@@ -283,10 +288,7 @@ class ManageCandidatesController extends BaseController
         $user = User::find($id);
         $enterprise = $user->enterprise()->first();
 
-        if(!$enterprise){
-            return Response::json('missing');
-        }
-        if($enterprise->is_pay == 0){
+        if(!$enterprise || $enterprise->is_pay == 0){
             return Response::json('missing');
         }
 
@@ -294,7 +296,6 @@ class ManageCandidatesController extends BaseController
         $user->enterprise()->save($enterprise);
 
         return Response::json($enterprise->payment_status);
-
    }
 
     /**

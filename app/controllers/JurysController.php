@@ -79,7 +79,8 @@ class JurysController extends BaseController
             $jury->lastname = Input::get('lastname');
             $jury->phone = Input::get('phone');
             $jury->city = Input::get('city');
-            $dbCategory = Category::find(Input::get('category'));
+            $category = Input::get('category');
+            $dbCategory = Category::find($category);
             $jury->role_id = 2;
             $jury->save();
             $jury->categories()->attach($dbCategory);
