@@ -27,7 +27,7 @@
               <br><br>
   		      		<p>
                     La candidat représentant l'entreprise : <b>{{ $enterprise }}</b> vient d'effectuer le paiement de sa participation aux Trophées de l'Innovation. <br>
-                    Mode de paiement: <b>{{ $paymentMode }}</b> <br>
+                    Mode de paiement: <b>{{$paymentMode}}</b> <br>
                     En cliquant sur le lien ci-dessous, vous pouvez télécharger le dossier candidat de l'entreprise.<br><br>
                     <a class="btn btn-default" href="{{ URL::to('export/'.$user) }}">Candidature {{ $enterprise }}</a>
                     <br>

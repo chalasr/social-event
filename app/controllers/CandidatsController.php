@@ -798,7 +798,7 @@ class CandidatsController extends BaseController
                 });
             }
         }
-        return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Voutre candidature est complète, nous l\'étudirons une fois votre participation encaissée, puis nous reviendrons vers vous..');
+        return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Votre candidature est complète, nous l\'étudierons une fois votre participation encaissée, puis nous reviendrons vers vous.');
     }
 
     public function getCompleteRegistrationStep5()
