@@ -9,15 +9,16 @@ class ManageCandidatesController extends BaseController
      */
     public function index()
     {
-          if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
+          if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
           if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
 
           $candidates = User::where('role_id', '=', "1")->paginate(10);
+          $count = count(User::where('role_id', '=', "1")->get());
           $categories = Category::lists('name', 'name');
           $pagination = true;
           $title = '';
 
-          return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination', 'title'));
+          return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination', 'title', 'count'));
     }
 
     /**
@@ -27,46 +28,54 @@ class ManageCandidatesController extends BaseController
      */
     public function filterCandidates()
     {
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
         if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
 
-          if(Input::get('category_name') && Input::get('status')){
-            $categoryName = Input::get('category_name');
-            Input::get('status') == 'false' ? $status = 0 : $status = 1;
-            $candidates = User::where('role_id', '=', 1)
-            ->whereHas('categories', function($q) use($categoryName){
-                $q->where('name', '=', $categoryName);
-            })
-            ->whereHas('enterprise', function($q) use($status){
-                $q->where('is_valid', '=', $status);
-            })
-            ->get();
-            $status == 0 ? $title = "Non validés - Catégorie ".$categoryName : $title = "Validés - Catégorie ".$categoryName;
-        }elseif(!Input::get('status') && Input::get('category_name')){
-            $categoryName = Input::get('category_name');
-            $candidates = User::where('role_id', '=', 1)
-            ->whereHas('categories', function($q) use($categoryName){
-                $q->where('name', '=', $categoryName);
-            })->get();
-            $title = "Catégorie ".$categoryName;
-        }elseif(!Input::get('category_name') && Input::get('status')){
-            // print_r(Input::get('status'));die;
-            Input::get('status') == 'false' ? $status = 0 : $status = 1;
+        $title = '';
+        $candidates = User::where('role_id', '=', 1);
 
-            $candidates = User::where('role_id', '=', 1)
-            ->whereHas('enterprise', function($q) use($status){
-                $q->where('is_valid', '=', $status);
-            })
-            ->get();
-            $status == 0 ? $title = "Non validés" : $title = "Validés";
-        }else{
-            $candidates = User::where('role_id', '=', "1")->get();
-            $title = '';
+        if(Input::get('category_name')){
+            $categoryName = Input::get('category_name');
+            $candidates->whereHas('categories', function($q) use($categoryName){
+                $q->where('name', '=', $categoryName);
+            });
+            $title = "- Catégorie ".$categoryName;
         }
+        if(Input::get('status')){
+            Input::get('status') == 'false' ? $status = 0 : $status = 1;
+            $candidates->whereHas('enterprise', function($q) use($status){
+                $q->where('is_valid', '=', $status);
+            });
+            $title .= $status == 1 ? " - Validés" : " - Non validés";
+        }
+        if(Input::get('paymentStatus')){
+            Input::get('paymentStatus') == 'false' ? $payStatus = 0 : $payStatus = 1;
+            $candidates->whereHas('enterprise', function($q) use($payStatus){
+                $q->where('payment_status', '=', $payStatus);
+            });
+            $title .= $payStatus == 1 ? " - Paiements reçus" : " - Paiements non reçus";
+        }
+        if(Input::get('paymentMode')){
+            $payMode = intval(Input::get('paymentMode'));
+            $candidates->whereHas('enterprise', function($q) use($payMode){
+                $q->where('is_pay', '=', $payMode);
+            });
+            $payMode = $payMode == 1 ? 'Paypal' : 'chèque';
+            $title .= " - Payé par ".$payMode;
+        }
+        if(Input::get('username')){
+            $enterpriseName = Input::get('username');
+            $candidates->whereHas('enterprise', function($q) use($enterpriseName){
+                $q->where('name', 'LIKE', '%'.$enterpriseName.'%');
+            });
+        }
+
+        $candidates = $candidates->get();
+        $count = count($candidates);
         $categories = Category::lists('name', 'name');
         $pagination = false;
 
-        return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination', 'title'));
+        return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination', 'title', 'count'));
     }
 
     /**
@@ -77,7 +86,7 @@ class ManageCandidatesController extends BaseController
     public function show($id)
     {
         if(!Auth::check())
-            return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
+            return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
         if(Auth::user()->role_id != 3)
             return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $candidate = User::find($id);
@@ -100,7 +109,7 @@ class ManageCandidatesController extends BaseController
     public function exportCandidate($id)
     {
 
-        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette         partie du site.');
+        if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
         if(Auth::user()->role_id != 3 && Auth::user()->role_id != 2){
             if(Auth::user()->id != $id) return Redirect::to('/')->with('error', 'Vous n\'avez pas accès aux autres dossiers candidats');
         }

@@ -774,8 +774,11 @@ margin-top: 100px;
    width: 80%;
 }
 
-.statusFilter{
+#filters .form-group{
   margin-left: 2%;
+}
+.firstFilter {
+  margin-left: 0%!important;
 }
 .btn span.glyphicon {
 	opacity: 0;
