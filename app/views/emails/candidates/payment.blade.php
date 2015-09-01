@@ -9,7 +9,7 @@
     <title>Bref R-A - Validation de votre candidature - Trophées de l'Innovation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&ampsubset=all" rel="stylesheet" type="text/css"/>
-    <link href="http://bref.dev5.sutunam.com/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <style media="screen">
