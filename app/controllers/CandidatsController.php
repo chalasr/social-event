@@ -784,9 +784,11 @@ class CandidatsController extends BaseController
         $user->enterprise()->save($enterprise);
         if($enterprise->is_pay == 2){
             $enterpriseName = $enterprise->name;
+            $paymentMode = 'Chèque';
             $data = [
                 'enterprise' => $enterpriseName,
                 'user' => Auth::user()->id,
+                'paymentMode' => $paymentMode
             ];
             $admins = User::where('role_id', '=', 3)->get();
             foreach($admins as $admin){

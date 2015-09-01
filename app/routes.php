@@ -22,7 +22,6 @@ Route::get('payment/status', array(
 
 Route::get('/export/{id}', ['uses' => 'ManageCandidatesController@htmlToPdf'])->where('id', $id);
 Route::get('/candidate/export/{id}', ['uses' => 'ManageCandidatesController@exportCandidate'])->where('id', $id);
-
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
 Route::get('/admin', array('uses' => 'CategoriesController@index'));
 Route::get('/jury/candidates', 'JurysController@getCandidates')->where('id', $id);
