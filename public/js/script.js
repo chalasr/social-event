@@ -122,23 +122,16 @@ $('#newLinksHr').hide();
        var cible, hauteur;
        $.post(validUrl, dataUser, function(data){
           if(data == 1){
-              $('.ajax-success').text('Paiement validé avec succès');
-              cible = 'success'
+              var alert = 'Paiement validé avec succès';
+              toastr.success(alert);
           }else if(data == 0){
-              $('.ajax-success').text('Paiement invalidé avec succès');
-              cible = 'success'
+              var alert = 'Paiement invalidé avec succès';
+              toastr.success(alert);
           }else if(data == 'missing'){
-              $('.ajax-danger').text('Impossible de valider le paiement, manque d\'informations');
+              var alert = 'Impossible de valider le paiement, manque d\'informations';
+              toastr.error(alert);
               $('input[name=pay-'+userId+']').attr('checked', false);
-              cible = 'danger';
           }
-          $('.ajax-'+cible+'').slideToggle();
-          hauteur = $(".ajax-success").offset().top;
-          hauteur = hauteur - 200;
-          $("html,body").animate({
-              scrollTop: hauteur
-          }, 200);
-          setTimeout("$('.ajax-"+cible+"').slideToggle(500);",6000 );
        });
      };
  });
