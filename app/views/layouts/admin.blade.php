@@ -147,7 +147,7 @@
                       @yield('content')
                     </div>
                     <div class="text-center">
-                      <img src="{{URL::to('/')}}/assets/admin/pages/img/logos.jpg" class="footerbanner">
+                      <img src="{{URL::to('/')}}/assets/admin/pages/img/logos.png" class="footerbanner">
                     </div>
                 </div>
             </div>

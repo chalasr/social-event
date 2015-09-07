@@ -190,7 +190,7 @@
                 </div>
             </div>
             <div class="text-center">
-                    <img src="/assets/admin/pages/img/logos.jpg" class="footerbanner">
+                <img src="/assets/admin/pages/img/logos.png" class="footerbanner">
             </div>
         </div>
     </div>
