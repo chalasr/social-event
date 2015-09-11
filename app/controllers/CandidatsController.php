@@ -841,6 +841,7 @@ class CandidatsController extends BaseController
                 return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez changez votre méthode de paiement par Paypal');
             }
             $enterprise->is_pay = 1;
+            $enterprise->payment_status = 1;
             $user->enterprise()->save($enterprise);
             if($enterprise->is_pay == 1){
                 $enterpriseName = $enterprise->name;
