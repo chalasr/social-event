@@ -507,8 +507,7 @@ class CandidatsController extends BaseController
 
         $dbLink = Link::where('link', $link)->where('enterprise_id', $enterprise->id);
         if(!$dbLink->count()){
-            $validator = Validator::make(Input::all(), Link::$rules);
-            if (filter_var($link, FILTER_VALIDATE_URL) === FALSE) {
+            if (filter_var(Link::checkUrl($link), FILTER_VALIDATE_URL) !== FALSE) {
                 $link = Link::checkUrl($link);
                 $newLink = new Link;
                 $newLink->link = $link;
