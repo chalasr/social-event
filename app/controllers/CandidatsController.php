@@ -507,7 +507,7 @@ class CandidatsController extends BaseController
 
         $dbLink = Link::where('link', $link)->where('enterprise_id', $enterprise->id);
         if(!$dbLink->count()){
-            if (filter_var(Link::checkUrl($link), FILTER_VALIDATE_URL) !== FALSE) {
+            if(filter_var(Link::checkUrl($link), FILTER_VALIDATE_URL) !== FALSE) {
                 $link = Link::checkUrl($link);
                 $newLink = new Link;
                 $newLink->link = $link;
@@ -837,6 +837,19 @@ class CandidatsController extends BaseController
             $enterprise->registration_state = 'final';
             if($enterprise->is_pay == 2){
                 $enterprise->is_pay = 1;
+                $enterpriseName = $enterprise->name;
+                $data = [
+                    'enterprise' => $enterpriseName,
+                    'user' => Auth::user()->id,
+                    'paymentMode' => 'Paypal'
+                ];
+                $admins = User::where('role_id', '=', 3)->get();
+                foreach($admins as $admin){
+                    Mail::send('emails.candidates.payment', $data, function($message) use($admin)
+                    {
+                        $message->to($admin->email)->subject('Paiement d\'un candidat - Bref RA');
+                    });
+                }
                 return Redirect::action('CandidatsController@getCompleteRegistrationFinal')->with('message', 'Vous avez changez votre méthode de paiement par Paypal');
             }
             $enterprise->is_pay = 1;
