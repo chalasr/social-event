@@ -508,7 +508,7 @@ class CandidatsController extends BaseController
         $dbLink = Link::where('link', $link)->where('enterprise_id', $enterprise->id);
         if(!$dbLink->count()){
             $validator = Validator::make(Input::all(), Link::$rules);
-            if ($validator->passes()) {
+            if (filter_var($link, FILTER_VALIDATE_URL) === FALSE) {
                 $link = Link::checkUrl($link);
                 $newLink = new Link;
                 $newLink->link = $link;
@@ -848,6 +848,7 @@ class CandidatsController extends BaseController
                 $data = [
                     'enterprise' => $enterpriseName,
                     'user' => Auth::user()->id,
+                    'paymentMode' => 'Paypal'
                 ];
                 $admins = User::where('role_id', '=', 3)->get();
                 foreach($admins as $admin){
