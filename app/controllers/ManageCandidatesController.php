@@ -12,7 +12,7 @@ class ManageCandidatesController extends BaseController
           if(!Auth::check()) return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
           if(Auth::user()->role_id != 3) return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
 
-          $candidates = User::where('role_id', '=', "1")->paginate(10);
+          $candidates = User::where('role_id', '=', "1")->orderBy('created_at', 'desc')->paginate(10);
           $count = count(User::where('role_id', '=', "1")->get());
           $categories = Category::lists('name', 'name');
           $pagination = true;
