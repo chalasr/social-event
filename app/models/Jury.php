@@ -25,7 +25,6 @@ class Jury extends Eloquent implements UserInterface, RemindableInterface {
 				'phone'=>'required',
         'password'=>'alpha_num|between:2,12|confirmed',
         'password_confirmation'=>'alpha_num|between:2,12',
-				'category' => 'required',
 	);
 	/**
 	 * The database table used by the model.

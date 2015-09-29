@@ -35,7 +35,6 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('firstname',$jury->firstname, array('class'=>'form-control')) }}
-
                           </div>
                         </div>
                         <div class="form-group">
@@ -51,7 +50,6 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('society',$jury->society, array('class'=>'form-control')) }}
-
                           </div>
                         </div>
                         <div class="form-group">
@@ -59,7 +57,6 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('phone',$jury->phone, array('class'=>'form-control')) }}
-
                           </div>
                         </div>
                         <div class="form-group">
@@ -67,19 +64,6 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::text('city',$jury->city, array('class'=>'form-control')) }}
-
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label col-md-3">Catégorie
-                          </label>
-                          <div class="col-md-4">
-                            <select class="form-control input-large" name="category">
-                              <option selected disabled>Veuillez selectionner</option>
-                              @foreach($categories as $category)
-                              <option value="{{ $category->id }}">{{ $category->name }}</option>
-                              @endforeach
-                            </select>
                           </div>
                         </div>
                         <div class="form-group">
@@ -87,7 +71,6 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::password('password', array('class'=>'form-control')) }}
-
                           </div>
                         </div>
                         <div class="form-group">
@@ -106,9 +89,37 @@
                         {{ Form::submit('Appliquer', array('class'=>'btn blue button-next'))}}
                       </div>
                     </div>
+                    {{ Form::close() }}
+                    <div class="form-group">
+                      <div class="col-md-12">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Nom</th>
+                                <th>Sélection</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              @foreach($jury->categories as $category)
+                              <tr>
+                                <td style="width: 82%">{{ $category->name }}</td>
+                                <td><a class="btn btn-danger" href="{{ URL::to('admin/jurys/removecat/'.$jury->id.'/' .$category->id)}}">Supprimer</a></td>
+                              </tr>
+                              @endforeach
+                              @foreach($categories as $category)
+                              <tr>
+                                <td style="width: 82%">{{ $category->name }}</td>
+                                <td><a class="btn btn-info" href="{{ URL::to('admin/jurys/addcat/'.$jury->id.'/' .$category->id)}}">Ajouter</a></td>
+                              </tr>
+                              @endforeach
+                            </tbody>
+                          </table>
+                        </div>
+
+                    </div>
                   </div>
                 </div>
-              {{ Form::close() }}
+              </div>
             </div>
           </div>
         </div>

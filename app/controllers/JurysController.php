@@ -32,14 +32,21 @@ class JurysController extends BaseController
 
         $currentJury = User::find(Auth::user()->id);
         $juryCategories = $currentJury->categories()->get()->toArray();
-
-        $categoryName = $juryCategories[0]['name'];
         $candidates = User::where('role_id', '=', 1)
-        ->whereHas('categories', function($q) use($categoryName){
-            $q->where('name', '=', $categoryName);
-        })->get();
+        ->whereHas('categories', function($q) use($juryCategories) {
+            $q->where('name', '=', $juryCategories[0]['name']);
+        });
+        $categoriesNames = $juryCategories[0]['name'];
+        for($i = 1; $i < count($juryCategories); ++$i) {
+            $cat = $juryCategories[$i];
+            $candidates->orWhereHas('categories', function($q) use($cat) {
+                $q->where('name', '=', $cat['name']);
+            });
+            $categoriesNames .= ' - '.$cat['name'];
+        }
+        $candidates = $candidates->get();
 
-        return View::make('jurys/index', compact('candidates', 'categoryName'));
+        return View::make('jurys/index', compact('candidates', 'categoriesNames'));
     }
     /**
      * Show the form for creating a new resource.
@@ -79,11 +86,14 @@ class JurysController extends BaseController
             $jury->lastname = Input::get('lastname');
             $jury->phone = Input::get('phone');
             $jury->city = Input::get('city');
-            $category = Input::get('category');
-            $dbCategory = Category::find($category);
+            $categories = Category::all();
             $jury->role_id = 2;
             $jury->save();
-            $jury->categories()->attach($dbCategory);
+            foreach($categories as $dbCategory) {
+                if(Input::has($dbCategory->id)) {
+                    $jury->categories()->attach($dbCategory);
+                }
+            }
             return Redirect::to('admin/jurys')->with('message', 'Le jury a été créé avec succès');
         }else{
             return Redirect::to('admin/jurys/create')->with('error', 'Veuillez corriger les erreurs suivantes')->withErrors($validator)->withInput();
@@ -104,6 +114,19 @@ class JurysController extends BaseController
             return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $categories = Category::all();
         $jury = User::find($id);
+        $userCategories = $jury->categories()->get();
+        $countUserCats = count($userCategories);
+        $categories = Category::all();
+        $countCats = count($categories);
+        foreach($userCategories as $userCat){
+            for ($i=0; $i < $countCats; $i++) {
+                if(isset($categories[$i])){
+                    if($userCat->id == $categories[$i]->id){
+                        unset($categories[$i]);
+                    }
+                }
+            }
+        }
         return View::make('admin/jurys/edit', compact('jury', 'categories'));
     }
     /**
@@ -145,6 +168,37 @@ class JurysController extends BaseController
 
     }
 
+    public function removeCategoryFrom($juryId, $categoryId)
+    {
+        if(!Auth::check()){
+            return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        }
+        if(Auth::user()->role_id != 3)
+            return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+
+        $jury = User::find($juryId);
+        $category = Category::find($categoryId);
+        $jury->categories()->detach($category);
+
+        return Redirect::to('admin/jurys/'.$juryId.'/edit')->with('message', 'Jury mis à jour avec succès');
+    }
+
+    public function addCategoryTo($juryId, $categoryId)
+    {
+        if(!Auth::check()){
+            return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        }
+        if(Auth::user()->role_id != 3)
+            return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
+
+        $jury = User::find($juryId);
+        $userCategories = $jury->categories()->get();
+        $countUserCats = count($userCategories);
+        $category = Category::find($categoryId);
+        $jury->categories()->attach($category);
+
+        return Redirect::to('admin/jurys/'.$juryId.'/edit')->with('message', 'Jury mis à jour avec succès');
+    }
     /**
      *  Delete specified resource
      * @param  number $id The jury entity

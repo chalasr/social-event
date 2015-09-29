@@ -34,28 +34,28 @@ class ManageCandidatesController extends BaseController
         $title = '';
         $candidates = User::where('role_id', '=', 1);
 
-        if(Input::get('category_name')){
+        if(Input::get('category_name')) {
             $categoryName = Input::get('category_name');
             $candidates->whereHas('categories', function($q) use($categoryName){
                 $q->where('name', '=', $categoryName);
             });
             $title = "- Catégorie ".$categoryName;
         }
-        if(Input::get('status')){
+        if(Input::get('status')) {
             Input::get('status') == 'false' ? $status = 0 : $status = 1;
             $candidates->whereHas('enterprise', function($q) use($status){
                 $q->where('is_valid', '=', $status);
             });
             $title .= $status == 1 ? " - Validés" : " - Non validés";
         }
-        if(Input::get('paymentStatus')){
+        if(Input::get('paymentStatus')) {
             Input::get('paymentStatus') == 'false' ? $payStatus = 0 : $payStatus = 1;
             $candidates->whereHas('enterprise', function($q) use($payStatus){
                 $q->where('payment_status', '=', $payStatus);
             });
             $title .= $payStatus == 1 ? " - Paiements reçus" : " - Paiements non reçus";
         }
-        if(Input::get('paymentMode')){
+        if(Input::get('paymentMode')) {
             $payMode = intval(Input::get('paymentMode'));
             $candidates->whereHas('enterprise', function($q) use($payMode){
                 $q->where('is_pay', '=', $payMode);
@@ -63,7 +63,7 @@ class ManageCandidatesController extends BaseController
             $payMode = $payMode == 1 ? 'Paypal' : 'chèque';
             $title .= " - Payé par ".$payMode;
         }
-        if(Input::get('username')){
+        if(Input::get('username')) {
             $enterpriseName = Input::get('username');
             $candidates->whereHas('enterprise', function($q) use($enterpriseName){
                 $q->where('name', 'LIKE', '%'.$enterpriseName.'%');
@@ -87,7 +87,7 @@ class ManageCandidatesController extends BaseController
     {
         if(!Auth::check())
             return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
-        if(Auth::user()->role_id != 3)
+        if(Auth::user()->role_id < 2)
             return Redirect::to('users/register')->with('error', 'Vous devez être administrateur pour accéder à cette partie du site');
         $candidate = User::find($id);
         $candidate ? $enterprise = $candidate->enterprise()->first() : $enterprise = false;

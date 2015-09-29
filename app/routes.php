@@ -13,13 +13,13 @@
 
 $id = '[0-9]+';
 
-
-// this is after make the payment, PayPal redirect back to your site
+// Paypal return callback
 Route::get('payment/status', array(
     'as' => 'payment.status',
     'uses' => 'CandidatsController@getPaymentStatus',
 ));
 
+// Misc routing
 Route::get('/export/{id}', ['uses' => 'ManageCandidatesController@htmlToPdf'])->where('id', $id);
 Route::get('/candidate/export/{id}', ['uses' => 'ManageCandidatesController@exportCandidate'])->where('id', $id);
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
@@ -28,25 +28,38 @@ Route::get('/jury/candidates', 'JurysController@getCandidates')->where('id', $id
 Route::post('upload', ['uses' => 'CandidatsController@uploadFile']);
 Route::post('addlink', ['uses' => 'CandidatsController@uploadLink']);
 
+/*
+ *	 Admin routing
+ */
 Route::group(array('prefix' => '/admin'), function(){
-	$id = '[0-9]+';
-	Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
-	Route::get('/categories/delete/{id}', 'CategoriesController@getDelete')->where('id', $id);
-	Route::resource('/jurys', 'JurysController', ['except' => ['show']]);
-	Route::get('/jurys/delete/{id}', 'JurysController@getDelete')->where('id', $id);
-	Route::resource('/candidates', 'ManageCandidatesController', ['except' => ['create', 'store']]);
-	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
-	Route::post('/candidates/filter', 'ManageCandidatesController@filterCandidates');
-	Route::get('/candidates/remove-participation/{id}/{categoryId}', 'ManageCandidatesController@removeCategoryFromCandidate')->where('id', $id)->where('categoryId', $id);
-	Route::get('/candidates/add-participation/{id}/{categoryId}', 'ManageCandidatesController@addCategoryToCandidate')->where('id', $id)->where('categoryId', $id);
-	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
-	Route::get('/candidates/download/file/{id}', 'ManageCandidatesController@getDownload')->where('id', $id);
-  Route::post('/candidate/valid/{id}', ['uses' => 'ManageCandidatesController@validCandidate'])->where('id', $id);
-  Route::post('/candidate/payment/{id}', ['uses' => 'ManageCandidatesController@validPayment'])->where('id', $id);
-  Route::post('/candidate/update', 'ManageCandidatesController@updateCandidate');
+  	$id = '[0-9]+';
+    // Categories
+  	Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
+  	Route::get('/categories/delete/{id}', 'CategoriesController@getDelete')->where('id', $id);
+
+    // Jurys
+  	Route::resource('/jurys', 'JurysController', ['except' => ['show']]);
+  	Route::get('/jurys/delete/{id}', 'JurysController@getDelete')->where('id', $id);
+  	Route::get('/jurys/addcat/{juryId}/{categoryId}', 'JurysController@addCategoryTo')->where('juryId', $id)->where('categoryId', $id);
+  	Route::get('/jurys/removecat/{juryId}/{categoryId}', 'JurysController@removeCategoryFrom')->where('juryId', $id)->where('categoryId', $id);
+
+    // Candidates
+  	Route::resource('/candidates', 'ManageCandidatesController', ['except' => ['create', 'store']]);
+  	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
+  	Route::post('/candidates/filter', 'ManageCandidatesController@filterCandidates');
+  	Route::get('/candidates/remove-participation/{id}/{categoryId}', 'ManageCandidatesController@removeCategoryFromCandidate')->where('id', $id)->where('categoryId', $id);
+  	Route::get('/candidates/add-participation/{id}/{categoryId}', 'ManageCandidatesController@addCategoryToCandidate')->where('id', $id)->where('categoryId', $id);
+  	Route::get('/candidates/delete/{id}', 'ManageCandidatesController@getDelete')->where('id', $id);
+  	Route::get('/candidates/download/file/{id}', 'ManageCandidatesController@getDownload')->where('id', $id);
+    Route::post('/candidate/valid/{id}', ['uses' => 'ManageCandidatesController@validCandidate'])->where('id', $id);
+    Route::post('/candidate/payment/{id}', ['uses' => 'ManageCandidatesController@validPayment'])->where('id', $id);
+    Route::post('/candidate/update', 'ManageCandidatesController@updateCandidate');
+
 });
 
-//Candidates views
+/*
+ * 	Candidates routing
+ */
 Route::controller('users', 'UsersController');
 Route::get('register', array('uses' => 'UsersController@getRegister', 'as' => 'register'));
 

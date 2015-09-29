@@ -72,19 +72,6 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="control-label col-md-3">Catégorie<span class="required">
-                          * </span>
-                          </label>
-                          <div class="col-md-4">
-                            <select class="form-control input-large" name="category" required="true">
-                              <option selected disabled>Veuillez selectionner</option>
-                              @foreach($categories as $category)
-                              <option value="{{ $category->id }}">{{ $category->name }}</option>
-                              @endforeach
-                            </select>
-                          </div>
-                        </div>
-                        <div class="form-group">
                           <label class="control-label col-md-3">Mot de passe <span class="required">
                           * </span>
                           </label>
@@ -98,6 +85,29 @@
                           </label>
                           <div class="col-md-4">
                             {{ Form::password('password_confirmation', array('class'=>'form-control')) }}
+                          </div>
+                        </div>
+                        <br><hr>
+                        <h4 class="text-center">Catégories</h4>
+                        <hr>
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <table class="table">
+                               <thead>
+                                  <tr>
+                                     <th>Nom</th>
+                                     <th>Sélection</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                               @foreach($categories as $category)
+                                  <tr>
+                                     <td style="width: 82%">{{ $category->name }}</td>
+                                     <td class="text-center"><input type="checkbox" name="{{ $category->id }}"></td>
+                                    </tr>
+                              @endforeach
+                               </tbody>
+                            </table>
                           </div>
                         </div>
                       </div>
