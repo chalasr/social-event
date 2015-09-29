@@ -501,7 +501,7 @@ class CandidatsController extends BaseController
             File::delete($filePath.DIRECTORY_SEPARATOR.$fileName);
         }
         Upload::destroy($id);
-        return Redirect::to('register/edit-complete/step3')->with('message', 'Le fichier a bien été supprimé');
+        return Redirect::back()->with('message', 'Le fichier a bien été supprimé');
     }
 
 
