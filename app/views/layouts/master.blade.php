@@ -81,6 +81,15 @@
                           <li>
                               <a href="{{ URL::to('/register/complete') }}">Finaliser ma candidature</a>
                           </li>
+                          @if(Auth::user()->enterprise_id)
+                            @if(Auth::user()->enterprise->first()->registration_state == 'final' || Auth::user()->enterprise->first()->registration_state == 'step5')
+                            <li>
+                                <a href="{{ URL::to('/attachments') }}">Pièces jointes à ma candidatures</a>
+                            </li>
+                            @endif
+                          @endif
+                        </ul>
+                        <ul class="sub-menu">
                         </ul>
                     </li>
                 @elseif(Auth::user()->role_id == 2)

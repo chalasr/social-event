@@ -354,6 +354,17 @@ class CandidatsController extends BaseController
         return View::make('enterprises.edit-complete-inscription-step3', compact('survey', 'files', 'links'));
     }
 
+    public function getAttachments()
+    {
+        $user = User::find(Auth::user()->id);
+        $userEnterprise = $user->enterprise()->first();
+        $files = $userEnterprise->files()->get();
+        $links = $userEnterprise->links()->get();
+
+        return View::make('enterprises.attachments', compact('survey', 'files', 'links'));
+
+    }
+
     public function updateCompleteRegistrationStep3()
     {
         if (!Auth::check()) {
