@@ -845,8 +845,10 @@ class CandidatsController extends BaseController
             $user = User::find(Auth::user()->id);
             $enterprise = $user->enterprise()->first();
             $enterprise->registration_state = 'final';
-            if($enterprise->is_pay == 2){
+            if($enterprise->is_pay == 2) {
                 $enterprise->is_pay = 1;
+                $enterprise->payment_status = 1;
+                $user->enterprise()->save($enterprise);
                 $enterpriseName = $enterprise->name;
                 $data = [
                     'enterprise' => $enterpriseName,
