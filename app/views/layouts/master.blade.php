@@ -89,8 +89,6 @@
                             @endif
                           @endif
                         </ul>
-                        <ul class="sub-menu">
-                        </ul>
                     </li>
                 @elseif(Auth::user()->role_id == 2)
                     <li>
