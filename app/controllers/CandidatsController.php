@@ -542,10 +542,9 @@ class CandidatsController extends BaseController
 
     public function removeLink($id)
     {
-
         $candidate = Auth::user()->id;
         Link::destroy($id);
-        return Redirect::to('register/edit-complete/step3')->with('message', 'Le lien a bien été supprimé');
+        return Redirect::back()->with('message', 'Le lien a bien été supprimé');
     }
 
     public function removeUploadedFile($id)
