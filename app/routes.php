@@ -90,10 +90,8 @@ Route::patch('edit/complete-register/step3','CandidatsController@updateCompleteR
 
 Route::get('register/complete/step4', ['uses' => 'CandidatsController@getCompleteRegistrationStep4']);
 Route::post('complete-register/step4', ['uses' => 'CandidatsController@storeCompleteRegistrationStep4']);
-
 Route::get('register/edit-complete/step4', 'CandidatsController@editCompleteRegistrationStep4');
 Route::patch('edit/complete-register/step4','CandidatsController@updateCompleteRegistrationStep4');
-
 Route::get('register/complete/step5',['uses'=>'CandidatsController@getCompleteRegistrationStep5']);
 Route::post('complete-register/step5/paypal', ['uses'=>'CandidatsController@StoreCompleteRegistrationStep5']);
 Route::post('complete-register/step5/check', ['uses' => 'CandidatsController@storeCompleteRegistrationStep5_check']);
