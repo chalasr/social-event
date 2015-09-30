@@ -19,7 +19,8 @@ Route::get('/export/{id}', ['uses' => 'ManageCandidatesController@htmlToPdf'])->
 Route::get('/candidate/export/{id}', ['uses' => 'ManageCandidatesController@exportCandidate'])->where('id', $id);
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
 Route::get('/admin', array('uses' => 'CategoriesController@index'));
-Route::get('/jury/candidates', 'JurysController@getCandidates')->where('id', $id);
+Route::get('/jury/candidates', 'JurysController@getCandidates');
+Route::post('/jury/candidates/filter', 'JurysController@filterCandidates');
 Route::post('upload', ['uses' => 'CandidatsController@uploadFile']);
 Route::post('addlink', ['uses' => 'CandidatsController@uploadLink']);
 

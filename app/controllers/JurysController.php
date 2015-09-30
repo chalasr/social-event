@@ -32,6 +32,7 @@ class JurysController extends BaseController
 
         $currentJury = User::find(Auth::user()->id);
         $juryCategories = $currentJury->categories()->get()->toArray();
+        $categories = Jury::listCategories($currentJury);
         $candidates = User::where('role_id', '=', 1)
         ->whereHas('categories', function($q) use($juryCategories) {
             $q->where('name', '=', $juryCategories[0]['name']);
@@ -46,7 +47,55 @@ class JurysController extends BaseController
         }
         $candidates = $candidates->get();
 
-        return View::make('jurys/index', compact('candidates', 'categoriesNames'));
+        return View::make('jurys/index', compact('candidates', 'categories', 'categoriesNames'));
+    }
+
+    /**
+     * Display candidacies by category for each jury
+     *
+     * @return Response
+     */
+    public function filterCandidates()
+    {
+        if(!Auth::check())
+            return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 2)
+            return Redirect::to('users/register')->with('error', 'Vous devez être jury pour accéder à cette partie du site');
+        if(!Input::get('filter_category') && !Input::get('username')){
+            return Redirect::to('jury/candidates');
+        }
+        $currentJury = User::find(Auth::user()->id);
+        $categories = Jury::listCategories($currentJury);
+        $candidates = User::where('role_id', '=', 1);
+        $juryCategories = $currentJury->categories()->get()->toArray();
+        $categoriesNames = $juryCategories[0]['name'];
+        if(!Input::get('filter_category')) {
+            $candidates->whereHas('categories', function($q) use($juryCategories) {
+                $q->where('name', '=', $juryCategories[0]['name']);
+            });
+            for($i = 1; $i < count($juryCategories); ++$i) {
+                $cat = $juryCategories[$i];
+                $candidates->orWhereHas('categories', function($q) use($cat) {
+                    $q->where('name', '=', $cat['name']);
+                });
+                $categoriesNames .= ' - '.$cat['name'];
+            }
+        } else {
+            $categoryName = Input::get('filter_category');
+            $candidates->whereHas('categories', function($q) use($categoryName) {
+                $q->where('name', '=', $categoryName);
+            });
+            $categoriesNames = "Catégorie ".$categoryName;
+        }
+        // if(Input::get('username')) {
+        //     $enterpriseName = Input::get('username');
+        //     $candidates->whereHas('enterprise', function($q) use($enterpriseName){
+        //         $q->where('name', 'LIKE', '%'.$enterpriseName.'%');
+        //     });
+        // }
+        $candidates = $candidates->get();
+
+        return View::make('jurys/index', compact('candidates', 'categories', 'categoriesNames'));
     }
     /**
      * Show the form for creating a new resource.

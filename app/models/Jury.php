@@ -26,6 +26,14 @@ class Jury extends Eloquent implements UserInterface, RemindableInterface {
         'password'=>'alpha_num|between:2,12|confirmed',
         'password_confirmation'=>'alpha_num|between:2,12',
 	);
+
+	public static function listCategories($jury) {
+			$categories = [];
+			foreach ($jury->categories()->get() as $category) {
+					$categories[$category->name] = $category->name;
+			}
+			return $categories;
+	}
 	/**
 	 * The database table used by the model.
 	 *

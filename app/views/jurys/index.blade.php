@@ -5,8 +5,25 @@
 		.table-hover tr:hover{
 				cursor:pointer;
 		}
+		.flex .form-group{
+				width: 45%;
+		}
 </style>
 	<div class="container">
+		<div id="filters" class="well">
+				{{ Form::open(array('url'=>'jury/candidates/filter')) }}
+				<div class="flex">
+						<div class="form-group firstFilter">
+								<input type="text" name="username" class="form-control" placeholder="Nom de l'entreprise">
+						</div>
+						<div class="form-group">
+									{{ Form::select('filter_category', array_merge(['' => 'Catégorie'], $categories), null, array('class'=>'form-control')) }}
+						</div>
+				</div>
+						{{ Form::submit('Filtrer', array('class'=>'btn blue button-next'))}}
+						<a class="btn blue button-next" href="{{ URL::to('/jury/candidates')}}">Réinitialiser</a>
+						{{ Form::close() }}
+		</div>
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
@@ -21,30 +38,18 @@
 					<table class="table table-hover">
 		   			<thead>
 		      		<tr>
-			        	<th>
-			        		Candidat
-			        	</th>
-			        	<th>
-			        		Status
-			        	</th>
-			        	<th>
-			        		Catégories
-			        	</th>
-			        	<th>
-			        		Actions
-			        	</th>
+			        	<th>Candidat</th>
+								<th>status</th>
+								<th>Catégories</th>
+			        	<th>Actions</th>
 		      		</tr>
 		   			</thead>
 		   			<tbody>
 					  @foreach($candidates as $candidate)
 						 	@if($candidate->role_id == 1)
 								<tr onclick="location.href='{{ URL::to('admin/candidates/'.$candidate->id) }}'">
-									<td>
-										{{ $candidate->email }}
-									</td>
-									<td>
-										Status
-									</td>
+									<td>{{{$candidate->enterprise()->first() ? $candidate->enterprise()->first()->name : $candidate->email}}}</td>
+									<td>Status</td>
 									<td>
 										@foreach ($candidate->categories()->get() as $category)
 											{{ $category->name }} ,
