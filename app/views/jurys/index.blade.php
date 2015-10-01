@@ -14,10 +14,7 @@
 				{{ Form::open(array('url'=>'jury/candidates/filter')) }}
 				<div class="flex">
 						<div class="form-group firstFilter">
-								<input type="text" name="username" class="form-control" placeholder="Nom de l'entreprise">
-						</div>
-						<div class="form-group">
-									{{ Form::select('filter_category', array_merge(['' => 'Catégorie'], $categories), null, array('class'=>'form-control')) }}
+									{{ Form::select('filter_category', array_merge(['' => 'Catégorie'], $categories), null, array('class'=>'form-control', 'id' => 'filter_category')) }}
 						</div>
 				</div>
 						{{ Form::submit('Filtrer', array('class'=>'btn blue button-next'))}}
@@ -27,7 +24,7 @@
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-						{{ $categoriesNames }} :&nbsp;
+						{{ $title }} :&nbsp;
 						<div class="floatRight">
 								{{$candidates->count()}} Candidatures
 						</div>
@@ -70,5 +67,13 @@
 				</div>
 			</div>
 		</div>
-
+		@if(isset($filterCategory))
+			<script type="text/javascript">
+					$(document).ready( function() {
+							var chosen = "{{ $filterCategory }}";
+							console.log(chosen);
+							$('#filter_category').val(chosen);
+					})
+			</script>
+		@endif
 @stop

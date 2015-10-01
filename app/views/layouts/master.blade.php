@@ -22,6 +22,7 @@
     <link href="{{URL::to('/')}}/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="{{URL::to('/')}}/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{URL::to('/')}}/css/jquery.fileupload.css" media="screen" title="no title" charset="utf-8">
+    <script src="{{URL::to('/')}}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 </head>
     <body class="page-md page-header-fixed page-quick-sidebar-over-content">
     <div class="page-header md-shadow-z-1-i navbar">
@@ -217,7 +218,6 @@
         <p>Bref R-A Innovation</p>
     </footer>
 
-    <script src="{{URL::to('/')}}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
