@@ -202,7 +202,7 @@ class JurysController extends BaseController
 
         $jury = User::find($id);
         $jury->email = Input::get('email');
-        if(!is_null($jury->password))
+        if(Input::get('password'))
             $jury->password = Hash::make(Input::get('password'));
         $jury->society = Input::get('society');
         $jury->firstname = Input::get('firstname');
