@@ -257,6 +257,7 @@ class JurysController extends BaseController
 
         return Redirect::to('admin/jurys/'.$juryId.'/edit')->with('message', 'Jury mis à jour avec succès');
     }
+    
     /**
      *  Delete specified resource
      * @param  number $id The jury entity
