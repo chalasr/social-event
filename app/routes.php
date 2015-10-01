@@ -20,6 +20,7 @@ Route::get('/candidate/export/{id}', ['uses' => 'ManageCandidatesController@expo
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
 Route::get('/admin', array('uses' => 'CategoriesController@index'));
 Route::get('/jury/candidates', 'JurysController@getCandidates');
+Route::get('/jury/bycategory/{id}', 'JurysController@getCandidatesByCategory')->where('id', $id);
 Route::post('/jury/candidates/filter', 'JurysController@filterCandidates');
 Route::post('upload', ['uses' => 'CandidatsController@uploadFile']);
 Route::post('addlink', ['uses' => 'CandidatsController@uploadLink']);

@@ -55,6 +55,29 @@ class JurysController extends BaseController
      *
      * @return Response
      */
+    public function getCandidatesByCategory($categoryId)
+    {
+        if(!Auth::check())
+            return Redirect::to('users/register')->with('error', 'Vous devez être inscrit pour accéder à cette partie du site.');
+        if(Auth::user()->role_id != 2)
+            return Redirect::to('users/register')->with('error', 'Vous devez être jury pour accéder à cette partie du site');
+
+        $currentJury = User::find(Auth::user()->id);
+        $category = Category::find($categoryId);
+        $candidates = User::where('role_id', '=', 1)
+        ->whereHas('categories', function($q) use($category) {
+            $q->where('name', '=', $category->name);
+        })->get();
+        $categoriesNames = "Catégorie ".$category->name;
+
+        return View::make('jurys/bycategory', compact('candidates', 'categories', 'categoriesNames'));
+    }
+
+    /**
+     * Display candidacies by category for each jury
+     *
+     * @return Response
+     */
     public function filterCandidates()
     {
         if(!Auth::check())

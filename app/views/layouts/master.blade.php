@@ -99,8 +99,13 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="{{ URL::to('/jury/candidates') }}">Afficher les candidatures</a>
+                                <a href="{{ URL::to('/jury/candidates') }}">Toutes les candidatures</a>
                             </li>
+                            @foreach(Auth::user()->categories()->get() as $category)
+                            <li>
+                                <a href="{{ URL::to('/jury/bycategory/'.$category->id) }}">{{ $category->name }}</a>
+                            </li>
+                            @endforeach
                         </ul>
                     </li>
                 @elseif(Auth::user()->role_id == 3)
