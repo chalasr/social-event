@@ -13,7 +13,7 @@
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-						{{ $categoriesNames }} :&nbsp;
+						{{ $title }} :&nbsp;
 						<div class="floatRight">
 								{{$candidates->count()}} Candidatures
 						</div>
