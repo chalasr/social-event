@@ -21,6 +21,11 @@ class ManageCandidatesController extends BaseController
           return View::make('admin/candidates/index', compact('candidates', 'categories', 'pagination', 'title', 'count'));
     }
 
+    public function getCandidatesCount(){
+        $candidates = Enterprise::where('is_valid', '=', 1)->get();
+        return View::make('admin/candidates/brut', compact('candidates'));
+    }
+
     /**
      * Display filtered resources.
      *
