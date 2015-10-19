@@ -68,6 +68,9 @@ class JurysController extends BaseController
         $currentJury = User::find(Auth::user()->id);
         $category = Category::find($categoryId);
         $candidates = User::where('role_id', '=', 1)
+        ->whereHas('enterprise', function($q) {
+          $q->where('is_valid', '=', 1);
+        })
         ->whereHas('categories', function($q) use($category) {
             $q->where('name', '=', $category->name);
         })->get();
@@ -94,7 +97,10 @@ class JurysController extends BaseController
         $categories = Jury::listCategories($currentJury);
         $juryCategories = $currentJury->categories()->get()->toArray();
 
-        $candidates = User::where('role_id', '=', 1);
+        $candidates = User::where('role_id', '=', 1)
+        ->whereHas('enterprise', function($q){
+            $q->where('is_valid', '=', 1);
+        });
         if(!Input::get('filter_category')) {
             return Redirect::to('jury/candidates');
         }
