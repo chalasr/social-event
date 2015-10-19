@@ -34,6 +34,9 @@ class JurysController extends BaseController
         $juryCategories = $currentJury->categories()->get()->toArray();
         $categories = Jury::listCategories($currentJury);
         $candidates = User::where('role_id', '=', 1)
+        ->whereHas('enterprise', function($q) {
+            $q->where('is_valid', '=', 1);
+        })
         ->whereHas('categories', function($q) use($juryCategories) {
             $q->where('name', '=', $juryCategories[0]['name']);
         });
@@ -257,7 +260,7 @@ class JurysController extends BaseController
 
         return Redirect::to('admin/jurys/'.$juryId.'/edit')->with('message', 'Jury mis à jour avec succès');
     }
-    
+
     /**
      *  Delete specified resource
      * @param  number $id The jury entity
