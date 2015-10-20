@@ -54,7 +54,7 @@
 									</td>
 									<td>
 										<div class="flex">
-											<a class="btn btn-sm btn-default" target="_blank" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-download"></i></a> &nbsp;
+											<a class="btn btn-sm btn-default" target="_blank" href="{{ URL::to('export/'.$candidate->id) }}"><i class="fa fa-file-pdf-o"></i> PDF</a> &nbsp;
 											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/candidates/'.$candidate->id) }}"><i class="fa fa-eye"></i></a> &nbsp;
 										</div>
 									</td>
